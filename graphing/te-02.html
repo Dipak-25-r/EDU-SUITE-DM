@@ -1,0 +1,495 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>DKGraphSuite — Graphing Studio (Single Page)</title>
+<style>
+:root{--bg:#070b17;--panel:#0d1426;--panel2:#151f38;--panel3:#1a2744;--text:#f5f8ff;--muted:#9aa9c7;--accent:#7c6cff;--accent2:#26d9ff;--accent3:#8bffcf;--border:#263858;--danger:#ff647c;--ok:#62d8a7;--grid:#253452;--glow:rgba(124,108,255,.22)}
+:root.light{--accent:#5b45e8;--accent2:#008db2;--glow:rgba(91,69,232,.14)}
+:root.light{--bg:#f5f7fb;--panel:#fff;--panel2:#edf2fa;--text:#142039;--muted:#58677f;--accent:#276cff;--border:#d5deed;--danger:#d9304f;--ok:#128a5a;--grid:#dce4f1}
+*{box-sizing:border-box}html,body{margin:0;height:100%;font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;background:var(--bg);color:var(--text)}
+button,input,select{font:inherit}button{cursor:pointer;color:inherit;background:var(--panel2);border:1px solid var(--border);border-radius:8px;padding:7px 10px}
+button:hover{border-color:var(--accent)}button:disabled{opacity:.45;cursor:not-allowed}
+input,select{background:var(--bg);color:var(--text);border:1px solid var(--border);border-radius:7px;padding:7px;min-width:0}
+.app{height:100%;display:grid;grid-template-rows:auto 1fr auto;overflow:hidden}
+header{display:flex;align-items:center;gap:12px;padding:9px 12px;border-bottom:1px solid var(--border);background:var(--panel)}
+.brand{font-weight:800;letter-spacing:.5px;white-space:nowrap}.brand span{color:var(--accent)}
+.header-actions{margin-left:auto;display:flex;gap:6px}
+.workspace{min-height:0;display:grid;grid-template-columns:300px minmax(0,1fr) 300px}
+aside{background:var(--panel);overflow:auto;padding:10px;border-right:1px solid var(--border)}aside.right{border-left:1px solid var(--border);border-right:0}
+section{margin-bottom:13px}.section-title{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:5px 3px 8px;font-weight:700}
+.row{display:flex;gap:6px;align-items:center}.row>*{flex:1}.row .fit{flex:0 0 auto}
+.function{border:1px solid var(--border);border-radius:10px;padding:8px;margin-bottom:7px;background:var(--panel2)}
+.function.selected{border-color:var(--accent)}.func-head{display:flex;gap:5px;align-items:center}.func-name{width:38px;font-weight:700}.expr{width:100%}.mini{padding:5px 7px;font-size:12px}.color{width:34px;height:31px;padding:2px}
+canvas{display:block;width:100%;height:100%;background:var(--bg);touch-action:none}
+.canvas-wrap{position:relative;min-width:0;min-height:0;overflow:hidden}.overlay{position:absolute;left:12px;top:12px;display:flex;gap:6px;flex-wrap:wrap;pointer-events:none}.badge{background:color-mix(in srgb,var(--panel) 88%,transparent);border:1px solid var(--border);border-radius:8px;padding:5px 8px;font-size:12px}
+.bottom{padding:7px 10px;border-top:1px solid var(--border);background:var(--panel);display:flex;gap:8px;align-items:center;color:var(--muted);font-size:12px}.status{color:var(--text)}
+.tabs{display:flex;gap:4px;margin-bottom:8px}.tabs button{font-size:12px}.tabs button.active{border-color:var(--accent)}
+.panel{display:none}.panel.active{display:block}
+label{font-size:12px;color:var(--muted);display:block;margin:7px 0 3px}
+table{border-collapse:collapse;width:100%;font-size:12px}th,td{border-bottom:1px solid var(--border);padding:5px;text-align:right}th:first-child,td:first-child{text-align:left}
+.help{font-size:12px;color:var(--muted);line-height:1.45}.error{color:var(--danger);font-size:12px;margin-top:5px}
+.range{width:100%}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.modal-back{position:fixed;inset:0;background:#0008;display:none;align-items:center;justify-content:center;z-index:20}.modal-back.open{display:flex}.modal{width:min(650px,94vw);max-height:90vh;overflow:auto;background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:16px}
+.modal h2{margin:0 0 12px;font-size:18px}.templates{display:grid;grid-template-columns:1fr 1fr;gap:7px}.templates button{text-align:left}
+@media(max-width:1050px){.workspace{grid-template-columns:260px minmax(0,1fr)}aside.right{display:none}}
+@media(max-width:720px){.workspace{grid-template-columns:1fr}.workspace aside.left{display:none}.canvas-wrap{min-height:55vh}.header-actions button:not(#themeBtn){display:none}}
+
+/* Visual layer */
+body{background:radial-gradient(circle at 50% -10%,rgba(124,108,255,.13),transparent 34%),var(--bg)}
+header{box-shadow:0 8px 30px rgba(0,0,0,.16)}
+.brand{font-size:15px}.brand span{background:linear-gradient(90deg,var(--accent2),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent}
+.workspace{grid-template-columns:310px minmax(0,1fr) 320px}
+aside{transition:width .22s ease,opacity .18s ease,padding .22s ease}
+aside.collapsed{width:0!important;padding-left:0;padding-right:0;overflow:hidden;border:0}
+.canvas-wrap{background:radial-gradient(circle at 50% 50%,rgba(38,217,255,.025),transparent 55%)}
+.top-tools{position:absolute;right:12px;top:12px;display:flex;gap:6px;z-index:3}
+.floating-btn{backdrop-filter:blur(12px);background:rgba(13,20,38,.82);box-shadow:0 8px 25px rgba(0,0,0,.18);font-weight:700}
+.panel-card{background:linear-gradient(145deg,var(--panel2),var(--panel));border:1px solid var(--border);border-radius:12px;padding:9px;margin-bottom:8px}
+.section-head{display:flex;align-items:center;justify-content:space-between;gap:7px;cursor:pointer;padding:3px}
+.section-head .chev{transition:transform .2s}.section-head.closed .chev{transform:rotate(-90deg)}
+.section-body{overflow:hidden;max-height:1000px;transition:max-height .22s ease,opacity .18s}.section-body.closed{max-height:0;opacity:0}
+.function{box-shadow:0 5px 18px rgba(0,0,0,.12);transition:.18s}
+.function:hover{transform:translateY(-1px);border-color:#435b86}
+.func-meta{display:grid;grid-template-columns:42px 1fr 36px 36px;gap:5px;margin-top:6px}
+.func-meta input,.func-meta select{width:100%}
+.edit-label{font-size:10px;color:var(--muted);display:block;margin:0 0 2px}
+.menu-toggle{min-width:36px;font-size:16px}
+.brand-badge{font-size:10px;color:var(--accent3);border:1px solid var(--border);padding:3px 6px;border-radius:99px}
+</style>
+<link rel="stylesheet" href="../assets/global-navbar.css">
+</head>
+<body>
+<div class="app">
+<header>
+  <div class="brand">DK<span>GraphSuite</span> · Graphing Studio</div>
+  <div class="header-actions">
+    <button class="menu-toggle" id="leftToggle" title="Show/hide tools">☰</button>
+    <button class="menu-toggle" id="rightToggle" title="Show/hide analysis">◧</button>
+    <button id="newBtn">New</button>
+    <button id="saveBtn">Save</button>
+    <button id="loadBtn">Load</button>
+    <button id="importBtn">Import</button>
+    <button id="exportJsonBtn">JSON</button>
+    <button id="themeBtn" title="Toggle theme">☾</button>
+  </div>
+  <input id="fileImport" type="file" accept=".json,application/json" hidden>
+</header>
+
+<div class="workspace">
+<aside class="left">
+<section>
+<div class="section-title">Functions</div>
+<div id="functions"></div>
+<div class="row"><button id="addFn">＋ Function</button><button id="templatesBtn">Templates</button></div>
+</section>
+<section>
+<div class="section-title">View</div>
+<div class="row"><button id="fitBtn">Fit graph</button><button id="resetViewBtn">Reset view</button></div>
+<div class="grid2">
+<div><label>Grid</label><button id="gridBtn" style="width:100%">On</button></div>
+<div><label>Axes</label><button id="axesBtn" style="width:100%">On</button></div>
+</div>
+</section>
+<section>
+<div class="section-title">Parametric</div>
+<label>x(t)</label><input id="px" value="cos(t)">
+<label>y(t)</label><input id="py" value="sin(t)">
+<div class="grid2"><div><label>t min</label><input id="ptmin" type="number" value="0" step="any"></div><div><label>t max</label><input id="ptmax" type="number" value="6.283185307" step="any"></div></div>
+<label>Resolution</label><input id="pres" type="number" value="800" min="20" max="10000">
+<button id="addParam" style="width:100%;margin-top:6px">Add parametric curve</button>
+</section>
+<section>
+<div class="section-title">Polar</div>
+<label>r(θ)</label><input id="polarExpr" value="1+0.5*cos(5*t)">
+<div class="grid2"><div><label>θ min</label><input id="pomin" type="number" value="0" step="any"></div><div><label>θ max</label><input id="pomax" type="number" value="6.283185307" step="any"></div></div>
+<button id="addPolar" style="width:100%;margin-top:6px">Add polar curve</button>
+</section>
+<section>
+<div class="section-title">Shortcuts</div>
+<div class="help">Wheel = zoom · drag = pan · click = inspection point · Ctrl/Cmd+Z = undo · Delete = remove selected function</div>
+</section>
+</aside>
+
+<main class="canvas-wrap" id="canvasWrap">
+<canvas id="graph" aria-label="Interactive mathematical graph"></canvas>
+<div class="top-tools">
+  <button class="floating-btn" id="quickFunctionBtn">＋ Add function</button>
+  <button class="floating-btn" id="centerBtn">⌖ Center</button>
+</div>
+<div class="overlay">
+  <span class="badge" id="coordBadge">x: — · y: —</span>
+  <span class="badge" id="viewBadge">View: −10…10</span>
+</div>
+</main>
+
+<aside class="right">
+<div class="tabs" role="tablist">
+  <button class="tab active" data-tab="analysis">Analysis</button>
+  <button class="tab" data-tab="table">Table</button>
+  <button class="tab" data-tab="calculator">Calculator</button>
+</div>
+
+<div class="panel active" id="analysis">
+<div class="section-title">Selected function</div>
+<div id="selectedLabel" class="help">Select a function.</div>
+<label>Inspect x</label><input id="inspectX" type="number" step="any" value="1">
+<div class="row"><button id="valueBtn">f(x)</button><button id="derivativeBtn">Derivative</button><button id="tangentBtn">Tangent</button></div>
+<div id="analysisResult" class="help" style="margin-top:7px"></div>
+<hr style="border:0;border-top:1px solid var(--border);margin:12px 0">
+<div class="section-title">Integral / area</div>
+<div class="grid2"><div><label>a</label><input id="intA" type="number" value="0" step="any"></div><div><label>b</label><input id="intB" type="number" value="3" step="any"></div></div>
+<button id="integralBtn" style="width:100%;margin-top:6px">Calculate ∫ f(x) dx</button>
+<div id="integralResult" class="help" style="margin-top:7px"></div>
+<hr style="border:0;border-top:1px solid var(--border);margin:12px 0">
+<div class="section-title">Features</div>
+<button id="rootsBtn" style="width:100%">Find roots</button>
+<button id="extremaBtn" style="width:100%;margin-top:5px">Find extrema / critical points</button>
+<button id="intersectionsBtn" style="width:100%;margin-top:5px">Intersections with next function</button>
+<div id="featureResult" class="help" style="margin-top:7px"></div>
+</div>
+
+<div class="panel" id="table">
+<div class="section-title">Function table</div>
+<div class="grid2"><div><label>Start</label><input id="tableStart" type="number" value="-5" step="any"></div><div><label>End</label><input id="tableEnd" type="number" value="5" step="any"></div></div>
+<label>Step</label><input id="tableStep" type="number" value="0.5" min="0.000001" step="any">
+<button id="makeTable" style="width:100%;margin-top:6px">Generate</button><button id="csvBtn" style="width:100%;margin-top:5px">Export CSV</button>
+<div id="tableWrap" style="margin-top:8px;max-height:55vh;overflow:auto"></div>
+</div>
+
+<div class="panel" id="calculator">
+<div class="section-title">Safe calculator</div>
+<input id="calcExpr" placeholder="sqrt(2)^2 + sin(pi/2)">
+<button id="calcBtn" style="width:100%;margin-top:6px">Calculate</button>
+<div id="calcResult" class="help" style="margin-top:8px"></div>
+<div class="help" style="margin-top:10px">Operators: + − × ÷ ^ · Functions: sin, cos, tan, asin, acos, atan, sqrt, abs, log, ln, exp, floor, ceil, min, max · Constants: pi, e.</div>
+</div>
+</aside>
+</div>
+
+<footer class="bottom">
+  <span>DKGraphSuite</span><span class="brand-badge">SINGLE-PAGE WORKSPACE</span><span>•</span>
+  <span id="status" class="status">Ready</span>
+  <span style="margin-left:auto" id="saveStatus">Autosave enabled</span>
+</footer>
+</div>
+
+<div class="modal-back" id="modalBack">
+  <div class="modal">
+    <h2>Function templates</h2>
+    <div class="templates" id="templateList"></div>
+    <button id="closeModal" style="margin-top:12px">Close</button>
+  </div>
+</div>
+
+<script>
+"use strict";
+const $=id=>document.getElementById(id);
+const TAU=Math.PI*2;
+const COLORS=["#4da3ff","#ff5c7a","#58d68d","#b879ff","#ffb84d","#36cfc9","#f06cff","#8bc34a"];
+
+// Pre-loaded with multiple examples: polynomial, trigonometric, logarithmic, and exponential
+const defaultState=()=>({
+ version:1, projectName:"Multifunction Graph", module:"graphing",
+ settings:{theme:"dark",grid:true,axes:true,minorGrid:true},
+ functions:[
+  {id:crypto.randomUUID(),name:"f",expr:"x^2 - 4",type:"cartesian",visible:true,color:COLORS[0],width:2,style:"solid",opacity:1},
+  {id:crypto.randomUUID(),name:"g",expr:"sin(x)",type:"cartesian",visible:true,color:COLORS[1],width:2,style:"solid",opacity:1},
+  {id:crypto.randomUUID(),name:"h",expr:"ln(x)",type:"cartesian",visible:true,color:COLORS[2],width:2,style:"solid",opacity:1},
+  {id:crypto.randomUUID(),name:"k",expr:"exp(0.5*x)",type:"cartesian",visible:true,color:COLORS[3],width:2,style:"solid",opacity:1}
+ ],
+ parametric:[],polar:[],
+ annotations:[],history:[]
+});
+
+let state=defaultState(), selectedId=state.functions[0].id, undoStack=[], redoStack=[];
+let tangent=null, inspection=null, integralShade=null;
+let view={xmin:-10,xmax:10,ymin:-10,ymax:10};
+let pointer={x:0,y:0,down:false,lastX:0,lastY:0};
+let dpr=1, rect={width:1,height:1};
+const canvas=$("graph"),ctx=canvas.getContext("2d");
+
+function clone(o){return JSON.parse(JSON.stringify(o))}
+function snapshot(){return {state:clone(state),view:clone(view),selectedId,tangent:clone(tangent),inspection:clone(inspection),integralShade:clone(integralShade)}}
+function restore(s){state=s.state;view=s.view;selectedId=s.selectedId;tangent=s.tangent;inspection=s.inspection;integralShade=s.integralShade;renderAll()}
+function commit(label){
+ undoStack.push(snapshot()); if(undoStack.length>100)undoStack.shift(); redoStack=[];
+ state.history=(state.history||[]).slice(-99).concat({label,time:new Date().toISOString()});
+ autosave(); updateUI(); draw();
+}
+function undo(){if(!undoStack.length)return;redoStack.push(snapshot());restore(undoStack.pop());status("Undo")}
+function redo(){if(!redoStack.length)return;undoStack.push(snapshot());restore(redoStack.pop());status("Redo")}
+function status(s){$("status").textContent=s}
+function autosave(){try{localStorage.setItem("geostudio.graphing.autosave",JSON.stringify({state,view,selectedId}))}catch(e){}}
+function loadAuto(){try{const x=JSON.parse(localStorage.getItem("geostudio.graphing.autosave"));if(x?.state){state=x.state;view=x.view||view;selectedId=x.selectedId||state.functions[0]?.id}}catch(e){}}
+
+const FN={sin:Math.sin,cos:Math.cos,tan:Math.tan,asin:Math.asin,acos:Math.acos,atan:Math.atan,sqrt:Math.sqrt,abs:Math.abs,log:Math.log10,ln:Math.log,exp:Math.exp,floor:Math.floor,ceil:Math.ceil,min:Math.min,max:Math.max};
+const CONST={pi:Math.PI,e:Math.E};
+
+function tokenize(s){
+ const out=[];let i=0;
+ while(i<s.length){
+  if(/\s/.test(s[i])){i++;continue}
+  const c=s[i];
+  if(/[0-9.]/.test(c)){let j=i;while(j<s.length&&/[0-9.eE]/.test(s[j])){if((s[j]=="e"||s[j]=="E")&&/[+-]/.test(s[j+1]||""))j+=2;else j++}const n=Number(s.slice(i,j));if(!Number.isFinite(n))throw Error("Invalid number");out.push({t:"n",v:n});i=j;continue}
+  if(/[a-zA-Z_]/.test(c)){let j=i+1;while(j<s.length&&/[a-zA-Z_]/.test(s[j]))j++;out.push({t:"id",v:s.slice(i,j).toLowerCase()});i=j;continue}
+  if("+-*/^(),".includes(c)){out.push({t:c,v:c});i++;continue}
+  throw Error("Unsupported character: "+c);
+ }
+ return out;
+}
+
+function parseExpr(src){
+ const ts=tokenize(src);let p=0;
+ const peek=()=>ts[p]?.t;
+ function primary(){
+  if(peek()==="n")return {k:"n",v:ts[p++].v};
+  if(peek()==="id"){const id=ts[p++].v;if(peek()==="("){p++;const a=[];if(peek()!==")"){a.push(expr());while(peek()===","){p++;a.push(expr())}}if(peek()!==")")throw Error("Missing )");p++;if(!FN[id])throw Error("Unknown function: "+id);return {k:"call",id,a}}if(id==="x"||id==="t")return {k:"var",id};if(id in CONST)return {k:"n",v:CONST[id]};throw Error("Unknown name: "+id)}
+  if(peek()==="("){p++;const a=expr();if(peek()!==")")throw Error("Missing )");p++;return a}
+  if(peek()==="+"){p++;return primary()} if(peek()==="-"){p++;return {k:"neg",a:primary()}}
+  throw Error("Expected number, variable, function, or (");
+ }
+ function power(){let a=primary();if(peek()==="^"){p++;a={k:"bin",op:"^",a,b:power()}}return a}
+ function term(){let a=power();while(peek()==="*"||peek()==="/"){const op=ts[p++].t;a={k:"bin",op,a,b:power()}}return a}
+ function expr(){let a=term();while(peek()==="+"||peek()==="-"){const op=ts[p++].t;a={k:"bin",op,a,b:term()}}return a}
+ const ast=expr();if(p!==ts.length)throw Error("Unexpected token");return ast
+}
+
+function evalAst(n,vars){
+ switch(n.k){
+  case"n":return n.v;case"var":return vars[n.id];
+  case"neg":return -evalAst(n.a,vars);
+  case"bin":{const a=evalAst(n.a,vars),b=evalAst(n.b,vars);if(n.op==="/"&&b===0)return NaN;return n.op==="+"?a+b:n.op==="-"?a-b:n.op==="*" ?a*b:n.op==="/" ?a/b:Math.pow(a,b)}
+  case"call":{const a=n.a.map(x=>evalAst(x,vars));return FN[n.id](...a)}
+ }
+}
+
+function compile(src){const ast=parseExpr(src);return v=>evalAst(ast,v)}
+function safeFn(expr){const f=compile(expr);return z=>f({x:z,t:z})}
+function fmt(x){return Number.isFinite(x)?(Math.abs(x)<1e-9?0:x).toPrecision(8):String(x)}
+
+function worldToScreen(x,y){return [(x-view.xmin)/(view.xmax-view.xmin)*rect.width,(view.ymax-y)/(view.ymax-view.ymin)*rect.height]}
+function screenToWorld(sx,sy){return [view.xmin+sx/rect.width*(view.xmax-view.xmin),view.ymax-sy/rect.height*(view.ymax-view.ymin)]}
+function niceStep(span,target=10){const raw=span/target,p=10**Math.floor(Math.log10(raw)),m=raw/p;return (m<1.5?1:m<3?2:m<7?5:10)*p}
+
+function drawGrid(){
+ if(!state.settings.grid)return;
+ const sx=niceStep(view.xmax-view.xmin,12),sy=niceStep(view.ymax-view.ymin,9);
+ ctx.lineWidth=1;
+ for(let x=Math.floor(view.xmin/sx)*sx;x<=view.xmax+sx/2;x+=sx){const [px]=worldToScreen(x,0);ctx.strokeStyle=getComputedStyle(document.documentElement).getPropertyValue("--grid");ctx.beginPath();ctx.moveTo(px,0);ctx.lineTo(px,rect.height);ctx.stroke();if(state.settings.axes&&Math.abs(x)>sx/100)ctx.fillStyle=getComputedStyle(document.documentElement).getPropertyValue("--muted"),ctx.fillText(formatTick(x),px+3,Math.min(rect.height-4,Math.max(12,worldToScreen(0,0)[1]-4)));}
+ for(let y=Math.floor(view.ymin/sy)*sy;y<=view.ymax+sy/2;y+=sy){const [,py]=worldToScreen(0,y);ctx.strokeStyle=getComputedStyle(document.documentElement).getPropertyValue("--grid");ctx.beginPath();ctx.moveTo(0,py);ctx.lineTo(rect.width,py);ctx.stroke();if(state.settings.axes&&Math.abs(y)>sy/100)ctx.fillStyle=getComputedStyle(document.documentElement).getPropertyValue("--muted"),ctx.fillText(formatTick(y),Math.min(rect.width-40,Math.max(3,worldToScreen(0,0)[0]+5)),py-3);}
+}
+
+function formatTick(x){return Math.abs(x)>=1000?x.toExponential(1):Number(x.toFixed(6)).toString()}
+
+function drawAxes(){
+ if(!state.settings.axes)return;ctx.lineWidth=1.5;ctx.strokeStyle=getComputedStyle(document.documentElement).getPropertyValue("--text");
+ const [ox,oy]=worldToScreen(0,0);
+ if(oy>=0&&oy<=rect.height){ctx.beginPath();ctx.moveTo(0,oy);ctx.lineTo(rect.width,oy);ctx.stroke()}
+ if(ox>=0&&ox<=rect.width){ctx.beginPath();ctx.moveTo(ox,0);ctx.lineTo(ox,rect.height);ctx.stroke()}
+}
+
+function sampleCartesian(f){
+ let pts=[],n=Math.min(5000,Math.max(700,Math.floor(rect.width*1.7))),prev=null;
+ for(let i=0;i<=n;i++){const x=view.xmin+(view.xmax-view.xmin)*i/n;let y;try{y=f(x)}catch(e){y=NaN}
+  const good=Number.isFinite(y)&&Math.abs(y)<1e12; if(!good){prev=null;continue}
+  const s=worldToScreen(x,y);if(s[1]<-rect.height*50||s[1]>rect.height*51){prev=null;continue}
+  if(prev&&Math.abs(s[1]-prev[1])<rect.height*1.5)pts.push([prev,s]);prev=s;
+ }
+ return pts;
+}
+
+function strokeSegments(segments,color,width,style,opacity){
+ ctx.save();ctx.globalAlpha=opacity;ctx.strokeStyle=color;ctx.lineWidth=width;ctx.setLineDash(style==="dashed"?[8,6]:style==="dotted"?[2,6]:[]);ctx.beginPath();
+ for(const [a,b] of segments){ctx.moveTo(a[0],a[1]);ctx.lineTo(b[0],b[1])}ctx.stroke();ctx.restore()
+}
+
+function drawFunction(fn){
+ let f;try{f=safeFn(fn.expr)}catch(e){return}
+ strokeSegments(sampleCartesian(f),fn.color,fn.width,fn.style,fn.opacity)
+}
+
+function sampleParam(p){let f1,f2;try{f1=safeFn(p.x);f2=safeFn(p.y)}catch(e){return[]}let seg=[],prev=null,n=p.resolution;
+ for(let i=0;i<=n;i++){const t=p.tmin+(p.tmax-p.tmin)*i/n;let x,y;try{x=f1(t);y=f2(t)}catch(e){x=y=NaN}if(!Number.isFinite(x)||!Number.isFinite(y)){prev=null;continue}const s=worldToScreen(x,y);if(prev&&Math.hypot(s[0]-prev[0],s[1]-prev[1])<rect.width*.5)seg.push([prev,s]);prev=s}return seg}
+
+function samplePolar(p){return sampleParam({x:`(${p.expr})*cos(t)`,y:`(${p.expr})*sin(t)`,tmin:p.tmin,tmax:p.tmax,resolution:p.resolution})}
+
+function draw(){
+ if(!rect.width||!rect.height)return;ctx.clearRect(0,0,rect.width,rect.height);ctx.font="11px system-ui";drawGrid();drawAxes();
+ for(const f of state.functions)if(f.visible)drawFunction(f);
+ for(const p of state.parametric)strokeSegments(sampleParam(p),p.color,2,"solid",1);
+ for(const p of state.polar)strokeSegments(samplePolar(p),p.color,2,"solid",1);
+ if(integralShade)drawIntegralShade(integralShade);
+ if(tangent)drawTangent(tangent);
+ if(inspection){const [sx,sy]=worldToScreen(inspection.x,inspection.y);ctx.fillStyle="#fff";ctx.strokeStyle="#000";ctx.lineWidth=2;ctx.beginPath();ctx.arc(sx,sy,5,0,TAU);ctx.fill();ctx.stroke()}
+ $("viewBadge").textContent=`View: ${fmt(view.xmin)}…${fmt(view.xmax)} × ${fmt(view.ymin)}…${fmt(view.ymax)}`;
+}
+
+function drawIntegralShade(d){let f;try{f=safeFn(d.expr)}catch(e){return}ctx.save();ctx.globalAlpha=.22;ctx.fillStyle=d.color;ctx.beginPath();let n=500;for(let i=0;i<=n;i++){let x=d.a+(d.b-d.a)*i/n,y=f(x);let s=worldToScreen(x,Number.isFinite(y)?y:0);if(i===0)ctx.moveTo(s[0],worldToScreen(x,0)[1]);ctx.lineTo(s[0],s[1])}ctx.lineTo(worldToScreen(d.b,0)[0],worldToScreen(0,0)[1]);ctx.closePath();ctx.fill();ctx.restore()}
+function drawTangent(d){const x0=d.x,y0=d.y,m=d.m;const xa=view.xmin,xb=view.xmax;ctx.save();ctx.strokeStyle="#fff";ctx.setLineDash([7,5]);ctx.lineWidth=2;const a=worldToScreen(xa,y0+m*(xa-x0)),b=worldToScreen(xb,y0+m*(xb-x0));ctx.beginPath();ctx.moveTo(...a);ctx.lineTo(...b);ctx.stroke();ctx.restore()}
+
+function resizeCanvas(){const r=$("canvasWrap").getBoundingClientRect();rect.width=Math.max(1,r.width);rect.height=Math.max(1,r.height);dpr=Math.max(1,devicePixelRatio||1);canvas.width=Math.round(rect.width*dpr);canvas.height=Math.round(rect.height*dpr);ctx.setTransform(dpr,0,0,dpr,0,0);draw()}
+new ResizeObserver(resizeCanvas).observe($("canvasWrap"));
+
+function selected(){return state.functions.find(f=>f.id===selectedId)}
+
+function updateUI(){
+ const box=$("functions");box.innerHTML="";
+ state.functions.forEach((f,i)=>{
+  const el=document.createElement("div");el.className="function"+(f.id===selectedId?" selected":"");
+  el.innerHTML=`<div class="func-head">
+    <button class="mini vis" title="Show/hide">${f.visible?"◉":"○"}</button>
+    <input class="func-name-input" value="${escapeAttr(f.name)}" title="Edit function name" aria-label="Function name" style="width:45px;font-weight:700">
+    <input class="expr" value="${escapeAttr(f.expr)}" aria-label="Function expression" title="Edit mathematical expression">
+    <input class="color" type="color" value="${f.color}" title="Function color">
+    <button class="mini dup" title="Duplicate">⧉</button><button class="mini del" title="Delete">×</button>
+  </div>
+  <div class="func-meta">
+    <div><span class="edit-label">Width</span><input class="width" type="number" min=".5" max="12" step=".5" value="${f.width}"></div>
+    <div><span class="edit-label">Style</span><select class="style"><option ${f.style==="solid"?"selected":""}>solid</option><option ${f.style==="dashed"?"selected":""}>dashed</option><option ${f.style==="dotted"?"selected":""}>dotted</option></select></div>
+    <div style="grid-column:3/5"><span class="edit-label">Opacity</span><input class="opacity range" type="range" min=".1" max="1" step=".05" value="${f.opacity}"></div>
+  </div>`;
+  el.onclick=()=>{selectedId=f.id;updateUI();updateAnalysisLabel()};
+  el.querySelector(".vis").onclick=e=>{e.stopPropagation();f.visible=!f.visible;commit("toggle function");updateUI();draw()};
+  el.querySelector(".func-name-input").onchange=e=>{const old=f.name;const v=e.target.value.trim();if(!v){e.target.value=old;return}f.name=v;commit("rename function");updateUI()};
+  el.querySelector(".expr").onchange=e=>{const old=f.expr;const v=e.target.value.trim();try{compile(v);f.expr=v;commit("edit function")}catch(err){e.target.value=old;status("Invalid expression: "+err.message)}};
+  el.querySelector(".color").onchange=e=>{f.color=e.target.value;commit("change color")};
+  el.querySelector(".width").onchange=e=>{f.width=Math.max(.5,Math.min(12,Number(e.target.value)||2));commit("change line width")};
+  el.querySelector(".style").onchange=e=>{f.style=e.target.value;commit("change line style")};
+  el.querySelector(".opacity").oninput=e=>{f.opacity=Number(e.target.value);draw()};
+  el.querySelector(".opacity").onchange=()=>commit("change opacity");
+  el.querySelector(".dup").onclick=e=>{e.stopPropagation();const n=clone(f);n.id=crypto.randomUUID();n.name=f.name+"2";state.functions.splice(i+1,0,n);selectedId=n.id;commit("duplicate function");updateUI()};
+  el.querySelector(".del").onclick=e=>{e.stopPropagation();if(state.functions.length===1){status("At least one function must remain");return}state.functions.splice(i,1);selectedId=state.functions[Math.max(0,i-1)].id;commit("delete function");updateUI()};
+  box.appendChild(el);
+ });
+ $("gridBtn").textContent=state.settings.grid?"On":"Off";$("axesBtn").textContent=state.settings.axes?"On":"Off";updateAnalysisLabel()
+}
+
+function updateAnalysisLabel(){const f=selected();$("selectedLabel").textContent=f?`${f.name}(x) = ${f.expr}`:"Select a function."}
+function escapeHtml(s){return String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
+function escapeAttr(s){return escapeHtml(s)}
+
+function addFunction(expr="x^2",name="f"){const used=state.functions.map(x=>x.name);let n=name,i=2;while(used.includes(n))n=name+(i++);const f={id:crypto.randomUUID(),name:n,expr,type:"cartesian",visible:true,color:COLORS[state.functions.length%COLORS.length],width:2,style:"solid",opacity:1};state.functions.push(f);selectedId=f.id;commit("add function");updateUI()}
+function validateRange(a,b){if(!Number.isFinite(a)||!Number.isFinite(b)||a===b||Math.abs(b-a)>1e7)throw Error("Invalid range")}
+
+function numericDerivative(f,x){const h=Math.max(1e-5,Math.abs(x)*1e-5);const a=f(x-h),b=f(x+h);return (b-a)/(2*h)}
+function simpson(f,a,b,n=1000){if(n%2)n++;let h=(b-a)/n,s=0;for(let i=0;i<=n;i++){const x=a+i*h,y=f(x);if(!Number.isFinite(y))throw Error("Function is undefined inside the interval");s+=y*(i===0||i===n?1:i%2?4:2)}return s*h/3}
+
+function findRoots(f,a=view.xmin,b=view.xmax,n=1500){
+ let roots=[];
+ let px=a,py=f(px);
+ for(let i=1;i<=n;i++){
+  const x=a+(b-a)*i/n, y=f(x);
+  if(Number.isFinite(py)&&Number.isFinite(y)){
+   if(y===0||(py<0&&y>0)||(py>0&&y<0)){
+    let lo=px,hi=x,fl=py;
+    for(let k=0;k<55;k++){
+     const m=(lo+hi)/2,fm=f(m);
+     if(!Number.isFinite(fm))break;
+     if(fm===0){lo=hi=m;break}
+     if((fl<0&&fm>0)||(fl>0&&fm<0)){hi=m}else{lo=m;fl=fm}
+    }
+    const r=(lo+hi)/2;
+    if(!roots.some(q=>Math.abs(q-r)<1e-5))roots.push(r);
+   }
+  }
+  px=x;py=y;
+ }
+ return roots;
+}
+
+function findCritical(f,a,b){const d=x=>numericDerivative(f,x);return findRoots(d,a,b,1500)}
+function findIntersections(f,g,a,b){return findRoots(x=>f(x)-g(x),a,b,1800)}
+
+function actionValue(){
+ const f=selected();if(!f)return;try{const fn=safeFn(f.expr),x=Number($("inspectX").value),y=fn(x);if(!Number.isFinite(y))throw Error("f(x) is undefined");inspection={x,y};$("analysisResult").innerHTML=`<b>${f.name}(${fmt(x)}) = ${fmt(y)}</b>`;status("Function value calculated");draw()}catch(e){$("analysisResult").innerHTML=`<span class="error">${escapeHtml(e.message)}</span>`}
+}
+function actionDerivative(){
+ const f=selected();if(!f)return;try{const fn=safeFn(f.expr),x=Number($("inspectX").value),y=fn(x),m=numericDerivative(fn,x);if(!Number.isFinite(y)||!Number.isFinite(m))throw Error("Derivative undefined here");$("analysisResult").innerHTML=`f(${fmt(x)}) = ${fmt(y)}<br>f'(${fmt(x)}) ≈ ${fmt(m)}`;status("Numerical derivative calculated")}catch(e){$("analysisResult").innerHTML=`<span class="error">${escapeHtml(e.message)}</span>`}
+}
+function actionTangent(){const f=selected();if(!f)return;try{const fn=safeFn(f.expr),x=Number($("inspectX").value),y=fn(x),m=numericDerivative(fn,x);if(!Number.isFinite(y)||!Number.isFinite(m))throw Error("Tangent undefined here");tangent={x,y,m};inspection={x,y};$("analysisResult").innerHTML=`Tangent: y = ${fmt(m)}(x − ${fmt(x)}) + ${fmt(y)}`;status("Tangent drawn");draw()}catch(e){$("analysisResult").innerHTML=`<span class="error">${escapeHtml(e.message)}</span>`}}
+function actionIntegral(){const f=selected();if(!f)return;try{const a=Number($("intA").value),b=Number($("intB").value);validateRange(a,b);const fn=safeFn(f.expr),v=simpson(fn,a,b);integralShade={a,b,expr:f.expr,color:f.color};$("integralResult").innerHTML=`∫ = <b>${fmt(v)}</b> (signed area)`;status("Integral calculated");draw()}catch(e){$("integralResult").innerHTML=`<span class="error">${escapeHtml(e.message)}</span>`}}
+function actionRoots(){const f=selected();if(!f)return;try{const r=findRoots(safeFn(f.expr));$("featureResult").innerHTML=r.length?`Roots: ${r.map(fmt).join(", ")}`:"No roots found in current x-view.";status("Roots calculated")}catch(e){$("featureResult").innerHTML=`<span class="error">${escapeHtml(e.message)}</span>`}}
+function actionExtrema(){const f=selected();if(!f)return;try{const fn=safeFn(f.expr),r=findCritical(fn,view.xmin,view.xmax);$("featureResult").innerHTML=r.length?r.map(x=>{const y=fn(x);return`x=${fmt(x)}, y=${fmt(y)}`}).join("<br>"):"No critical points found in current view.";status("Critical points calculated")}catch(e){$("featureResult").innerHTML=`<span class="error">${escapeHtml(e.message)}</span>`}}
+function actionIntersections(){const i=state.functions.findIndex(f=>f.id===selectedId);const g=state.functions[i+1];if(!g){$("featureResult").textContent="Add another function after the selected one.";return}try{const a=safeFn(selected().expr),b=safeFn(g.expr),r=findIntersections(a,b,view.xmin,view.xmax);$("featureResult").innerHTML=r.length?r.map(x=>{const y=a(x);return`(${fmt(x)}, ${fmt(y)})`}).join("<br>"):"No intersections found in current view.";status("Intersections calculated")}catch(e){$("featureResult").innerHTML=`<span class="error">${escapeHtml(e.message)}</span>`}}
+
+function makeTable(){const f=selected();if(!f)return;try{const a=Number($("tableStart").value),b=Number($("tableEnd").value),step=Number($("tableStep").value);validateRange(a,b);if(!(step>0))throw Error("Step must be positive");const fn=safeFn(f.expr);let h="<table><thead><tr><th>x</th><th>f(x)</th></tr></thead><tbody>",count=0;for(let x=a;x<=b+step/2&&count<10000;x+=step,count++){const y=fn(x);h+=`<tr><td>${fmt(x)}</td><td>${fmt(y)}</td></tr>`}if(count>=10000)throw Error("Too many rows; increase the step.");$("tableWrap").innerHTML=h+"</tbody></table>";status("Table generated")}catch(e){$("tableWrap").innerHTML=`<div class="error">${escapeHtml(e.message)}</div>`}}
+function exportCSV(){const f=selected();if(!f)return;const a=Number($("tableStart").value),b=Number($("tableEnd").value),step=Number($("tableStep").value);try{const fn=safeFn(f.expr);let out="x,f(x)\n";for(let x=a;x<=b+step/2;x+=step)out+=`${x},${fn(x)}\n`;download(new Blob([out],{type:"text/csv"}),`${f.name}-table.csv`)}catch(e){status(e.message)}}
+function download(blob,name){const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)}
+function exportJSON(){const payload=JSON.stringify({state,view},null,2);download(new Blob([payload],{type:"application/json"}),`${state.projectName.replace(/[^a-z0-9_-]+/gi,"_")}.json`);status("JSON exported")}
+function importJSON(file){const r=new FileReader();r.onload=()=>{try{const x=JSON.parse(r.result);const s=x.state||x;if(!s.functions||!Array.isArray(s.functions))throw Error("Invalid project file");undoStack.push(snapshot());state=s;view=x.view||view;selectedId=state.functions[0]?.id;redoStack=[];renderAll();status("Project imported");autosave()}catch(e){status("Import error: "+e.message)}};r.readAsText(file)}
+function save(){localStorage.setItem("geostudio.graphing.saved",JSON.stringify({state,view,selectedId}));$("saveStatus").textContent="Saved "+new Date().toLocaleTimeString();status("Project saved")}
+function load(){try{const x=JSON.parse(localStorage.getItem("geostudio.graphing.saved"));if(!x)throw Error("No saved project");undoStack.push(snapshot());state=x.state;view=x.view||view;selectedId=x.selectedId;renderAll();status("Project loaded")}catch(e){status(e.message)}}
+function newProject(){undoStack.push(snapshot());state=defaultState();view={xmin:-10,xmax:10,ymin:-10,ymax:10};selectedId=state.functions[0].id;tangent=inspection=integralShade=null;renderAll();status("New project")}
+function resetView(){view={xmin:-10,xmax:10,ymin:-10,ymax:10};tangent=integralShade=null;draw();autosave()}
+function fitGraph(){let pts=[];for(const f of state.functions){try{const fn=safeFn(f.expr);for(let i=0;i<300;i++){const x=-20+40*i/299,y=fn(x);if(Number.isFinite(y)&&Math.abs(y)<100)pts.push([x,y])}}catch(e){}}if(!pts.length){resetView();return}let xs=pts.map(p=>p[0]),ys=pts.map(p=>p[1]);let xa=Math.min(...xs),xb=Math.max(...xs),ya=Math.min(...ys),yb=Math.max(...ys),mx=(xb-xa)*.1||1,my=(yb-ya)*.1||1;view={xmin:xa-mx,xmax:xb+mx,ymin:ya-my,ymax:yb+my};draw();autosave();status("Graph fitted")}
+function zoomAt(sx,sy,factor){const [x,y]=screenToWorld(sx,sy);const nx=(view.xmax-view.xmin)*factor,ny=(view.ymax-view.ymin)*factor;const rx=sx/rect.width,ry=sy/rect.height;view.xmin=x-nx*rx;view.xmax=x+nx*(1-rx);view.ymax=y+ny*ry;view.ymin=y-ny*(1-ry);draw();autosave()}
+function pan(dx,dy){const wx=(view.xmax-view.xmin)*dx/rect.width,wy=(view.ymax-view.ymin)*dy/rect.height;view.xmin-=wx;view.xmax-=wx;view.ymin+=wy;view.ymax+=wy;draw();autosave()}
+
+function templateData(){return[
+["Linear","x","f"],["Quadratic","x^2","f"],["Cubic","x^3 - 2*x","f"],
+["Sine Wave","sin(x)","f"],["Cosine Wave","cos(x)","f"],["Tangent","tan(x)","f"],
+["Exponential","exp(x)","f"],["Natural Log","ln(x)","f"],["Square Root","sqrt(x)","f"],
+["Parametric Circle","x(t)=cos(t), y(t)=sin(t)","p"],["Polar Rose","r=cos(5*t)","o"]
+]}
+
+function openTemplates(){const box=$("templateList");box.innerHTML="";for(const [name,expr,type] of templateData()){const b=document.createElement("button");b.textContent=name;b.onclick=()=>{if(type==="f")addFunction(expr,name.toLowerCase().replace(/[^a-z]/g,"").slice(0,3));else if(type==="p"){state.parametric.push({id:crypto.randomUUID(),name, x:"cos(t)",y:"sin(t)",tmin:0,tmax:TAU,resolution:800,color:COLORS[state.functions.length%COLORS.length]});commit("add parametric template")}else{state.polar.push({id:crypto.randomUUID(),name,expr:"cos(5*t)",tmin:0,tmax:TAU,resolution:1000,color:COLORS[state.functions.length%COLORS.length]});commit("add polar template")}$("modalBack").classList.remove("open")};box.appendChild(b)}$("modalBack").classList.add("open")}
+
+function renderAll(){updateUI();resizeCanvas();applyTheme();autosave()}
+function applyTheme(){document.documentElement.classList.toggle("light",state.settings.theme==="light");$("themeBtn").textContent=state.settings.theme==="light"?"☀":"☾"}
+
+$("addFn").onclick=()=>addFunction();
+$("templatesBtn").onclick=openTemplates;
+$("closeModal").onclick=()=>$("modalBack").classList.remove("open");
+$("newBtn").onclick=newProject;
+$("saveBtn").onclick=save;
+$("loadBtn").onclick=load;
+$("exportJsonBtn").onclick=exportJSON;
+$("importBtn").onclick=()=>$("fileImport").click();
+$("fileImport").onchange=e=>{if(e.target.files[0])importJSON(e.target.files[0]);e.target.value=""};
+$("themeBtn").onclick=()=>{state.settings.theme=state.settings.theme==="dark"?"light":"dark";applyTheme();draw();autosave()};
+$("gridBtn").onclick=()=>{state.settings.grid=!state.settings.grid;commit("toggle grid")};
+$("axesBtn").onclick=()=>{state.settings.axes=!state.settings.axes;commit("toggle axes")};
+$("fitBtn").onclick=fitGraph;
+$("resetViewBtn").onclick=resetView;
+$("addParam").onclick=()=>{try{const x=$("px").value,y=$("py").value;compile(x);compile(y);state.parametric.push({id:crypto.randomUUID(),name:"Parametric",x,y,tmin:Number($("ptmin").value),tmax:Number($("ptmax").value),resolution:Number($("pres").value)||800,color:COLORS[state.functions.length%COLORS.length]});commit("add parametric curve")}catch(e){status("Invalid parametric expression: "+e.message)}};
+$("addPolar").onclick=()=>{try{compile($("polarExpr").value);state.polar.push({id:crypto.randomUUID(),name:"Polar",expr:$("polarExpr").value,tmin:Number($("pomin").value),tmax:Number($("pomax").value),resolution:Math.min(10000,Math.max(20,Number($("pres").value)||1000)),color:COLORS[state.functions.length%COLORS.length]});commit("add polar curve")}catch(e){status("Invalid polar expression: "+e.message)}};
+$("valueBtn").onclick=actionValue;
+$("derivativeBtn").onclick=actionDerivative;
+$("tangentBtn").onclick=actionTangent;
+$("integralBtn").onclick=actionIntegral;
+$("rootsBtn").onclick=actionRoots;
+$("extremaBtn").onclick=actionExtrema;
+$("intersectionsBtn").onclick=actionIntersections;
+$("makeTable").onclick=makeTable;
+$("csvBtn").onclick=exportCSV;
+$("calcBtn").onclick=()=>{try{$("calcResult").innerHTML=`Result: <b>${fmt(compile($("calcExpr").value)(0))}</b>`}catch(e){$("calcResult").innerHTML=`<span class="error">${escapeHtml(e.message)}</span>`}};
+$("calcExpr").addEventListener("keydown",e=>{if(e.key==="Enter")$("calcBtn").click()});
+document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>{document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));document.querySelectorAll(".panel").forEach(x=>x.classList.remove("active"));b.classList.add("active");$(b.dataset.tab).classList.add("active")});
+
+canvas.addEventListener("pointerdown",e=>{canvas.setPointerCapture(e.pointerId);pointer.down=true;pointer.lastX=e.offsetX;pointer.lastY=e.offsetY});
+canvas.addEventListener("pointermove",e=>{const [x,y]=screenToWorld(e.offsetX,e.offsetY);$("coordBadge").textContent=`x: ${fmt(x)} · y: ${fmt(y)}`;if(pointer.down){const dx=e.offsetX-pointer.lastX,dy=e.offsetY-pointer.lastY;pan(dx,dy);pointer.lastX=e.offsetX;pointer.lastY=e.offsetY}});
+canvas.addEventListener("pointerup",e=>{pointer.down=false});
+canvas.addEventListener("pointercancel",()=>pointer.down=false);
+canvas.addEventListener("click",e=>{if(Math.hypot(e.offsetX-pointer.lastX,e.offsetY-pointer.lastY)>4)return;const [x,y]=screenToWorld(e.offsetX,e.offsetY);inspection={x,y};draw();status("Inspection point created")});
+canvas.addEventListener("wheel",e=>{e.preventDefault();zoomAt(e.offsetX,e.offsetY,e.deltaY>0?1.12:.89)},{passive:false});
+
+document.addEventListener("keydown",e=>{
+ if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==="z"){e.preventDefault();e.shiftKey?redo():undo()}
+ else if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==="y"){e.preventDefault();redo()}
+ else if(e.key==="F2"){ $("leftToggle").click(); } else if(e.key==="F3"){ $("rightToggle").click(); } else if(e.key==="Delete"&&!["INPUT","TEXTAREA"].includes(document.activeElement.tagName)){const i=state.functions.findIndex(f=>f.id===selectedId);if(i>=0&&state.functions.length>1){state.functions.splice(i,1);selectedId=state.functions[Math.max(0,i-1)].id;commit("delete function");updateUI()}}
+});
+
+window.addEventListener("beforeunload",autosave);
+loadAuto();
+renderAll();
+
+$("leftToggle").onclick=()=>{$("canvasWrap").previousElementSibling.classList.toggle("collapsed")};
+$("rightToggle").onclick=()=>{$("canvasWrap").nextElementSibling.classList.toggle("collapsed")};
+$("quickFunctionBtn").onclick=()=>addFunction();
+$("centerBtn").onclick=()=>{if(inspection){view.xmin=inspection.x-(view.xmax-view.xmin)/2;view.xmax=inspection.x+(view.xmax-view.xmin)/2;view.ymin=inspection.y-(view.ymax-view.ymin)/2;view.ymax=inspection.y+(view.ymax-view.ymin)/2;draw()}else resetView()};
+</script>
+<script src="../assets/global-navbar.js" defer></script>
+</body>
+</html>

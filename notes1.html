@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="gu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ધોરણ ૧૧ ગણિત નોંધો - E-Book</title>
+    <style>
+        /* === BASE STYLES & FONT === */
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Gujarati:wght@300;400;700&display=swap');
+        
+        :root {
+            --paper-color: #fafafa;
+            --line-color: #ddd;
+            --primary-color: #007bff;
+            --text-color: #333;
+        }
+
+        body {
+            font-family: 'Noto Sans Gujarati', sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            color: var(--text-color);
+            line-height: 1.6;
+            /* Smooth Scroll for light animation */
+            scroll-behavior: smooth;
+        }
+
+        /* === TEXTBOOK PAGE STYLING (The Notebook Effect) === */
+        .page {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 40px;
+            background-color: var(--paper-color);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 4px;
+            position: relative;
+            /* Page Flip Shadow Effect */
+            transition: transform 0.6s ease-out, box-shadow 0.6s ease-out;
+            transform-origin: left center;
+        }
+
+        /* Ruled Line Effect - Mimics a notebook */
+        .page::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50px; /* Vertical Margin Line */
+            width: 1px;
+            height: 100%;
+            background-color: #f08080; /* Light Red */
+            opacity: 0.7;
+        }
+        
+        /* Optional: Add a subtle 'curl' for the page flip look on hover/focus */
+        .page:hover {
+            box-shadow: 10px 10px 25px rgba(0, 0, 0, 0.2);
+            /* Subtle perspective change for depth */
+            transform: perspective(1000px) rotateY(-2deg);
+        }
+
+        /* === HEADER & NAVIGATION (Search Bar + Index) === */
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        #search-bar {
+            padding: 8px;
+            border: none;
+            border-radius: 4px;
+            width: 250px;
+            font-size: 16px;
+        }
+
+        /* === TABLE OF CONTENTS (Chapter Index) === */
+        #toc {
+            position: fixed;
+            top: 80px;
+            left: 10px;
+            width: 250px;
+            max-height: calc(100vh - 100px);
+            overflow-y: auto;
+            background-color: var(--paper-color);
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 50;
+        }
+
+        #toc h3 {
+            margin-top: 0;
+            border-bottom: 2px solid var(--line-color);
+            padding-bottom: 5px;
+            font-weight: 700;
+        }
+
+        #toc ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        #toc li {
+            margin-bottom: 8px;
+        }
+
+        #toc a {
+            text-decoration: none;
+            color: var(--text-color);
+            display: block;
+            padding: 5px;
+            border-radius: 3px;
+            transition: background-color 0.3s;
+        }
+
+        #toc a:hover {
+            background-color: #e6e6e6;
+            color: var(--primary-color);
+        }
+
+        /* === MAIN CONTENT LAYOUT === */
+        main {
+            margin-left: 280px; /* Space for the fixed TOC */
+            padding: 20px;
+        }
+
+        /* === CONTENT COMPONENTS === */
+        .chapter h2 {
+            color: var(--primary-color);
+            border-bottom: 3px double var(--line-color);
+            padding-bottom: 10px;
+            margin-top: 40px;
+        }
+
+        .section-title {
+            color: #c90000; /* Red emphasis for sections */
+            margin-top: 25px;
+            font-weight: 700;
+        }
+
+        /* Formula Box Styling */
+        .formula-box {
+            border: 2px solid #333; /* Black border */
+            padding: 15px;
+            margin: 20px 0;
+            background-color: #fffacd; /* Light Yellow Background */
+            border-radius: 5px;
+            font-size: 1.1em;
+            font-weight: bold;
+        }
+        
+        /* Solved Example Styling */
+        .solved-example {
+            border-left: 5px solid var(--primary-color);
+            padding-left: 15px;
+            margin: 15px 0;
+            background-color: #e8f0fe; /* Light Blue Background */
+            border-radius: 3px;
+        }
+
+        /* Practice Question Styling */
+        .practice-questions {
+            background-color: #f7f7f7;
+            padding: 15px;
+            border: 1px dashed #999;
+            margin: 20px 0;
+        }
+
+        /* SVG/Canvas Diagram Placeholder */
+        .diagram-placeholder {
+            border: 1px solid #999;
+            padding: 10px;
+            margin: 20px 0;
+            text-align: center;
+            background-color: white;
+            height: 200px; /* Fixed height for illustration */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        
+        /* === RESPONSIVENESS === */
+        @media (max-width: 900px) {
+            #toc {
+                position: static;
+                width: 100%;
+                margin-left: 0;
+                border-radius: 0;
+                box-shadow: none;
+                top: auto;
+            }
+
+            main {
+                margin-left: 0;
+                padding: 10px;
+            }
+
+            .header-content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            #search-bar {
+                width: 100%;
+                margin-top: 10px;
+            }
+        }
+    </style>
+<link rel="stylesheet" href="assets/global-navbar.css">
+</head>
+<body>
+
+    <header>
+        <div class="header-content">
+            <h1>📝 ધોરણ ૧૧ ગણિત નોંધો</h1>
+            <input type="text" id="search-bar" placeholder="શોધો (દા.ત. ગણ, ત્રિકોણમિતિ)">
+        </div>
+    </header>
+
+    <nav id="toc">
+        <h3>અનુક્રમણિકા</h3>
+        <ul>
+            </ul>
+    </nav>
+
+    <main>
+        <div class="page" id="chapter-cover">
+            <h2>મુખપૃષ્ઠ</h2>
+            <p>આ વેબસાઇટ ગુજરાત રાજ્ય શાળા પાઠ્યપુસ્તક મંડળ (GSEB) ના ધોરણ ૧૧ ગણિતના પાઠ્યક્રમ પર આધારિત છે. તમામ સામગ્રી ફક્ત શૈક્ષણિક હેતુઓ માટે છે.</p>
+            <p style="text-align: center; margin-top: 50px;">શરૂ કરવા માટે ડાબી બાજુની અનુક્રમણિકામાંથી એક પ્રકરણ પસંદ કરો.</p>
+            <p style="text-align: right; margin-top: 100px;">તારીખ: <span id="current-date"></span></p>
+        </div>
+
+        <div class="page chapter" id="chapter-1">
+            <h2>૧. ગણ (Sets)</h2>
+            <h3 class="section-title">સ્પષ્ટ ગુજરાતી સમજૂતી</h3>
+            <p>ગણ એ સુનિશ્ચિત અને સુવ્યાખ્યાયિત વસ્તુઓના સંગ્રહને કહેવાય છે. ગણના ઘટકોને છગડિયા કૌંસમાં { } દર્શાવવામાં આવે છે. ઉદાહરણ તરીકે, પ્રાકૃતિક સંખ્યાઓનો ગણ $\mathbb{N} = \{1, 2, 3, \ldots\}$</p>
+
+            <h3 class="section-title">મહત્વના સૂત્રો (Formulas)</h3>
+            <div class="formula-box">
+                <ul>
+                    <li>**ગણ A અને B નો યોગ ગણ:** $A \cup B = \{x : x \in A \text{ અથવા } x \in B\}$</li>
+                    <li>**ગણ A અને B નો છેદ ગણ:** $A \cap B = \{x : x \in A \text{ અને } x \in B\}$</li>
+                    <li>**યોગ ગણ માટેનું સૂત્ર:** $n(A \cup B) = n(A) + n(B) - n(A \cap B)$</li>
+                </ul>
+            </div>
+
+            <h3 class="section-title">સોલ્વ કરેલ ઉદાહરણો (Solved Examples)</h3>
+            <div class="solved-example">
+                <p><strong>ઉદાહરણ ૧:</strong> જો $A = \{1, 2, 3\}$ અને $B = \{3, 4, 5\}$ હોય, તો $A \cup B$ અને $A \cap B$ શોધો.</p>
+                <p><strong>ઉકેલ:</strong></p>
+                <ol>
+                    <li>$A \cup B = \{1, 2, 3, 4, 5\}$</li>
+                    <li>$A \cap B = \{3\}$</li>
+                </ol>
+            </div>
+
+            <h3 class="section-title">SVG/Canvas આકૃતિ</h3>
+            <div class="diagram-placeholder">
+                <svg width="150" height="150" viewBox="0 0 100 100">
+                    <circle cx="40" cy="50" r="30" fill="lightblue" opacity="0.6"/>
+                    <circle cx="60" cy="50" r="30" fill="lightgreen" opacity="0.6"/>
+                    <text x="30" y="20" font-size="10" fill="#333">ગણ A</text>
+                    <text x="70" y="20" font-size="10" fill="#333">ગણ B</text>
+                </svg>
+                <p>ગણ A અને B નો વેન ડાયાગ્રામ</p>
+            </div>
+
+            <h3 class="section-title">અભ્યાસ પ્રશ્નો (Practice Questions)</h3>
+            <div class="practice-questions">
+                <ol>
+                    <li>જો $U = \{1, 2, \ldots, 10\}$ અને $A = \{2, 4, 6, 8, 10\}$, તો $A'$ શોધો.</li>
+                    <li>જો $n(A)=17$, $n(B)=23$, અને $n(A \cup B)=38$, તો $n(A \cap B)$ શોધો.</li>
+                </ol>
+            </div>
+        </div>
+        
+        <div class="page chapter" id="chapter-2">
+            <h2>૨. સંબંધો અને વિધેયો (Relations & Functions)</h2>
+            <h3 class="section-title">સ્પષ્ટ ગુજરાતી સમજૂતી</h3>
+            <p>બે અરિક્ત ગણ A અને B માટે, ગણ A થી B પરનો સંબંધ એ કાર્તેઝીય ગુણાકાર $A \times B$ નો ઉપગણ છે. વિધેય એ એક ખાસ પ્રકારનો સંબંધ છે જેમાં A ના પ્રત્યેક ઘટક B ના અનન્ય ઘટક સાથે જોડાયેલો હોય છે.</p>
+
+            <h3 class="section-title">મહત્વના સૂત્રો (Formulas)</h3>
+            <div class="formula-box">
+                <ul>
+                    <li>**સંબંધ:** $R \subseteq A \times B$</li>
+                    <li>**વિધેય:** $f(x) = y$</li>
+                    <li>**સંબંધોની કુલ સંખ્યા:** જો $n(A)=p$ અને $n(B)=q$, તો સંબંધોની સંખ્યા $2^{pq}$ છે.</li>
+                </ul>
+            </div>
+             <h3 class="section-title">SVG/Canvas આકૃતિ</h3>
+            <div class="diagram-placeholder">
+                <canvas id="functionCanvas" width="200" height="150"></canvas>
+                <p>વિધેયનું આરેખણ (Canvas Placeholder)</p>
+            </div>
+            
+            <h3 class="section-title">અભ્યાસ પ્રશ્નો (Practice Questions)</h3>
+            <div class="practice-questions">
+                <ol>
+                    <li>જો $A = \{a, b\}$ અને $B = \{1, 2\}$, તો $A \times B$ અને $B \times A$ શોધો.</li>
+                    <li>નીચે આપેલ સંબંધ વિધેય છે કે નહીં, તે નક્કી કરો: $f = \{(1, 2), (2, 3), (3, 4)\}$.</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="page chapter" id="chapter-3">
+            <h2>૩. ત્રિકોણમિતિ (Trigonometry)</h2>
+            <h3 class="section-title">સ્પષ્ટ ગુજરાતી સમજૂતી</h3>
+            <p>ત્રિકોણમિતિ એ ત્રિકોણની બાજુઓ અને ખૂણાઓ વચ્ચેના સંબંધનો અભ્યાસ છે. રેડિયન અને ડિગ્રી માપ ખૂણાઓ માપવા માટે વપરાય છે. $\sin$, $\cos$, $\tan$ મુખ્ય ત્રિકોણમિતિય વિધેયો છે.</p>
+
+            <h3 class="section-title">મહત્વના સૂત્રો (Formulas)</h3>
+            <div class="formula-box">
+                <ul>
+                    <li>**પાયથાગોરસના નિત્યસમ:** $\sin^2 x + \cos^2 x = 1$</li>
+                    <li>**સરવાળાના સૂત્રો:** $\sin(x+y) = \sin x \cos y + \cos x \sin y$</li>
+                    <li>**ડબલ એંગલ સૂત્રો:** $\cos(2x) = \cos^2 x - \sin^2 x$</li>
+                </ul>
+            </div>
+            
+             <h3 class="section-title">SVG/Canvas આકૃતિ</h3>
+            <div class="diagram-placeholder">
+                <svg width="200" height="200" viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="45" stroke="#333" fill="none"/>
+                    <line x1="50" y1="50" x2="95" y2="50" stroke="red"/>
+                    <text x="50" y="15" font-size="8" text-anchor="middle">એકમ વર્તુળ</text>
+                </svg>
+                <p>એકમ વર્તુળ</p>
+            </div>
+            
+            <h3 class="section-title">અભ્યાસ પ્રશ્નો (Practice Questions)</h3>
+            <div class="practice-questions">
+                <ol>
+                    <li>સાબિત કરો કે $\tan^2 x + 1 = \sec^2 x$.</li>
+                    <li>જો $\sin x = 3/5$ અને $x$ બીજા ચરણમાં હોય, તો $\cos x$ અને $\tan x$ શોધો.</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="page chapter" id="chapter-4">
+            <h2>૪. સુરેખ અસમાનતાઓ (Linear Inequality)</h2>
+            <h3 class="section-title">સ્પષ્ટ ગુજરાતી સમજૂતી</h3>
+            <p>સુરેખ અસમાનતામાં, સમીકરણના બદલે $<, >, \le, \ge$ ચિહ્નોનો ઉપયોગ થાય છે. અસમાનતાનો ઉકેલ સામાન્ય રીતે સંખ્યા રેખા પર અથવા સમતલમાં અર્ધ-સમતલ તરીકે દર્શાવવામાં આવે છે.</p>
+
+            <h3 class="section-title">મહત્વના સૂત્રો (Formulas)</h3>
+            <div class="formula-box">
+                <ul>
+                    <li>**સામાન્ય સ્વરૂપ:** $ax + by < c$</li>
+                    <li>**નિયમ:** અસમાનતાના બંને બાજુએ ઋણ સંખ્યા વડે ગુણવાથી કે ભાગવાથી અસમાનતાનું ચિહ્ન બદલાય છે.</li>
+                </ul>
+            </div>
+            
+             <h3 class="section-title">SVG/Canvas આકૃતિ</h3>
+            <div class="diagram-placeholder">
+                <p>સંખ્યા રેખા પર $x > 3$ દર્શાવતી આકૃતિ માટે પ્લેસહોલ્ડર.</p>
+            </div>
+        </div>
+        
+        <div class="page chapter" id="chapter-5">
+            <h2>૫. ક્રમચય અને સંચય (Permutations & Combinations)</h2>
+            <h3 class="section-title">સ્પષ્ટ ગુજરાતી સમજૂતી</h3>
+            <p>ક્રમચય એ વસ્તુઓની ગોઠવણી છે જ્યાં **ક્રમ મહત્વનો** છે. સંચય એ વસ્તુઓની પસંદગી છે જ્યાં **ક્રમ મહત્વનો નથી**.</p>
+
+            <h3 class="section-title">મહત્વના સૂત્રો (Formulas)</h3>
+            <div class="formula-box">
+                <ul>
+                    <li>**ક્રમચય:** $P(n, r) = \frac{n!}{(n-r)!}$</li>
+                    <li>**સંચય:** $C(n, r) = \frac{n!}{r!(n-r)!}$</li>
+                    <li>**સંબંધ:** $P(n, r) = r! \cdot C(n, r)$</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="page chapter" id="chapter-6">
+            <h2>૬. દ્વિપદી પ્રમેય (Binomial Theorem)</h2>
+            <h3 class="section-title">સ્પષ્ટ ગુજરાતી સમજૂતી</h3>
+            <p>દ્વિપદી પ્રમેય $(a+b)^n$ ના ઘાતનું વિસ્તરણ કરવા માટેનું સૂત્ર આપે છે. વિસ્તરણમાં $(n+1)$ પદો હોય છે.</p>
+
+            <h3 class="section-title">મહત્વના સૂત્રો (Formulas)</h3>
+            <div class="formula-box">
+                <ul>
+                    <li>**દ્વિપદી પ્રમેય:** $(a+b)^n = \sum_{k=0}^{n} C(n, k) a^{n-k} b^k$</li>
+                    <li>**સામાન્ય પદ:** $T_{k+1} = C(n, k) a^{n-k} b^k$</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="page chapter" id="chapter-7">
+            <h2>૭. સુરેખાઓ (Straight Lines)</h2>
+            <h3 class="section-title">સ્પષ્ટ ગુજરાતી સમજૂતી</h3>
+            <p>સુરેખા એ એક પરિમાણીય અનંત લંબાઈનો આકાર છે. તેનો ઢાળ અને વિવિધ સ્વરૂપોમાં સમીકરણો શોધી શકાય છે.</p>
+
+            <h3 class="section-title">મહત્વના સૂત્રો (Formulas)</h3>
+            <div class="formula-box">
+                <ul>
+                    <li>**ઢાળ (Slope):** $m = \frac{y_2 - y_1}{x_2 - x_1}$</li>
+                    <li>**ઢાળ-અંત:ખંડ સ્વરૂપ:** $y = mx + c$</li>
+                    <li>**બિંદુ-ઢાળ સ્વરૂપ:** $y - y_1 = m(x - x_1)$</li>
+                </ul>
+            </div>
+             <h3 class="section-title">SVG/Canvas આકૃતિ</h3>
+            <div class="diagram-placeholder">
+                <p>યામાક્ષ પદ્ધતિમાં સુરેખાની આકૃતિ માટે પ્લેસહોલ્ડર.</p>
+            </div>
+        </div>
+
+        <div class="page chapter" id="chapter-8">
+            <h2>૮. શંકુચ્છેદ (Conic Sections)</h2>
+            <h3 class="section-title">સ્પષ્ટ ગુજરાતી સમજૂતી</h3>
+            <p>શંકુચ્છેદ એ શંકુ અને સમતલના છેદથી મળતા વક્રો છે: વર્તુળ, પરવલય, ઉપવલય અને અતિવલય. પ્રત્યેકનું પોતાનું પ્રમાણભૂત સમીકરણ હોય છે.</p>
+
+            <h3 class="section-title">મહત્વના સૂત્રો (Formulas)</h3>
+            <div class="formula-box">
+                <ul>
+                    <li>**વર્તુળ:** $x^2 + y^2 = r^2$</li>
+                    <li>**પરવલય:** $y^2 = 4ax$</li>
+                    <li>**ઉપવલય:** $\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1$</li>
+                </ul>
+            </div>
+             <h3 class="section-title">SVG/Canvas આકૃતિ</h3>
+            <div class="diagram-placeholder">
+                <p>શંકુ અને સમતલના છેદ દર્શાવતી આકૃતિ માટે પ્લેસહોલ્ડર.</p>
+            </div>
+        </div>
+
+        <div class="page chapter" id="chapter-9">
+            <h2>૯. લિમિટ્સ અને વિકલનો (Limits & Derivatives)</h2>
+            <h3 class="section-title">સ્પષ્ટ ગુજરાતી સમજૂતી</h3>
+            <p>લિમિટ્સ (સીમાઓ) એ વિધેયના મૂલ્યને નિર્ધારિત કરે છે જ્યારે ચલ કોઈ ચોક્કસ મૂલ્યની નજીક પહોંચે છે. વિકલન (Derivative) એ ફેરફારનો તાત્કાલિક દર છે.</p>
+
+            <h3 class="section-title">મહત્વના સૂત્રો (Formulas)</h3>
+            <div class="formula-box">
+                <ul>
+                    <li>**વિકલનની વ્યાખ્યા:** $f'(x) = \lim_{h \to 0} \frac{f(x+h) - f(x)}{h}$</li>
+                    <li>**ઘાત નિયમ:** $\frac{d}{dx} (x^n) = nx^{n-1}$</li>
+                    <li>**ગુણાકાર નિયમ:** $(uv)' = u'v + uv'$</li>
+                </ul>
+            </div>
+        </div>
+        
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set current date on cover page
+            const currentDateElement = document.getElementById('current-date');
+            if (currentDateElement) {
+                const today = new Date();
+                const options = { day: 'numeric', month: 'long', year: 'numeric' };
+                currentDateElement.textContent = today.toLocaleDateString('gu-IN', options);
+            }
+
+            // === DYNAMIC TABLE OF CONTENTS (TOC) GENERATION ===
+            const chapters = document.querySelectorAll('.chapter h2');
+            const tocList = document.querySelector('#toc ul');
+            
+            chapters.forEach((heading, index) => {
+                const chapterTitle = heading.textContent;
+                const chapterId = `chapter-${index + 1}`;
+                const chapterDiv = heading.closest('.chapter');
+                
+                // Ensure the chapter div has a unique ID for linking
+                chapterDiv.id = chapterId;
+
+                // Create the TOC link
+                const listItem = document.createElement('li');
+                const link = document.createElement('a');
+                link.href = `#${chapterId}`;
+                link.textContent = chapterTitle;
+                
+                // Add smooth scroll functionality to links
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    document.getElementById(chapterId).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+                
+                listItem.appendChild(link);
+                tocList.appendChild(listItem);
+            });
+            
+            // === SEARCH BAR FUNCTIONALITY (Simple Filter) ===
+            const searchBar = document.getElementById('search-bar');
+            const pages = document.querySelectorAll('.page');
+
+            searchBar.addEventListener('keyup', function() {
+                const filter = searchBar.value.toLowerCase();
+                
+                pages.forEach(page => {
+                    // Check if the page content contains the search term
+                    const textContent = page.textContent.toLowerCase();
+                    if (textContent.includes(filter) || page.id === 'chapter-cover') {
+                        page.style.display = 'block';
+                    } else {
+                        page.style.display = 'none';
+                    }
+                });
+            });
+            
+            // === CANVAS EXAMPLE (Drawing a simple line graph) ===
+            const canvas = document.getElementById('functionCanvas');
+            if (canvas && canvas.getContext) {
+                const ctx = canvas.getContext('2d');
+                ctx.beginPath();
+                ctx.moveTo(10, 140);
+                ctx.lineTo(190, 10);
+                ctx.strokeStyle = var(--primary-color);
+                ctx.lineWidth = 2;
+                ctx.stroke();
+                
+                // Axes
+                ctx.strokeStyle = '#ccc';
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                ctx.moveTo(10, 10); ctx.lineTo(10, 140); // Y-axis
+                ctx.moveTo(10, 140); ctx.lineTo(190, 140); // X-axis
+                ctx.stroke();
+            }
+
+        });
+    </script>
+
+<script src="assets/global-navbar.js" defer></script>
+</body>
+</html>

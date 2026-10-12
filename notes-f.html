@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Subject Notes</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            poppins: ['Poppins', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+<link rel="stylesheet" href="assets/global-navbar.css">
+</head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9J6WK672J6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-9J6WK672J6');
+</script>
+<body class="bg-gray-900 text-gray-100 font-poppins p-6">
+
+  <!-- Title -->
+  <h1 class="text-3xl font-bold text-center mb-8">
+    📘 All Subject Notes
+  </h1>
+
+  <!-- Cards Grid -->
+  <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+    <!-- PDF Card -->
+    <div class="bg-gray-800 shadow-lg rounded-xl p-5 hover:shadow-xl transition border-l-4 border-blue-500">
+      
+      <h2 class="text-xl font-semibold mb-2">
+        Chapter Title
+      </h2>
+
+      <p class="text-gray-400 text-sm mb-4">
+        Short description about the chapter and what is included inside.
+      </p>
+
+      <img 
+        src="1.png" 
+        alt="Chapter Thumbnail" 
+        class="rounded-lg mb-4 border border-gray-700"
+      />
+
+      <a 
+        href="1.pdf" 
+        target="_blank" 
+        class="block w-full text-center bg-blue-600 text-white py-2 rounded-lg font-semibold hover:bg-blue-700 transition"
+      >
+        📖 Read / Download PDF
+      </a>
+
+      <p class="text-xs text-gray-400 mt-2">
+        Owner: D.R. Solanki
+      </p>
+    </div>
+
+    <!-- Duplicate more cards here -->
+
+  </div>
+
+<script src="assets/global-navbar.js" defer></script>
+</body>
+</html>

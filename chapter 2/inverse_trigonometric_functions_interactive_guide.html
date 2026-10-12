@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="gu" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ધોરણ - 12 ગણિત : ત્રિકોણમિતીય પ્રતિવિધેયો (Dynamic Math Portal)</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js for Interactive Graphs -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- MathJax for accurate PDF-grade LaTeX math rendering -->
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Gujarati:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+        body {
+            font-family: 'Noto Sans Gujarati', 'Inter', sans-serif;
+        }
+        /* Custom scrollbar for better visual polish */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #ec4899;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #db2777;
+        }
+    </style>
+<link rel="stylesheet" href="../assets/global-navbar.css">
+</head>
+<body class="bg-gradient-to-br from-slate-950 via-indigo-950 to-purple-950 text-slate-100 min-h-screen selection:bg-pink-500 selection:text-white">
+
+    <header class="sticky top-0 z-50 backdrop-blur-xl bg-slate-950/80 border-b border-white/10 shadow-2xl">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3.5 flex flex-wrap justify-between items-center">
+            <!-- Brand / Logo following Fitts's Law large target -->
+            <div class="flex items-center space-x-3 cursor-pointer group" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+                <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-pink-500 to-amber-400 flex items-center justify-center shadow-lg shadow-pink-500/30 group-hover:scale-105 transition duration-300">
+                    <span class="text-xl">📐</span>
+                </div>
+                <div>
+                    <h1 class="text-lg sm:text-xl font-bold bg-gradient-to-r from-pink-400 via-amber-300 to-cyan-400 bg-clip-text text-transparent">
+                        ગણિત દર્પણ (ચૅપ્ટર - ૨)
+                    </h1>
+                    <p class="text-xs text-slate-400 font-medium">ધોરણ - 12 સાયન્સ ગુજરાત બોર્ડ</p>
+                </div>
+            </div>
+
+            <!-- Logical Navigation Menu (Hick's Law optimized choices) -->
+            <nav class="hidden md:flex items-center space-x-2 bg-white/5 p-1.5 rounded-full border border-white/10 shadow-inner">
+                <a href="#intro" class="px-4 py-2 rounded-full text-sm font-medium hover:bg-pink-600/30 hover:text-pink-300 transition duration-200 flex items-center gap-1.5">
+                    <i class="fa-solid fa-house text-xs"></i> પ્રતિવિધેય
+                </a>
+                <a href="#graphs" class="px-4 py-2 rounded-full text-sm font-medium hover:bg-cyan-600/30 hover:text-cyan-300 transition duration-200 flex items-center gap-1.5">
+                    <i class="fa-solid fa-chart-line text-xs"></i> આલેખો
+                </a>
+                <a href="#examples" class="px-4 py-2 rounded-full text-sm font-medium hover:bg-emerald-600/30 hover:text-emerald-300 transition duration-200 flex items-center gap-1.5">
+                    <i class="fa-solid fa-lightbulb text-xs"></i> મુખ્ય કિંમત
+                </a>
+                <a href="#properties" class="px-4 py-2 rounded-full text-sm font-medium hover:bg-amber-600/30 hover:text-amber-300 transition duration-200 flex items-center gap-1.5">
+                    <i class="fa-solid fa-bolt text-xs"></i> ગુણધર્મો
+                </a>
+            </nav>
+
+            <!-- Mobile Menu Toggle Button (Fitts's Law touch target) -->
+            <div class="md:hidden flex items-center">
+                <button onclick="toggleMobileMenu()" aria-label="Menu" class="p-2.5 rounded-xl bg-white/10 text-white hover:bg-white/20 transition focus:outline-none">
+                    <i class="fa-solid fa-bars text-lg"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Dropdown Menu -->
+        <div id="mobileMenu" class="hidden md:hidden px-4 pt-2 pb-4 space-y-2 bg-slate-900/95 border-b border-white/10">
+            <a href="#intro" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-xl bg-white/5 hover:bg-pink-600/30 text-sm font-medium">🏠 પ્રતિવિધેય પરિચય</a>
+            <a href="#graphs" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-xl bg-white/5 hover:bg-cyan-600/30 text-sm font-medium">📊 ઇન્ટરેક્ટિવ આલેખો</a>
+            <a href="#examples" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-xl bg-white/5 hover:bg-emerald-600/30 text-sm font-medium">📝 મુખ્ય કિંમતના ઉદાહરણો</a>
+            <a href="#properties" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-xl bg-white/5 hover:bg-amber-600/30 text-sm font-medium">⚡ મહત્વના ગુણધર્મો</a>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 py-10 space-y-16">
+
+        <!-- Hero Section with Invariance Feature Highlight -->
+        <section class="relative overflow-hidden rounded-3xl bg-gradient-to-r from-pink-950/40 via-purple-950/50 to-cyan-950/40 p-8 sm:p-12 border border-white/15 shadow-2xl backdrop-blur-md">
+            <div class="absolute -right-10 -bottom-10 w-64 h-64 bg-pink-500/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute -left-10 -top-10 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
+            
+            <div class="relative z-10 max-w-3xl space-y-4">
+                <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-pink-500/20 border border-pink-500/40 text-pink-300 text-xs sm:text-sm font-semibold">
+                    <i class="fa-solid fa-star"></i> ધોરણ 12 ગણિત સ્પેશિયલ ડિજિટલ નોટ્સ
+                </span>
+                <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight">
+                    ત્રિકોણમિતીય <span class="bg-gradient-to-r from-pink-400 via-amber-300 to-cyan-300 bg-clip-text text-transparent">પ્રતિવિધેયો</span>
+                </h1>
+                <p class="text-slate-300 text-base sm:text-lg leading-relaxed">
+                    ગુજરાત બોર્ડ અભ્યાસક્રમ આધારિત સરળ સમજૂતી, પ્રદેશ અને વિસ્તારના કોષ્ટકો, જીવંત આલેખો અને સૂત્રોનો અદભુત સંગ્રહ.
+                </p>
+                <!-- High-contrast CTA buttons adhering to Fitts's Law -->
+                <div class="pt-4 flex flex-wrap gap-4">
+                    <a href="#graphs" class="px-6 py-3 rounded-xl bg-gradient-to-r from-pink-600 to-purple-600 text-white font-bold shadow-lg shadow-pink-600/30 hover:scale-105 transition transform duration-200 flex items-center gap-2">
+                        <i class="fa-solid fa-chart-line"></i> આલેખો જુઓ
+                    </a>
+                    <a href="#properties" class="px-6 py-3 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold shadow-lg transition transform duration-200 flex items-center gap-2">
+                        <i class="fa-solid fa-bolt"></i> ગુણધર્મો વાંચો
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 1: Intro & Domain/Range Table -->
+        <section id="intro" class="bg-white/5 backdrop-blur-xl rounded-3xl p-6 sm:p-10 shadow-2xl border border-white/10">
+            <div class="flex items-center gap-3.5 mb-8">
+                <div class="w-12 h-12 rounded-2xl bg-pink-500/20 border border-pink-500/40 flex items-center justify-center text-pink-400 text-xl shadow-lg">
+                    <i class="fa-solid fa-rotate"></i>
+                </div>
+                <div>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-slate-100">પ્રતિવિધેય અને મર્યાદાઓ</h2>
+                    <p class="text-xs sm:text-sm text-slate-400">મૂળભૂત વિભાવના અને વ્યાખ્યા</p>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10 text-slate-200">
+                <div class="bg-slate-900/60 p-6 rounded-2xl border border-pink-500/20 shadow-lg hover:border-pink-500/40 transition">
+                    <h3 class="text-pink-400 font-bold text-lg mb-3 flex items-center gap-2">
+                        <i class="fa-solid fa-circle-check"></i> મુખ્ય વ્યાખ્યા
+                    </h3>
+                    <p class="leading-relaxed mb-3 text-sm sm:text-base text-slate-300">વિધેય \(f : A \rightarrow B\) એક-એક અને વ્યાપ્ત વિધેય હોય તો તે વ્યસ્ત સંપન્ન વિધેય છે. વિધેય \(f\) નું પ્રતિવિધેય અસ્તિત્વ ધરાવે છે.</p>
+                    <div class="text-xs sm:text-sm bg-pink-950/40 p-3 rounded-xl border border-pink-500/20 text-pink-200">
+                        જો \(y = f(x)\) હોય તો \(x = f^{-1}(y)\). જ્યાં \(f^{-1} : B \rightarrow A\) એ \(f\) નું પ્રતિવિધેય છે.
+                    </div>
+                </div>
+                
+                <div class="bg-slate-900/60 p-6 rounded-2xl border border-cyan-500/20 shadow-lg hover:border-cyan-500/40 transition">
+                    <h3 class="text-cyan-400 font-bold text-lg mb-3 flex items-center gap-2">
+                        <i class="fa-solid fa-triangle-exclamation"></i> શાખા અને મર્યાદા
+                    </h3>
+                    <p class="leading-relaxed mb-3 text-sm sm:text-base text-slate-300">ત્રિકોણમિતીય વિધેયો તેમના કુદરતી પ્રદેશ પર એક-એક કે વ્યાપ્ત નથી. તેથી તેમના પ્રદેશ પર યોગ્ય મર્યાદા મૂકીને પ્રતિવિધેયો વ્યાખ્યાયિત કરાય છે.</p>
+                    <div class="text-xs sm:text-sm bg-cyan-950/40 p-3 rounded-xl border border-cyan-500/20 text-cyan-200">
+                        મર્યાદિત પ્રદેશવાળી શાખાને 'મુખ્ય કિંમતવાળી શાખા' (Principal Value Branch) કહે છે.
+                    </div>
+                </div>
+            </div>
+
+            <div class="space-y-4">
+                <h3 class="text-xl font-bold text-amber-300 flex items-center gap-2">
+                    <i class="fa-solid fa-table"></i> ત્રિકોણમિતીય પ્રતિવિધેયોનાં પ્રદેશ અને વિસ્તાર (Table)
+                </h3>
+                <div class="overflow-x-auto rounded-2xl border border-white/10 shadow-2xl bg-slate-950/60">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-gradient-to-r from-pink-600 to-purple-600 text-white text-sm sm:text-base">
+                                <th class="p-4 text-center font-semibold">ક્રમ</th>
+                                <th class="p-4 font-semibold">વિધેય</th>
+                                <th class="p-4 font-semibold">પ્રદેશ (Domain)</th>
+                                <th class="p-4 font-semibold">વિસ્તાર (મુખ્ય કિંમતવાળી શાખા)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-white/10 text-slate-200 text-sm sm:text-base">
+                            <tr class="hover:bg-white/5 transition">
+                                <td class="p-4 text-center font-bold text-amber-400">1</td>
+                                <td class="p-4 font-semibold text-pink-300">\(y = \sin^{-1} x\)</td>
+                                <td class="p-4">\([-1, 1]\)</td>
+                                <td class="p-4">\(\left[-\frac{\pi}{2}, \frac{\pi}{2}\right]\)</td>
+                            </tr>
+                            <tr class="hover:bg-white/5 transition">
+                                <td class="p-4 text-center font-bold text-amber-400">2</td>
+                                <td class="p-4 font-semibold text-pink-300">\(y = \cos^{-1} x\)</td>
+                                <td class="p-4">\([-1, 1]\)</td>
+                                <td class="p-4">\([0, \pi]\)</td>
+                            </tr>
+                            <tr class="hover:bg-white/5 transition">
+                                <td class="p-4 text-center font-bold text-amber-400">3</td>
+                                <td class="p-4 font-semibold text-pink-300">\(y = \tan^{-1} x\)</td>
+                                <td class="p-4">\(\mathbb{R}\) (અથવા \((-\infty, \infty)\))</td>
+                                <td class="p-4">\(\left(-\frac{\pi}{2}, \frac{\pi}{2}\right)\)</td>
+                            </tr>
+                            <tr class="hover:bg-white/5 transition">
+                                <td class="p-4 text-center font-bold text-amber-400">4</td>
+                                <td class="p-4 font-semibold text-pink-300">\(y = \cot^{-1} x\)</td>
+                                <td class="p-4">\(\mathbb{R}\)</td>
+                                <td class="p-4">\((0, \pi)\)</td>
+                            </tr>
+                            <tr class="hover:bg-white/5 transition">
+                                <td class="p-4 text-center font-bold text-amber-400">5</td>
+                                <td class="p-4 font-semibold text-pink-300">\(y = \sec^{-1} x\)</td>
+                                <td class="p-4">\(\mathbb{R} - (-1, 1)\)</td>
+                                <td class="p-4">\([0, \pi] - \left\{\frac{\pi}{2}\right\}\)</td>
+                            </tr>
+                            <tr class="hover:bg-white/5 transition">
+                                <td class="p-4 text-center font-bold text-amber-400">6</td>
+                                <td class="p-4 font-semibold text-pink-300">\(y = \csc^{-1} x\)</td>
+                                <td class="p-4">\(\mathbb{R} - (-1, 1)\)</td>
+                                <td class="p-4">\(\left[-\frac{\pi}{2}, \frac{\pi}{2}\right] - \{0\}\)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="graphs" class="bg-white/5 backdrop-blur-xl rounded-3xl p-6 sm:p-10 shadow-2xl border border-white/10">
+            <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 mb-8">
+                <div class="flex items-center gap-3.5">
+                    <div class="w-12 h-12 rounded-2xl bg-cyan-500/20 border border-cyan-500/40 flex items-center justify-center text-cyan-400 text-xl shadow-lg">
+                        <i class="fa-solid fa-chart-line"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-2xl sm:text-3xl font-bold text-slate-100">પ્રતિવિધેયોનાં આલેખો (Graphs)</h2>
+                        <p class="text-xs sm:text-sm text-slate-400">ઇન્ટરેક્ટિવ ગ્રાફ વિઝ્યુઅલાઈઝર</p>
+                    </div>
+                </div>
+                <!-- Graph Selector Buttons (Hick's Law / Fitts's Law compliant) -->
+                <div id="graph-buttons" class="flex flex-wrap gap-2.5 bg-slate-950/60 p-2 rounded-2xl border border-white/10 w-full md:w-auto">
+                    <button onclick="switchGraph('sin')" class="flex-1 md:flex-initial px-4 py-2.5 rounded-xl bg-pink-600 text-white font-bold text-sm shadow-md shadow-pink-600/30 hover:bg-pink-500 transition active scale-105">\(\sin^{-1} x\)</button>
+                    <button onclick="switchGraph('cos')" class="flex-1 md:flex-initial px-4 py-2.5 rounded-xl bg-white/10 text-white font-bold text-sm shadow-md hover:bg-white/20 transition">\(\cos^{-1} x\)</button>
+                    <button onclick="switchGraph('tan')" class="flex-1 md:flex-initial px-4 py-2.5 rounded-xl bg-white/10 text-white font-bold text-sm shadow-md hover:bg-white/20 transition">\(\tan^{-1} x\)</button>
+                    <button onclick="switchGraph('cot')" class="flex-1 md:flex-initial px-4 py-2.5 rounded-xl bg-white/10 text-white font-bold text-sm shadow-md hover:bg-white/20 transition">\(\cot^{-1} x\)</button>
+                </div>
+            </div>
+            
+            <p class="text-slate-300 text-sm mb-6 bg-slate-900/80 p-4 rounded-2xl border border-cyan-500/30 leading-relaxed shadow-inner">
+                💡 <span class="font-bold text-amber-300">મહત્વની નોંધ:</span> કોઈ વિધેયનાં પ્રતિવિધેયનો આલેખ મૂળ વિધેયનાં આલેખના <span class="text-cyan-300 font-bold">\(y = x\)</span> રેખા પરના આરસી પ્રતિબિંબ (Mirror Image) સ્વરૂપે મળે છે. નીચે આપેલ ગ્રાફ ઇન્ટરેક્ટિવ છે!
+            </p>
+
+            <div class="bg-slate-950/80 p-4 sm:p-6 rounded-2xl border border-white/10 relative h-[380px] sm:h-[480px] flex items-center justify-center shadow-inner">
+                <canvas id="trigGraph"></canvas>
+            </div>
+        </section>
+
+        <section id="examples" class="bg-white/5 backdrop-blur-xl rounded-3xl p-6 sm:p-10 shadow-2xl border border-white/10">
+            <div class="flex items-center gap-3.5 mb-8">
+                <div class="w-12 h-12 rounded-2xl bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400 text-xl shadow-lg">
+                    <i class="fa-solid fa-lightbulb"></i>
+                </div>
+                <div>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-slate-100">મહત્વની નોંધ અને ઉદાહરણો</h2>
+                    <p class="text-xs sm:text-sm text-slate-400">મુખ્ય કિંમત (Principal Value) મેળવવાની રીત</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-8">
+                <div class="bg-slate-900/60 p-5 rounded-2xl border border-amber-500/30 shadow-md">
+                    <h3 class="text-amber-400 font-bold mb-2 flex items-center gap-2"><i class="fa-solid fa-bookmark text-xs"></i> નોંધ (૧)</h3>
+                    <p class="text-sm text-slate-300 leading-relaxed">\(\sin^{-1} x\) અને \((\sin x)^{-1}\) બંને જુદા છે. \((\sin x)^{-1} = \frac{1}{\sin x}\). આ નિયમ તમામ ત્રિકોણમિતીય વિધેયો માટે લાગુ પડે છે.</p>
+                </div>
+                <div class="bg-slate-900/60 p-5 rounded-2xl border border-amber-500/30 shadow-md">
+                    <h3 class="text-amber-400 font-bold mb-2 flex items-center gap-2"><i class="fa-solid fa-bookmark text-xs"></i> નોંધ (૨)</h3>
+                    <p class="text-sm text-slate-300 leading-relaxed">જ્યારે પણ પ્રશ્નમાં પ્રતિવિધેયની શાખાનો ઉલ્લેખ ન હોય, ત્યારે તેની મુખ્ય કિંમતવાળી શાખા જ ધ્યાનમાં લેવાય છે.</p>
+                </div>
+                <div class="bg-slate-900/60 p-5 rounded-2xl border border-amber-500/30 shadow-md">
+                    <h3 class="text-amber-400 font-bold mb-2 flex items-center gap-2"><i class="fa-solid fa-bookmark text-xs"></i> નોંધ (૩)</h3>
+                    <p class="text-sm text-slate-300 leading-relaxed">પ્રતિવિધેયનું જે મૂલ્ય તેની મુખ્ય કિંમતવાળી શાખાના વિસ્તારમાં આવેલું હોય, તેને તે પ્રતિવિધેયની મુખ્ય કિંમત કહે છે.</p>
+                </div>
+            </div>
+
+            <!-- Solved Examples with beautiful gradients -->
+            <div class="space-y-5">
+                <div class="bg-gradient-to-r from-purple-950/70 via-indigo-950/70 to-slate-900 p-6 rounded-2xl border border-pink-500/30 shadow-xl">
+                    <h3 class="text-lg font-bold text-pink-300 mb-3 flex items-center gap-2">
+                        <span>✨</span> ઉદાહરણ ૧: \(\sin^{-1}\left(\frac{1}{\sqrt{2}}\right)\) ની મુખ્ય કિંમત શોધો.
+                    </h3>
+                    <div class="space-y-1.5 text-sm text-slate-300 pl-4 border-l-2 border-pink-500/50">
+                        <p>• ધારો કે \(\sin^{-1}\left(\frac{1}{\sqrt{2}}\right) = y\). આથી \(\sin y = \frac{1}{\sqrt{2}}\).</p>
+                        <p>• આપણે જાણીએ છીએ કે \(\sin^{-1}\) ની મુખ્ય કિંમતવાળી શાખાનો વિસ્તાર \(\left[-\frac{\pi}{2}, \frac{\pi}{2}\right]\) છે.</p>
+                        <p>• કારણ કે \(\sin\left(\frac{\pi}{4}\right) = \frac{1}{\sqrt{2}}\) અને \(\frac{\pi}{4} \in \left[-\frac{\pi}{2}, \frac{\pi}{2}\right]\), તેથી મુખ્ય કિંમત <span class="text-amber-300 font-bold">\(\frac{\pi}{4}\)</span> છે.</p>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-r from-indigo-950/70 via-purple-950/70 to-slate-900 p-6 rounded-2xl border border-cyan-500/30 shadow-xl">
+                    <h3 class="text-lg font-bold text-cyan-300 mb-3 flex items-center gap-2">
+                        <span>✨</span> ઉદાહરણ ૨: \(\cot^{-1}\left(-\frac{1}{\sqrt{3}}\right)\) ની મુખ્ય કિંમત શોધો.
+                    </h3>
+                    <div class="space-y-1.5 text-sm text-slate-300 pl-4 border-l-2 border-cyan-500/50">
+                        <p>• ધારો કે \(\cot^{-1}\left(-\frac{1}{\sqrt{3}}\right) = y\). તેથી \(\cot y = -\frac{1}{\sqrt{3}} = -\cot\left(\frac{\pi}{3}\right) = \cot\left(\pi - \frac{\pi}{3}\right) = \cot\left(\frac{2\pi}{3}\right)\).</p>
+                        <p>• કારણ કે \(\cot^{-1}\) ની મુખ્ય કિંમતવાળી શાખા \((0, \pi)\) છે અને \(\frac{2\pi}{3} \in (0, \pi)\), તેથી મુખ્ય કિંમત <span class="text-amber-300 font-bold">\(\frac{2\pi}{3}\)</span> છે.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="properties" class="bg-white/5 backdrop-blur-xl rounded-3xl p-6 sm:p-10 shadow-2xl border border-white/10">
+            <div class="flex items-center gap-3.5 mb-8">
+                <div class="w-12 h-12 rounded-2xl bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-400 text-xl shadow-lg">
+                    <i class="fa-solid fa-bolt"></i>
+                </div>
+                <div>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-slate-100">મહત્વનાં ગુણધર્મો (Properties)</h2>
+                    <p class="text-xs sm:text-sm text-slate-400">દાખલા ગણવા માટેના ઉપયોગી સૂત્રો</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Property I -->
+                <div class="bg-slate-900/60 p-6 rounded-2xl border border-amber-500/30 shadow-lg">
+                    <h3 class="text-amber-400 font-bold text-lg mb-4 border-b border-amber-500/20 pb-2.5 flex items-center gap-2">
+                        <i class="fa-solid fa-gem text-xs"></i> ગુણધર્મ : I (વ્યસ્ત અને વિપરીત સંબંધો)
+                    </h3>
+                    <ul class="space-y-3 text-sm text-slate-200">
+                        <li class="bg-white/5 p-2.5 rounded-xl border border-white/5">1. \(\sin^{-1}\left(\frac{1}{x}\right) = \csc^{-1} x, \text{ જ્યાં } x \ge 1 \text{ અથવા } x \le -1\)</li>
+                        <li class="bg-white/5 p-2.5 rounded-xl border border-white/5">2. \(\cos^{-1}\left(\frac{1}{x}\right) = \sec^{-1} x, \text{ જ્યાં } x \ge 1 \text{ અથવા } x \le -1\)</li>
+                        <li class="bg-white/5 p-2.5 rounded-xl border border-white/5">3. \(\tan^{-1}\left(\frac{1}{x}\right) = \cot^{-1} x, \text{ જ્યાં } x > 0\)</li>
+                    </ul>
+                </div>
+
+                <!-- Property II -->
+                <div class="bg-slate-900/60 p-6 rounded-2xl border border-amber-500/30 shadow-lg">
+                    <h3 class="text-amber-400 font-bold text-lg mb-4 border-b border-amber-500/20 pb-2.5 flex items-center gap-2">
+                        <i class="fa-solid fa-gem text-xs"></i> ગુણધર્મ : II (ઋણ ખૂણાના સૂત્રો)
+                    </h3>
+                    <ul class="space-y-3 text-sm text-slate-200">
+                        <li class="bg-white/5 p-2.5 rounded-xl border border-white/5">1. \(\sin^{-1}(-x) = -\sin^{-1} x, \text{ જ્યાં } x \in [-1, 1]\)</li>
+                        <li class="bg-white/5 p-2.5 rounded-xl border border-white/5">2. \(\tan^{-1}(-x) = -\tan^{-1} x, \text{ જ્યાં } x \in \mathbb{R}\)</li>
+                        <li class="bg-white/5 p-2.5 rounded-xl border border-white/5">3. \(\csc^{-1}(-x) = -\csc^{-1} x, \text{ જ્યાં } |x| \ge 1\)</li>
+                        <li class="bg-white/5 p-2.5 rounded-xl border border-white/5">4. \(\cos^{-1}(-x) = \pi - \cos^{-1} x, \text{ જ્યાં } x \in [-1, 1]\)</li>
+                        <li class="bg-white/5 p-2.5 rounded-xl border border-white/5">5. \(\sec^{-1}(-x) = \pi - \sec^{-1} x, \text{ જ્યાં } |x| \ge 1\)</li>
+                        <li class="bg-white/5 p-2.5 rounded-xl border border-white/5">6. \(\cot^{-1}(-x) = \pi - \cot^{-1} x, \text{ જ્યાં } x \in \mathbb{R}\)</li>
+                    </ul>
+                </div>
+
+                <!-- Property III -->
+                <div class="bg-slate-900/60 p-6 rounded-2xl border border-amber-500/30 shadow-lg">
+                    <h3 class="text-amber-400 font-bold text-lg mb-4 border-b border-amber-500/20 pb-2.5 flex items-center gap-2">
+                        <i class="fa-solid fa-gem text-xs"></i> ગુણધર્મ : III (પરૂરક ખૂણાના સરવાળા)
+                    </h3>
+                    <ul class="space-y-3 text-sm text-slate-200">
+                        <li class="bg-white/5 p-2.5 rounded-xl border border-white/5">1. \(\sin^{-1} x + \cos^{-1} x = \frac{\pi}{2}, \text{ જ્યાં } x \in [-1, 1]\)</li>
+                        <li class="bg-white/5 p-2.5 rounded-xl border border-white/5">2. \(\tan^{-1} x + \cot^{-1} x = \frac{\pi}{2}, \text{ જ્યાં } x \in \mathbb{R}\)</li>
+                        <li class="bg-white/5 p-2.5 rounded-xl border border-white/5">3. \(\sec^{-1} x + \csc^{-1} x = \frac{\pi}{2}, \text{ જ્યાં } |x| \ge 1\)</li>
+                    </ul>
+                </div>
+
+                <!-- Property IV -->
+                <div class="bg-slate-900/60 p-6 rounded-2xl border border-amber-500/30 shadow-lg">
+                    <h3 class="text-amber-400 font-bold text-lg mb-4 border-b border-amber-500/20 pb-2.5 flex items-center gap-2">
+                        <i class="fa-solid fa-gem text-xs"></i> ગુણધર્મ : IV (સરવાળા અને બાદબાકીના સૂત્રો)
+                    </h3>
+                    <ul class="space-y-3 text-sm text-slate-200">
+                        <li class="bg-white/5 p-2.5 rounded-xl border border-white/5">1. \(\tan^{-1} x + \tan^{-1} y = \tan^{-1}\left(\frac{x+y}{1-xy}\right), \text{ જ્યાં } xy < 1\)</li>
+                        <li class="bg-white/5 p-2.5 rounded-xl border border-white/5">2. \(\tan^{-1} x - \tan^{-1} y = \tan^{-1}\left(\frac{x-y}{1+xy}\right), \text{ જ્યાં } xy > -1\)</li>
+                        <li class="bg-white/5 p-2.5 rounded-xl border border-white/5">3. \(2\tan^{-1} x = \tan^{-1}\left(\frac{2x}{1-x^2}\right)\)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer with detailed branding and professional finish -->
+    <footer class="mt-20 bg-slate-950 border-t border-white/10 py-8 text-center text-slate-400 text-sm">
+        <div class="max-w-7xl mx-auto px-4 space-y-3">
+            <p class="font-semibold text-slate-300">✨ ધોરણ - 12 ગણિત દર્પણ (ભાગ - 1) | ત્રિકોણમિતીય પ્રતિવિધેયો (Inverse Trigonometric Functions) ✨</p>
+            <p class="text-xs text-slate-500">ગુજરાત માધ્યમિક અને ઉચ્ચતર માધ્યમિક શિક્ષણ બોર્ડ (GSEB) અભ્યાસક્રમ મુજબ તૈયાર કરેલ ડિજિટલ પોર્ટલ.</p>
+        </div>
+    </footer>
+
+    <script>
+        let trigChart = null;
+
+        // Data generator for different inverse trig functions
+        const graphData = {
+            sin: {
+                label: 'y = sin⁻¹(x)',
+                color: '#ec4899',
+                getData: () => {
+                    let pts = [];
+                    for(let x = -1; x <= 1; x += 0.05) {
+                        pts.push({ x: Number(x.toFixed(2)), y: Number(Math.asin(x).toFixed(2)) });
+                    }
+                    return pts;
+                }
+            },
+            cos: {
+                label: 'y = cos⁻¹(x)',
+                color: '#3b82f6',
+                getData: () => {
+                    let pts = [];
+                    for(let x = -1; x <= 1; x += 0.05) {
+                        pts.push({ x: Number(x.toFixed(2)), y: Number(Math.acos(x).toFixed(2)) });
+                    }
+                    return pts;
+                }
+            },
+            tan: {
+                label: 'y = tan⁻¹(x)',
+                color: '#10b981',
+                getData: () => {
+                    let pts = [];
+                    for(let x = -5; x <= 5; x += 0.2) {
+                        pts.push({ x: Number(x.toFixed(2)), y: Number(Math.atan(x).toFixed(2)) });
+                    }
+                    return pts;
+                }
+            },
+            cot: {
+                label: 'y = cot⁻¹(x)',
+                color: '#f59e0b',
+                getData: () => {
+                    let pts = [];
+                    for(let x = -5; x <= 5; x += 0.2) {
+                        let yVal = (Math.PI / 2) - Math.atan(x);
+                        pts.push({ x: Number(x.toFixed(2)), y: Number(yVal.toFixed(2)) });
+                    }
+                    return pts;
+                }
+            }
+        };
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        function switchGraph(type) {
+            // Update button active styles adhering to Invariance & Consistency principles
+            const buttons = document.querySelectorAll('#graph-buttons button');
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-pink-600', 'shadow-pink-600/30', 'scale-105');
+                btn.classList.add('bg-white/10');
+            });
+            event.target.classList.remove('bg-white/10');
+            event.target.classList.add('bg-pink-600', 'shadow-pink-600/30', 'scale-105');
+
+            renderGraph(type);
+        }
+
+        function renderGraph(type) {
+            const ctx = document.getElementById('trigGraph').getContext('2d');
+            const config = graphData[type];
+
+            if (trigChart) {
+                trigChart.destroy();
+            }
+
+            trigChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    datasets: [{
+                        label: config.label,
+                        data: config.getData(),
+                        borderColor: config.color,
+                        backgroundColor: config.color + '22',
+                        borderWidth: 3,
+                        pointRadius: 2,
+                        tension: 0.3,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            type: 'linear',
+                            position: 'center',
+                            grid: { color: 'rgba(255, 255, 255, 0.08)' },
+                            ticks: { color: '#94a3b8', font: { family: 'Inter' } },
+                            title: { display: true, text: 'x-axis (Domain)', color: '#cbd5e1', font: { family: 'Inter', weight: 'bold' } }
+                        },
+                        y: {
+                            type: 'linear',
+                            position: 'center',
+                            grid: { color: 'rgba(255, 255, 255, 0.08)' },
+                            ticks: { color: '#94a3b8', font: { family: 'Inter' } },
+                            title: { display: true, text: 'y-axis (Radians / Range)', color: '#cbd5e1', font: { family: 'Inter', weight: 'bold' } }
+                        }
+                    },
+                    plugins: {
+                        legend: { labels: { color: '#fff', font: { size: 14, family: 'Inter', weight: 'bold' } } }
+                    }
+                }
+            });
+        }
+
+        // Initialize default graph on window load and trigger MathJax typeset
+        window.onload = function() {
+            renderGraph('sin');
+            if (window.MathJax) {
+                MathJax.typeset();
+            }
+        };
+    </script>
+<script src="../assets/global-navbar.js" defer></script>
+</body>
+</html>

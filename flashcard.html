@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="gu" class="h-full bg-slate-900">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ગણિત પ્રકરણ ૧ થી ૬ - કલરફુલ ફ્લેશકાર્ડ્સ</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- MathJax for LaTeX Rendering -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Hind+Vadodara:wght@400;500;600;700&display=swap');
+    body {
+      font-family: 'Hind Vadodara', sans-serif;
+    }
+    .perspective-1000 {
+      perspective: 1000px;
+    }
+    .transform-style-3d {
+      transform-style: preserve-3d;
+    }
+    .backface-hidden {
+      backface-visibility: hidden;
+    }
+    .rotate-y-180 {
+      transform: rotateY(180deg);
+    }
+    .glass-card {
+      background: rgba(255, 255, 255, 0.07);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0f172a;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #334155;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #475569;
+    }
+  </style>
+<link rel="stylesheet" href="assets/global-navbar.css">
+</head>
+<body class="h-full text-slate-100 flex flex-col bg-gradient-to-br from-slate-950 via-slate-900 to-indigo-950 min-h-screen">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 bg-slate-900/80 backdrop-blur-md border-b border-slate-800 shadow-xl">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-wrap items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500 flex items-center justify-center text-white text-xl font-bold shadow-lg shadow-purple-500/30">
+          ✨
+        </div>
+        <div>
+          <h1 class="text-xl sm:text-2xl font-black bg-gradient-to-r from-amber-300 via-pink-400 to-cyan-300 bg-clip-text text-transparent">
+            ગણિત સ્માર્ટ ફ્લેશકાર્ડ્સ
+          </h1>
+          <p class="text-xs text-slate-400 font-medium">Kumar Success - પ્રકરણ ૧ થી ૬ Quick Revision</p>
+        </div>
+      </div>
+
+      <!-- Controls & Search -->
+      <div class="flex items-center gap-2 sm:gap-3 w-full sm:w-auto">
+        <!-- Search Bar -->
+        <div class="relative flex-1 sm:w-64">
+          <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+          <input type="text" id="searchInput" oninput="handleSearch()" placeholder="શોધો (ઉદા. વ્યાપ્ત, sin⁻¹, શ્રેણિક)..." 
+                 class="w-full bg-slate-800/90 text-sm text-slate-200 placeholder-slate-400 pl-9 pr-4 py-2 rounded-xl border border-slate-700 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all">
+        </div>
+
+        <!-- View Mode Switcher -->
+        <div class="flex bg-slate-800 p-1 rounded-xl border border-slate-700">
+          <button id="gridModeBtn" onclick="setViewMode('grid')" class="px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all bg-indigo-600 text-white shadow-md">
+            <i class="fa-solid fa-grid-2"></i> <span class="hidden sm:inline">ગ્રીડ</span>
+          </button>
+          <button id="slideModeBtn" onclick="setViewMode('slide')" class="px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 text-slate-400 hover:text-white transition-all">
+            <i class="fa-solid fa-clone"></i> <span class="hidden sm:inline">સ્લાઇડર</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation Tabs for Chapters -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-slate-800/60 overflow-x-auto py-2 flex items-center gap-2 no-scrollbar">
+      <button onclick="filterChapter('all')" id="tab-all" class="tab-btn px-4 py-1.5 rounded-full text-xs font-bold whitespace-nowrap transition-all bg-indigo-600 text-white shadow-lg shadow-indigo-600/30">
+        🌈 બધા પ્રકરણો
+      </button>
+      <button onclick="filterChapter(1)" id="tab-1" class="tab-btn px-4 py-1.5 rounded-full text-xs font-bold whitespace-nowrap transition-all bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white border border-slate-700">
+        1️⃣ સંબંધ અને વિધેય
+      </button>
+      <button onclick="filterChapter(2)" id="tab-2" class="tab-btn px-4 py-1.5 rounded-full text-xs font-bold whitespace-nowrap transition-all bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white border border-slate-700">
+        2️⃣ ત્રિકોણમિતીય પ્રતિવિધેયો
+      </button>
+      <button onclick="filterChapter(3)" id="tab-3" class="tab-btn px-4 py-1.5 rounded-full text-xs font-bold whitespace-nowrap transition-all bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white border border-slate-700">
+        3️⃣ શ્રેણિક
+      </button>
+      <button onclick="filterChapter(4)" id="tab-4" class="tab-btn px-4 py-1.5 rounded-full text-xs font-bold whitespace-nowrap transition-all bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white border border-slate-700">
+        4️⃣ નિશ્ચાયક
+      </button>
+      <button onclick="filterChapter(5)" id="tab-5" class="tab-btn px-4 py-1.5 rounded-full text-xs font-bold whitespace-nowrap transition-all bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white border border-slate-700">
+        5️⃣ સાતત્ય અને વિકલનીયતા
+      </button>
+      <button onclick="filterChapter(6)" id="tab-6" class="tab-btn px-4 py-1.5 rounded-full text-xs font-bold whitespace-nowrap transition-all bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white border border-slate-700">
+        6️⃣ વિકલીતના ઉપયોગો
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 flex flex-col justify-between">
+    
+    <!-- GRID VIEW -->
+    <div id="gridView" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 transition-all duration-300">
+      <!-- Flashcards rendered here dynamically -->
+    </div>
+
+    <!-- SLIDER / SINGLE CARD VIEW MODE -->
+    <div id="slideView" class="hidden flex-col items-center justify-center py-6 min-h-[500px]">
+      <div class="w-full max-w-2xl px-2">
+        <!-- Progress Bar -->
+        <div class="flex items-center justify-between text-xs font-semibold text-slate-400 mb-2">
+          <span id="slideCounter">કાર્ડ 1 / 10</span>
+          <span id="slideChapterBadge" class="px-2.5 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">પ્રકરણ 1</span>
+        </div>
+        <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden mb-6">
+          <div id="progressBar" class="bg-gradient-to-r from-indigo-500 to-pink-500 h-full w-0 transition-all duration-300"></div>
+        </div>
+
+        <!-- Flip Container -->
+        <div class="perspective-1000 w-full h-[460px] cursor-pointer" onclick="toggleCardFlip(this)">
+          <div id="activeSlideCard" class="relative w-full h-full transform-style-3d transition-transform duration-700 rounded-3xl shadow-2xl">
+            <!-- Front Side -->
+            <div id="slideFront" class="absolute inset-0 backface-hidden rounded-3xl p-6 sm:p-8 flex flex-col justify-between border border-white/20 shadow-2xl bg-gradient-to-br from-indigo-900 via-slate-900 to-slate-950">
+              <!-- Content Filled Dynamically -->
+            </div>
+            <!-- Back Side -->
+            <div id="slideBack" class="absolute inset-0 backface-hidden rotate-y-180 rounded-3xl p-6 sm:p-8 flex flex-col justify-between border border-white/20 shadow-2xl bg-gradient-to-br from-purple-900 via-slate-900 to-slate-950">
+              <!-- Content Filled Dynamically -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide Navigation Controls -->
+        <div class="flex items-center justify-between mt-6 px-2">
+          <button onclick="prevSlide()" class="px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-sm border border-slate-700 flex items-center gap-2 transition-all active:scale-95">
+            <i class="fa-solid fa-arrow-left"></i> અગાઉનું
+          </button>
+          <button onclick="toggleActiveFlip()" class="px-4 py-2.5 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 font-bold text-xs border border-amber-500/40 flex items-center gap-2">
+            🔄 કાર્ડ ફેરવો (Flip)
+          </button>
+          <button onclick="nextSlide()" class="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-sm shadow-lg shadow-indigo-600/30 flex items-center gap-2 transition-all active:scale-95">
+            આગળનું <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-slate-950 border-t border-slate-800/80 py-4 text-center text-xs text-slate-500">
+    <p>⚡ Kumar Success Class 12th Mathematics Flashcards | Color-Coded Revision Notes</p>
+  </footer>
+
+  <script>
+    // Cards Dataset accurately reflecting the exact Gujarati content from PDF
+    const cardsData = [
+      // CHAPTER 1
+      {
+        id: 1,
+        chapter: 1,
+        chapterName: "પ્રકરણ ૧: સંબંધ અને વિધેય",
+        topic: "સંબંધની વ્યાખ્યા અને ગુણધર્મો",
+        colorTheme: "from-blue-600 via-indigo-600 to-slate-900",
+        badgeColor: "bg-blue-500/20 text-blue-300 border-blue-500/30",
+        frontEmoji: "🔗",
+        frontText: "સંબંધ (Relation) ની વ્યાખ્યા અને સામ્ય સંબંધના ગુણધર્મો",
+        detailsText: `
+          <div class="space-y-3 text-slate-200 text-sm">
+            <div class="p-3 bg-blue-950/60 rounded-xl border border-blue-500/30">
+              <p class="font-bold text-blue-300">📌 વ્યાખ્યા:</p>
+              <p class="mt-1">કાર્તેઝીય ગુણાકારનો ઉપગણ: <span class="text-amber-300 font-mono font-bold">$R \\subset A \\times B$</span></p>
+            </div>
+            <div class="p-3 bg-slate-800/80 rounded-xl border border-slate-700">
+              <p class="font-bold text-amber-400 mb-2">⭐ સામ્ય સંબંધના ગુણધર્મો:</p>
+              <ul class="space-y-1.5 text-xs sm:text-sm">
+                <li><strong class="text-emerald-400">1. સ્વવાચક:</strong> $(a,a) \\in R, \\quad \\forall a \\in A$</li>
+                <li><strong class="text-emerald-400">2. સંમિત:</strong> $(a_1, a_2) \\in R \\Rightarrow (a_2, a_1) \\in R$</li>
+                <li><strong class="text-emerald-400">3. પરંપરિત:</strong> $(a_1, a_2) \\in R$ અને $(a_2, a_3) \\in R \\Rightarrow (a_1, a_3) \\in R$</li>
+              </ul>
+              <p class="mt-2 text-xs text-indigo-300 font-semibold">👉 જો સ્વવાચક, સંમિત અને પરંપરિત ત્રણેય હોય તો તેને <strong>સામ્ય સંબંધ</strong> કહેવાય.</p>
+            </div>
+          </div>
+        `,
+        graphSvg: `
+          <svg viewBox="0 0 200 100" class="w-full h-24 my-2">
+            <ellipse cx="50" cy="50" rx="30" ry="40" fill="none" stroke="#60a5fa" stroke-width="2" stroke-dasharray="3,3"/>
+            <ellipse cx="150" cy="50" rx="30" ry="40" fill="none" stroke="#a78bfa" stroke-width="2" stroke-dasharray="3,3"/>
+            <text x="50" y="20" fill="#60a5fa" text-anchor="middle" font-size="10" font-weight="bold">A</text>
+            <text x="150" y="20" fill="#a78bfa" text-anchor="middle" font-size="10" font-weight="bold">B</text>
+            <circle cx="50" cy="40" r="3" fill="#38bdf8"/>
+            <circle cx="50" cy="60" r="3" fill="#38bdf8"/>
+            <circle cx="150" cy="40" r="3" fill="#c084fc"/>
+            <circle cx="150" cy="60" r="3" fill="#c084fc"/>
+            <path d="M 53 40 L 147 40" stroke="#f43f5e" stroke-width="1.5" marker-end="url(#arrow)"/>
+            <path d="M 53 60 L 147 60" stroke="#f43f5e" stroke-width="1.5"/>
+            <text x="100" y="32" fill="#fbbf24" text-anchor="middle" font-size="9">R ⊂ A×B</text>
+          </svg>
+        `
+      },
+      {
+        id: 2,
+        chapter: 1,
+        chapterName: "પ્રકરણ ૧: સંબંધ અને વિધેય",
+        topic: "વિધેયના પ્રકારો અને સંયોજન",
+        colorTheme: "from-cyan-600 via-teal-700 to-slate-900",
+        badgeColor: "bg-teal-500/20 text-teal-300 border-teal-500/30",
+        frontEmoji: "⚡",
+        frontText: "એક-એક વિધેય, વ્યાપ્ત વિધેય અને વિધેયોનું સંયોજન",
+        detailsText: `
+          <div class="space-y-2.5 text-slate-200 text-xs sm:text-sm">
+            <div class="p-2.5 bg-teal-950/60 rounded-xl border border-teal-500/30">
+              <p class="font-bold text-teal-300">📌 વિધેય (Function):</p>
+              <p class="text-xs">ગણ A ના પ્રત્યેક ઘટકને B ના અનન્ય ઘટક સાથે સાંકળતો નિયમ $f: X \\rightarrow Y$ છે.</p>
+            </div>
+            <div class="grid grid-cols-2 gap-2">
+              <div class="p-2 bg-slate-800 rounded-lg border border-slate-700">
+                <p class="font-bold text-amber-300 text-xs">🎯 એક-એક વિધેય</p>
+                <p class="text-xs mt-1">$f(x_1) = f(x_2) \\Rightarrow x_1 = x_2$</p>
+              </div>
+              <div class="p-2 bg-slate-800 rounded-lg border border-slate-700">
+                <p class="font-bold text-emerald-300 text-xs">🎯 વ્યાપ્ત વિધેય</p>
+                <p class="text-xs mt-1">વિસ્તાર (Range) = Y (સહપ્રદેશ)</p>
+              </div>
+            </div>
+            <div class="p-2.5 bg-indigo-950/60 rounded-xl border border-indigo-500/30">
+              <p class="font-bold text-indigo-300 text-xs">🔄 વિધેયોનું સંયોજન & પ્રતિવિધેય:</p>
+              <p class="text-xs mt-1">• $(g \\circ f)(x) = g(f(x))$ &nbsp;|&nbsp; $(f \\circ g)(x) = f(g(x))$</p>
+              <p class="text-xs mt-1">• પ્રતિવિધેય $f^{-1}$ માટે શરત: $f$ <strong>અવશ્ય એક-એક અને વ્યાપ્ત</strong> હોવું જ જોઈએ.</p>
+              <p class="text-xs text-amber-300 mt-1">• $(f \\circ f^{-1})(x) = x$ તથા $(f^{-1} \\circ f)(y) = y$</p>
+            </div>
+          </div>
+        `,
+        graphSvg: ""
+      },
+
+      // CHAPTER 2
+      {
+        id: 3,
+        chapter: 2,
+        chapterName: "પ્રકરણ ૨: ત્રિકોણમિતીય પ્રતિવિધેયો",
+        topic: "મુખ્ય કિંમતવાળી શાખા (Domain & Range)",
+        colorTheme: "from-purple-600 via-pink-600 to-slate-900",
+        badgeColor: "bg-purple-500/20 text-purple-300 border-purple-500/30",
+        frontEmoji: "📐",
+        frontText: "પ્રતિવિધેયના પ્રદેશ (Domain) અને વિસ્તાર (Range Table)",
+        detailsText: `
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs border-collapse">
+              <thead>
+                <tr class="bg-purple-900/60 text-purple-200 border-b border-purple-500/40">
+                  <th class="p-1.5">વિધેય ($y=$)</th>
+                  <th class="p-1.5">પ્રદેશ ($x$)</th>
+                  <th class="p-1.5">વિસ્તાર (મુખ્ય કિંમત શાખા)</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-700/60 text-slate-200">
+                <tr><td class="p-1 font-bold text-pink-300">$\\sin^{-1}x$</td><td class="p-1">$[-1, 1]$</td><td class="p-1 font-mono text-emerald-300">$[-\\frac{\\pi}{2}, \\frac{\\pi}{2}]$</td></tr>
+                <tr><td class="p-1 font-bold text-pink-300">$\\cos^{-1}x$</td><td class="p-1">$[-1, 1]$</td><td class="p-1 font-mono text-emerald-300">$[0, \\pi]$</td></tr>
+                <tr><td class="p-1 font-bold text-pink-300">$\\tan^{-1}x$</td><td class="p-1">$\\mathbb{R}$</td><td class="p-1 font-mono text-emerald-300">$(-\\frac{\\pi}{2}, \\frac{\\pi}{2})$</td></tr>
+                <tr><td class="p-1 font-bold text-pink-300">$\\csc^{-1}x$</td><td class="p-1">$\\mathbb{R}-(-1,1)$</td><td class="p-1 font-mono text-emerald-300">$[-\\frac{\\pi}{2}, \\frac{\\pi}{2}] - \\{0\\}$</td></tr>
+                <tr><td class="p-1 font-bold text-pink-300">$\\sec^{-1}x$</td><td class="p-1">$\\mathbb{R}-(-1,1)$</td><td class="p-1 font-mono text-emerald-300">$[0, \\pi] - \\{\\frac{\\pi}{2}\\}$</td></tr>
+                <tr><td class="p-1 font-bold text-pink-300">$\\cot^{-1}x$</td><td class="p-1">$\\mathbb{R}$</td><td class="p-1 font-mono text-emerald-300">$(0, \\pi)$</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="text-[11px] text-amber-300 mt-2 font-semibold">⚠️ ખાસ ધ્યાન: $\\sin^{-1}x \\ne (\\sin x)^{-1} = \\frac{1}{\\sin x} = \\csc x$</p>
+        `,
+        graphSvg: `
+          <svg viewBox="0 0 220 100" class="w-full h-28 my-1 bg-slate-950/60 rounded-xl p-2 border border-purple-500/30">
+            <!-- Axes -->
+            <line x1="20" y1="50" x2="200" y2="50" stroke="#64748b" stroke-width="1.5"/>
+            <line x1="110" y1="10" x2="110" y2="90" stroke="#64748b" stroke-width="1.5"/>
+            <!-- Ticks -->
+            <text x="200" y="62" fill="#94a3b8" font-size="8">x</text>
+            <text x="115" y="15" fill="#94a3b8" font-size="8">y</text>
+            <text x="160" y="62" fill="#38bdf8" font-size="8">1</text>
+            <text x="60" y="62" fill="#38bdf8" font-size="8">-1</text>
+            <text x="115" y="25" fill="#f43f5e" font-size="8">π/2</text>
+            <text x="115" y="80" fill="#f43f5e" font-size="8">-π/2</text>
+            <!-- Curve y = sin^-1(x) -->
+            <path d="M 60 75 Q 110 50 160 25" fill="none" stroke="#ec4899" stroke-width="2.5"/>
+            <circle cx="160" cy="25" r="3" fill="#fbbf24"/>
+            <circle cx="60" cy="75" r="3" fill="#fbbf24"/>
+            <text x="120" y="40" fill="#f472b6" font-size="9" font-weight="bold">y = sin⁻¹(x)</text>
+          </svg>
+        `
+      },
+      {
+        id: 4,
+        chapter: 2,
+        chapterName: "પ્રકરણ ૨: ત્રિકોણમિતીય પ્રતિવિધેયો",
+        topic: "અગત્યના સૂત્રો અને ગુણધર્મો",
+        colorTheme: "from-fuchsia-600 via-rose-600 to-slate-900",
+        badgeColor: "bg-fuchsia-500/20 text-fuchsia-300 border-fuchsia-500/30",
+        frontEmoji: "🧮",
+        frontText: "કોટીકોણ, ઋણ ખૂણા અને સરવાળા-બાદબાકીના સૂત્રો",
+        detailsText: `
+          <div class="space-y-2 text-xs sm:text-sm">
+            <div class="p-2 bg-slate-800 rounded-lg border border-slate-700">
+              <p class="font-bold text-amber-300">✨ કોટીકોણના સૂત્રો:</p>
+              <p class="mt-0.5">$\\sin^{-1}x + \\cos^{-1}x = \\frac{\\pi}{2}$ | $\\tan^{-1}x + \\cot^{-1}x = \\frac{\\pi}{2}$</p>
+            </div>
+            <div class="p-2 bg-slate-800 rounded-lg border border-slate-700">
+              <p class="font-bold text-pink-300">🔄 ઋણ ખૂણાઓ:</p>
+              <p>$\\sin^{-1}(-x) = -\\sin^{-1}x$ &nbsp;|&nbsp; $\\cos^{-1}(-x) = \\pi - \\cos^{-1}x$</p>
+            </div>
+            <div class="p-2 bg-fuchsia-950/60 rounded-xl border border-fuchsia-500/30">
+              <p class="font-bold text-fuchsia-300">➕ સરવાળાના સૂત્રો:</p>
+              <p class="text-xs font-mono">$\\tan^{-1}x + \\tan^{-1}y = \\tan^{-1}\\left(\\frac{x+y}{1-xy}\\right), \\quad xy < 1$</p>
+              <p class="text-xs font-mono mt-1">$\\tan^{-1}x + \\tan^{-1}y = \\pi + \\tan^{-1}\\left(\\frac{x+y}{1-xy}\\right), \\quad xy > 1$</p>
+              <p class="text-xs font-mono mt-1">$2\\tan^{-1}x = \\sin^{-1}\\left(\\frac{2x}{1+x^2}\\right) = \\cos^{-1}\\left(\\frac{1-x^2}{1+x^2}\\right)$</p>
+            </div>
+          </div>
+        `,
+        graphSvg: ""
+      },
+
+      // CHAPTER 3
+      {
+        id: 5,
+        chapter: 3,
+        chapterName: "પ્રકરણ ૩: શ્રેણિક (Matrices)",
+        topic: "શ્રેણિકના પ્રકારો અને ગુણાકાર",
+        colorTheme: "from-emerald-600 via-green-700 to-slate-900",
+        badgeColor: "bg-emerald-500/20 text-emerald-300 border-emerald-500/30",
+        frontEmoji: "🔲",
+        frontText: "શ્રેણિકની વ્યાખ્યા, પ્રકારો અને શ્રેણિક ગુણાકાર",
+        detailsText: `
+          <div class="space-y-2 text-xs sm:text-sm">
+            <div class="p-2 bg-emerald-950/60 rounded-xl border border-emerald-500/30">
+              <p class="font-bold text-emerald-300">📌 વ્યાખ્યા:</p>
+              <p>$A = [a_{ij}]_{m \\times n}$ ( $m$ હાર, $n$ સ્તંભ ધરાવતી લંબચોરસ સારણી)</p>
+            </div>
+            <div class="grid grid-cols-2 gap-1.5 text-xs">
+              <div class="p-1.5 bg-slate-800 rounded"><strong>સ્તંભ શ્રેણિક:</strong> $m \\times 1$</div>
+              <div class="p-1.5 bg-slate-800 rounded"><strong>હાર શ્રેણિક:</strong> $1 \\times n$</div>
+              <div class="p-1.5 bg-slate-800 rounded"><strong>ચોરસ શ્રેણિક:</strong> $n \\times n$</div>
+              <div class="p-1.5 bg-slate-800 rounded"><strong>એકમ શ્રેણિક ($I$):</strong> વિકર્ણ $1$, બાકી $0$</div>
+            </div>
+            <div class="p-2 bg-slate-800 rounded-lg border border-slate-700">
+              <p class="font-bold text-amber-300">✖️ શ્રેણિક ગુણાકાર શરત:</p>
+              <p class="text-xs mt-1">$(m \\times n) \\times (n \\times p) \\rightarrow (m \\times p)$</p>
+              <p class="text-xs text-rose-300 font-semibold mt-1">⚠️ નોંધ: સામન્ય રીતે $AB \\ne BA$ (ક્રમના નિયમનું પાલન થતું નથી).</p>
+            </div>
+          </div>
+        `,
+        graphSvg: ""
+      },
+      {
+        id: 6,
+        chapter: 3,
+        chapterName: "પ્રકરણ ૩: શ્રેણિક (Matrices)",
+        topic: "પરિવર્ત શ્રેણિક, સંમિત અને વિસંમિત",
+        colorTheme: "from-teal-600 via-emerald-800 to-slate-900",
+        badgeColor: "bg-teal-500/20 text-teal-300 border-teal-500/30",
+        frontEmoji: "🔄",
+        frontText: "પરિવર્ત શ્રેણિક ($A^T$), સંમિત અને વિસંમિત શ્રેણિક",
+        detailsText: `
+          <div class="space-y-2.5 text-xs sm:text-sm">
+            <div class="p-2.5 bg-slate-800 rounded-xl border border-slate-700">
+              <p class="font-bold text-teal-300">🔄 પરિવર્ત શ્રેણિક (Transpose $A'$ અથવા $A^T$):</p>
+              <p class="text-xs mt-1">હાર અને સ્તંભની અદલાબદલી: $A = [a_{ij}] \\rightarrow A' = [a_{ji}]$</p>
+              <p class="text-xs font-mono text-indigo-300 mt-1">• $(A')' = A$ &nbsp;|&nbsp; $(A+B)' = A' + B'$ &nbsp;|&nbsp; <strong class="text-amber-300">(AB)' = B' A'</strong></p>
+            </div>
+            <div class="grid grid-cols-2 gap-2">
+              <div class="p-2 bg-emerald-950/60 rounded-lg border border-emerald-500/30">
+                <p class="font-bold text-emerald-300">🔹 સંમિત શ્રેણિક</p>
+                <p class="text-xs mt-1 font-mono">$A' = A$</p>
+              </div>
+              <div class="p-2 bg-rose-950/60 rounded-lg border border-rose-500/30">
+                <p class="font-bold text-rose-300">🔸 વિસંમિત શ્રેણિક</p>
+                <p class="text-xs mt-1 font-mono">$A' = -A$</p>
+              </div>
+            </div>
+            <div class="p-2 bg-indigo-950/60 rounded-xl border border-indigo-500/30">
+              <p class="font-bold text-indigo-300 text-xs">⭐ સરવાળા તરીકે રજૂઆત:</p>
+              <p class="text-xs font-mono text-amber-300 mt-1">$A = \\frac{1}{2}(A + A') + \\frac{1}{2}(A - A')$</p>
+            </div>
+          </div>
+        `,
+        graphSvg: ""
+      },
+
+      // CHAPTER 4
+      {
+        id: 7,
+        chapter: 4,
+        chapterName: "પ્રકરણ ૪: નિશ્ચાયક (Determinants)",
+        topic: "ઉપનિશ્ચાયક, સહઅવયવ અને વ્યસ્ત શ્રેણિક",
+        colorTheme: "from-amber-600 via-orange-600 to-slate-900",
+        badgeColor: "bg-amber-500/20 text-amber-300 border-amber-500/30",
+        frontEmoji: "📊",
+        frontText: "સહઅવયવજ શ્રેણિક $\\text{adj}(A)$ અને વ્યસ્ત શ્રેણિક $A^{-1}$",
+        detailsText: `
+          <div class="space-y-2 text-xs sm:text-sm">
+            <div class="p-2 bg-slate-800 rounded-lg border border-slate-700">
+              <p class="font-bold text-amber-300">📌 સહઅવયવ (Cofactor):</p>
+              <p class="font-mono text-xs">$A_{ij} = (-1)^{i+j} M_{ij}$ &nbsp; ($M_{ij} =$ ઉપનિશ્ચાયક)</p>
+            </div>
+            <div class="p-2 bg-orange-950/60 rounded-xl border border-orange-500/30">
+              <p class="font-bold text-orange-300">🔑 અગત્યના ગુણધર્મો:</p>
+              <ul class="space-y-1 text-xs">
+                <li>• $A(\\text{adj } A) = (\\text{adj } A)A = |A| I$</li>
+                <li>• $|\\text{adj } A| = |A|^{n-1}$</li>
+                <li>• $|AB| = |A| \\cdot |B|$</li>
+              </ul>
+            </div>
+            <div class="p-2.5 bg-amber-950/80 rounded-xl border border-amber-500/40">
+              <p class="font-bold text-amber-300">⚡ વ્યસ્ત શ્રેણિક (Inverse Matrix):</p>
+              <p class="font-mono text-xs text-white mt-1">$A^{-1} = \\frac{1}{|A|} \\text{adj}(A), \\quad (|A| \\ne 0)$</p>
+              <p class="text-xs text-emerald-300 mt-1">• $(AB)^{-1} = B^{-1} A^{-1}$</p>
+            </div>
+          </div>
+        `,
+        graphSvg: ""
+      },
+      {
+        id: 8,
+        chapter: 4,
+        chapterName: "પ્રકરણ ૪: નિશ્ચાયક (Determinants)",
+        topic: "ત્રિકોણનું ક્ષેત્રફળ અને સુરેખ સંહતિનો ઉકેલ",
+        colorTheme: "from-orange-600 via-amber-700 to-slate-900",
+        badgeColor: "bg-orange-500/20 text-orange-300 border-orange-500/30",
+        frontEmoji: "🔺",
+        frontText: "નિશ્ચાયકના ઉપયોગો: ક્ષેત્રફળ અને $AX = B$ ઉકેલ",
+        detailsText: `
+          <div class="space-y-2.5 text-xs sm:text-sm">
+            <div class="p-2.5 bg-slate-800 rounded-xl border border-slate-700">
+              <p class="font-bold text-amber-300">🔺 ત્રિકોણનું ક્ષેત્રફળ:</p>
+              <p class="text-xs mt-1">શિરોબિંદુઓ $(x_1, y_1), (x_2, y_2), (x_3, y_3)$ માટે:</p>
+              <p class="font-mono text-xs text-emerald-300 mt-1">$\\text{ક્ષેત્રફળ} = \\frac{1}{2} \\begin{vmatrix} x_1 & y_1 & 1 \\\\ x_2 & y_2 & 1 \\\\ x_3 & y_3 & 1 \\end{vmatrix}$</p>
+            </div>
+            <div class="p-2.5 bg-indigo-950/60 rounded-xl border border-indigo-500/30">
+              <p class="font-bold text-indigo-300">⚙️ સુરેખ સંહતિનો શ્રેણિકથી ઉકેલ:</p>
+              <p class="text-xs font-mono mt-1">$AX = B \\implies X = A^{-1} B$</p>
+              <p class="text-[11px] text-slate-300 mt-1">જ્યાં $A$ એ સહગુણક શ્રેણિક, $X$ એ ચલ શ્રેણિક અને $B$ અચળ શ્રેણિક છે.</p>
+            </div>
+          </div>
+        `,
+        graphSvg: ""
+      },
+
+      // CHAPTER 5
+      {
+        id: 9,
+        chapter: 5,
+        chapterName: "પ્રકરણ ૫: સાતત્ય અને વિકલનીયતા",
+        topic: "વિકલનના પાયાના નિયમો અને સાંકળનો નિયમ",
+        colorTheme: "from-rose-600 via-red-600 to-slate-900",
+        badgeColor: "bg-rose-500/20 text-rose-300 border-rose-500/30",
+        frontEmoji: "📈",
+        frontText: "વિકલનના કાર્યનિયમો (Product, Quotient & Chain Rule)",
+        detailsText: `
+          <div class="space-y-2 text-xs sm:text-sm">
+            <div class="grid grid-cols-2 gap-2">
+              <div class="p-2 bg-slate-800 rounded-lg border border-slate-700">
+                <p class="font-bold text-amber-300 text-xs">✖️ ગુણાકારનો નિયમ</p>
+                <p class="text-[11px] font-mono mt-1">$(uv)' = u'v + uv'$</p>
+              </div>
+              <div class="p-2 bg-slate-800 rounded-lg border border-slate-700">
+                <p class="font-bold text-amber-300 text-xs">➗ ભાગાકારનો નિયમ</p>
+                <p class="text-[11px] font-mono mt-1">$\\left(\\frac{u}{v}\\right)' = \\frac{u'v - uv'}{v^2}$</p>
+              </div>
+            </div>
+            <div class="p-2 bg-rose-950/60 rounded-xl border border-rose-500/30">
+              <p class="font-bold text-rose-300 text-xs">🔗 સાંકળનો નિયમ (Chain Rule):</p>
+              <p class="text-xs font-mono mt-1">$\\frac{dy}{dx} = \\frac{dy}{du} \\cdot \\frac{du}{dx}$</p>
+            </div>
+            <div class="p-2 bg-slate-800 rounded-lg border border-slate-700">
+              <p class="font-bold text-emerald-300 text-xs">🌀 પ્રચલ અને દ્વિતીય વિકલિત:</p>
+              <p class="text-xs font-mono">$\\frac{dy}{dx} = \\frac{dy/dt}{dx/dt}$ &nbsp;|&nbsp; $\\frac{d^2y}{dx^2} = f''(x) = y''$</p>
+            </div>
+          </div>
+        `,
+        graphSvg: ""
+      },
+      {
+        id: 10,
+        chapter: 5,
+        chapterName: "પ્રકરણ ૫: સાતત્ય અને વિકલનીયતા",
+        topic: "વિકલનના પ્રમાણિત સૂત્રોની યાદી",
+        colorTheme: "from-pink-600 via-rose-700 to-slate-900",
+        badgeColor: "bg-pink-500/20 text-pink-300 border-pink-500/30",
+        frontEmoji: "⚡",
+        frontText: "પ્રમાણિત વિધેયોના વિકલિત (Standard Derivatives List)",
+        detailsText: `
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs border-collapse">
+              <thead>
+                <tr class="bg-rose-900/60 text-rose-200 border-b border-rose-500/40">
+                  <th class="p-1">વિધેય $f(x)$</th>
+                  <th class="p-1">વિકલિત $f'(x)$</th>
+                  <th class="p-1">પ્રતિવિધેય</th>
+                  <th class="p-1">વિકલિત</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-700/60 text-slate-200 font-mono">
+                <tr><td class="p-1 text-amber-300">$x^n$</td><td class="p-1">$n x^{n-1}$</td><td class="p-1 text-pink-300">$\\sin^{-1}x$</td><td class="p-1">$\\frac{1}{\\sqrt{1-x^2}}$</td></tr>
+                <tr><td class="p-1 text-amber-300">$\\sin x$</td><td class="p-1">$\\cos x$</td><td class="p-1 text-pink-300">$\\cos^{-1}x$</td><td class="p-1">$\\frac{-1}{\\sqrt{1-x^2}}$</td></tr>
+                <tr><td class="p-1 text-amber-300">$\\cos x$</td><td class="p-1">$-\\sin x$</td><td class="p-1 text-pink-300">$\\tan^{-1}x$</td><td class="p-1">$\\frac{1}{1+x^2}$</td></tr>
+                <tr><td class="p-1 text-amber-300">$\\tan x$</td><td class="p-1">$\\sec^2 x$</td><td class="p-1 text-pink-300">$\\cot^{-1}x$</td><td class="p-1">$\\frac{-1}{1+x^2}$</td></tr>
+                <tr><td class="p-1 text-amber-300">$e^x / a^x$</td><td class="p-1">$e^x / a^x \\ln a$</td><td class="p-1 text-pink-300">$\\sec^{-1}x$</td><td class="p-1">$\\frac{1}{|x|\\sqrt{x^2-1}}$</td></tr>
+                <tr><td class="p-1 text-amber-300">$\\ln x$</td><td class="p-1">$\\frac{1}{x}$</td><td class="p-1 text-emerald-300">$a^a$ (અચળ)</td><td class="p-1 text-emerald-300">$0$</td></tr>
+              </tbody>
+            </table>
+          </div>
+        `,
+        graphSvg: ""
+      },
+
+      // CHAPTER 6
+      {
+        id: 11,
+        chapter: 6,
+        chapterName: "પ્રકરણ ૬: વિકલીતના ઉપયોગો",
+        topic: "ફેરફારનો દર તથા વધતાં-ઘટતાં વિધેયો",
+        colorTheme: "from-indigo-600 via-purple-700 to-slate-900",
+        badgeColor: "bg-indigo-500/20 text-indigo-300 border-indigo-500/30",
+        frontEmoji: "📊",
+        frontText: "ફેરફારનો દર $\\frac{dy}{dt}$ અને વધતાં-ઘટતાં વિધેયોની શરતો",
+        detailsText: `
+          <div class="space-y-2 text-xs sm:text-sm">
+            <div class="p-2 bg-slate-800 rounded-lg border border-slate-700">
+              <p class="font-bold text-amber-300">⏱️ રાશિમાં ફેરફારનો દર:</p>
+              <p class="text-xs mt-1">• $\\frac{dy}{dt} > 0 \\implies$ સમય સાથે $y$ વધે છે.</p>
+              <p class="text-xs">• $\\frac{dy}{dt} < 0 \\implies$ સમય સાથે $y$ ઘટે છે.</p>
+            </div>
+            <div class="p-2 bg-indigo-950/60 rounded-xl border border-indigo-500/30">
+              <p class="font-bold text-indigo-300">📈 વધતાં અને ઘટતાં વિધેયો:</p>
+              <ul class="space-y-1 text-xs font-mono mt-1">
+                <li class="text-emerald-300">• ચુસ્ત વધતું વિધેય: $f'(x) > 0$</li>
+                <li class="text-rose-300">• ચુસ્ત ઘટતું વિધેય: $f'(x) < 0$</li>
+                <li class="text-amber-300">• અચળ વિધેય: $f'(x) = 0$</li>
+              </ul>
+            </div>
+          </div>
+        `,
+        graphSvg: `
+          <svg viewBox="0 0 200 80" class="w-full h-20 my-1 bg-slate-950/60 rounded-xl p-2 border border-indigo-500/30">
+            <path d="M 10 70 Q 60 60 100 40 T 190 10" fill="none" stroke="#10b981" stroke-width="2.5"/>
+            <text x="130" y="25" fill="#34d399" font-size="9" font-weight="bold">f'(x) > 0 (વધતું)</text>
+            <path d="M 10 10 Q 60 20 100 40 T 190 70" fill="none" stroke="#f43f5e" stroke-width="2.5" stroke-dasharray="4,4"/>
+            <text x="130" y="65" fill="#fb7185" font-size="9" font-weight="bold">f'(x) < 0 (ઘટતું)</text>
+          </svg>
+        `
+      },
+      {
+        id: 12,
+        chapter: 6,
+        chapterName: "પ્રકરણ ૬: વિકલીતના ઉપયોગો",
+        topic: "સ્થાનીય મહત્તમ અને ન્યૂનતમ મૂલ્યો",
+        colorTheme: "from-violet-600 via-indigo-800 to-slate-900",
+        badgeColor: "bg-violet-500/20 text-violet-300 border-violet-500/30",
+        frontEmoji: "🏔️",
+        frontText: "પ્રથમ અને દ્વિતીય વિકલીત કસોટી (Max & Min Tests)",
+        detailsText: `
+          <div class="space-y-2 text-xs sm:text-sm">
+            <div class="p-2 bg-slate-800 rounded-lg border border-slate-700">
+              <p class="font-bold text-amber-300">1️⃣ પ્રથમ વિકલીત કસોટી ($f'(x)$):</p>
+              <p class="text-xs mt-0.5">• $+$ થી $-\\implies$ <strong>સ્થાનીય મહત્તમ</strong></p>
+              <p class="text-xs">• $-$ થી $+\\implies$ <strong>સ્થાનીય ન્યૂનતમ</strong></p>
+              <p class="text-xs text-slate-400">• નિશાની ન બદલાય $\\implies$ <strong>નતિબિંદુ</strong></p>
+            </div>
+            <div class="p-2 bg-violet-950/60 rounded-xl border border-violet-500/30">
+              <p class="font-bold text-violet-300">2️⃣ દ્વિતીય વિકલીત કસોટી ($f''(c)$):</p>
+              <p class="text-xs font-mono text-emerald-300">• $f''(c) < 0 \\implies$ સ્થાનીય મહત્તમ</p>
+              <p class="text-xs font-mono text-rose-300">• $f''(c) > 0 \\implies$ સ્થાનીય ન્યૂનતમ</p>
+              <p class="text-xs font-mono text-amber-300">• $f''(c) = 0 \\implies$ કસોટી નિષ્ફળ (પ્રથમ કસોટી વાપરો)</p>
+            </div>
+          </div>
+        `,
+        graphSvg: `
+          <svg viewBox="0 0 200 90" class="w-full h-24 my-1 bg-slate-950/60 rounded-xl p-2 border border-violet-500/30">
+            <!-- Curve with Max and Min -->
+            <path d="M 10 70 C 40 10, 70 10, 100 50 C 130 90, 160 90, 190 30" fill="none" stroke="#a78bfa" stroke-width="2.5"/>
+            <!-- Max Point -->
+            <circle cx="55" cy="22" r="4" fill="#ef4444"/>
+            <text x="55" y="12" fill="#fca5a5" font-size="8" text-anchor="middle" font-weight="bold">મહત્તમ f''(c)<0</text>
+            <!-- Min Point -->
+            <circle cx="145" cy="78" r="4" fill="#10b981"/>
+            <text x="145" y="88" fill="#6ee7b7" font-size="8" text-anchor="middle" font-weight="bold">ન્યૂનતમ f''(c)>0</text>
+            <!-- Tangent line at max -->
+            <line x1="30" y1="22" x2="80" y2="22" stroke="#fbbf24" stroke-width="1.5" stroke-dasharray="2,2"/>
+          </svg>
+        `
+      }
+    ];
+
+    // App State
+    let filteredCards = [...cardsData];
+    let currentViewMode = 'grid'; // 'grid' or 'slide'
+    let currentSlideIndex = 0;
+    let activeChapterFilter = 'all';
+
+    // Initialize Page
+    document.addEventListener("DOMContentLoaded", () => {
+      renderCards();
+    });
+
+    // Filter Chapter
+    function filterChapter(ch) {
+      activeChapterFilter = ch;
+      // Update Tab Styles
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('bg-indigo-600', 'text-white', 'shadow-lg', 'shadow-indigo-600/30');
+        btn.classList.add('bg-slate-800', 'text-slate-300');
+      });
+      const activeTab = document.getElementById(`tab-${ch}`);
+      if (activeTab) {
+        activeTab.classList.remove('bg-slate-800', 'text-slate-300');
+        activeTab.classList.add('bg-indigo-600', 'text-white', 'shadow-lg', 'shadow-indigo-600/30');
+      }
+
+      applyFilters();
+    }
+
+    // Handle Search
+    function handleSearch() {
+      applyFilters();
+    }
+
+    function applyFilters() {
+      const query = document.getElementById('searchInput').value.toLowerCase().trim();
+      
+      filteredCards = cardsData.filter(card => {
+        const matchesChapter = activeChapterFilter === 'all' || card.chapter == activeChapterFilter;
+        const matchesQuery = !query || 
+          card.chapterName.toLowerCase().includes(query) ||
+          card.topic.toLowerCase().includes(query) ||
+          card.frontText.toLowerCase().includes(query) ||
+          card.detailsText.toLowerCase().includes(query);
+
+        return matchesChapter && matchesQuery;
+      });
+
+      currentSlideIndex = 0;
+      renderCards();
+    }
+
+    // Switch View Mode
+    function setViewMode(mode) {
+      currentViewMode = mode;
+      const gridBtn = document.getElementById('gridModeBtn');
+      const slideBtn = document.getElementById('slideModeBtn');
+      const gridView = document.getElementById('gridView');
+      const slideView = document.getElementById('slideView');
+
+      if (mode === 'grid') {
+        gridBtn.className = "px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all bg-indigo-600 text-white shadow-md";
+        slideBtn.className = "px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 text-slate-400 hover:text-white transition-all";
+        gridView.classList.remove('hidden');
+        slideView.classList.add('hidden');
+        slideView.classList.remove('flex');
+      } else {
+        slideBtn.className = "px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all bg-indigo-600 text-white shadow-md";
+        gridBtn.className = "px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 text-slate-400 hover:text-white transition-all";
+        gridView.classList.add('hidden');
+        slideView.classList.remove('hidden');
+        slideView.classList.add('flex');
+        renderSlide();
+      }
+    }
+
+    // Render Cards in Grid or Slide Mode
+    function renderCards() {
+      if (currentViewMode === 'grid') {
+        renderGrid();
+      } else {
+        renderSlide();
+      }
+      // Re-trigger MathJax typesetting
+      if (window.MathJax && window.MathJax.typesetPromise) {
+        window.MathJax.typesetPromise();
+      }
+    }
+
+    // Render Grid View
+    function renderGrid() {
+      const container = document.getElementById('gridView');
+      if (filteredCards.length === 0) {
+        container.innerHTML = `
+          <div class="col-span-full py-16 text-center text-slate-400">
+            <i class="fa-solid fa-folder-open text-4xl mb-3 opacity-50"></i>
+            <p class="text-base font-semibold">કોઈ ફ્લેશકાર્ડ મળ્યું નથી.</p>
+            <p class="text-xs mt-1">કૃપા કરીને અન્ય શબ્દ સર્ચ કરો અથવા ફિલ્ટર બદલો.</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = filteredCards.map(card => `
+        <div class="perspective-1000 h-[430px] w-full cursor-pointer group" onclick="toggleCardFlip(this)">
+          <div class="card-inner relative w-full h-full transform-style-3d transition-transform duration-700 rounded-2xl shadow-xl hover:shadow-2xl">
+            
+            <!-- FRONT SIDE -->
+            <div class="absolute inset-0 backface-hidden rounded-2xl p-5 flex flex-col justify-between border border-white/10 bg-gradient-to-br ${card.colorTheme} text-white">
+              <div>
+                <div class="flex items-center justify-between mb-3">
+                  <span class="px-2.5 py-1 rounded-full text-[11px] font-bold ${card.badgeColor} border">
+                    ${card.chapterName.split(':')[0]}
+                  </span>
+                  <span class="text-2xl">${card.frontEmoji}</span>
+                </div>
+                <h3 class="text-lg font-bold leading-snug text-amber-300 mb-1">${card.topic}</h3>
+                <p class="text-sm text-slate-200 mt-2 font-medium">${card.frontText}</p>
+              </div>
+
+              ${card.graphSvg || ''}
+
+              <div class="pt-3 border-t border-white/10 flex items-center justify-between text-xs text-slate-300 font-semibold">
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-hand-pointer text-amber-400 animate-bounce"></i> ક્લીક કરીને જવાબ જુઓ</span>
+                <span class="text-indigo-300">Flip 🔄</span>
+              </div>
+            </div>
+
+            <!-- BACK SIDE -->
+            <div class="absolute inset-0 backface-hidden rotate-y-180 rounded-2xl p-5 flex flex-col justify-between border border-indigo-500/30 bg-slate-900 text-slate-100">
+              <div>
+                <div class="flex items-center justify-between pb-2 mb-2 border-b border-slate-800">
+                  <span class="text-xs font-bold text-indigo-400">${card.topic}</span>
+                  <span class="text-xs text-slate-400">ઉકેલ / વિગતો</span>
+                </div>
+                <div class="mt-1">
+                  ${card.detailsText}
+                </div>
+              </div>
+
+              <div class="pt-2 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400 font-medium">
+                <span>Kumar Success Notes</span>
+                <span class="text-indigo-400 font-bold">પાછા ફરો 🔄</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Render Slide View
+    function renderSlide() {
+      if (filteredCards.length === 0) return;
+      if (currentSlideIndex >= filteredCards.length) currentSlideIndex = 0;
+      if (currentSlideIndex < 0) currentSlideIndex = filteredCards.length - 1;
+
+      const card = filteredCards[currentSlideIndex];
+      const activeCard = document.getElementById('activeSlideCard');
+      activeCard.classList.remove('rotate-y-180'); // reset flip
+
+      document.getElementById('slideCounter').innerText = `કાર્ડ ${currentSlideIndex + 1} / ${filteredCards.length}`;
+      document.getElementById('slideChapterBadge').innerText = card.chapterName.split(':')[0];
+      
+      const pct = ((currentSlideIndex + 1) / filteredCards.length) * 100;
+      document.getElementById('progressBar').style.width = `${pct}%`;
+
+      // Front
+      document.getElementById('slideFront').className = `absolute inset-0 backface-hidden rounded-3xl p-6 sm:p-8 flex flex-col justify-between border border-white/20 shadow-2xl bg-gradient-to-br ${card.colorTheme} text-white`;
+      document.getElementById('slideFront').innerHTML = `
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <span class="px-3 py-1 rounded-full text-xs font-bold ${card.badgeColor} border">
+              ${card.chapterName}
+            </span>
+            <span class="text-4xl">${card.frontEmoji}</span>
+          </div>
+          <h2 class="text-xl sm:text-2xl font-black text-amber-300 mb-2">${card.topic}</h2>
+          <p class="text-base sm:text-lg text-slate-100 font-medium leading-relaxed mt-3">${card.frontText}</p>
+        </div>
+
+        ${card.graphSvg || ''}
+
+        <div class="pt-4 border-t border-white/20 flex items-center justify-between text-xs text-slate-200">
+          <span>💡 ફ્લેશકાર્ડ પર ક્લીક કરો અથવા નીચે બટન વાપરો</span>
+          <span class="font-bold text-amber-300">ફ્લિપ કરો 🔄</span>
+        </div>
+      `;
+
+      // Back
+      document.getElementById('slideBack').innerHTML = `
+        <div>
+          <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-700">
+            <span class="text-xs font-bold text-indigo-300">${card.chapterName}</span>
+            <span class="text-xs font-bold text-amber-400">વ્યાખ્યા / સૂત્રો</span>
+          </div>
+          <div>
+            ${card.detailsText}
+          </div>
+        </div>
+
+        <div class="pt-3 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400">
+          <span>Revision Flashcards</span>
+          <span class="text-indigo-400 font-bold">મુખ્ય પૃષ્ઠ 🔄</span>
+        </div>
+      `;
+
+      if (window.MathJax && window.MathJax.typesetPromise) {
+        window.MathJax.typesetPromise();
+      }
+    }
+
+    // Slide Next/Prev
+    function nextSlide() {
+      if (filteredCards.length === 0) return;
+      currentSlideIndex = (currentSlideIndex + 1) % filteredCards.length;
+      renderSlide();
+    }
+
+    function prevSlide() {
+      if (filteredCards.length === 0) return;
+      currentSlideIndex = (currentSlideIndex - 1 + filteredCards.length) % filteredCards.length;
+      renderSlide();
+    }
+
+    // Toggle Flip Effect
+    function toggleCardFlip(element) {
+      const inner = element.querySelector('.card-inner') || document.getElementById('activeSlideCard');
+      if (inner) {
+        inner.classList.toggle('rotate-y-180');
+      }
+    }
+
+    function toggleActiveFlip() {
+      const activeCard = document.getElementById('activeSlideCard');
+      if (activeCard) {
+        activeCard.classList.toggle('rotate-y-180');
+      }
+    }
+  </script>
+<script src="assets/global-navbar.js" defer></script>
+</body>
+</html>

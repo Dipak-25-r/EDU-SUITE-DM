@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="gu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>નિશ્ચાયક (Determinants) - Interactive Learning Lab</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Vadodara:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- KaTeX CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <!-- KaTeX JS -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <!-- KaTeX Auto-render Extension -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body, {
+        delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+        ]
+    });"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Hind Vadodara', 'Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                            900: '#312e81',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Hind Vadodara', 'Inter', sans-serif; }
+        .active-tab { border-bottom: 3px solid #4f46e5; color: #4f46e5; font-weight: 700; }
+        .custom-scroll::-webkit-scrollbar { width: 6px; height: 6px; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+    </style>
+<link rel="stylesheet" href="../assets/global-navbar.css">
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col">
+
+    <!-- Header -->
+    <header class="bg-indigo-900 text-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-3 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-3">
+            <div class="flex items-center space-x-3">
+                <div class="bg-indigo-600 p-2.5 rounded-xl shadow-md">
+                    <i class="fa-solid fa-calculator text-2xl text-amber-300"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl sm:text-2xl font-bold tracking-tight">૪. નિશ્ચાયક (Determinants)</h1>
+                    <p class="text-xs text-indigo-200">ધોરણ ૧૨ ગણિત (ભાગ-૧) - ઇન્ટરેક્ટિવ સ્વ-અધ્યયન લર્નિંગ મોડ્યુલ</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-2 bg-indigo-800/80 px-3 py-1.5 rounded-lg border border-indigo-700 text-xs text-indigo-100">
+                <i class="fa-solid fa-graduation-cap text-amber-400 text-sm"></i>
+                <span>GSEB Class 12 Self Learning</span>
+            </div>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <nav class="bg-white border-b border-slate-200 text-slate-600 text-sm font-semibold overflow-x-auto custom-scroll">
+            <div class="max-w-7xl mx-auto px-4 flex whitespace-nowrap gap-1 sm:gap-6">
+                <button onclick="switchTab('theory')" id="tab-theory" class="tab-btn active-tab py-3 px-3 hover:text-indigo-600 transition flex items-center gap-2">
+                    <i class="fa-solid fa-book-open"></i> ૧. થીયરી & સૂત્રો
+                </button>
+                <button onclick="switchTab('calc')" id="tab-calc" class="tab-btn py-3 px-3 hover:text-indigo-600 transition flex items-center gap-2">
+                    <i class="fa-solid fa-table-cells"></i> ૨. નિશ્ચાયક કેલ્ક્યુલેટર Lab
+                </button>
+                <button onclick="switchTab('triangle')" id="tab-triangle" class="tab-btn py-3 px-3 hover:text-indigo-600 transition flex items-center gap-2">
+                    <i class="fa-solid fa-draw-polygon"></i> ૩. ત્રિકોણનું ક્ષેત્રફળ
+                </button>
+                <button onclick="switchTab('adjoint')" id="tab-adjoint" class="tab-btn py-3 px-3 hover:text-indigo-600 transition flex items-center gap-2">
+                    <i class="fa-solid fa-network-wired"></i> ૪. સહઅવયવજ & વ્યસ્ત શ્રેણિક
+                </button>
+                <button onclick="switchTab('equations')" id="tab-equations" class="tab-btn py-3 px-3 hover:text-indigo-600 transition flex items-center gap-2">
+                    <i class="fa-solid fa-list-check"></i> ૫. સમીકરણ સંહતિનો ઉકેલ
+                </button>
+                <button onclick="switchTab('quiz')" id="tab-quiz" class="tab-btn py-3 px-3 hover:text-indigo-600 transition flex items-center gap-2">
+                    <i class="fa-solid fa-pen-to-square"></i> ૬. સ્વ-મૂલ્યાંકન ક્વિઝ
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 py-6 sm:px-6 lg:px-8 flex-grow w-full">
+
+        <!-- ==================== TAB 1: THEORY & FORMULAS ==================== -->
+        <section id="section-theory" class="tab-content block space-y-6">
+            <div class="bg-gradient-to-r from-indigo-500 to-purple-600 rounded-2xl p-6 text-white shadow-lg">
+                <h2 class="text-2xl font-bold mb-2"><i class="fa-solid fa-lightbulb text-amber-300 mr-2"></i>નિશ્ચાયક (Determinants): મુખ્ય વ્યાખ્યાઓ અને સૂત્રો</h2>
+                <p class="text-indigo-100">પ્રત્યેક $n$ કક્ષાવાળા ચોરસ શ્રેણિક $A = [a_{ij}]$ ને એક વાસ્તવિક અથવા સંકર સંખ્યા સાથે સાંકળી શકીએ છીએ, જેને નિશ્ચાયક કહે છે.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Card 1: Orders -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition space-y-3">
+                    <div class="flex items-center space-x-3 text-indigo-600 font-bold text-lg">
+                        <i class="fa-solid fa-border-all text-xl"></i>
+                        <h3>૧. નિશ્ચાયકની કક્ષા અને વિસ્તરણ</h3>
+                    </div>
+                    <ul class="space-y-2.5 text-sm text-slate-700 leading-relaxed">
+                        <li class="bg-slate-50 p-3 rounded-lg border-l-4 border-indigo-500">
+                            <strong>૧ કક્ષાવાળો શ્રેણિક:</strong> $\det A = a$
+                        </li>
+                        <li class="bg-slate-50 p-3 rounded-lg border-l-4 border-indigo-500">
+                            <strong>૨ કક્ષાવાળો શ્રેણિક:</strong> $\det(A) = \begin{vmatrix} a_{11} & a_{12} \\ a_{21} & a_{22} \end{vmatrix} = a_{11}a_{22} - a_{21}a_{12}$
+                        </li>
+                        <li class="bg-amber-50 p-3 rounded-lg border-l-4 border-amber-500 text-amber-900">
+                            <i class="fa-solid fa-star mr-1"></i> <strong>મહત્વનો ગુણધર્મ:</strong> જો $A$ અને $B$ એ $n$ કક્ષાવાળા ચોરસ શ્રેણિક હોય અને $A = kB$ હોય, તો $|A| = k^n |B|$ થાય.
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Card 2: Minors and Cofactors -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition space-y-3">
+                    <div class="flex items-center space-x-3 text-indigo-600 font-bold text-lg">
+                        <i class="fa-solid fa-code-branch text-xl"></i>
+                        <h3>૨. ઉપનિશ્ચાયક અને સહઅવયવ (Minors & Cofactors)</h3>
+                    </div>
+                    <div class="space-y-2 text-sm">
+                        <div class="p-2.5 bg-slate-50 rounded-lg">
+                            <span class="font-bold text-indigo-800">ઉપનિશ્ચાયક ($M_{ij}$):</span> $a_{ij}$ વાળી હાર અને સ્તંભ દૂર કરવાથી મળતો $(n-1)$ કક્ષાવાળો નિશ્ચાયક.
+                        </div>
+                        <div class="p-2.5 bg-slate-50 rounded-lg">
+                            <span class="font-bold text-indigo-800">સહઅવયવ ($A_{ij}$):</span> $A_{ij} = (-1)^{i+j} M_{ij}$
+                        </div>
+                        <div class="p-2.5 bg-purple-50 rounded-lg text-purple-900 font-semibold">
+                            <i class="fa-solid fa-check-circle text-purple-600 mr-1"></i> ૩ કક્ષાવાળા વિસંમિત શ્રેણિકના નિશ્ਚાયકનું મૂલ્ય શૂન્ય ($|A|_{3 \times 3} = 0$) હોય છે.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3: Adjoint & Inverse Properties -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition space-y-3">
+                    <div class="flex items-center space-x-3 text-indigo-600 font-bold text-lg">
+                        <i class="fa-solid fa-shield-halved text-xl"></i>
+                        <h3>૩. સહઅવયવજ શ્રેણિકનાં ગુણધર્મો</h3>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-mono">
+                        <div class="p-2.5 bg-slate-50 rounded border">1. $A(\text{adj } A) = |A|I_n$</div>
+                        <div class="p-2.5 bg-slate-50 rounded border">2. $\text{adj}(A^T) = [\text{adj}(A)]^T$</div>
+                        <div class="p-2.5 bg-slate-50 rounded border">3. $\text{adj}(KA) = K^{n-1}\text{adj}(A)$</div>
+                        <div class="p-2.5 bg-slate-50 rounded border">4. $\text{adj}(AB) = (\text{adj } B)(\text{adj } A)$</div>
+                        <div class="p-2.5 bg-slate-50 rounded border">5. $|\text{adj } A| = |A|^{n-1}$</div>
+                        <div class="p-2.5 bg-slate-50 rounded border">6. $|\text{adj}(\text{adj } A)| = |A|^{(n-1)^2}$</div>
+                    </div>
+                </div>
+
+                <!-- Card 4: Inverse & Equations -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition space-y-3">
+                    <div class="flex items-center space-x-3 text-indigo-600 font-bold text-lg">
+                        <i class="fa-solid fa-arrows-spin text-xl"></i>
+                        <h3>૪. વ્યસ્ત શ્રેણિક અને સુરેખ સમીકરણો</h3>
+                    </div>
+                    <div class="space-y-2.5 text-sm">
+                        <div class="p-2.5 bg-slate-50 rounded-lg">
+                            <strong>વ્યસ્ત શ્રેણિક:</strong> જો $|A| \neq 0$ (સામાન્ય શ્રેણિક), તો $A^{-1} = \frac{1}{|A|} \text{adj}(A)$
+                        </div>
+                        <div class="p-2.5 bg-indigo-50 text-indigo-900 rounded-lg">
+                            <strong>સમીકરણ સંહતિનો ઉકેલ:</strong> $AX = B \implies X = A^{-1}B$ (જો $|A| \neq 0$ હોય તો અનન્ય ઉકેલ મળે).
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== TAB 2: DETERMINANT CALCULATOR ==================== -->
+        <section id="section-calc" class="tab-content hidden space-y-6">
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                <h2 class="text-xl font-bold text-slate-800 mb-2 flex items-center gap-2">
+                    <i class="fa-solid fa-table-cells text-indigo-600"></i>
+                    ૨ $\times$ ૨ અને ૩ $\times$ ૩ નિશ્ચાયક કેલ્ક્યુલેટર લેબ
+                </h2>
+                <p class="text-sm text-slate-600 mb-6">નીચે ઘટકો દાખલ કરો અને ત્વરિત નિશ્ચાયકનું મૂલ્ય ($|A|$) મેળવો.</p>
+
+                <!-- Order selector -->
+                <div class="flex items-center gap-4 mb-6">
+                    <label class="text-xs font-bold text-slate-700 uppercase">કક્ષા પસંદ કરો:</label>
+                    <button onclick="setMatrixOrder(2)" id="btn-order-2" class="px-4 py-2 bg-indigo-600 text-white rounded-xl text-xs font-bold transition">૨ $\times$ ૨</button>
+                    <button onclick="setMatrixOrder(3)" id="btn-order-3" class="px-4 py-2 bg-slate-200 text-slate-700 rounded-xl text-xs font-bold transition">૩ $\times$ ૩</button>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    <!-- Matrix inputs grid -->
+                    <div class="lg:col-span-6 flex flex-col items-center bg-slate-50 p-6 rounded-2xl border border-slate-200">
+                        <div id="matrix-inputs-container" class="grid grid-cols-3 gap-3">
+                            <!-- Dynamic inputs -->
+                        </div>
+                        <button onclick="calculateDeterminant()" class="mt-6 px-6 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl text-sm shadow transition flex items-center gap-2">
+                            <i class="fa-solid fa-calculator"></i> ગણતરી કરો (|A| શોધો)
+                        </button>
+                    </div>
+
+                    <!-- Result Panel -->
+                    <div class="lg:col-span-6 space-y-4 bg-indigo-50 p-6 rounded-2xl border border-indigo-100">
+                        <h3 class="text-base font-bold text-indigo-900 border-b border-indigo-200 pb-2">ગણતરી અને પરિણામ (Calculation Steps):</h3>
+                        <div id="calc-result-box" class="text-lg font-bold text-indigo-950">
+                            મૂલ્ય મેળવવા 'ગણતરી કરો' બટન દબાવો.
+                        </div>
+                        <div id="calc-steps-box" class="text-xs text-indigo-900 font-mono space-y-1 bg-white p-4 rounded-xl border border-indigo-100">
+                            -
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== TAB 3: AREA OF TRIANGLE ==================== -->
+        <section id="section-triangle" class="tab-content hidden space-y-6">
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                <h2 class="text-xl font-bold text-slate-800 mb-2 flex items-center gap-2">
+                    <i class="fa-solid fa-draw-polygon text-indigo-600"></i>
+                    ત્રિકોણનું ક્ષેત્રફળ અને સમરેખ બિંદુઓ (Area of Triangle & Collinearity)
+                </h2>
+                <p class="text-sm text-slate-600 mb-6">ત્રણ શિરોબિંદુઓ $(x_1, y_1), (x_2, y_2), (x_3, y_3)$ ના યામ દાખલ કરો.</p>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+                    <div class="p-4 bg-slate-50 rounded-xl border">
+                        <span class="text-xs font-bold text-slate-500 uppercase">બિંદુ A $(x_1, y_1)$</span>
+                        <div class="flex gap-2 mt-2">
+                            <input type="number" id="t-x1" value="1" oninput="calculateTriangle()" class="w-full px-3 py-1.5 rounded-lg border text-sm">
+                            <input type="number" id="t-y1" value="0" oninput="calculateTriangle()" class="w-full px-3 py-1.5 rounded-lg border text-sm">
+                        </div>
+                    </div>
+                    <div class="p-4 bg-slate-50 rounded-xl border">
+                        <span class="text-xs font-bold text-slate-500 uppercase">બિંદુ B $(x_2, y_2)$</span>
+                        <div class="flex gap-2 mt-2">
+                            <input type="number" id="t-x2" value="6" oninput="calculateTriangle()" class="w-full px-3 py-1.5 rounded-lg border text-sm">
+                            <input type="number" id="t-y2" value="0" oninput="calculateTriangle()" class="w-full px-3 py-1.5 rounded-lg border text-sm">
+                        </div>
+                    </div>
+                    <div class="p-4 bg-slate-50 rounded-xl border">
+                        <span class="text-xs font-bold text-slate-500 uppercase">બિંદુ C $(x_3, y_3)$</span>
+                        <div class="flex gap-2 mt-2">
+                            <input type="number" id="t-x3" value="4" oninput="calculateTriangle()" class="w-full px-3 py-1.5 rounded-lg border text-sm">
+                            <input type="number" id="t-y3" value="3" oninput="calculateTriangle()" class="w-full px-3 py-1.5 rounded-lg border text-sm">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="p-5 bg-indigo-50 rounded-xl border border-indigo-100">
+                        <h3 class="font-bold text-indigo-900 text-sm mb-2">પરિણામ (Result):</h3>
+                        <div id="triangle-area-result" class="text-xl font-extrabold text-indigo-950">ક્ષેત્રફળ = ૩ ચોરસ એકમ</div>
+                        <p class="text-xs text-slate-600 mt-2">નૉધ: ક્ષેત્રફળ હંમેશાં ધન લેવામાં આવે છે. જો નિશ્ચાયકનું મૂલ્ય શૂન્ય થાય તો બિંદુઓ સમરેખ (Collinear) છે.</p>
+                    </div>
+
+                    <div class="p-5 bg-amber-50 rounded-xl border border-amber-200">
+                        <h3 class="font-bold text-amber-900 text-sm mb-2"><i class="fa-solid fa-pen-ruler mr-1"></i> રેખાનું સમીકરણ ($A$ અને $B$ માંથી પસાર થતી):</h3>
+                        <div id="line-equation-result" class="text-sm font-mono text-amber-950 mt-1">
+                            સમીકરણ: $y - y_1 = \frac{y_2 - y_1}{x_2 - x_1} (x - x_1)$
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== TAB 4: ADJOINT & INVERSE ==================== -->
+        <section id="section-adjoint" class="tab-content hidden space-y-6">
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                <h2 class="text-xl font-bold text-slate-800 mb-2 flex items-center gap-2">
+                    <i class="fa-solid fa-network-wired text-indigo-600"></i>
+                    ૨ $\times$ ૨ શ્રેણિક માટે સહઅવયવજ ($\text{adj } A$) અને વ્યસ્ત શ્રેણિક ($A^{-1}$) Lab
+                </h2>
+                <p class="text-sm text-slate-600 mb-6">૨૨ કક્ષાના શ્રેણિક $A = \begin{bmatrix} a & b \\ c & d \end{bmatrix}$ ના ઘટકો બદલો:</p>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    <!-- Matrix inputs -->
+                    <div class="lg:col-span-5 bg-slate-50 p-6 rounded-2xl border flex flex-col items-center">
+                        <div class="grid grid-cols-2 gap-3 w-48">
+                            <input type="number" id="inv-a11" value="1" oninput="calculateInverseLab()" class="p-3 text-center rounded-xl border font-bold text-lg">
+                            <input type="number" id="inv-a12" value="2" oninput="calculateInverseLab()" class="p-3 text-center rounded-xl border font-bold text-lg">
+                            <input type="number" id="inv-a21" value="3" oninput="calculateInverseLab()" class="p-3 text-center rounded-xl border font-bold text-lg">
+                            <input type="number" id="inv-a22" value="4" oninput="calculateInverseLab()" class="p-3 text-center rounded-xl border font-bold text-lg">
+                        </div>
+                        <span class="text-xs text-slate-500 mt-3">શ્રેણિક $A$</span>
+                    </div>
+
+                    <!-- Outputs -->
+                    <div class="lg:col-span-7 space-y-4">
+                        <div class="p-4 bg-indigo-50 rounded-xl border border-indigo-100">
+                            <h3 class="text-xs font-bold text-indigo-700 uppercase">૧. નિશ્ચાયકનું મૂલ્ય ($|A|$)</h3>
+                            <div id="inv-det-val" class="text-lg font-bold text-indigo-950 mt-1">-2</div>
+                        </div>
+
+                        <div class="p-4 bg-purple-50 rounded-xl border border-purple-100">
+                            <h3 class="text-xs font-bold text-purple-700 uppercase">૨. સહઅવયવજ શ્રેણિક ($\text{adj } A$)</h3>
+                            <div id="inv-adj-val" class="text-sm font-mono font-bold text-purple-950 mt-1">-</div>
+                        </div>
+
+                        <div class="p-4 bg-emerald-50 rounded-xl border border-emerald-100">
+                            <h3 class="text-xs font-bold text-emerald-700 uppercase">૩. વ્યસ્ત શ્રેણિક ($A^{-1} = \frac{1}{|A|} \text{adj } A$)</h3>
+                            <div id="inv-inverse-val" class="text-sm font-mono font-bold text-emerald-950 mt-1">-</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== TAB 5: SYSTEM OF LINEAR EQUATIONS ==================== -->
+        <section id="section-equations" class="tab-content hidden space-y-6">
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                <h2 class="text-xl font-bold text-slate-800 mb-2 flex items-center gap-2">
+                    <i class="fa-solid fa-list-check text-indigo-600"></i>
+                    શ્રેણિકના વ્યસ્તના ઉપયોગથી સુરેખ સમીકરણોની સંહતિનો ઉકેલ
+                </h2>
+                <p class="text-sm text-slate-600 mb-6">સુસંગત (Consistent) અને અસંગત (Inconsistent) સંહતિની ચકાસણી.</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-slate-50 p-6 rounded-2xl border space-y-4">
+                        <h3 class="font-bold text-slate-800 text-sm">સુરેખ સમીકરણો:</h3>
+                        <div class="p-3 bg-white rounded-xl border font-mono text-xs space-y-2">
+                            <div>$a_1x + b_1y + c_1z = d_1$</div>
+                            <div>$a_2x + b_2y + c_2z = d_2$</div>
+                            <div>$a_3x + b_3y + c_3z = d_3$</div>
+                        </div>
+                        <p class="text-xs text-slate-600">આપેલ સમીકરણોને $AX = B$ સ્વરૂપમાં લખી $X = A^{-1}B$ દ્વારા ઉકેલ મેળવાય છે.</p>
+                    </div>
+
+                    <div class="bg-indigo-50 p-6 rounded-2xl border border-indigo-100 space-y-4">
+                        <h3 class="font-bold text-indigo-900 text-sm">મહત્વના નિયમો (Rules):</h3>
+                        <ul class="text-xs space-y-2 text-indigo-950">
+                            <li class="bg-white p-2.5 rounded-lg border border-indigo-100">
+                                <strong>જો $|A| \neq 0$:</strong> સંહતિ સુસંગત છે અને અનન્ય ઉકેલ ($X = A^{-1}B$) મળે છે.
+                            </li>
+                            <li class="bg-white p-2.5 rounded-lg border border-indigo-100">
+                                <strong>જો $|A| = 0$ અને $(\text{adj } A)B \neq O$:</strong> ઉકેલનું અસ્તિત્વ નથી અને સંહતિ અસંગત છે.
+                            </li>
+                            <li class="bg-white p-2.5 rounded-lg border border-indigo-100">
+                                <strong>જો $|A| = 0$ અને $(\text{adj } A)B = O$:</strong> અનંત ઉકેલ અથવા ઉકેલ નથી.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== TAB 6: QUIZ & SELF ASSESSMENT ==================== -->
+        <section id="section-quiz" class="tab-content hidden space-y-6">
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                <div class="flex items-center justify-between border-b pb-4 mb-6">
+                    <div>
+                        <h2 class="text-xl font-bold text-slate-800 flex items-center gap-2">
+                            <i class="fa-solid fa-pen-to-square text-indigo-600"></i>
+                            સ્વ-મૂલ્યાંકન ક્વિઝ (Self Assessment Test)
+                        </h2>
+                        <p class="text-xs text-slate-500">પ્રકરણ 4 ના અભ્યાસ માટે તમારી તૈયારી ચકાસો.</p>
+                    </div>
+                    <div id="quiz-score-badge" class="px-4 py-2 bg-indigo-100 text-indigo-800 rounded-xl font-bold text-sm">
+                        સ્કોર: 0 / 5
+                    </div>
+                </div>
+
+                <div id="quiz-container" class="space-y-6">
+                    <!-- Dynamic Quiz Questions -->
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-900 text-slate-400 text-xs py-6 border-t border-slate-800 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 text-center space-y-2">
+            <p class="text-slate-300 font-semibold">ગણિત શૈક્ષણિક સાધન - પ્રકરણ ૪: નિશ્ચાયક (Determinants)</p>
+            <p>Designed for GSEB Higher Secondary Students | Interactive Learning Lab</p>
+        </div>
+    </footer>
+
+    <script>
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active-tab'));
+            
+            document.getElementById(`section-${tabId}`).classList.remove('hidden');
+            document.getElementById(`tab-${tabId}`).classList.add('active-tab');
+
+            if(tabId === 'calc') setMatrixOrder(2);
+            if(tabId === 'triangle') calculateTriangle();
+            if(tabId === 'adjoint') calculateInverseLab();
+
+            if(typeof renderMathInElement === 'function') {
+                renderMathInElement(document.getElementById(`section-${tabId}`), {
+                    delimiters: [
+                        {left: '$$', right: '$$', display: true},
+                        {left: '$', right: '$', display: false}
+                    ]
+                });
+            }
+        }
+
+        // ==================== CALCULATOR LAB ====================
+        let currentOrder = 2;
+
+        function setMatrixOrder(order) {
+            currentOrder = order;
+            document.getElementById('btn-order-2').className = order === 2 ? "px-4 py-2 bg-indigo-600 text-white rounded-xl text-xs font-bold transition" : "px-4 py-2 bg-slate-200 text-slate-700 rounded-xl text-xs font-bold transition";
+            document.getElementById('btn-order-3').className = order === 3 ? "px-4 py-2 bg-indigo-600 text-white rounded-xl text-xs font-bold transition" : "px-4 py-2 bg-slate-200 text-slate-700 rounded-xl text-xs font-bold transition";
+
+            const container = document.getElementById('matrix-inputs-container');
+            container.className = order === 2 ? "grid grid-cols-2 gap-3 w-48" : "grid grid-cols-3 gap-2 w-64";
+            container.innerHTML = '';
+
+            const defaults = order === 2 ? [1, 2, 3, 4] : [1, 2, 3, 0, 1, 4, 5, 6, 0];
+            for(let i = 0; i < order * order; i++) {
+                const input = document.createElement('input');
+                input.type = 'number';
+                input.id = `m-input-${i}`;
+                input.value = defaults[i];
+                input.className = "p-3 text-center rounded-xl border font-bold text-lg bg-white shadow-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none";
+                container.appendChild(input);
+            }
+            calculateDeterminant();
+        }
+
+        function calculateDeterminant() {
+            if(currentOrder === 2) {
+                const a11 = parseFloat(document.getElementById('m-input-0').value) || 0;
+                const a12 = parseFloat(document.getElementById('m-input-1').value) || 0;
+                const a21 = parseFloat(document.getElementById('m-input-2').value) || 0;
+                const a22 = parseFloat(document.getElementById('m-input-3').value) || 0;
+
+                const det = (a11 * a22) - (a21 * a12);
+                document.getElementById('calc-result-box').innerText = `|A| = ${det}`;
+                document.getElementById('calc-steps-box').innerHTML = `
+                    <div>સૂત્ર: $(a_{11}a_{22} - a_{21}a_{12})$</div>
+                    <div>= (${a11} × ${a22}) - (${a21} × ${a12})</div>
+                    <div>= ${a11 * a22} - ${a21 * a12} = <strong>${det}</strong></div>
+                `;
+            } else {
+                let m = [];
+                for(let i = 0; i < 9; i++) {
+                    m.push(parseFloat(document.getElementById(`m-input-${i}`).value) || 0);
+                }
+                // 3x3 expansion along R1
+                const det = m[0]*(m[4]*m[8] - m[5]*m[7]) - m[1]*(m[3]*m[8] - m[5]*m[6]) + m[2]*(m[3]*m[7] - m[4]*m[6]);
+                document.getElementById('calc-result-box').innerText = `|A| = ${det}`;
+                document.getElementById('calc-steps-box').innerHTML = `
+                    <div>પ્રથમ હાર $R_1$ દ્વારા વિસ્તરણ:</div>
+                    <div>= ${m[0]}((${m[4]}×${m[8]}) - (${m[5]}×${m[7]})) - ${m[1]}((${m[3]}×${m[8]}) - (${m[5]}×${m[6]})) + ${m[2]}((${m[3]}×${m[7]}) - (${m[4]}×${m[6]}))</div>
+                    <div>= <strong>${det}</strong></div>
+                `;
+            }
+        }
+
+        // ==================== TRIANGLE AREA ====================
+        function calculateTriangle() {
+            const x1 = parseFloat(document.getElementById('t-x1').value) || 0;
+            const y1 = parseFloat(document.getElementById('t-y1').value) || 0;
+            const x2 = parseFloat(document.getElementById('t-x2').value) || 0;
+            const y2 = parseFloat(document.getElementById('t-y2').value) || 0;
+            const x3 = parseFloat(document.getElementById('t-x3').value) || 0;
+            const y3 = parseFloat(document.getElementById('t-y3').value) || 0;
+
+            const D = 0.5 * (x1 * (y2 - y3) + x2 * (y3 - y1) + x3 * (y1 - y2));
+            const area = Math.abs(D);
+
+            const resDiv = document.getElementById('triangle-area-result');
+            if(area === 0) {
+                resDiv.innerHTML = `ક્ષેત્રફળ = 0 <br><span class='text-rose-600 text-xs font-bold'>બિંદુઓ સમરેખ (Collinear) છે!</span>`;
+            } else {
+                resDiv.innerHTML = `ક્ષેત્રફળ = ${area} ચોરસ એકમ`;
+            }
+
+            // Line equation between A and B
+            const slope = (x2 - x1) !== 0 ? (y2 - y1) / (x2 - x1) : 'અવ્યાખ્યાયિત (શ્રેણી લંબ)';
+            document.getElementById('line-equation-result').innerHTML = `AB રેખાનું સમીકરણ: $y - ${y1} = ${slope}(x - ${x1})$`;
+        }
+
+        // ==================== ADJOINT & INVERSE LAB ====================
+        function calculateInverseLab() {
+            const a = parseFloat(document.getElementById('inv-a11').value) || 0;
+            const b = parseFloat(document.getElementById('inv-a12').value) || 0;
+            const c = parseFloat(document.getElementById('inv-a21').value) || 0;
+            const d = parseFloat(document.getElementById('inv-a22').value) || 0;
+
+            const det = (a * d) - (b * c);
+            document.getElementById('inv-det-val').innerText = det;
+
+            if(det === 0) {
+                document.getElementById('inv-adj-val').innerText = "અવ્યાખ્યાયિત (|A| = 0 હોવાથી વ્યસ્ત ન મળે)";
+                document.getElementById('inv-inverse-val').innerText = "અસ્તિત્વ નથી (અસામાન્ય શ્રેણિક)";
+                return;
+            }
+
+            // Adjoint for 2x2: swap a and d, negate b and c -> transpose
+            // adj = [ d, -b; -c, a ]
+            document.getElementById('inv-adj-val').innerHTML = `[ ${d} &nbsp; ${-b} ]<br>[ ${-c} &nbsp; ${a} ]`;
+            document.getElementById('inv-inverse-val').innerHTML = `A⁻¹ = (1 / ${det}) [ ${d} &nbsp; ${-b} ; ${-c} &nbsp; ${a} ]`;
+        }
+
+        // ==================== QUIZ DATA ====================
+        const quizData = [
+            {
+                q: "૧. જો A એ n કક્ષાવાળો ચોરસ શ્રેણિક હોય અને A = kB હોય, તો |A| શું થાય?",
+                options: ["k|B|", "k^n |B|", "n^k |B|", "k |B|^n"],
+                correct: 1,
+                explain: "ગુણધર્મ મુજબ $|A| = k^n |B|$ થાય."
+            },
+            {
+                q: "૨. ૩ કક્ષાવાળા વિસંમિત શ્રેણિકના નિશ્ચાયકનું મૂલ્ય કેટલું થાય?",
+                options: ["1", "-1", "0", "જરૂરી નથી"],
+                correct: 2,
+                explain: "૩ કક્ષાવાળા વિસંમિત શ્રેણિકના નિશ્ચાયકનું મૂલ્ય હંમેશાં શૂન્ય હોય છે."
+            },
+            {
+                q: "૩. જો ત્રિકોણના શિરોબિંદુઓ સમરેખ હોય, તો ક્ષેત્રફળ દર્શાવતા નિશ્ચાયકનું મૂલ્ય શું થાય?",
+                options: ["1", "0", "અનંત", "-1"],
+                correct: 1,
+                explain: "જો બિંદુઓ સમરેખ હોય તો ત્રિકોણનું ક્ષેત્રફળ શૂન્ય હોય છે."
+            },
+            {
+                q: "૪. ચોરસ શ્રેણિક A નો વ્યસ્ત અસ્તિત્વ ધરાવે જો અને તો જ...",
+                options: ["|A| = 0", "|A| ≠ 0", "adj(A) = 0", "A = 0"],
+                correct: 1,
+                explain: "જો શ્રેણિક સામાન્ય હોય (|A| ≠ 0), તો જ વ્યસ્ત શ્રેણિક અસ્તિત્વ ધરાવે છે."
+            },
+            {
+                q: "૫. જો A એ 3 કક્ષાવાળો સામાન્ય શ્રેણિક હોય, તો |adj A| નું મૂલ્ય કેટલું થાય?",
+                options: ["|A|", "|A|^2", "|A|^3", "3|A|"],
+                correct: 1,
+                explain: "સૂત્ર $|\text{adj } A| = |A|^{n-1}$ મુજબ અહિં $n=3$ હોવાથી $|A|^{3-1} = |A|^2$ થાય."
+            }
+        ];
+
+        let userQuizAnswers = {};
+
+        function renderQuiz() {
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = '';
+
+            quizData.forEach((item, qIdx) => {
+                const card = document.createElement('div');
+                card.className = "p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-3";
+                card.innerHTML = `<h3 class="font-bold text-slate-800 text-sm sm:text-base">${item.q}</h3>`;
+
+                const optionsGrid = document.createElement('div');
+                optionsGrid.className = "grid grid-cols-1 sm:grid-cols-2 gap-2 mt-2";
+
+                item.options.forEach((opt, oIdx) => {
+                    const optBtn = document.createElement('button');
+                    const isSelected = userQuizAnswers[qIdx] === oIdx;
+                    optBtn.className = `p-3 rounded-xl border text-left text-xs sm:text-sm font-semibold transition ${isSelected ? 'bg-indigo-600 text-white border-indigo-600' : 'bg-white text-slate-700 hover:bg-slate-100 border-slate-300'}`;
+                    optBtn.innerText = opt;
+                    optBtn.onclick = () => selectQuizOption(qIdx, oIdx);
+                    optionsGrid.appendChild(optBtn);
+                });
+
+                card.appendChild(optionsGrid);
+
+                if(userQuizAnswers[qIdx] !== undefined) {
+                    const isCorrect = userQuizAnswers[qIdx] === item.correct;
+                    const expDiv = document.createElement('div');
+                    expDiv.className = `p-3 rounded-xl text-xs font-medium mt-2 ${isCorrect ? 'bg-emerald-100 text-emerald-900 border border-emerald-300' : 'bg-rose-100 text-rose-900 border border-rose-300'}`;
+                    expDiv.innerHTML = `${isCorrect ? '<i class="fa-solid fa-circle-check mr-1 text-emerald-600"></i> સાચો જવાબ!' : '<i class="fa-solid fa-circle-xmark mr-1 text-rose-600"></i> ખોટો જવાબ.'} ${item.explain}`;
+                    card.appendChild(expDiv);
+                }
+
+                container.appendChild(card);
+            });
+
+            let score = 0;
+            Object.keys(userQuizAnswers).forEach(qIdx => {
+                if(userQuizAnswers[qIdx] === quizData[qIdx].correct) score++;
+            });
+            document.getElementById('quiz-score-badge').innerText = `સ્કોર: ${score} / ${quizData.length}`;
+
+            if(typeof renderMathInElement === 'function') {
+                renderMathInElement(container, {
+                    delimiters: [
+                        {left: '$$', right: '$$', display: true},
+                        {left: '$', right: '$', display: false}
+                    ]
+                });
+            }
+        }
+
+        function selectQuizOption(qIdx, oIdx) {
+            userQuizAnswers[qIdx] = oIdx;
+            renderQuiz();
+        }
+
+        window.onload = function() {
+            setMatrixOrder(2);
+            calculateTriangle();
+            calculateInverseLab();
+            renderQuiz();
+        };
+    </script>
+<script src="../assets/global-navbar.js" defer></script>
+</body>
+</html>

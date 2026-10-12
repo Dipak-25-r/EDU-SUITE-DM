@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 12 Mathematics - Interactive Master Hub</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                            900: '#312e81',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+        }
+        .dark .glass-card {
+            background: rgba(30, 41, 59, 0.85);
+            backdrop-filter: blur(12px);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #4f46e5 0%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+<link rel="stylesheet" href="assets/global-navbar.css">
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 min-h-screen transition-colors duration-300 font-sans">
+
+    <header class="sticky top-0 z-40 w-full border-b border-slate-200 dark:border-slate-800 glass-card">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-brand-600 text-white flex items-center justify-center font-bold text-xl shadow-lg shadow-brand-500/30">
+                    <i data-lucide="calculator" class="w-6 h-6"></i>
+                </div>
+                <div>
+                    <h1 class="font-bold text-lg leading-tight">Class 12th Mathematics</h1>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">Interactive Learning & Study Portal</p>
+                </div>
+            </div>
+
+            <!-- Header Controls -->
+            <div class="flex items-center gap-3">
+                <button onclick="toggleDarkMode()" class="p-2.5 rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+                    <i data-lucide="sun" class="w-5 h-5 hidden dark:block text-amber-400"></i>
+                    <i data-lucide="moon" class="w-5 h-5 block dark:hidden text-slate-600"></i>
+                </button>
+                <a href="#quick-stats" class="hidden sm:flex items-center gap-2 text-xs font-semibold px-3 py-2 rounded-lg bg-brand-50 text-brand-700 dark:bg-brand-900/40 dark:text-brand-300">
+                    <i data-lucide="check-circle-2" class="w-4 h-4"></i>
+                    <span id="tracker-text">0/8 Completed</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+        <div class="rounded-3xl bg-gradient-to-r from-brand-600 via-indigo-600 to-purple-600 p-8 sm:p-12 text-white shadow-2xl relative overflow-hidden">
+            <div class="absolute -right-10 -bottom-10 w-64 h-64 bg-white/10 rounded-full blur-2xl"></div>
+            <div class="relative z-10 max-w-2xl">
+                <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-white/20 backdrop-blur-md mb-4 uppercase tracking-wider">
+                    CBSE / Board Exam Hub
+                </span>
+                <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight mb-4">
+                    Master Class 12 Math Concepts
+                </h2>
+                <p class="text-indigo-100 text-sm sm:text-base mb-8">
+                    Access interactive visual guides, formula flashcards, graphing laboratories, and chapter study portals all in one place.
+                </p>
+
+                <!-- Search Input -->
+                <div class="relative">
+                    <i data-lucide="search" class="w-5 h-5 absolute left-4 top-3.5 text-slate-400"></i>
+                    <input type="text" id="searchInput" oninput="filterCards()" 
+                           placeholder="Search chapters, topics (e.g. Integrals, Vectors, Graphing)..." 
+                           class="w-full pl-12 pr-4 py-3.5 rounded-2xl text-slate-900 bg-white/95 dark:bg-slate-800 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-4 focus:ring-indigo-300 shadow-lg">
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Stats Cards -->
+        <div id="quick-stats" class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
+            <div class="glass-card p-5 rounded-2xl border border-slate-200 dark:border-slate-800 flex items-center gap-4">
+                <div class="p-3 bg-blue-100 text-blue-600 dark:bg-blue-900/40 dark:text-blue-400 rounded-xl">
+                    <i data-lucide="book-open" class="w-6 h-6"></i>
+                </div>
+                <div>
+                    <div class="text-2xl font-bold">8</div>
+                    <div class="text-xs text-slate-500">Core Chapters</div>
+                </div>
+            </div>
+
+            <div class="glass-card p-5 rounded-2xl border border-slate-200 dark:border-slate-800 flex items-center gap-4">
+                <div class="p-3 bg-emerald-100 text-emerald-600 dark:bg-emerald-900/40 dark:text-emerald-400 rounded-xl">
+                    <i data-lucide="line-chart" class="w-6 h-6"></i>
+                </div>
+                <div>
+                    <div class="text-2xl font-bold">2</div>
+                    <div class="text-xs text-slate-500">Graphing Labs</div>
+                </div>
+            </div>
+
+            <div class="glass-card p-5 rounded-2xl border border-slate-200 dark:border-slate-800 flex items-center gap-4">
+                <div class="p-3 bg-purple-100 text-purple-600 dark:bg-purple-900/40 dark:text-purple-400 rounded-xl">
+                    <i data-lucide="sparkles" class="w-6 h-6"></i>
+                </div>
+                <div>
+                    <div class="text-2xl font-bold">1</div>
+                    <div class="text-xs text-slate-500">3D Visual Hub</div>
+                </div>
+            </div>
+
+            <div class="glass-card p-5 rounded-2xl border border-slate-200 dark:border-slate-800 flex items-center gap-4">
+                <div class="p-3 bg-amber-100 text-amber-600 dark:bg-amber-900/40 dark:text-amber-400 rounded-xl">
+                    <i data-lucide="layers" class="w-6 h-6"></i>
+                </div>
+                <div>
+                    <div class="text-2xl font-bold">100+</div>
+                    <div class="text-xs text-slate-500">Flashcards & Rules</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <div class="flex items-center justify-between mb-8 border-b border-slate-200 dark:border-slate-800 pb-4 flex-wrap gap-4">
+            <div class="flex gap-2 overflow-x-auto pb-2 sm:pb-0 scrollbar-none" id="categoryFilters">
+                <button onclick="setFilter('all')" class="filter-btn active px-4 py-2 rounded-xl text-sm font-semibold bg-brand-600 text-white transition shadow-sm">
+                    All Materials
+                </button>
+                <button onclick="setFilter('chapter')" class="filter-btn px-4 py-2 rounded-xl text-sm font-semibold bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-700 transition">
+                    Chapters
+                </button>
+                <button onclick="setFilter('tool')" class="filter-btn px-4 py-2 rounded-xl text-sm font-semibold bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-700 transition">
+                    Graphing & Tools
+                </button>
+            </div>
+            <div class="text-xs text-slate-500">
+                Click any resource to open in full screen or preview mode
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="resourceGrid">
+
+            <!-- Chapter 1 -->
+            <div class="resource-card glass-card rounded-2xl p-6 border border-slate-200 dark:border-slate-800 flex flex-col justify-between hover:shadow-xl transition-all hover:-translate-y-1" data-category="chapter" data-keywords="relations functions equivalence bijection composite chapter 1">
+                <div>
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="px-3 py-1 bg-indigo-100 text-indigo-700 dark:bg-indigo-900/50 dark:text-indigo-300 text-xs font-bold rounded-lg">Chapter 01</span>
+                        <input type="checkbox" onchange="toggleCompletion('ch1')" id="ch1" class="w-5 h-5 rounded text-brand-600 cursor-pointer accent-brand-600">
+                    </div>
+                    <h3 class="font-bold text-lg mb-2 text-slate-900 dark:text-white">Relations & Functions</h3>
+                    <p class="text-xs text-slate-600 dark:text-slate-400 mb-6">Interactive study module covering Reflexive, Symmetric, Transitive relations, One-One & Onto functions.</p>
+                </div>
+                <div class="flex gap-2">
+                    <a href="chapter 1/trial one .html" class="flex-1 text-center py-2.5 px-4 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-medium text-xs transition flex items-center justify-center gap-2">
+                        <i data-lucide="file-text" class="w-4 h-4"></i> Open Guide
+                    </a>
+                </div>
+            </div>
+
+            <!-- Chapter 2 -->
+            <div class="resource-card glass-card rounded-2xl p-6 border border-slate-200 dark:border-slate-800 flex flex-col justify-between hover:shadow-xl transition-all hover:-translate-y-1" data-category="chapter" data-keywords="inverse trigonometric functions sin cos tan domain range principal value branch chapter 2">
+                <div>
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="px-3 py-1 bg-indigo-100 text-indigo-700 dark:bg-indigo-900/50 dark:text-indigo-300 text-xs font-bold rounded-lg">Chapter 02</span>
+                        <input type="checkbox" onchange="toggleCompletion('ch2')" id="ch2" class="w-5 h-5 rounded text-brand-600 cursor-pointer accent-brand-600">
+                    </div>
+                    <h3 class="font-bold text-lg mb-2 text-slate-900 dark:text-white">Inverse Trigonometric Functions</h3>
+                    <p class="text-xs text-slate-600 dark:text-slate-400 mb-6">Principal value branches, graphs of inverse trig functions, and property lookup tables.</p>
+                </div>
+                <div class="flex gap-2">
+                    <a href="chapter 2/inverse_trigonometric_functions_interactive_guide.html" class="flex-1 text-center py-2.5 px-4 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-medium text-xs transition flex items-center justify-center gap-2">
+                        <i data-lucide="file-text" class="w-4 h-4"></i> Open Guide
+                    </a>
+                </div>
+            </div>
+
+            <!-- Chapter 4 -->
+            <div class="resource-card glass-card rounded-2xl p-6 border border-slate-200 dark:border-slate-800 flex flex-col justify-between hover:shadow-xl transition-all hover:-translate-y-1" data-category="chapter" data-keywords="determinants matrices cramers rule area of triangle minors cofactors chapter 4">
+                <div>
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="px-3 py-1 bg-indigo-100 text-indigo-700 dark:bg-indigo-900/50 dark:text-indigo-300 text-xs font-bold rounded-lg">Chapter 04</span>
+                        <input type="checkbox" onchange="toggleCompletion('ch4')" id="ch4" class="w-5 h-5 rounded text-brand-600 cursor-pointer accent-brand-600">
+                    </div>
+                    <h3 class="font-bold text-lg mb-2 text-slate-900 dark:text-white">Determinants</h3>
+                    <p class="text-xs text-slate-600 dark:text-slate-400 mb-6">Properties of determinants, expansion, minors & cofactors, adjoints, and system of linear equations.</p>
+                </div>
+                <div class="flex gap-2">
+                    <a href="chapter 4/1.html" class="flex-1 text-center py-2.5 px-4 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-medium text-xs transition flex items-center justify-center gap-2">
+                        <i data-lucide="file-text" class="w-4 h-4"></i> Open Guide
+                    </a>
+                </div>
+            </div>
+
+            <!-- Chapter 5 -->
+            <div class="resource-card glass-card rounded-2xl p-6 border border-slate-200 dark:border-slate-800 flex flex-col justify-between hover:shadow-xl transition-all hover:-translate-y-1" data-category="chapter" data-keywords="continuity differentiability derivatives chain rule logarithmic differentiation chapter 5">
+                <div>
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="px-3 py-1 bg-indigo-100 text-indigo-700 dark:bg-indigo-900/50 dark:text-indigo-300 text-xs font-bold rounded-lg">Chapter 05</span>
+                        <input type="checkbox" onchange="toggleCompletion('ch5')" id="ch5" class="w-5 h-5 rounded text-brand-600 cursor-pointer accent-brand-600">
+                    </div>
+                    <h3 class="font-bold text-lg mb-2 text-slate-900 dark:text-white">Continuity & Differentiability</h3>
+                    <p class="text-xs text-slate-600 dark:text-slate-400 mb-6">Calculus fundamentals: continuity conditions, chain rule, implicit differentiation, logarithmic functions.</p>
+                </div>
+                <div class="flex gap-2">
+                    <a href="chapter 5.html" class="flex-1 text-center py-2.5 px-4 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-medium text-xs transition flex items-center justify-center gap-2">
+                        <i data-lucide="file-text" class="w-4 h-4"></i> Open Guide
+                    </a>
+                </div>
+            </div>
+
+            <!-- Chapter 8 -->
+            <div class="resource-card glass-card rounded-2xl p-6 border border-slate-200 dark:border-slate-800 flex flex-col justify-between hover:shadow-xl transition-all hover:-translate-y-1" data-category="chapter" data-keywords="integrals integration definite indefinite area under curve chapter 8">
+                <div>
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="px-3 py-1 bg-indigo-100 text-indigo-700 dark:bg-indigo-900/50 dark:text-indigo-300 text-xs font-bold rounded-lg">Chapter 08</span>
+                        <input type="checkbox" onchange="toggleCompletion('ch8')" id="ch8" class="w-5 h-5 rounded text-brand-600 cursor-pointer accent-brand-600">
+                    </div>
+                    <h3 class="font-bold text-lg mb-2 text-slate-900 dark:text-white">Integrals & Applications</h3>
+                    <p class="text-xs text-slate-600 dark:text-slate-400 mb-6">Interactive Study Portal for indefinite and definite integration formulas and area bounded by curves.</p>
+                </div>
+                <div class="flex gap-2">
+                    <a href="chapter 8/chapter_8_integrals_interactive_study_portal.html" class="flex-1 text-center py-2.5 px-4 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-medium text-xs transition flex items-center justify-center gap-2">
+                        <i data-lucide="file-text" class="w-4 h-4"></i> Open Guide
+                    </a>
+                </div>
+            </div>
+
+            <!-- Chapter 9 -->
+            <div class="resource-card glass-card rounded-2xl p-6 border border-slate-200 dark:border-slate-800 flex flex-col justify-between hover:shadow-xl transition-all hover:-translate-y-1" data-category="chapter" data-keywords="differential equations order degree variable separable homogeneous linear chapter 9">
+                <div>
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="px-3 py-1 bg-indigo-100 text-indigo-700 dark:bg-indigo-900/50 dark:text-indigo-300 text-xs font-bold rounded-lg">Chapter 09</span>
+                        <input type="checkbox" onchange="toggleCompletion('ch9')" id="ch9" class="w-5 h-5 rounded text-brand-600 cursor-pointer accent-brand-600">
+                    </div>
+                    <h3 class="font-bold text-lg mb-2 text-slate-900 dark:text-white">Differential Equations</h3>
+                    <p class="text-xs text-slate-600 dark:text-slate-400 mb-6">Material Hub covering Order & Degree, Separation of Variables, Homogeneous & Linear Differential Equations.</p>
+                </div>
+                <div class="flex gap-2">
+                    <a href="chapter 9/differential_equations_material_hub.html" class="flex-1 text-center py-2.5 px-4 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-medium text-xs transition flex items-center justify-center gap-2">
+                        <i data-lucide="file-text" class="w-4 h-4"></i> Open Guide
+                    </a>
+                </div>
+            </div>
+
+            <!-- Chapter 10 -->
+            <div class="resource-card glass-card rounded-2xl p-6 border border-slate-200 dark:border-slate-800 flex flex-col justify-between hover:shadow-xl transition-all hover:-translate-y-1" data-category="chapter" data-keywords="vectors vector algebra dot product cross product 3d geometry lines planes chapter 10">
+                <div>
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="px-3 py-1 bg-indigo-100 text-indigo-700 dark:bg-indigo-900/50 dark:text-indigo-300 text-xs font-bold rounded-lg">Chapter 10</span>
+                        <input type="checkbox" onchange="toggleCompletion('ch10')" id="ch10" class="w-5 h-5 rounded text-brand-600 cursor-pointer accent-brand-600">
+                    </div>
+                    <h3 class="font-bold text-lg mb-2 text-slate-900 dark:text-white">Vector Algebra & 3D Geometry</h3>
+                    <p class="text-xs text-slate-600 dark:text-slate-400 mb-6">3D Vectors, scalar & vector products, direction cosines, shortest distance between lines.</p>
+                </div>
+                <div class="flex gap-2">
+                    <a href="chapter 10/3d_vector_algebra_guide.html" class="flex-1 text-center py-2.5 px-4 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-medium text-xs transition flex items-center justify-center gap-2">
+                        <i data-lucide="file-text" class="w-4 h-4"></i> Open Guide
+                    </a>
+                </div>
+            </div>
+
+            <!-- Chapter 13 -->
+            <div class="resource-card glass-card rounded-2xl p-6 border border-slate-200 dark:border-slate-800 flex flex-col justify-between hover:shadow-xl transition-all hover:-translate-y-1" data-category="chapter" data-keywords="probability bayes theorem conditional probability bernoulli trial random variable chapter 13">
+                <div>
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="px-3 py-1 bg-indigo-100 text-indigo-700 dark:bg-indigo-900/50 dark:text-indigo-300 text-xs font-bold rounded-lg">Chapter 13</span>
+                        <input type="checkbox" onchange="toggleCompletion('ch13')" id="ch13" class="w-5 h-5 rounded text-brand-600 cursor-pointer accent-brand-600">
+                    </div>
+                    <h3 class="font-bold text-lg mb-2 text-slate-900 dark:text-white">Probability Guide</h3>
+                    <p class="text-xs text-slate-600 dark:text-slate-400 mb-6">Conditional probability, Multiplication theorem, Independent events, and Bayes' Theorem breakdown.</p>
+                </div>
+                <div class="flex gap-2">
+                    <a href="chapter 13/probability_chapter_13_guide.html" class="flex-1 text-center py-2.5 px-4 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-medium text-xs transition flex items-center justify-center gap-2">
+                        <i data-lucide="file-text" class="w-4 h-4"></i> Open Guide
+                    </a>
+                </div>
+            </div>
+
+            <!-- Graphing Tool 1 -->
+            <div class="resource-card glass-card rounded-2xl p-6 border border-slate-200 dark:border-slate-800 flex flex-col justify-between hover:shadow-xl transition-all hover:-translate-y-1" data-category="tool" data-keywords="graphing plotter function visualization calculus tools interactive te-02">
+                <div>
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="px-3 py-1 bg-emerald-100 text-emerald-700 dark:bg-emerald-900/50 dark:text-emerald-300 text-xs font-bold rounded-lg">Interactive Tool</span>
+                        <i data-lucide="activity" class="w-5 h-5 text-emerald-500"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2 text-slate-900 dark:text-white">Interactive Graphing Lab 01</h3>
+                    <p class="text-xs text-slate-600 dark:text-slate-400 mb-6">Real-time function plotter for visualizing functions, asymptotes, limits, and behavior.</p>
+                </div>
+                <div class="flex gap-2">
+                    <a href="graphing/te-02.html" class="flex-1 text-center py-2.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-medium text-xs transition flex items-center justify-center gap-2">
+                        <i data-lucide="line-chart" class="w-4 h-4"></i> Launch Plotter
+                    </a>
+                </div>
+            </div>
+
+            <!-- Graphing Tool 2 -->
+            <div class="resource-card glass-card rounded-2xl p-6 border border-slate-200 dark:border-slate-800 flex flex-col justify-between hover:shadow-xl transition-all hover:-translate-y-1" data-category="tool" data-keywords="trigonometry graphing plotter transformations sin cos tan tr-01">
+                <div>
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="px-3 py-1 bg-emerald-100 text-emerald-700 dark:bg-emerald-900/50 dark:text-emerald-300 text-xs font-bold rounded-lg">Trig Lab</span>
+                        <i data-lucide="waves" class="w-5 h-5 text-emerald-500"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2 text-slate-900 dark:text-white">Trigonometric Function Plotter</h3>
+                    <p class="text-xs text-slate-600 dark:text-slate-400 mb-6">Dedicated plotter for trigonometric waveforms, phase shifts, amplitudes, and period analysis.</p>
+                </div>
+                <div class="flex gap-2">
+                    <a href="graphing/tr-01.html" class="flex-1 text-center py-2.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-medium text-xs transition flex items-center justify-center gap-2">
+                        <i data-lucide="line-chart" class="w-4 h-4"></i> Launch Trig Lab
+                    </a>
+                </div>
+            </div>
+
+            <!-- Visual Hub -->
+            <div class="resource-card glass-card rounded-2xl p-6 border border-slate-200 dark:border-slate-800 flex flex-col justify-between hover:shadow-xl transition-all hover:-translate-y-1" data-category="tool" data-keywords="interactive visual flashcard 3d formula explorer 3d geometry vectors">
+                <div>
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="px-3 py-1 bg-purple-100 text-purple-700 dark:bg-purple-900/50 dark:text-purple-300 text-xs font-bold rounded-lg">Visual Hub</span>
+                        <i data-lucide="box" class="w-5 h-5 text-purple-500"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2 text-slate-900 dark:text-white">3D Visual & Formula Explorer</h3>
+                    <p class="text-xs text-slate-600 dark:text-slate-400 mb-6">Interactive 3D geometry engine and flashcard formula explorer for immersive learning.</p>
+                </div>
+                <div class="flex gap-2">
+                    <a href="interactive_visual_im_b79362f29e962717.html" class="flex-1 text-center py-2.5 px-4 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-medium text-xs transition flex items-center justify-center gap-2">
+                        <i data-lucide="sparkles" class="w-4 h-4"></i> Launch Visual Hub
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="border-t border-slate-200 dark:border-slate-800 mt-16 py-8 glass-card">
+        <div class="max-w-7xl mx-auto px-4 text-center text-xs text-slate-500 dark:text-slate-400">
+            <p>© Class 12th Mathematics Interactive Study Portal • Self-Contained Offline Materials</p>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        // Dark mode toggle
+        function toggleDarkMode() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+
+        // Completion Tracker
+        const totalChapters = 8;
+        function updateTracker() {
+            let completed = 0;
+            ['ch1', 'ch2', 'ch4', 'ch5', 'ch8', 'ch9', 'ch10', 'ch13'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el && el.checked) completed++;
+            });
+            document.getElementById('tracker-text').textContent = `${completed}/${totalChapters} Completed`;
+        }
+
+        function toggleCompletion(id) {
+            const el = document.getElementById(id);
+            if (el) {
+                localStorage.setItem('math_app_' + id, el.checked ? 'true' : 'false');
+                updateTracker();
+            }
+        }
+
+        // Load saved checklist states
+        window.addEventListener('DOMContentLoaded', () => {
+            ['ch1', 'ch2', 'ch4', 'ch5', 'ch8', 'ch9', 'ch10', 'ch13'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) {
+                    el.checked = localStorage.getItem('math_app_' + id) === 'true';
+                }
+            });
+            updateTracker();
+        });
+
+        function setFilter(category) {
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('bg-brand-600', 'text-white');
+                btn.classList.add('bg-slate-200', 'dark:bg-slate-800', 'text-slate-700', 'dark:text-slate-300');
+            });
+            event.target.classList.add('bg-brand-600', 'text-white');
+            event.target.classList.remove('bg-slate-200', 'dark:bg-slate-800', 'text-slate-700', 'dark:text-slate-300');
+
+            document.querySelectorAll('.resource-card').forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        }
+
+        function filterCards() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            document.querySelectorAll('.resource-card').forEach(card => {
+                const keywords = card.dataset.keywords.toLowerCase();
+                const title = card.querySelector('h3').textContent.toLowerCase();
+                if (keywords.includes(query) || title.includes(query)) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        }
+    </script>
+<script src="assets/global-navbar.js" defer></script>
+</body>
+</html>

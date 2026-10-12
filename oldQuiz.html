@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Real-Time Online Quiz</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config={
+ darkMode:'class',
+ theme:{extend:{colors:{primary:'#58CC02'}}}
+}
+</script>
+
+<style>
+.fade{animation:fade .3s}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+.progress{transition:width .3s}
+</style>
+<link rel="stylesheet" href="assets/global-navbar.css">
+</head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9J6WK672J6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-9J6WK672J6');
+</script>
+<body class="bg-gray-900 text-gray-100">
+
+<!-- ================= ADMIN ================= -->
+<section id="admin" class="hidden p-6">
+<h2 class="text-2xl font-bold mb-4">📊 Live Results</h2>
+<table class="w-full border border-gray-700 text-sm">
+<thead class="bg-gray-700">
+<tr><th>Name</th><th>Roll</th><th>Score</th><th>Status</th></tr>
+</thead>
+<tbody id="liveTable"></tbody>
+</table>
+</section>
+
+<!-- ================= TEACHER ================= -->
+<section id="teacher" class="min-h-screen flex items-center justify-center">
+<div class="bg-gray-800 p-6 rounded-xl w-full max-w-lg fade">
+
+<h1 class="text-2xl font-bold mb-4 text-center">Create Quiz</h1>
+
+<input id="quizTitle" placeholder="Quiz Title" class="w-full p-2 bg-gray-700 mb-2">
+<input id="timePerQ" type="number" placeholder="Time per Question (sec)" class="w-full p-2 bg-gray-700 mb-2">
+<textarea id="questionText" placeholder="Question" class="w-full p-2 bg-gray-700 mb-2"></textarea>
+
+<input id="o1" placeholder="Option A" class="w-full p-2 bg-gray-700 mb-1">
+<input id="o2" placeholder="Option B" class="w-full p-2 bg-gray-700 mb-1">
+<input id="o3" placeholder="Option C" class="w-full p-2 bg-gray-700 mb-1">
+<input id="o4" placeholder="Option D" class="w-full p-2 bg-gray-700 mb-2">
+
+<select id="ans" class="w-full p-2 bg-gray-700 mb-3">
+<option value="0">Correct: A</option>
+<option value="1">Correct: B</option>
+<option value="2">Correct: C</option>
+<option value="3">Correct: D</option>
+</select>
+
+<button onclick="addQuestion()" class="w-full bg-primary text-black py-2 font-bold rounded mb-2">
+Add Question
+</button>
+
+<button onclick="publishQuiz()" class="w-full bg-black py-2 rounded">
+Publish & Get Link
+</button>
+
+<p id="quizLink" class="text-center text-sm mt-3"></p>
+</div>
+</section>
+
+<!-- ================= STUDENT INFO ================= -->
+<section id="studentInfo" class="hidden min-h-screen flex items-center justify-center">
+<div class="bg-gray-800 p-6 rounded-xl w-full max-w-md fade">
+
+<h2 class="text-xl font-bold mb-3 text-center">Student Details</h2>
+<input id="studentName" placeholder="Name" class="w-full p-2 bg-gray-700 mb-2">
+<input id="studentRoll" placeholder="Roll No" class="w-full p-2 bg-gray-700 mb-3">
+
+<button onclick="startQuiz()" class="w-full bg-primary text-black py-2 font-bold rounded">
+Start Test
+</button>
+</div>
+</section>
+
+<!-- ================= QUIZ ================= -->
+<section id="quizSection" class="hidden min-h-screen flex items-center justify-center">
+<div class="bg-gray-800 p-6 rounded-xl w-full max-w-md fade">
+
+<div class="flex justify-between text-sm mb-2">
+<span id="timer"></span>
+<span id="qno"></span>
+</div>
+
+<div class="bg-gray-700 h-2 rounded mb-3">
+<div id="bar" class="bg-primary h-2 rounded progress"></div>
+</div>
+
+<h2 id="question" class="font-bold mb-3"></h2>
+<div id="options" class="space-y-2"></div>
+
+</div>
+</section>
+
+<!-- ================= RESULT ================= -->
+<section id="result" class="hidden min-h-screen flex items-center justify-center">
+<div class="bg-gray-800 p-6 rounded-xl text-center fade">
+<h2 class="text-2xl font-bold">Test Completed 🎉</h2>
+<p id="scoreText" class="mt-2"></p>
+</div>
+</section>
+
+<!-- ================= FIREBASE LOGIC ================= -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
+import {
+ getFirestore, doc, setDoc, getDoc,
+ collection, addDoc, onSnapshot
+} from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
+
+/* 🔥 DUMMY FIREBASE KEYS (REPLACE LATER) */
+const firebaseConfig = {
+  apiKey: "AIzaSyDrK20CbFxWH2V6iS8EPfXSAjD2RDvxKQo",
+  authDomain: "online-quiz-f51dc.firebaseapp.com",
+  projectId: "online-quiz-f51dc",
+  storageBucket: "online-quiz-f51dc.firebasestorage.app",
+  messagingSenderId: "676955998340",
+  appId: "1:676955998340:web:e22fd3fb6ec49549de9ad1",
+  measurementId: "G-9J6WK672J6"
+};
+
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+let quiz={title:'',questions:[],time:10};
+let index=0,score=0,timerInt,cheated=false;
+let user={};
+
+const params=new URLSearchParams(location.search);
+const quizCode=params.get("code");
+
+/* ADMIN */
+if(location.hash==="#admin"){
+ admin.classList.remove("hidden");
+ teacher.classList.add("hidden");
+ studentInfo.classList.add("hidden");
+
+ onSnapshot(collection(db,"results"),snap=>{
+  liveTable.innerHTML="";
+  snap.forEach(d=>{
+   const r=d.data();
+   liveTable.innerHTML+=`
+   <tr class="border-b border-gray-700">
+    <td>${r.name}</td>
+    <td>${r.roll}</td>
+    <td>${r.score}/${r.total}</td>
+    <td>${r.status}</td>
+   </tr>`;
+  });
+ });
+}
+
+/* STUDENT ENTRY */
+if(quizCode){
+ teacher.classList.add("hidden");
+ studentInfo.classList.remove("hidden");
+}
+
+window.addQuestion=()=>{
+ if(!questionText.value||!o1.value||!o2.value||!o3.value||!o4.value)
+  return alert("Fill all fields");
+
+ quiz.title=quizTitle.value||"Quiz";
+ quiz.time=+timePerQ.value||10;
+ quiz.questions.push({
+  q:questionText.value,
+  o:[o1.value,o2.value,o3.value,o4.value],
+  a:+ans.value
+ });
+ questionText.value=o1.value=o2.value=o3.value=o4.value="";
+}
+
+window.publishQuiz=async()=>{
+ if(!quiz.questions.length) return alert("Add questions");
+ const code=Math.random().toString(36).substring(2,8);
+ await setDoc(doc(db,"quizzes",code),quiz);
+ quizLink.innerHTML=`Share link:<br><b>${location.origin+location.pathname}?code=${code}</b>`;
+}
+
+window.startQuiz=async()=>{
+ user={name:studentName.value,roll:studentRoll.value};
+ const snap=await getDoc(doc(db,"quizzes",quizCode));
+ quiz=snap.data();
+ studentInfo.classList.add("hidden");
+ quizSection.classList.remove("hidden");
+ loadQ();
+}
+
+/* ANTI-CHEAT */
+document.addEventListener("visibilitychange",()=>{
+ if(document.hidden){cheated=true;finish();}
+});
+
+function loadQ(){
+ const q=quiz.questions[index];
+ let t=quiz.time;
+ timer.innerText=`⏱ ${t}s`;
+ qno.innerText=`Q ${index+1}/${quiz.questions.length}`;
+ bar.style.width=((index+1)/quiz.questions.length)*100+"%";
+ question.innerText=q.q;
+ options.innerHTML="";
+ clearInterval(timerInt);
+
+ timerInt=setInterval(()=>{
+  t--;timer.innerText=`⏱ ${t}s`;
+  if(t<=0){clearInterval(timerInt);submit(-1)}
+ },1000);
+
+ q.o.forEach((op,i)=>{
+  let b=document.createElement("button");
+  b.className="w-full p-2 bg-gray-700 rounded hover:bg-primary hover:text-black";
+  b.innerText=op;
+  b.onclick=()=>submit(i);
+  options.appendChild(b);
+ });
+}
+
+function submit(a){
+ clearInterval(timerInt);
+ if(a===quiz.questions[index].a)score++;
+ index++;
+ index<quiz.questions.length?loadQ():finish();
+}
+
+async function finish(){
+ quizSection.classList.add("hidden");
+ result.classList.remove("hidden");
+ scoreText.innerText=`${user.name} scored ${score}/${quiz.questions.length}`;
+
+ await addDoc(collection(db,"results"),{
+  quizCode,
+  ...user,
+  score,
+  total:quiz.questions.length,
+  status:cheated?"CHEATED":"OK",
+  timestamp:Date.now()
+ });
+}
+</script>
+
+<script src="assets/global-navbar.js" defer></script>
+</body>
+</html>

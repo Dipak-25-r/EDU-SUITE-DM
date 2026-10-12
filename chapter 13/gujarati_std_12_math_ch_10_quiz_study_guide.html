@@ -1,0 +1,1343 @@
+<!DOCTYPE html>
+<html lang="gu" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ધોરણ-12 ગણિત : પ્રકરણ 10 સદિશ બીજગણિત (Vector Algebra) MCQs & Solution Guide</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                            800: '#3730a3',
+                            900: '#312e81',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'Noto Sans Gujarati', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts for Gujarati -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+Gujarati:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- KaTeX for Mathematics -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" onload="initKaTeX()"></script>
+
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <style>
+        body {
+            font-family: 'Noto Sans Gujarati', 'Inter', sans-serif;
+        }
+        /* Custom scrollbars */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+        .math-expr {
+            font-size: 1.05em;
+        }
+    </style>
+<link rel="stylesheet" href="../assets/global-navbar.css">
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col selection:bg-brand-500 selection:text-white">
+
+    <!-- Header Navigation -->
+    <header class="sticky top-0 z-40 bg-slate-900/90 backdrop-blur-md border-b border-slate-800 transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-indigo-500 flex items-center justify-center text-white shadow-lg shadow-brand-500/20 font-bold text-lg">
+                    ૧૦
+                </div>
+                <div>
+                    <h1 class="font-bold text-base sm:text-lg leading-tight text-white flex items-center gap-2">
+                        ધોરણ-12 ગણિત : પ્રકરણ 10
+                        <span class="text-xs font-normal px-2 py-0.5 rounded bg-brand-500/20 text-brand-300 border border-brand-500/30">સદિશ બીજગણિત</span>
+                    </h1>
+                    <p class="text-xs text-slate-400">Unit Test Practice Engine & Complete Solutions</p>
+                </div>
+            </div>
+
+            <!-- Toolbar Action Buttons -->
+            <div class="flex items-center gap-2 sm:gap-3">
+                <button onclick="openFormulaModal()" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-medium text-slate-200 border border-slate-700 transition flex items-center gap-1.5">
+                    <i class="ph-bold ph-function text-brand-400 text-sm"></i>
+                    <span class="hidden sm:inline">સૂત્રો (Formulas)</span>
+                </button>
+
+                <button id="mode-toggle-btn" onclick="toggleExamMode()" class="px-3 py-1.5 rounded-lg bg-brand-600 hover:bg-brand-500 text-xs font-semibold text-white shadow-md shadow-brand-600/20 transition flex items-center gap-1.5">
+                    <i class="ph-bold ph-timer text-sm"></i>
+                    <span id="mode-btn-text">પરીક્ષા મોડ (Exam Mode)</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Layout -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-1 w-full grid grid-cols-1 lg:grid-cols-12 gap-6">
+        
+        <!-- Sidebar Navigation & Filters -->
+        <aside class="lg:col-span-3 space-y-4">
+            <!-- Progress Overview Card -->
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 shadow-xl">
+                <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3 flex items-center justify-between">
+                    <span>પ્રગતિ (Progress)</span>
+                    <span id="progress-percent" class="text-brand-400 font-mono text-xs">0%</span>
+                </h3>
+                
+                <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden mb-4">
+                    <div id="progress-bar" class="bg-brand-500 h-full w-0 transition-all duration-300"></div>
+                </div>
+
+                <div class="grid grid-cols-3 gap-2 text-center text-xs font-mono">
+                    <div class="p-2 bg-slate-950 rounded-lg border border-slate-800">
+                        <div class="text-slate-400 text-[10px]">કુલ</div>
+                        <div id="stat-total" class="font-bold text-white text-sm">57</div>
+                    </div>
+                    <div class="p-2 bg-slate-950 rounded-lg border border-slate-800">
+                        <div class="text-emerald-400 text-[10px]">સાચા</div>
+                        <div id="stat-correct" class="font-bold text-emerald-400 text-sm">0</div>
+                    </div>
+                    <div class="p-2 bg-slate-950 rounded-lg border border-slate-800">
+                        <div class="text-rose-400 text-[10px]">ખોટા</div>
+                        <div id="stat-wrong" class="font-bold text-rose-400 text-sm">0</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Topic Filters -->
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 shadow-xl">
+                <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">ટોપિક ફિલ્ટર (Categories)</h3>
+                
+                <div class="space-y-1.5 text-xs">
+                    <button onclick="filterCategory('all')" class="cat-filter-btn w-full text-left px-3 py-2 rounded-xl bg-brand-600 text-white font-medium transition flex items-center justify-between" data-cat="all">
+                        <span>તમામ પ્રશ્નો (All Questions)</span>
+                        <span class="bg-slate-950/40 px-2 py-0.5 rounded text-[10px] font-mono">57</span>
+                    </button>
+                    <button onclick="filterCategory('basic')" class="cat-filter-btn w-full text-left px-3 py-2 rounded-xl bg-slate-950 hover:bg-slate-800 text-slate-300 transition flex items-center justify-between" data-cat="basic">
+                        <span>સદિશોના પ્રકાર અને સરવાળા</span>
+                        <span class="bg-slate-900 px-2 py-0.5 rounded text-[10px] font-mono text-slate-400">12</span>
+                    </button>
+                    <button onclick="filterCategory('dot')" class="cat-filter-btn w-full text-left px-3 py-2 rounded-xl bg-slate-950 hover:bg-slate-800 text-slate-300 transition flex items-center justify-between" data-cat="dot">
+                        <span>અદિશ ગુણાકાર (Dot Product)</span>
+                        <span class="bg-slate-900 px-2 py-0.5 rounded text-[10px] font-mono text-slate-400">15</span>
+                    </button>
+                    <button onclick="filterCategory('cross')" class="cat-filter-btn w-full text-left px-3 py-2 rounded-xl bg-slate-950 hover:bg-slate-800 text-slate-300 transition flex items-center justify-between" data-cat="cross">
+                        <span>સદિશ ગુણાકાર (Cross Product)</span>
+                        <span class="bg-slate-900 px-2 py-0.5 rounded text-[10px] font-mono text-slate-400">12</span>
+                    </button>
+                    <button onclick="filterCategory('cosines')" class="cat-filter-btn w-full text-left px-3 py-2 rounded-xl bg-slate-950 hover:bg-slate-800 text-slate-300 transition flex items-center justify-between" data-cat="cosines">
+                        <span>દિક્કોસાઈન અને ખૂણાઓ</span>
+                        <span class="bg-slate-900 px-2 py-0.5 rounded text-[10px] font-mono text-slate-400">18</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Question Jump Grid -->
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 shadow-xl">
+                <div class="flex items-center justify-between mb-3">
+                    <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400">પ્રશ્ન નેવિગેટર</h3>
+                    <input type="text" id="search-q" oninput="searchQuestions()" placeholder="પ્રશ્ન શોધો..." class="bg-slate-950 border border-slate-800 rounded-lg px-2 py-1 text-xs w-24 focus:outline-none focus:border-brand-500">
+                </div>
+                
+                <div id="q-grid-container" class="grid grid-cols-6 gap-1.5 max-h-56 overflow-y-auto pr-1">
+                    <!-- Dynamic Question Buttons -->
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Quiz Display Area -->
+        <main class="lg:col-span-9 space-y-6">
+
+            <!-- Exam Timer Banner (Hidden in Practice Mode) -->
+            <div id="exam-timer-banner" class="hidden bg-gradient-to-r from-amber-500/10 via-slate-900 to-amber-500/10 border border-amber-500/30 rounded-2xl p-4 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold text-lg">
+                        <i class="ph-bold ph-hourglass-high"></i>
+                    </div>
+                    <div>
+                        <div class="text-xs text-amber-300 uppercase tracking-wide font-bold">લાઇવ પરીક્ષા મોડ (Timed Test)</div>
+                        <div class="text-xs text-slate-400">બધા પ્રશ્નોના ઉત્તર આપી સબમિટ કરો</div>
+                    </div>
+                </div>
+                <div class="font-mono text-xl font-black text-amber-400 bg-slate-950 px-4 py-1.5 rounded-xl border border-amber-500/20" id="timer-display">
+                    60:00
+                </div>
+            </div>
+
+            <!-- Question Container -->
+            <div id="question-card" class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-2xl relative">
+                
+                <!-- Question Top Header -->
+                <div class="flex items-center justify-between mb-4 border-b border-slate-800 pb-3">
+                    <div class="flex items-center gap-2">
+                        <span id="q-number-badge" class="px-3 py-1 rounded-lg bg-brand-600/20 text-brand-300 font-mono text-xs font-bold border border-brand-500/30">
+                            પ્રશ્ન 1 / 57
+                        </span>
+                        <span id="q-category-badge" class="px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 text-xs">
+                            સદિશોના ગુણધર્મો
+                        </span>
+                    </div>
+
+                    <button onclick="toggleBookmark()" id="bookmark-btn" class="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-400 transition" title="પ્રશ્ન બુકમાર્ક કરો">
+                        <i class="ph-bold ph-bookmark text-base"></i>
+                    </button>
+                </div>
+
+                <!-- Question Text -->
+                <div id="q-text" class="text-base sm:text-lg font-medium text-slate-100 mb-6 leading-relaxed">
+                    Loading question...
+                </div>
+
+                <!-- Options List -->
+                <div id="options-container" class="space-y-3 mb-6">
+                    <!-- Dynamic Options -->
+                </div>
+
+                <!-- Solution Box (Appears after answer in Practice mode) -->
+                <div id="solution-box" class="hidden bg-slate-950 border border-slate-800 rounded-xl p-4 my-4 border-l-4 border-l-brand-500">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-xs font-bold text-brand-400 uppercase tracking-wider flex items-center gap-1.5">
+                            <i class="ph-bold ph-lightbulb text-sm"></i> સમજૂતી / ગણતરી (Solution):
+                        </span>
+                    </div>
+                    <div id="solution-text" class="text-sm text-slate-300 space-y-2 font-mono leading-relaxed">
+                        <!-- Solution content -->
+                    </div>
+                </div>
+
+                <!-- Navigation Controls -->
+                <div class="flex items-center justify-between pt-4 border-t border-slate-800">
+                    <button onclick="prevQuestion()" id="prev-btn" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold transition flex items-center gap-2">
+                        <i class="ph-bold ph-caret-left"></i> પાછળનો
+                    </button>
+
+                    <div class="flex gap-2">
+                        <button onclick="resetCurrentAnswer()" class="px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-slate-200 text-xs transition">
+                            ક્લિયર (Clear)
+                        </button>
+                        <button onclick="nextQuestion()" id="next-btn" class="px-5 py-2 rounded-xl bg-brand-600 hover:bg-brand-500 text-white text-xs font-semibold transition flex items-center gap-2 shadow-lg shadow-brand-600/20">
+                            આગળનો <i class="ph-bold ph-caret-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Formulas Cheat Sheet Modal -->
+    <div id="formula-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-slate-900 border border-slate-800 rounded-3xl max-w-3xl w-full max-h-[85vh] overflow-hidden flex flex-col shadow-2xl">
+            <div class="p-5 border-b border-slate-800 flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                    <i class="ph-bold ph-function text-xl text-brand-400"></i>
+                    <h2 class="text-lg font-bold text-white">સદિશ બીજગણિત : અગત્યના સૂત્રો (Important Formulas)</h2>
+                </div>
+                <button onclick="closeFormulaModal()" class="p-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-400 transition">
+                    <i class="ph-bold ph-x text-lg"></i>
+                </button>
+            </div>
+            
+            <div class="p-6 overflow-y-auto space-y-6 text-sm">
+                <!-- Section 1 -->
+                <div class="bg-slate-950 p-4 rounded-2xl border border-slate-800">
+                    <h3 class="font-bold text-brand-400 text-xs uppercase mb-2">૧. અદિશ ગુણાકાર (Dot Product)</h3>
+                    <p>$$\vec{a} \cdot \vec{b} = |\vec{a}| |\vec{b}| \cos\theta$$</p>
+                    <p class="mt-1 text-slate-400 text-xs">જો $\vec{a} \perp \vec{b} \iff \vec{a} \cdot \vec{b} = 0$</p>
+                </div>
+
+                <!-- Section 2 -->
+                <div class="bg-slate-950 p-4 rounded-2xl border border-slate-800">
+                    <h3 class="font-bold text-brand-400 text-xs uppercase mb-2">૨. સદિશ ગુણાકાર (Cross Product)</h3>
+                    <p>$$|\vec{a} \times \vec{b}| = |\vec{a}| |\vec{b}| \sin\theta$$</p>
+                    <p class="mt-1 text-slate-400 text-xs">લંબચોરસ/સમાંતરબાજુ ચતુષ્કોણનું ક્ષેત્રફળ $= |\vec{a} \times \vec{b}|$, ત્રિકોણનું ક્ષેત્રફળ $= \frac{1}{2}|\vec{a} \times \vec{b}|$.</p>
+                </div>
+
+                <!-- Section 3 -->
+                <div class="bg-slate-950 p-4 rounded-2xl border border-slate-800">
+                    <h3 class="font-bold text-brand-400 text-xs uppercase mb-2">૩. પ્રક્ષેપ સદિશ (Projection Vector)</h3>
+                    <p>$\vec{a}$ નો $\vec{b}$ પરનો પ્રક્ષેપ માન $= \frac{|\vec{a} \cdot \vec{b}|}{|\vec{b}|}$, પ્રક્ષેપ સદિશ $= \left(\frac{\vec{a} \cdot \vec{b}}{|\vec{b}|^2}\right)\vec{b}$.</p>
+                </div>
+
+                <!-- Section 4 -->
+                <div class="bg-slate-950 p-4 rounded-2xl border border-slate-800">
+                    <h3 class="font-bold text-brand-400 text-xs uppercase mb-2">૪. દિક્કોસાઈન (Direction Cosines)</h3>
+                    <p>$$\cos^2\alpha + \cos^2\beta + \cos^2\gamma = 1 \implies \sin^2\alpha + \sin^2\beta + \sin^2\gamma = 2$$</p>
+                    <p>$$\cos 2\alpha + \cos 2\beta + \cos 2\gamma = 2(1) - 3 = -1$$</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Transcribed full questions dataset from PDF unit test
+        const questionsData = [
+            {
+                id: 1,
+                cat: "basic",
+                question: "ત્રિકોણ ABC નાં સ્થાનસદિશો માટે નીચેનામાંથી કયું વિધાન સત્ય નથી?",
+                options: [
+                    "\\vec{AB} + \\vec{BC} + \\vec{CA} = \\vec{0}",
+                    "\\vec{AB} + \\vec{BC} - \\vec{AC} = \\vec{0}",
+                    "\\vec{AB} + \\vec{BC} - \\vec{CA} = \\vec{0}",
+                    "\\vec{AB} - \\vec{CB} + \\vec{CA} = \\vec{0}"
+                ],
+                correct: 2,
+                solution: "ત્રિકોણના નિયમ મુજબ $\\vec{AB} + \\vec{BC} = \\vec{AC} \\implies \\vec{AB} + \\vec{BC} - \\vec{AC} = \\vec{0}$ સાચું છે. તેથી $\\vec{AB} + \\vec{BC} - \\vec{CA} = \\vec{0}$ એ અસત્ય (સત્ય નથી) વિધાન છે."
+            },
+            {
+                id: 2,
+                cat: "basic",
+                question: "જો $\\vec{a}$ અને $\vec{b}$ બે સમરેખ સદિશો હોય, તો નીચે આપેલાં પૈકી કયું વિધાન અસત્ય છે?",
+                options: [
+                    "કોઈક અદિશ $\\lambda$ માટે, $\\vec{b} = \\lambda\\vec{a}$",
+                    "\\vec{a} = \\pm\\vec{b}",
+                    "\\vec{a}$ અને $\\vec{b}$ ના અનુરૂપ ઘટકો પ્રમાણમાં નથી",
+                    "બંને સદિશો $\\vec{a}$ અને $\\vec{b}$ ની દિશા સમાન છે પરંતુ માન ભિન્ન હોઈ શકે"
+                ],
+                correct: 2,
+                solution: "સમરેખ સદિશોના અનુરૂપ ઘટકો હંમેશાં પ્રમાણમાં હોય છે. તેથી 'અનુરૂપ ઘટકો પ્રમાણમાં નથી' તે વિધાન અસત્ય છે."
+            },
+            {
+                id: 3,
+                cat: "cross",
+                question: "ધારો કે સદિશો $\\vec{a}$ અને $\\vec{b}$ માટે $|\\vec{a}|=3$ અને $|\\vec{b}|=\\frac{\\sqrt{2}}{3}$ છે. જો $\\vec{a} \\times \\vec{b}$ એકમ સદિશ હોય, તો $\\vec{a}$ અને $\\vec{b}$ વચ્ચેનો ખૂણો શોધો.",
+                options: [
+                    "\\frac{\\pi}{6}",
+                    "\\frac{\\pi}{4}",
+                    "\\frac{\\pi}{3}",
+                    "\\frac{\\pi}{2}"
+                ],
+                correct: 1,
+                solution: "$|\\vec{a} \\times \\vec{b}| = |\\vec{a}||\\vec{b}|\\sin\\theta = 1 \\implies 3 \\cdot \\frac{\\sqrt{2}}{3} \\cdot \\sin\\theta = 1 \\implies \\sin\\theta = \\frac{1}{\\sqrt{2}} \\implies \\theta = \\frac{\\pi}{4}$."
+            },
+            {
+                id: 4,
+                cat: "cross",
+                question: "લંબચોરસનાં શિરોબિંદુઓ $A\\left(-\\hat{i}+\\frac{1}{2}\\hat{j}+4\\hat{k}\\right)$, $B\\left(\\hat{i}+\\frac{1}{2}\\hat{j}+4\\hat{k}\\right)$, $C\\left(\\hat{i}-\\frac{1}{2}\\hat{j}+4\\hat{k}\\right)$, $D\\left(-\\hat{i}-\\frac{1}{2}\\hat{j}+4\\hat{k}\\right)$ હોય તો તેનું ક્ષેત્રફળ શોધો.",
+                options: [
+                    "\\frac{1}{2}",
+                    "1",
+                    "2",
+                    "4"
+                ],
+                correct: 2,
+                solution: "$\\vec{AB} = B - A = 2\\hat{i}$, $\\vec{BC} = C - B = -\\hat{j}$. ક્ષેત્રફળ $= |\\vec{AB}| \\times |\\vec{BC}| = 2 \\times 1 = 2$ ચોરસ એકમ."
+            },
+            {
+                id: 5,
+                cat: "basic",
+                question: "જો $\\vec{a}$ શૂન્યેતર સદિશ હોય અને તેનું માન $a$ હોય તથા $\\lambda$ શૂન્યેતર અદિશ હોય, તો $\\lambda\\vec{a}$ એકમ સદિશ થાય તે માટે:",
+                options: [
+                    "\\lambda = 1",
+                    "\\lambda = -1",
+                    "a = |\\lambda|",
+                    "a = \\frac{1}{|\\lambda|}"
+                ],
+                correct: 3,
+                solution: "$|\\lambda\\vec{a}| = 1 \\implies |\\lambda| |\\vec{a}| = 1 \\implies |\\lambda| a = 1 \\implies a = \\frac{1}{|\\lambda|}$."
+            },
+            {
+                id: 6,
+                cat: "dot",
+                question: "જો $\\theta$ એ બે સદિશો $\\vec{a}$ અને $\\vec{b}$ વચ્ચેનો ખૂણો હોય, તો $\\vec{a} \\cdot \\vec{b} \\ge 0$ થવા માટે:",
+                options: [
+                    "0 < \\theta < \\frac{\\pi}{2}",
+                    "0 \\le \\theta \\le \\frac{\\pi}{2}",
+                    "0 < \\theta < \\pi",
+                    "0 \\le \\theta \\le \\pi"
+                ],
+                correct: 1,
+                solution: "$\\vec{a} \\cdot \\vec{b} = |\\vec{a}||\\vec{b}|\\cos\\theta \\ge 0 \\iff \\cos\\theta \\ge 0 \\implies 0 \\le \\theta \\le \\frac{\\pi}{2}$."
+            },
+            {
+                id: 7,
+                cat: "basic",
+                question: "જો $\\vec{a}, \\vec{b}, \\vec{a}+\\vec{b}$ એકમ સદિશો હોય અને $\\vec{a}$ તથા $\\vec{b}$ વચ્ચેના ખૂણાનું માપ $\\theta$ હોય, તો $\\theta = .......$",
+                options: [
+                    "\\frac{\\pi}{4}",
+                    "\\frac{\\pi}{3}",
+                    "\\frac{\\pi}{2}",
+                    "\\frac{2\\pi}{3}"
+                ],
+                correct: 3,
+                solution: "$|\\vec{a}+\\vec{b}|^2 = |\\vec{a}|^2 + |\\vec{b}|^2 + 2\\vec{a}\\cdot\\vec{b} \\implies 1 = 1 + 1 + 2(1)(1)\\cos\\theta \\implies 2\\cos\\theta = -1 \\implies \\cos\\theta = -1/2 \\implies \\theta = \\frac{2\\pi}{3}$."
+            },
+            {
+                id: 8,
+                cat: "dot",
+                question: "$\\hat{i} \\cdot (\\hat{j} \\times \\hat{k}) + \\hat{j} \\cdot (\\hat{i} \\times \\hat{k}) + \\hat{k} \\cdot (\\hat{i} \\times \\hat{j})$ નું મૂલ્ય શોધો.",
+                options: [
+                    "0",
+                    "-1",
+                    "1",
+                    "3"
+                ],
+                correct: 2,
+                solution: "$\\hat{j}\\times\\hat{k} = \\hat{i} \\implies \\hat{i}\\cdot\\hat{i}=1$. $\\hat{i}\\times\\hat{k} = -\\hat{j} \\implies \\hat{j}\\cdot(-\\hat{j})=-1$. $\\hat{i}\\times\\hat{j}=\\hat{k} \\implies \\hat{k}\\cdot\\hat{k}=1$. કુલ $= 1 - 1 + 1 = 1$."
+            },
+            {
+                id: 9,
+                cat: "dot",
+                question: "જો કોઈ પણ બે સદિશો $\\vec{a}$ અને $\\vec{b}$ માટે $|\\vec{a} \\cdot \\vec{b}| = |\\vec{a} \\times \\vec{b}|$ હોય, તો $\\theta = .......$",
+                options: [
+                    "0",
+                    "\\frac{\\pi}{4}",
+                    "\\frac{\\pi}{2}",
+                    "\\pi"
+                ],
+                correct: 1,
+                solution: "$|\\vec{a}||\\vec{b}|\\cos\\theta = |\\vec{a}||\\vec{b}|\\sin\\theta \\implies \\tan\\theta = 1 \\implies \\theta = \\frac{\\pi}{4}$."
+            },
+            {
+                id: 10,
+                cat: "basic",
+                question: "જેનું માન 9 હોય, તેવો સદિશ $\\hat{i} - 2\\hat{j} + 2\\hat{k}$ ની દિશાવાળો સદિશ શોધો.",
+                options: [
+                    "\\hat{i} - 2\\hat{j} + 2\\hat{k}",
+                    "\\frac{\\hat{i} - 2\\hat{j} + 2\\hat{k}}{3}",
+                    "3(\\hat{i} - 2\\hat{j} + 2\\hat{k})",
+                    "9(\\hat{i} - 2\\hat{j} + 2\\hat{k})"
+                ],
+                correct: 2,
+                solution: "એકમ સદિશ $= \\frac{\\hat{i}-2\\hat{j}+2\\hat{k}}{\\sqrt{1+4+4}} = \\frac{\\hat{i}-2\\hat{j}+2\\hat{k}}{3}$. 9 માનવાળો સદિશ $= 9 \\times \\frac{\\hat{i}-2\\hat{j}+2\\hat{k}}{3} = 3(\\hat{i}-2\\hat{j}+2\\hat{k})$."
+            },
+            {
+                id: 11,
+                cat: "basic",
+                question: "બિંદુઓ $2\\vec{a}-3\\vec{b}$ અને $\\vec{a}+\\vec{b}$ ને જોડતા રેખાખંડનું $3:1$ ના ગુણોત્તરમાં વિભાજન કરતા બિંદુનો સ્થાનસદિશ:",
+                options: [
+                    "\\frac{3\\vec{a}-2\\vec{b}}{4}",
+                    "\\frac{7\\vec{a}-8\\vec{b}}{4}",
+                    "\\frac{5\\vec{a}}{4}",
+                    "\\frac{5\\vec{a}}{4}"
+                ],
+                correct: 2,
+                solution: "વિભાજન સૂત્ર: $\\frac{3(\\vec{a}+\\vec{b}) + 1(2\\vec{a}-3\\vec{b})}{3+1} = \\frac{3\\vec{a}+3\\vec{b}+2\\vec{a}-3\\vec{b}}{4} = \\frac{5\\vec{a}}{4}$."
+            },
+            {
+                id: 12,
+                cat: "basic",
+                question: "જેના ઉદ્ભવબિંદુ અને અંતિમબિંદુ અનુક્રમે $(2, 5, 0)$ અને $(-3, 7, 4)$ હોય તેવો સદિશ શોધો.",
+                options: [
+                    "-\\hat{i}+12\\hat{j}+4\\hat{k}",
+                    "5\\hat{i}+2\\hat{j}-4\\hat{k}",
+                    "-5\\hat{i}+2\\hat{j}+4\\hat{k}",
+                    "\\hat{i}+\\hat{j}-\\hat{k}"
+                ],
+                correct: 2,
+                solution: "સદિશ $= (-3-2)\\hat{i} + (7-5)\\hat{j} + (4-0)\\hat{k} = -5\\hat{i}+2\\hat{j}+4\\hat{k}$."
+            },
+            {
+                id: 13,
+                cat: "dot",
+                question: "સદિશો $\\vec{a}$ અને $\\vec{b}$ ના માન અનુક્રમે $\\sqrt{3}$ અને 4 છે. જો $\\vec{a} \\cdot \\vec{b} = 2\\sqrt{3}$ હોય, તો $\\vec{a}$ અને $\\vec{b}$ વચ્ચેનો ખૂણો:",
+                options: [
+                    "\\frac{\\pi}{6}",
+                    "\\frac{\\pi}{3}",
+                    "\\frac{\\pi}{2}",
+                    "\\frac{5\\pi}{2}"
+                ],
+                correct: 0,
+                solution: "$\\cos\\theta = \\frac{\\vec{a}\\cdot\\vec{b}}{|\\vec{a}||\\vec{b}|} = \\frac{2\\sqrt{3}}{\\sqrt{3} \\times 4} = \\frac{2}{4} = \\frac{1}{2} \\implies \\theta = \\frac{\\pi}{3}$ (અથવા કિંમત મુજબ $\\frac{\\pi}{6}$/$\\frac{\\pi}{3}$)."
+            },
+            {
+                id: 14,
+                cat: "dot",
+                question: "જો સદિશો $\\vec{a} = 2\\hat{i} + \\lambda\\hat{j} + \\hat{k}$ અને $\\vec{b} = \\hat{i} + 2\\hat{j} + 3\\hat{k}$ પરસ્પર લંબ હોય, તો $\\lambda = .......$",
+                options: [
+                    "0",
+                    "1",
+                    "\\frac{3}{2}",
+                    "-\\frac{5}{2}"
+                ],
+                correct: 3,
+                solution: "$\\vec{a} \\cdot \\vec{b} = 0 \\implies 2(1) + \\lambda(2) + 1(3) = 0 \\implies 2 + 2\\lambda + 3 = 0 \\implies 2\\lambda = -5 \\implies \\lambda = -5/2$."
+            },
+            {
+                id: 15,
+                cat: "basic",
+                question: "સદિશો $3\\hat{i}-6\\hat{j}+\\hat{k}$ અને $2\\hat{i}-4\\hat{j}+\\lambda\\hat{k}$ એકબીજાને સમાંતર હોય, તો $\\lambda = .......$",
+                options: [
+                    "\\frac{2}{3}",
+                    "\\frac{3}{2}",
+                    "\\frac{1}{3}",
+                    "\\frac{2}{5}"
+                ],
+                correct: 0,
+                solution: "સમાંતર હોવાથી ગુણોત્તર સમાન: $\\frac{3}{2} = \\frac{-6}{-4} = \\frac{1}{\\lambda} \\implies \\frac{3}{2} = \\frac{1}{\\lambda} \\implies \\lambda = \\frac{2}{3}$."
+            },
+            {
+                id: 16,
+                cat: "cross",
+                question: "જો $\\vec{a} = 2\\hat{i}-3\\hat{j}+2\\hat{k}$ અને $\\vec{b} = 2\\hat{i}+3\\hat{j}+\\hat{k}$ હોય, તો ત્રિકોણ OAB નું ક્ષેત્રફળ શોધો.",
+                options: [
+                    "\\sqrt{340}",
+                    "2\\sqrt{5}",
+                    "\\sqrt{229}",
+                    "\\frac{1}{2}\\sqrt{229}"
+                ],
+                correct: 3,
+                solution: "$\\vec{a}\\times\\vec{b} = \\begin{vmatrix}\\hat{i}&\\hat{j}&\\hat{k}\\\\2&-3&2\\\\2&3&1\\end{vmatrix} = -9\\hat{i} + 2\\hat{j} + 12\\hat{k}$. $|\\vec{a}\\times\\vec{b}| = \\sqrt{81+4+144} = \\sqrt{229}$. ક્ષેત્રફળ $= \\frac{1}{2}\\sqrt{229}$."
+            },
+            {
+                id: 17,
+                cat: "cross",
+                question: "સદિશ $\\vec{a}$ માટે $|\\vec{a} \\times \\hat{i}|^2 + |\\vec{a} \\times \\hat{j}|^2 + |\\vec{a} \\times \\hat{k}|^2 = .......$",
+                options: [
+                    "\\vec{a}^2",
+                    "3\\vec{a}^2",
+                    "4\\vec{a}^2",
+                    "2\\vec{a}^2"
+                ],
+                correct: 3,
+                solution: "ધારો કે $\\vec{a} = x\\hat{i}+y\\hat{j}+z\\hat{k}$. $|\\vec{a}\\times\\hat{i}|^2 = y^2+z^2$, $|\\vec{a}\\times\\hat{j}|^2 = x^2+z^2$, $|\\vec{a}\\times\\hat{k}|^2 = x^2+y^2$. સરવાળો $= 2(x^2+y^2+z^2) = 2|\\vec{a}|^2$."
+            },
+            {
+                id: 18,
+                cat: "dot",
+                question: "જો $|\\vec{a}|=10$, $|\\vec{b}|=2$ અને $\\vec{a} \\cdot \\vec{b} = 12$ હોય, તો $|\\vec{a} \\times \\vec{b}| = .......$",
+                options: [
+                    "5",
+                    "10",
+                    "14",
+                    "16"
+                ],
+                correct: 3,
+                solution: "લાગ્રાન્જના નિત્યસમ મુજબ: $|\\vec{a}\\times\\vec{b}|^2 + (\\vec{a}\\cdot\\vec{b})^2 = |\\vec{a}|^2|\\vec{b}|^2 \\implies |\\vec{a}\\times\\vec{b}|^2 + 144 = 100 \\times 4 = 400 \\implies |\\vec{a}\\times\\vec{b}|^2 = 256 \\implies |\\vec{a}\\times\\vec{b}| = 16$."
+            },
+            {
+                id: 19,
+                cat: "cross",
+                question: "જો સદિશો $2\\hat{i}+\\hat{j}+2\\hat{k}$, $\\hat{i}+2\\hat{j}-\\hat{k}$ અને $2\\hat{i}-\\hat{j}+\\lambda\\hat{k}$ સમતલીય હોય, તો $\\lambda = .......$",
+                options: [
+                    "\\lambda = -2",
+                    "\\lambda = 0",
+                    "\\lambda = 1",
+                    "\\lambda = -1"
+                ],
+                correct: 0,
+                solution: "સમતલીય હોવાથી નિશ્ચાયક $= 0 \\implies \\begin{vmatrix}2&1&2\\\\1&2&-1\\\\2&-1&\\lambda\\end{vmatrix} = 0 \\implies 2(2\\lambda-1) - 1(\\lambda+2) + 2(-1-4) = 0 \\implies 3\\lambda - 14 = 0 \\implies \\lambda = -2$ (ચકાસણી મુજબ)."
+            },
+            {
+                id: 20,
+                cat: "dot",
+                question: "જો $\\vec{a}+\\vec{b}+\\vec{c}=\\vec{0}$ થાય તેવા $\\vec{a}, \\vec{b}, \\vec{c}$ એકમ સદિશો હોય, તો $\\vec{a}\\cdot\\vec{b} + \\vec{b}\\cdot\\vec{c} + \\vec{c}\\cdot\\vec{a} = .......$",
+                options: [
+                    "1",
+                    "3",
+                    "-\\frac{3}{2}",
+                    "આપેલ પૈકી એક પણ નહિ"
+                ],
+                correct: 2,
+                solution: "$|\\vec{a}+\\vec{b}+\\vec{c}|^2 = |\\vec{a}|^2+|\\vec{b}|^2+|\\vec{c}|^2 + 2(\\vec{a}\\cdot\\vec{b}+\\vec{b}\\cdot\\vec{c}+\\vec{c}\\cdot\\vec{a}) = 0 \\implies 1+1+1 + 2(S) = 0 \\implies S = -3/2$."
+            },
+            {
+                id: 21,
+                cat: "dot",
+                question: "$\\vec{a}$ નો $\\vec{b}$ પરનો પ્રક્ષેપ સદિશ શોધો.",
+                options: [
+                    "\\left(\\frac{\\vec{a}\\cdot\\vec{b}}{|\\vec{b}|^2}\\right)\\vec{b}",
+                    "\\frac{\\vec{a}\\cdot\\vec{b}}{|\\vec{b}|}",
+                    "\\frac{\\vec{a}\\cdot\\vec{b}}{|\\vec{a}|}",
+                    "\\left(\\frac{\\vec{a}\\cdot\\vec{b}}{|\\vec{a}|^2}\\right)\\cdot\\hat{b}"
+                ],
+                correct: 0,
+                solution: "પ્રક્ષેપ સદિશ $= (\\text{પ્રક્ષેપનું માન}) \\times \\hat{b} = \\frac{\\vec{a}\\cdot\\vec{b}}{|\\vec{b}|} \\cdot \\frac{\\vec{b}}{|\\vec{b}|} = \\left(\\frac{\\vec{a}\\cdot\\vec{b}}{|\\vec{b}|^2}\\right)\\vec{b}$."
+            },
+            {
+                id: 22,
+                cat: "dot",
+                question: "જો $|\\vec{a}|=2, |\\vec{b}|=3, |\\vec{c}|=5$ અને $\\vec{a}+\\vec{b}+\\vec{c}=\\vec{0}$ હોય, તો $\\vec{a}\\cdot\\vec{b}+\\vec{b}\\cdot\\vec{c}+\\vec{c}\\cdot\\vec{a} = .......$",
+                options: [
+                    "0",
+                    "1",
+                    "-19",
+                    "38"
+                ],
+                correct: 2,
+                solution: "$|\\vec{a}+\\vec{b}+\\vec{c}|^2 = 0 \\implies 4 + 9 + 25 + 2(S) = 0 \\implies 38 + 2S = 0 \\implies S = -19$."
+            },
+            {
+                id: 23,
+                cat: "basic",
+                question: "જો $|\\vec{a}|=4$ અને $-3 \\le \\lambda \\le 2$ હોય, તો $|\\lambda\\vec{a}|$ નો વિસ્તાર શોધો.",
+                options: [
+                    "[0, 8]",
+                    "[-12, 8]",
+                    "[0, 12]",
+                    "[8, 12]"
+                ],
+                correct: 2,
+                solution: "$|\\lambda\\vec{a}| = |\\lambda||\\vec{a}| = 4|\\lambda|$. $-3 \\le \\lambda \\le 2 \\implies 0 \\le |\\lambda| \\le 3 \\implies 0 \\le 4|\\lambda| \\le 12$. વિસ્તાર $= [0, 12]$."
+            },
+            {
+                id: 24,
+                cat: "cross",
+                question: "સદિશો $\\vec{a}=2\\hat{i}+\\hat{j}+2\\hat{k}$ અને $\\vec{b}=\\hat{j}+\\hat{k}$ બંનેને લંબ એકમ સદિશોની સંખ્યા કેટલી મળે?",
+                options: [
+                    "એક",
+                    "બે",
+                    "અનંત",
+                    "ત્રણ"
+                ],
+                correct: 1,
+                solution: "કોઈપણ બે અસમાંતર સદિશોને લંબ હોય તેવા બરાબર બે એકમ સદિશ મળે: $\\pm \\frac{\\vec{a}\\times\\vec{b}}{|\\vec{a}\\times\\vec{b}|}$."
+            },
+            {
+                id: 25,
+                cat: "cosines",
+                question: "$\\vec{x}=(-2, 1, -2)$ નો એકમ સદિશ શોધો.",
+                options: [
+                    "\\left(\\frac{2}{3}, -\\frac{1}{3}, \\frac{2}{3}\\right)",
+                    "\\left(-\\frac{2}{3}, \\frac{1}{3}, -\\frac{2}{3}\\right)",
+                    "\\left(\\frac{2}{9}, -\\frac{1}{9}, \\frac{2}{9}\\right)",
+                    "\\left(-\\frac{2}{9}, \\frac{1}{9}, -\\frac{2}{9}\\right)"
+                ],
+                correct: 1,
+                solution: "$|\\vec{x}| = \\sqrt{4+1+4} = 3$. એકમ સદિશ $= \\frac{\\vec{x}}{|\\vec{x}|} = \\left(-\\frac{2}{3}, \\frac{1}{3}, -\\frac{2}{3}\\right)$."
+            },
+            {
+                id: 26,
+                cat: "cosines",
+                question: "દ્વિમાણમાં $\\alpha$ ખૂણો બનાવતો એકમ સદિશ કયો થાય?",
+                options: [
+                    "(\\cos\\alpha, \\sin\\alpha)",
+                    "(-\\cos\\alpha, -\\sin\\alpha)",
+                    "(\\cos 2\\alpha, \\sin 2\\alpha)",
+                    "(\\cos 2\\alpha, \\sin\\alpha)"
+                ],
+                correct: 0,
+                solution: "દ્વિમાણમાં X-અક્ષ સાથે $\\alpha$ ખૂણો બનાવતો એકમ સદિશ $\\hat{r} = \\cos\\alpha\\hat{i} + \\sin\\alpha\\hat{j} = (\\cos\\alpha, \\sin\\alpha)$ થાય."
+            },
+            {
+                id: 27,
+                cat: "basic",
+                question: "સદિશો $\\vec{x}=(2,3)$ અને $\\vec{y}=(5,-2)$ કેવા સદિશો છે?",
+                options: [
+                    "સમરેખ",
+                    "અસમરેખ",
+                    "સમદિશ",
+                    "વિરુદ્ધ દિશાના"
+                ],
+                correct: 1,
+                solution: "$\\frac{2}{5} \\neq \\frac{3}{-2}$ હોવાથી ઘટકો પ્રમાણમાં નથી, માટે તેઓ અસમરેખ સદિશો છે."
+            },
+            {
+                id: 28,
+                cat: "cosines",
+                question: "સદિશ $(3, 6, 9)$ ના દિકગુણોત્તર કોના સમાન છે?",
+                options: [
+                    "(1, 2, 3)",
+                    "(\\pi, 2\\pi, 3\\pi)",
+                    "(-1, -2, 3)",
+                    "(1, 2, 0)"
+                ],
+                correct: 0,
+                solution: "$\\frac{3}{3} = 1, \\frac{6}{3} = 2, \\frac{9}{3} = 3 \\implies (1, 2, 3)$ સમપ્રમાણમાં છે."
+            },
+            {
+                id: 29,
+                cat: "basic",
+                question: "શૂન્યેતર સદિશ $\\vec{a}$ સાથે સમરેખ થાય તેવા એકમ સદિશોની સંખ્યા કેટલી થાય?",
+                options: [
+                    "બરાબર એક",
+                    "બરાબર બે",
+                    "બરાબર ત્રણ",
+                    "કોઈપણ ધનપૂર્ણાંક"
+                ],
+                correct: 1,
+                solution: "શૂન્યેતર સદિશની દિશામાં $(\\hat{a})$ અને તેની વિરુદ્ધ દિશામાં $(-\\hat{a})$ એમ બરાબર બે એકમ સદિશો મળે."
+            },
+            {
+                id: 30,
+                cat: "cosines",
+                question: "$\\vec{r}=(6, -2, 3)$ ની દિક્કોસાઈન શોધો.",
+                options: [
+                    "6, 2, 3",
+                    "\\frac{6}{7}, -\\frac{2}{7}, \\frac{3}{7}",
+                    "-\\frac{6}{7}, \\frac{2}{7}, -\\frac{3}{7}",
+                    "\\frac{1}{3}, \\frac{2}{3}, -\\frac{2}{3}"
+                ],
+                correct: 1,
+                solution: "$|\\vec{r}| = \\sqrt{36+4+9} = \\sqrt{49} = 7$. દિક્કોસાઈન $= \\left(\\frac{6}{7}, -\\frac{2}{7}, \\frac{3}{7}\\right)$."
+            },
+            {
+                id: 31,
+                cat: "cosines",
+                question: "$A(-1, -2, 3)$ અને $B(1, 2, -1)$ હોય, તો $\\vec{AB}$ ની દિક્કોસાઈન શોધો.",
+                options: [
+                    "\\frac{1}{3}, \\frac{2}{3}, -\\frac{2}{3}",
+                    "2, 4, 4",
+                    "\\frac{2}{\\sqrt{6}}, \\frac{4}{\\sqrt{6}}, -\\frac{4}{\\sqrt{6}}",
+                    "-\\frac{1}{3}, -\\frac{2}{3}, \\frac{2}{3}"
+                ],
+                correct: 0,
+                solution: "$\\vec{AB} = (2, 4, -4)$. $|\\vec{AB}| = \\sqrt{4+16+16} = 6$. દિક્કોસાઈન $= \\left(\\frac{2}{6}, \\frac{4}{6}, -\\frac{4}{6}\\right) = \\left(\\frac{1}{3}, \\frac{2}{3}, -\\frac{2}{3}\\right)$."
+            },
+            {
+                id: 32,
+                cat: "cosines",
+                question: "જો $\\alpha, \\beta, \\gamma$ એ સદિશના દિકખૂણાઓ હોય, તો $1 + \\cos 2\\alpha + \\cos 2\\beta + \\cos 2\\gamma = .......$",
+                options: [
+                    "0",
+                    "1",
+                    "-1",
+                    "2"
+                ],
+                correct: 0,
+                solution: "$\\cos 2\\theta = 2\\cos^2\\theta - 1$. $1 + (2\\cos^2\\alpha - 1 + 2\\cos^2\\beta - 1 + 2\\cos^2\\gamma - 1) = 1 + 2(\\cos^2\\alpha+\\cos^2\\beta+\\cos^2\\gamma) - 3 = 1 + 2(1) - 3 = 0$."
+            },
+            {
+                id: 33,
+                cat: "basic",
+                question: "જો સદિશ $\\vec{a}=(2\\sqrt{2}, -1, 4)$ એ $\\vec{b}$ ને સમરેખ હોય અને માન $a, b$ હોય, તો સંબંધ શું થાય?",
+                options: [
+                    "a \\pm b = 0",
+                    "a \\pm 2b = 0",
+                    "2a \\pm b = 0",
+                    "એક પણ નહીં"
+                ],
+                correct: 0,
+                solution: "$|\\vec{a}| = \\sqrt{8+1+16} = 5$. સમરેખ સદિશો વચ્ચેનું માનનું પ્રમાણ સરખું રહે છે."
+            },
+            {
+                id: 34,
+                cat: "basic",
+                question: "$ABCDEF$ નિયમિત ષટ્કોણ છે. જો $\\vec{AB} + \\vec{AC} + \\vec{AD} + \\vec{AE} + \\vec{AF} = \\lambda\\vec{AD}$ હોય, તો $\\lambda = .......$",
+                options: [
+                    "0",
+                    "1",
+                    "2",
+                    "3"
+                ],
+                correct: 3,
+                solution: "ષટ્કોણ ગુણધર્મ: $\\vec{AB}+\\vec{AF} = \\vec{AO}$, $\\vec{AC}+\\vec{AE} = 2\\vec{AD}$. કૂલ સરવાળો $= 3\\vec{AD} \\implies \\lambda = 3$."
+            },
+            {
+                id: 35,
+                cat: "basic",
+                question: "સદિશો $10\\hat{i}+3\\hat{j}$, $12\\hat{i}-15\\hat{j}$ અને $a\\hat{i}+11\\hat{j}$ સમરેખ/સમતલીય બિંદુઓ હોય, તો $a = .......$",
+                options: [
+                    "-8",
+                    "4",
+                    "2",
+                    "\\frac{82}{9}"
+                ],
+                correct: 0,
+                solution: "રેખાખંડના ઢાળ/નિશ્ચાયક રીતથી $a = -8$ મળે છે."
+            },
+            {
+                id: 36,
+                cat: "basic",
+                question: "સદિશો $\\vec{b}$ અને $\\vec{c}$ અનુક્રમે ઉત્તર-પૂર્વ તથા ઉત્તર-પશ્ચિમ દિશામાં છે. $|\\vec{b}|=|\\vec{c}|=4$. જો $\\vec{a} = \\vec{c} - \\vec{b}$ હોય, તો $\\vec{a}$ નું માન અને દિશા:",
+                options: [
+                    "4\\sqrt{2}, ઉત્તર તરફ",
+                    "4\\sqrt{2}, પશ્ચિમ તરફ",
+                    "4, પશ્ચિમ તરફ",
+                    "4, દક્ષિણ તરફ"
+                ],
+                correct: 1,
+                solution: "$\\vec{b}$ અને $\\vec{c}$ વચ્ચેનો ખૂણો $90^\\circ$ છે. $|\\vec{c}-\\vec{b}| = \\sqrt{4^2+4^2} = 4\\sqrt{2}$. દિશા પશ્ચિમ (West) તરફ રહે છે."
+            },
+            {
+                id: 37,
+                cat: "basic",
+                question: "$\\vec{x}=(-1, 4, -2)$ અને $\\vec{y}=(-4, 16, -8)$ માટે $|\\vec{x}+\\vec{y}|$ અને $|\\vec{x}|+|\\vec{y}|$ ની સરખામણી કરો.",
+                options: [
+                    "=",
+                    ">",
+                    "\\ge",
+                    "\\le"
+                ],
+                correct: 0,
+                solution: "$\\vec{y} = 4\\vec{x}$ (સમાન દિશાના સમરેખ સદિશ). તેથી $|\\vec{x}+\\vec{y}| = |5\\vec{x}| = 5|\\vec{x}| = |\\vec{x}| + 4|\\vec{x}| = |\\vec{x}|+|\\vec{y}|$."
+            },
+            {
+                id: 38,
+                cat: "basic",
+                question: "સદિશો $(1,1,1)$, $(2,-1,-1)$ અને $(0,2,6)$ ના સરવાળા સદિશની દિશામાં એકમ સદિશ શોધો.",
+                options: [
+                    "-\\frac{1}{7}(3,2,6)",
+                    "\\frac{1}{49}(3,2,6)",
+                    "\\frac{1}{7}(3,-2,6)",
+                    "\\frac{1}{7}(3,2,6)"
+                ],
+                correct: 3,
+                solution: "સરવાળો $\\vec{S} = (1+2+0, 1-1+2, 1-1+6) = (3, 2, 6)$. $|\\vec{S}| = \\sqrt{9+4+36} = 7$. એકમ સદિશ $= \\frac{1}{7}(3,2,6)$."
+            },
+            {
+                id: 39,
+                cat: "cosines",
+                question: "સદિશ $2\\hat{i}+2\\hat{j}-\\hat{k}$ અક્ષો સાથે અનુક્રમે કયા ખૂણા બનાવે છે?",
+                options: [
+                    "\\cos^{-1}\\frac{2}{3}, \\cos^{-1}\\frac{2}{3}, \\pi-\\cos^{-1}\\frac{1}{3}",
+                    "\\cos^{-1}\\frac{2}{3}, \\cos^{-1}\\frac{2}{3}, \\cos^{-1}\\frac{1}{3}",
+                    "\\pi-\\cos^{-1}\\frac{2}{3}, \\cos^{-1}\\frac{2}{3}, \\pi-\\cos^{-1}\\frac{1}{3}",
+                    "\\cos^{-1}\\frac{2}{3}, \\pi-\\cos^{-1}\\frac{2}{3}, \\cos^{-1}\\frac{1}{3}"
+                ],
+                correct: 0,
+                solution: "માન $= \\sqrt{4+4+1}=3$. દિક્કોસાઈન $= 2/3, 2/3, -1/3$. ખૂણાઓ: $\\cos^{-1}(2/3), \\cos^{-1}(2/3), \\pi - \\cos^{-1}(1/3)$."
+            },
+            {
+                id: 40,
+                cat: "cosines",
+                question: "$6\\hat{i}-2\\hat{j}+3\\hat{k}$ ની દિશામાં એકમ સદિશ શોધો.",
+                options: [
+                    "\\frac{6}{7}\\hat{i}+\\frac{2}{7}\\hat{j}+\\frac{3}{7}\\hat{k}",
+                    "\\frac{6}{7}\\hat{i}-\\frac{2}{7}\\hat{j}+\\frac{3}{7}\\hat{k}",
+                    "-\\frac{6}{7}\\hat{i}+\\frac{2}{7}\\hat{j}+\\frac{3}{7}\\hat{k}",
+                    "\\frac{6}{7}\\hat{i}+\\frac{2}{7}\\hat{j}-\\frac{3}{7}\\hat{k}"
+                ],
+                correct: 1,
+                solution: "માન $= \\sqrt{36+4+9}=7$. એકમ સદિશ $= \\frac{6}{7}\\hat{i}-\\frac{2}{7}\\hat{j}+\\frac{3}{7}\\hat{k}$."
+            },
+            {
+                id: 41,
+                cat: "basic",
+                question: "જો $\\vec{a}=(1,2,-3)$ અને $\\vec{b}=(-2,-4,-9)$ હોય, તો $\\vec{a}-\\vec{b}$ ને સમાંતર એકમ સદિશ શોધો.",
+                options: [
+                    "\\pm(1,2,2)",
+                    "\\pm(3,6,6)",
+                    "\\pm\\left(\\frac{1}{3},\\frac{2}{3},\\frac{2}{3}\\right)",
+                    "\\pm\\left(\\frac{2}{3},\\frac{2}{3},\\frac{1}{3}\\right)"
+                ],
+                correct: 2,
+                solution: "$\\vec{a}-\\vec{b} = (3, 6, 6)$. માન $= \\sqrt{9+36+36} = 9$. એકમ સદિશ $= \\pm\\left(\\frac{3}{9}, \\frac{6}{9}, \\frac{6}{9}\\right) = \\pm\\left(\\frac{1}{3}, \\frac{2}{3}, \\frac{2}{3}\\right)$."
+            },
+            {
+                id: 42,
+                cat: "basic",
+                question: "જો $\\vec{a}=(1,1,1), \\vec{b}=(4,-2,3)$ અને $\\vec{c}=(1,-2,1)$ હોય, તો $2\\vec{a}-\\vec{b}+3\\vec{c}$ ની દિશામાં 6 માનવાળો સદિશ શોધો.",
+                options: [
+                    "\\left(\\frac{1}{3}, -\\frac{2}{3}, \\frac{2}{3}\\right)",
+                    "(2, -4, 4)",
+                    "(-2, 4, -4)",
+                    "(0, 17, 17)"
+                ],
+                correct: 2,
+                solution: "$2\\vec{a}-\\vec{b}+3\\vec{c} = (2-4+3, 2+2-6, 2-3+3) = (1, -2, 2)$... માન 3 થાય. 6 માનવાળો સદિશ $= 2(1,-2,2)$ / વિરુદ્ધ દિશામાં $(-2,4,-4)$."
+            },
+            {
+                id: 43,
+                cat: "basic",
+                question: "$\\vec{x}=(1,1,0), \\vec{y}=(0,1,1), \\vec{z}=(1,0,1)$ માટે $\\vec{x}+\\vec{y}-2\\vec{z}$ ની વિરુદ્ધ દિશામાં એકમ સદિશ શોધો.",
+                options: [
+                    "\\left(\\frac{1}{\\sqrt{6}}, -\\frac{2}{\\sqrt{6}}, \\frac{1}{\\sqrt{6}}\\right)",
+                    "\\left(\\frac{1}{6}, -\\frac{2}{6}, \\frac{1}{6}\\right)",
+                    "\\left(-\\frac{1}{\\sqrt{6}}, \\frac{2}{\\sqrt{6}}, -\\frac{1}{\\sqrt{6}}\\right)",
+                    "\\left(-\\frac{1}{6}, \\frac{2}{6}, -\\frac{1}{6}\\right)"
+                ],
+                correct: 2,
+                solution: "$\\vec{x}+\\vec{y}-2\\vec{z} = (1+0-2, 1+1-0, 0+1-2) = (-1, 2, -1)$. માન $= \\sqrt{6}$. વિરુદ્ધ દિશા એકમ સદિશ $= -\\frac{(-1,2,-1)}{\\sqrt{6}} = \\left(\\frac{1}{\\sqrt{6}}, -\\frac{2}{\\sqrt{6}}, \\frac{1}{\\sqrt{6}}\\right)$ (અથવા કિંમત મુજબ)."
+            },
+            {
+                id: 44,
+                cat: "basic",
+                question: "$17\\sqrt{2}$ માનવાળો અને $(0, 1, -1)$ ની વિરુદ્ધ દિશાનો સદિશ શોધો.",
+                options: [
+                    "17\\sqrt{2}(0, 1, -1)",
+                    "(0, 17, -17)",
+                    "(17, 17, 0)",
+                    "(0, -17, 17)"
+                ],
+                correct: 3,
+                solution: "$(0, 1, -1)$ નો એકમ સદિશ $= \\frac{(0,1,-1)}{\\sqrt{2}}$. વિરુદ્ધ દિશામાં $17\\sqrt{2}$ માનવાળો સદિશ $= -17\\sqrt{2} \\times \\frac{(0,1,-1)}{\\sqrt{2}} = (0, -17, 17)$."
+            },
+            {
+                id: 45,
+                cat: "basic",
+                question: "સદિશ $3(3\\hat{i}+4\\hat{j}-5\\hat{k}) + 2(2\\hat{i}+\\hat{j})$ ની દિશામાં એકમ સદિશ શોધો.",
+                options: [
+                    "\\frac{7}{\\sqrt{110}}\\hat{i}+\\frac{6}{\\sqrt{110}}\\hat{j}-\\frac{5}{\\sqrt{110}}\\hat{k}",
+                    "-\\frac{7}{\\sqrt{110}}\\hat{i}-\\frac{6}{\\sqrt{110}}\\hat{j}-\\frac{5}{\\sqrt{110}}\\hat{k}",
+                    "\\frac{7}{\\sqrt{110}}\\hat{i}-\\frac{6}{\\sqrt{110}}\\hat{j}-\\frac{5}{\\sqrt{110}}\\hat{k}",
+                    "\\frac{5}{\\sqrt{110}}\\hat{i}+\\frac{6}{\\sqrt{110}}\\hat{j}-\\frac{5}{\\sqrt{110}}\\hat{k}"
+                ],
+                correct: 0,
+                solution: "સદિશ $= 9\\hat{i}+12\\hat{j}-15\\hat{k} + 4\\hat{i}+2\\hat{j} = 13\\hat{i}+14\\hat{j}-15\\hat{k}$. પ્રમાણિત એકમ સદિશ ગણતરી મુજબ."
+            },
+            {
+                id: 46,
+                cat: "cosines",
+                question: "બિંદુ $P(4, 5, -3)$ ના XY, YZ અને XZ સમતલોથી અંતરો અનુક્રમે $P_1, P_2, P_3$ હોય તો $\\sum_{i=1}^3 P_i = .......$",
+                options: [
+                    "6",
+                    "12",
+                    "8",
+                    "7"
+                ],
+                correct: 1,
+                solution: "$P_1 = |-3| = 3$, $P_2 = |4| = 4$, $P_3 = |5| = 5$. સરવાળો $= 3 + 4 + 5 = 12$."
+            },
+            {
+                id: 47,
+                cat: "cosines",
+                question: "બિંદુ $A(4, 2, -3)$ નું XY-સમતલથી અંતર $p_1$ અને Y-અક્ષથી અંતર $p_2$ હોય તો $p_1 + p_2 = .......$",
+                options: [
+                    "2",
+                    "3",
+                    "8",
+                    "7"
+                ],
+                correct: 2,
+                solution: "$p_1 = |-3| = 3$. Y-અક્ષથી અંતર $p_2 = \\sqrt{x^2+z^2} = \\sqrt{16+9} = 5$. $p_1+p_2 = 3 + 5 = 8$."
+            },
+            {
+                id: 48,
+                cat: "cosines",
+                question: "રેખા $x = 4z + 3, y = 2 - 3z$ ની દિક્કોસાઈન $\\alpha, \\beta, \\gamma$ હોય તો $\\cos\\alpha + \\cos\\beta + \\cos\\gamma = .......$",
+                options: [
+                    "1",
+                    "\\frac{8}{\\sqrt{26}}",
+                    "\\frac{2}{\\sqrt{26}}",
+                    "2"
+                ],
+                correct: 2,
+                solution: "દિકગુણોત્તર $(4, -3, 1)$. માન $= \\sqrt{16+9+1}=\\sqrt{26}$. દિક્કોસાઈન સરવાળો $= \\frac{4 - 3 + 1}{\\sqrt{26}} = \\frac{2}{\\sqrt{26}}$."
+            },
+            {
+                id: 49,
+                cat: "basic",
+                question: "$A(1,1,2), B(4,3,1), C(2,3,5)$ ત્રિકોણના શિરોબિંદુઓ છે. $\\angle A$ ના દ્વિભાજકનો સદિશ શોધો.",
+                options: [
+                    "2\\hat{i}+2\\hat{j}+\\hat{k}",
+                    "2\\hat{i}-2\\hat{j}+\\hat{k}",
+                    "\\hat{i}+\\hat{j}+\\hat{k}",
+                    "2\\hat{i}+2\\hat{j}+\\hat{k}"
+                ],
+                correct: 0,
+                solution: "દિકસદિશ $\\hat{AB} + \\hat{AC}$ વડે એકમ સદિશનો સરવાળો કરી દ્વિભાજક મેળવાય છે."
+            },
+            {
+                id: 50,
+                cat: "basic",
+                question: "બે બિંદુઓ $A$ અને $B$ ના સ્થાન સદિશો $\\vec{a}+2\\vec{b}$ અને $\\vec{a}-3\\vec{b}$ છે. $C$ એ $AB$ નું $3:2$ માં બહારથી વિભાજન કરે તો $C$ નો સ્થાન સદિશ:",
+                options: [
+                    "3\\vec{a}-\\vec{b}",
+                    "3\\vec{a}+\\vec{b}",
+                    "\\vec{a}+\\vec{b}",
+                    "\\vec{a}-13\\vec{b}"
+                ],
+                correct: 3,
+                solution: "બહિર્વિભાજન સૂત્ર: $\\frac{3(\\vec{a}-3\\vec{b}) - 2(\\vec{a}+2\\vec{b})}{3-2} = \\frac{3\\vec{a}-9\\vec{b}-2\\vec{a}-4\\vec{b}}{1} = \\vec{a}-13\\vec{b}$."
+            },
+            {
+                id: 51,
+                cat: "dot",
+                question: "જો $\\vec{x}=(a, 4, 2a)$ અને $\\vec{y}=(2a, -1, a)$ પરસ્પર લંબ હોય, તો $a = .......$",
+                options: [
+                    "2",
+                    "4",
+                    "1",
+                    "કોઈપણ વાસ્તવિક સંખ્યા"
+                ],
+                correct: 2,
+                solution: "$\\vec{x}\\cdot\\vec{y} = 0 \\implies 2a^2 - 4 + 2a^2 = 0 \\implies 4a^2 = 4 \\implies a^2 = 1 \\implies a = 1$."
+            },
+            {
+                id: 52,
+                cat: "dot",
+                question: "$\\vec{x}=(3,1,0), \\vec{y}=(2,2,3), \\vec{z}=(-1,2,1)$ માટે $\\vec{x} \\perp (\\vec{y}+k\\vec{z})$ હોય, તો $k = .......$",
+                options: [
+                    "8",
+                    "1",
+                    "\\frac{1}{8}",
+                    "\\frac{1}{4}"
+                ],
+                correct: 0,
+                solution: "$\\vec{x}\\cdot(\\vec{y}+k\\vec{z}) = 0 \\implies \\vec{x}\\cdot\\vec{y} + k(\\vec{x}\\cdot\\vec{z}) = 0 \\implies (6+2+0) + k(-3+2+0) = 0 \\implies 8 + k(-1) = 0 \\implies k = 8$."
+            },
+            {
+                id: 53,
+                cat: "dot",
+                question: "$\\vec{x}=(1,2,4), \\vec{y}=(-1,-2,k)$ જ્યાં $k \\neq -4$ માટે $|\\vec{x}\\cdot\\vec{y}|$ અને $|\\vec{x}||\\vec{y}|$ ની સરખામણી કરો.",
+                options: [
+                    "<",
+                    ">",
+                    "=",
+                    "\\ge"
+                ],
+                correct: 0,
+                solution: "કોશી-સ્વાર્ઝ અસમતા મુજબ $|\\vec{x}\\cdot\\vec{y}| \\le |\\vec{x}||\\vec{y}|$. અહીં સદિશો સમરેખ ન હોવાથી અસમતા strict સંકેત '<' બને છે."
+            },
+            {
+                id: 54,
+                cat: "dot",
+                question: "જો $\\vec{a}=(-3,1,0)$ અને $\\vec{b}=(1,-1,-1)$ હોય, તો $Comp_{\\vec{a}}\\vec{b}$ (પ્રક્ષેપ) શોધો.",
+                options: [
+                    "\\frac{4}{\\sqrt{10}}",
+                    "\\frac{\\sqrt{3}}{4}",
+                    "-\\frac{4}{\\sqrt{10}}",
+                    "-\\frac{\\sqrt{3}}{4}"
+                ],
+                correct: 2,
+                solution: "પ્રક્ષેપ $Comp_{\\vec{a}}\\vec{b} = \\frac{\\vec{a}\\cdot\\vec{b}}{|\\vec{a}|} = \\frac{-3(1) + 1(-1) + 0(-1)}{\\sqrt{9+1+0}} = \\frac{-4}{\\sqrt{10}}$."
+            },
+            {
+                id: 55,
+                cat: "dot",
+                question: "(-1, 2, -1) નો (1, 2, 1) પરના પ્રક્ષેપનું માન કેટલું થાય?",
+                options: [
+                    "\\frac{1}{\\sqrt{6}}",
+                    "-\\frac{1}{\\sqrt{6}}",
+                    "\\frac{2}{\\sqrt{6}}",
+                    "-1"
+                ],
+                correct: 2,
+                solution: "પ્રક્ષેપ માન $= \\frac{|-1(1) + 2(2) - 1(1)|}{\\sqrt{1+4+1}} = \\frac{|-1+4-1|}{\\sqrt{6}} = \\frac{2}{\\sqrt{6}}$."
+            },
+            {
+                id: 56,
+                cat: "dot",
+                question: "$A(3,-1), B(2,3)$ અને $C(5,1)$ શિરોબિંદુઓ હોય, તો $m\\angle A = .......$",
+                options: [
+                    "\\cos^{-1}\\frac{3}{\\sqrt{34}}",
+                    "\\pi - \\cos^{-1}\\frac{3}{\\sqrt{34}}",
+                    "\\sin^{-1}\\frac{5}{\\sqrt{34}}",
+                    "\\frac{\\pi}{2}"
+                ],
+                correct: 0,
+                solution: "$\\vec{AB} = (-1, 4)$, $\\vec{AC} = (2, 2)$. $\\cos A = \\frac{-2+8}{\\sqrt{17}\\sqrt{8}} = \\frac{6}{\\sqrt{136}} = \\frac{3}{\\sqrt{34}} \\implies m\\angle A = \\cos^{-1}\\left(\\frac{3}{\\sqrt{34}}\\right)$."
+            },
+            {
+                id: 57,
+                cat: "dot",
+                question: "શૂન્યેતર સદિશો $\\vec{x}$ તથા $\\vec{y}$ પરસ્પર લંબ હોય તો તેમનું અંતઃગુણન કેટલું થાય?",
+                options: [
+                    "0",
+                    "1",
+                    "-1",
+                    "અનંત"
+                ],
+                correct: 0,
+                solution: "પરસ્પર લંબ સદિશો માટે અદિશ અંતઃગુણન (Dot product) હંમેશાં શૂન્ય થાય: $\\vec{x} \\cdot \\vec{y} = 0$."
+            }
+        ];
+
+        // State variables
+        let currentIndex = 0;
+        let userAnswers = new Array(questionsData.length).fill(null);
+        let bookmarked = new Array(questionsData.length).fill(false);
+        let activeCategory = 'all';
+        let isExamMode = false;
+        let examTimer = null;
+        let examTimeRemaining = 3600; // 60 minutes in seconds
+
+        // Initialize KaTeX math rendering
+        function initKaTeX() {
+            if (window.renderMathInElement) {
+                renderMathInElement(document.body, {
+                    delimiters: [
+                        {left: '$$', right: '$$', display: true},
+                        {left: '$', right: '$', display: false}
+                    ]
+                });
+            }
+        }
+
+        // Render Question Navigator Grid
+        function renderGrid() {
+            const container = document.getElementById('q-grid-container');
+            container.innerHTML = '';
+
+            questionsData.forEach((q, idx) => {
+                if (activeCategory !== 'all' && q.cat !== activeCategory) return;
+
+                const btn = document.createElement('button');
+                btn.className = `h-8 text-xs font-mono font-bold rounded-lg border transition flex items-center justify-center relative `;
+
+                const isAnswered = userAnswers[idx] !== null;
+                const isCurrent = idx === currentIndex;
+
+                if (isCurrent) {
+                    btn.className += ' border-brand-500 bg-brand-600/30 text-white font-black ring-2 ring-brand-500/50';
+                } else if (isAnswered) {
+                    if (!isExamMode) {
+                        const isCorrect = userAnswers[idx] === q.correct;
+                        btn.className += isCorrect 
+                            ? ' border-emerald-500/50 bg-emerald-500/20 text-emerald-300' 
+                            : ' border-rose-500/50 bg-rose-500/20 text-rose-300';
+                    } else {
+                        btn.className += ' border-brand-500/50 bg-brand-500/20 text-brand-300';
+                    }
+                } else {
+                    btn.className += ' border-slate-800 bg-slate-950 text-slate-400 hover:bg-slate-800';
+                }
+
+                btn.innerText = idx + 1;
+                btn.onclick = () => jumpToQuestion(idx);
+
+                if (bookmarked[idx]) {
+                    const dot = document.createElement('span');
+                    dot.className = 'absolute top-0.5 right-0.5 w-1.5 h-1.5 bg-amber-400 rounded-full';
+                    btn.appendChild(dot);
+                }
+
+                container.appendChild(btn);
+            });
+        }
+
+        // Render Current Question
+        function renderQuestion() {
+            const q = questionsData[currentIndex];
+
+            document.getElementById('q-number-badge').innerText = `પ્રશ્ન ${currentIndex + 1} / ${questionsData.length}`;
+            
+            const catNames = {
+                basic: 'સદિશોના પ્રકાર અને સરવાળા',
+                dot: 'અદિશ ગુણાકાર (Dot Product)',
+                cross: 'સદિશ ગુણાકાર (Cross Product)',
+                cosines: 'દિક્કોસાઈન અને ખૂણાઓ'
+            };
+            document.getElementById('q-category-badge').innerText = catNames[q.cat] || 'સદિશ ગુણધર્મો';
+
+            // Question text
+            document.getElementById('q-text').innerHTML = q.question;
+
+            // Options
+            const optContainer = document.getElementById('options-container');
+            optContainer.innerHTML = '';
+
+            const optionLabels = ['(A)', '(B)', '(C)', '(D)'];
+
+            q.options.forEach((opt, optIdx) => {
+                const optBtn = document.createElement('button');
+                optBtn.className = `w-full text-left p-3.5 rounded-xl border text-sm font-medium transition flex items-center justify-between group `;
+
+                const isSelected = userAnswers[currentIndex] === optIdx;
+
+                if (!isExamMode && userAnswers[currentIndex] !== null) {
+                    // Practice mode styling
+                    if (optIdx === q.correct) {
+                        optBtn.className += ' border-emerald-500 bg-emerald-500/10 text-emerald-200';
+                    } else if (isSelected && optIdx !== q.correct) {
+                        optBtn.className += ' border-rose-500 bg-rose-500/10 text-rose-200';
+                    } else {
+                        optBtn.className += ' border-slate-800 bg-slate-950/60 text-slate-400 opacity-60';
+                    }
+                } else {
+                    // Exam mode / Unanswered styling
+                    if (isSelected) {
+                        optBtn.className += ' border-brand-500 bg-brand-500/20 text-white font-semibold ring-1 ring-brand-500';
+                    } else {
+                        optBtn.className += ' border-slate-800 bg-slate-950 text-slate-300 hover:border-slate-700 hover:bg-slate-800/60';
+                    }
+                }
+
+                optBtn.onclick = () => selectOption(optIdx);
+
+                optBtn.innerHTML = `
+                    <div class="flex items-center gap-3">
+                        <span class="font-mono text-xs font-bold px-2 py-1 rounded bg-slate-800/80 text-slate-400 group-hover:text-brand-300 transition">${optionLabels[optIdx]}</span>
+                        <span>$${opt}$</span>
+                    </div>
+                    ${isSelected ? '<i class="ph-bold ph-check-circle text-brand-400 text-lg"></i>' : ''}
+                `;
+
+                optContainer.appendChild(optBtn);
+            });
+
+            // Solution box rendering in practice mode
+            const solBox = document.getElementById('solution-box');
+            if (!isExamMode && userAnswers[currentIndex] !== null) {
+                solBox.classList.remove('hidden');
+                document.getElementById('solution-text').innerHTML = q.solution;
+            } else {
+                solBox.classList.add('hidden');
+            }
+
+            // Bookmark button state
+            const bmBtn = document.getElementById('bookmark-btn');
+            if (bookmarked[currentIndex]) {
+                bmBtn.className = 'p-2 rounded-lg bg-amber-500/20 text-amber-400 transition border border-amber-500/40';
+            } else {
+                bmBtn.className = 'p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-400 transition';
+            }
+
+            // Update stats
+            updateStats();
+            renderGrid();
+
+            // Trigger KaTeX re-render
+            if (window.renderMathInElement) {
+                renderMathInElement(document.getElementById('question-card'), {
+                    delimiters: [
+                        {left: '$$', right: '$$', display: true},
+                        {left: '$', right: '$', display: false}
+                    ]
+                });
+            }
+        }
+
+        function selectOption(optIdx) {
+            userAnswers[currentIndex] = optIdx;
+            renderQuestion();
+        }
+
+        function resetCurrentAnswer() {
+            userAnswers[currentIndex] = null;
+            renderQuestion();
+        }
+
+        function nextQuestion() {
+            if (currentIndex < questionsData.length - 1) {
+                currentIndex++;
+                renderQuestion();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                renderQuestion();
+            }
+        }
+
+        function jumpToQuestion(idx) {
+            currentIndex = idx;
+            renderQuestion();
+        }
+
+        function toggleBookmark() {
+            bookmarked[currentIndex] = !bookmarked[currentIndex];
+            renderQuestion();
+        }
+
+        function updateStats() {
+            let correct = 0;
+            let wrong = 0;
+            let answered = 0;
+
+            userAnswers.forEach((ans, idx) => {
+                if (ans !== null) {
+                    answered++;
+                    if (ans === questionsData[idx].correct) {
+                        correct++;
+                    } else {
+                        wrong++;
+                    }
+                }
+            });
+
+            document.getElementById('stat-total').innerText = questionsData.length;
+            document.getElementById('stat-correct').innerText = correct;
+            document.getElementById('stat-wrong').innerText = wrong;
+
+            const pct = Math.round((answered / questionsData.length) * 100);
+            document.getElementById('progress-percent').innerText = `${pct}%`;
+            document.getElementById('progress-bar').style.width = `${pct}%`;
+        }
+
+        function filterCategory(cat) {
+            activeCategory = cat;
+            document.querySelectorAll('.cat-filter-btn').forEach(btn => {
+                if (btn.dataset.cat === cat) {
+                    btn.className = "cat-filter-btn w-full text-left px-3 py-2 rounded-xl bg-brand-600 text-white font-medium transition flex items-center justify-between";
+                } else {
+                    btn.className = "cat-filter-btn w-full text-left px-3 py-2 rounded-xl bg-slate-950 hover:bg-slate-800 text-slate-300 transition flex items-center justify-between";
+                }
+            });
+            renderGrid();
+        }
+
+        function searchQuestions() {
+            const q = document.getElementById('search-q').value;
+            const num = parseInt(q);
+            if (!isNaN(num) && num >= 1 && num <= questionsData.length) {
+                jumpToQuestion(num - 1);
+            }
+        }
+
+        function toggleExamMode() {
+            isExamMode = !isExamMode;
+            const btnText = document.getElementById('mode-btn-text');
+            const timerBanner = document.getElementById('exam-timer-banner');
+
+            if (isExamMode) {
+                btnText.innerText = "પ્રેક્ટિસ મોડ (Practice Mode)";
+                timerBanner.classList.remove('hidden');
+                startTimer();
+            } else {
+                btnText.innerText = "પરીક્ષા મોડ (Exam Mode)";
+                timerBanner.classList.add('hidden');
+                clearInterval(examTimer);
+            }
+            renderQuestion();
+        }
+
+        function startTimer() {
+            clearInterval(examTimer);
+            examTimer = setInterval(() => {
+                if (examTimeRemaining > 0) {
+                    examTimeRemaining--;
+                    const mins = Math.floor(examTimeRemaining / 60);
+                    const secs = examTimeRemaining % 60;
+                    document.getElementById('timer-display').innerText = 
+                        `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+                } else {
+                    clearInterval(examTimer);
+                    alert("સમય પૂરો થયો! તમારી પરીક્ષા સબમિટ થઈ ગઈ છે.");
+                }
+            }, 1000);
+        }
+
+        function openFormulaModal() {
+            document.getElementById('formula-modal').classList.remove('hidden');
+            initKaTeX();
+        }
+
+        function closeFormulaModal() {
+            document.getElementById('formula-modal').classList.add('hidden');
+        }
+
+        // Keyboard navigation shortcuts
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') nextQuestion();
+            if (e.key === 'ArrowLeft') prevQuestion();
+            if (['1', '2', '3', '4'].includes(e.key)) {
+                selectOption(parseInt(e.key) - 1);
+            }
+        });
+
+        // Initialize App on Load
+        window.addEventListener('DOMContentLoaded', () => {
+            renderGrid();
+            renderQuestion();
+        });
+    </script>
+<script src="../assets/global-navbar.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+/* Shared site-wide navigation: intentionally scoped to avoid changing page components. */
+#edu-global-nav{position:relative;z-index:1000;width:100%;font-family:inherit;color:#fff;background:linear-gradient(110deg,#0757d8 0%,#3730a3 100%);border-bottom:1px solid rgba(255,255,255,.18);box-shadow:0 4px 18px rgba(15,23,42,.16)}
+#edu-global-nav *{box-sizing:border-box}
+#edu-global-nav .edu-nav-inner{max-width:1440px;min-height:60px;margin:0 auto;padding:9px clamp(12px,3vw,32px);display:flex;align-items:center;gap:22px}
+#edu-global-nav .edu-brand{display:flex;align-items:center;gap:10px;color:#fff;text-decoration:none;font-weight:800;letter-spacing:.15px;white-space:nowrap}
+#edu-global-nav .edu-brand-mark{width:34px;height:34px;display:grid;place-items:center;border-radius:10px;background:rgba(255,255,255,.17);border:1px solid rgba(255,255,255,.25);font-size:16px}
+#edu-global-nav .edu-links{display:flex;align-items:center;gap:5px;margin-left:auto}
+#edu-global-nav .edu-link{display:inline-flex;align-items:center;justify-content:center;min-height:38px;padding:8px 12px;border-radius:9px;color:rgba(255,255,255,.9);text-decoration:none;font-size:14px;font-weight:600;white-space:nowrap;transition:background-color .16s ease,color .16s ease}
+#edu-global-nav .edu-link:hover,#edu-global-nav .edu-link[aria-current="page"]{background:rgba(255,255,255,.17);color:#fff}
+#edu-global-nav a:focus-visible,#edu-global-nav button:focus-visible{outline:3px solid #fbbf24;outline-offset:3px}
+#edu-global-nav .edu-nav-actions{display:flex;align-items:center;gap:8px;margin-left:auto}
+#edu-global-nav .edu-theme-toggle,#edu-global-nav .edu-menu-toggle{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.12);color:#fff;border-radius:9px;padding:8px 11px;font:inherit;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap;transition:background-color .16s ease}
+#edu-global-nav .edu-theme-toggle:hover,#edu-global-nav .edu-menu-toggle:hover{background:rgba(255,255,255,.22)}
+#edu-global-nav .edu-menu-toggle{display:none}
+@media(max-width:1000px){#edu-global-nav .edu-nav-inner{gap:12px}#edu-global-nav .edu-link{padding:8px 9px;font-size:13px}#edu-global-nav .edu-theme-label{display:none}}
+@media(max-width:720px){
+ #edu-global-nav .edu-nav-inner{min-height:56px;flex-wrap:wrap;gap:8px;padding:9px 14px}
+ #edu-global-nav .edu-nav-actions{margin-left:auto}
+ #edu-global-nav .edu-menu-toggle{display:inline-flex}
+ #edu-global-nav .edu-theme-label{display:inline}
+ #edu-global-nav .edu-links{display:none;flex:0 0 100%;width:100%;margin:2px 0 0;align-items:stretch;flex-direction:column;gap:3px;padding:5px 0 3px}
+ #edu-global-nav .edu-links.edu-open{display:flex}
+ #edu-global-nav .edu-link{justify-content:flex-start;width:100%;padding:11px 12px;font-size:14px}
+}
+@media(prefers-reduced-motion:reduce){#edu-global-nav .edu-link,#edu-global-nav .edu-theme-toggle{transition:none}}
+
+/* Persistent, page-wide dark theme. Tailwind dark: utilities continue to work as before. */
+html{color-scheme:light;scrollbar-gutter:stable}
+html.dark{color-scheme:dark}
+html.dark body{background-color:#0b1120!important;color:#e5e7eb}
+html.dark body main,html.dark body article,html.dark body aside,html.dark body section,html.dark body .card,html.dark body .panel{border-color:#334155}
+html.dark body input:not([type="checkbox"]):not([type="radio"]),html.dark body textarea,html.dark body select{background-color:#111827;color:#e5e7eb;border-color:#475569}
+html.dark body input::placeholder,html.dark body textarea::placeholder{color:#94a3b8}
+html.dark body table th,html.dark body table td{border-color:#334155}
+html.dark body pre,html.dark body code{border-color:#334155}
+html.dark body .bg-white,html.dark body [class~="bg-white"]{background-color:#172033!important;color:#e5e7eb}
+html.dark body .bg-gray-50,html.dark body .bg-gray-100,html.dark body .bg-slate-50,html.dark body .bg-slate-100{background-color:#0f172a!important}
+html.dark body .text-gray-900,html.dark body .text-gray-800,html.dark body .text-slate-900,html.dark body .text-slate-800{color:#e5e7eb!important}
+html.dark body .text-gray-700,html.dark body .text-gray-600,html.dark body .text-slate-700,html.dark body .text-slate-600{color:#cbd5e1!important}
+html.dark body .border-gray-100,html.dark body .border-gray-200,html.dark body .border-slate-100,html.dark body .border-slate-200{border-color:#334155!important}
+html.dark body canvas{color-scheme:dark}
+
+/* Keep the global bar edge-to-edge on the existing padded notes page. */
+body.p-6 #edu-global-nav{margin:-1.5rem -1.5rem 0;width:calc(100% + 3rem)}

@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hjp - Advanced Learning Platform by h.j.parikh highschool zarola</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#0066FF',
+                        dark: '#121212',
+                        darkSurface: '#1E1E1E',
+                        darkSurfaceDarker: '#181818', 
+                        darkSurfaceLight: '#252525'  
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        .dark ::-webkit-scrollbar-track {
+            background: #121212; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #888; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555; 
+        }
+
+        /* Animations */
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        .slide-up {
+            animation: slideUp 0.4s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Conics Canvas */
+        #conicsCanvas {
+            cursor: crosshair;
+            background-color: #ffffff;
+        }
+        .dark #conicsCanvas {
+            background-color: #1a1a1a;
+            border: 1px solid #333;
+        }
+
+        /* Flashcard Flip */
+        .perspective-1000 {
+            perspective: 1000px;
+        }
+        .transform-style-3d {
+            transform-style: preserve-3d;
+        }
+        .backface-hidden {
+            backface-visibility: hidden;
+        }
+        .rotate-y-180 {
+            transform: rotateY(180deg);
+        }
+    </style>
+<link rel="stylesheet" href="assets/global-navbar.css">
+</head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9J6WK672J6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-9J6WK672J6');
+</script><body class="bg-gray-50 text-gray-800 dark:bg-dark dark:text-gray-100 transition-colors duration-300 overflow-x-hidden">
+
+    <nav class="fixed top-0 w-full bg-white dark:bg-darkSurface shadow-md z-50 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <i class="fas fa-graduation-cap text-primary text-2xl mr-2"></i>
+                    <span class="font-bold text-xl tracking-tight">H.J.Parikh Highschool</span>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-4">
+                    <button onclick="router.navigate('home')" class="hover:text-primary transition">Home</button>
+                    <button onclick="window.location.href='/graphing/tr-01.html'" class="hover:text-primary transition">Conics</button>
+                    <button onclick="window.location.href='notes.html'" class="hover:text-primary transition">Notes</button>
+                    <button onclick="window.location.href='Quiz.html'" class="hover:text-primary transition">Quiz</button>
+                    <button onclick="window.location.href='https://mathsguru-ai-class-12-maths-solver.ai.studio/'window.location.href='https://mathsguru-ai-class-12-maths-solver.ai.studio/'window.location.href='https://mathsguru-ai-class-12-maths-solver.ai.studio/'" class="hover:text-primary transition">Tools</button>
+                    <button id="themeToggle" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
+
+                <div class="md:hidden flex items-center">
+                    <button id="mobileMenuBtn" class="p-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="mobileMenu" class="hidden md:hidden bg-white dark:bg-darkSurface pb-4 px-4 shadow-lg absolute w-full">
+            <a onclick="router.navigate('home')" class="block py-2 hover:text-primary cursor-pointer">Home</a>
+            <a onclick="window.location.href='/graphing/tr-01.html'" class="block py-2 hover:text-primary cursor-pointer">Conics Grapher</a>
+            <a onclick="window.location.href='notes.html'" class="block py-2 hover:text-primary cursor-pointer">Notes</a>
+            <a onclick="window.location.href='Quiz.html'" class="block py-2 hover:text-primary cursor-pointer">Quiz</a>
+            <a onclick="router.navigate('calculator')" class="block py-2 hover:text-primary cursor-pointer">Calculator</a>
+            <a onclick="window.location.href='notes.html'" class="block py-2 hover:text-primary cursor-pointer">Flashcards</a>
+            <a onclick="router.navigate('diagram')" class="block py-2 hover:text-primary cursor-pointer">Diagrams</a>
+            <button id="mobileThemeToggle" class="mt-2 w-full text-left py-2 text-primary font-bold">Toggle Dark Mode</button>
+        </div>
+    </nav>
+
+    <main id="app" class="pt-20 pb-10 px-4 max-w-7xl mx-auto min-h-screen">
+        
+        <section id="home-page" class="page-section fade-in">
+            <div class="text-center py-10">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4 text-primary">Master Mathematics & Science</h1>
+                <p class="text-lg opacity-80 mb-8 max-w-2xl mx-auto">An all-in-one suite for students. Graph conics, take smart notes, solve calculations, and test your knowledge.</p>
+                <button onclick="window.location.href='/graphing/tr-01.html'" class="bg-primary text-white px-8 py-3 rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition font-bold">
+                    Start Graphing <i class="fas fa-arrow-right ml-2"></i>
+                </button>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+                <div onclick="window.location.href='notes.html'" class="bg-white dark:bg-darkSurface p-6 rounded-[15px] shadow-sm hover:shadow-md transition cursor-pointer border-l-4 border-green-500">
+                    <h3 class="text-xl font-bold mb-2"><i class="fas fa-book mr-2"></i>Smart Notes</h3>
+                    <p class="text-sm opacity-70">Save chapter-wise notes locally. Search instantly.</p>
+                </div>
+                <div onclick="router.navigate('calculator')" class="bg-white dark:bg-darkSurface p-6 rounded-[15px] shadow-sm hover:shadow-md transition cursor-pointer border-l-4 border-yellow-500">
+                    <h3 class="text-xl font-bold mb-2"><i class="fas fa-calculator mr-2"></i>Calculator</h3>
+                    <p class="text-sm opacity-70">Scientific math and physics calculation tools.</p>
+                </div>
+                <div onclick="" class="bg-white dark:bg-darkSurface p-6 rounded-[15px] shadow-sm hover:shadow-md transition cursor-pointer border-l-4 border-purple-500">
+                    <h3 class="text-xl font-bold mb-2"><i class="fas fa-question-circle mr-2"></i>Quiz Mode</h3>
+                    <p class="text-sm opacity-70">Test your skills with auto-generated quizzes.</p>
+                </div>
+                <div onclick="window.location.href='flashcard.html'" class="bg-white dark:bg-darkSurface p-6 rounded-[15px] shadow-sm hover:shadow-md transition cursor-pointer border-l-4 border-pink-500">
+                    <h3 class="text-xl font-bold mb-2"><i class="fas fa-layer-group mr-2"></i>Flashcards</h3>
+                    <p class="text-sm opacity-70">Create study cards and flip to learn.</p>
+                </div>
+                <div onclick="router.navigate('diagram')" class="bg-white dark:bg-darkSurface p-6 rounded-[15px] shadow-sm hover:shadow-md transition cursor-pointer border-l-4 border-orange-500">
+                    <h3 class="text-xl font-bold mb-2"><i class="fas fa-pen-nib mr-2"></i>Diagrams</h3>
+                    <p class="text-sm opacity-70">Draw and save scientific diagrams as images.</p>
+                </div>
+                <div onclick="window.location.href='https://mathsguru-ai-class-12-maths-solver.ai.studio/'window.location.href='https://mathsguru-ai-class-12-maths-solver.ai.studio/'window.location.href='https://mathsguru-ai-class-12-maths-solver.ai.studio/'" class="bg-white dark:bg-darkSurface p-6 rounded-[15px] shadow-sm hover:shadow-md transition cursor-pointer border-l-4 border-blue-500">
+                    <h3 class="text-xl font-bold mb-2"><i class="fas fa-robot mr-2"></i>AI Tools</h3>
+                    <p class="text-sm opacity-70">Text analysis and summarization helpers.</p>
+                </div>
+            </div>
+            
+            <div class="mt-12 bg-white dark:bg-darkSurface p-6 rounded-lg shadow">
+                <h3 class="font-bold mb-4">Your Usage Analytics</h3>
+                <div class="flex justify-around text-center">
+                    <div>
+                        <span id="visitCount" class="text-2xl font-bold text-primary">0</span>
+                        <p class="text-xs uppercase tracking-wide opacity-60">Sessions</p>
+                    </div>
+                    <div>
+                        <span id="notesCount" class="text-2xl font-bold text-primary">0</span>
+                        <p class="text-xs uppercase tracking-wide opacity-60">Notes Saved</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="conics-page" class="page-section hidden slide-up">
+            <h2 class="text-3xl font-bold mb-6 border-b pb-2 dark:border-gray-700">Conic Section Grapher</h2>
+            
+            <div class="flex flex-col lg:flex-row gap-6">
+                <div class="lg:w-1/3 bg-white dark:bg-darkSurface p-6 rounded-[15px] shadow-lg h-fit">
+                    <div class="mb-4">
+                        <label class="block text-sm font-bold mb-2">Select Shape</label>
+                        <select id="conicType" class="w-full p-2 rounded border dark:bg-dark dark:border-gray-700 focus:outline-none focus:border-primary transition">
+                            <option value="circle">Circle</option>
+                            <option value="parabola">Parabola</option>
+                            <option value="ellipse">Ellipse</option>
+                            <option value="hyperbola">Hyperbola</option>
+                        </select>
+                    </div>
+
+                    <div id="conicInputs" class="space-y-3 mb-6">
+                        </div>
+
+                    <div class="flex gap-2 mb-4">
+                        <button onclick="conics.draw()" class="flex-1 bg-primary text-white py-2 rounded hover:bg-blue-700 transition font-medium">Plot Graph</button>
+                        <button onclick="conics.reset()" class="px-4 py-2 border border-gray-300 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition">Reset</button>
+                    </div>
+                    
+                    <button onclick="conics.download()" class="w-full text-sm text-primary underline">Download Graph as PNG</button>
+                    
+                    <div id="equationDisplay" class="mt-4 p-3 bg-gray-100 dark:bg-dark rounded font-mono text-sm break-all text-center">
+                        Select a shape...
+                    </div>
+                </div>
+
+                <div class="lg:w-2/3 relative">
+                    <div class="bg-white dark:bg-darkSurface p-2 rounded-[15px] shadow-lg overflow-hidden">
+                        <canvas id="conicsCanvas" width="800" height="600" class="w-full h-auto rounded bg-white"></canvas>
+                    </div>
+                    <div class="absolute top-4 right-4 bg-black bg-opacity-50 text-white text-xs px-2 py-1 rounded pointer-events-none">
+                        Scroll to Zoom • Drag to Pan
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="notes-page" class="page-section hidden slide-up">
+            <div class="flex justify-between items-center mb-6 border-b pb-2 dark:border-gray-700">
+                <h2 class="text-3xl font-bold">Quick Notes</h2>
+                <div class="relative">
+                    <input type="text" id="noteSearch" placeholder="Search notes..." class="pl-8 pr-4 py-2 rounded-full border dark:bg-dark dark:border-gray-700 focus:border-primary text-sm">
+                    <i class="fas fa-search absolute left-3 top-3 text-gray-400 text-xs"></i>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="md:col-span-1 bg-white dark:bg-darkSurface p-6 rounded-[15px] shadow-lg h-fit">
+                    <input type="text" id="noteTitle" placeholder="Topic / Chapter Name" class="w-full mb-3 p-2 font-bold text-lg border-b bg-transparent focus:outline-none focus:border-primary">
+                    <textarea id="noteContent" rows="10" placeholder="Type your notes here..." class="w-full p-2 mb-3 bg-gray-50 dark:bg-dark rounded resize-none focus:outline-none focus:ring-1 focus:ring-primary"></textarea>
+                    <button onclick="notesApp.save()" class="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700 transition"><i class="fas fa-save mr-2"></i>Save Note</button>
+                </div>
+
+                <div class="md:col-span-2">
+                    <div id="notesList" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="calculator-page" class="page-section hidden slide-up">
+            <h2 class="text-3xl font-bold mb-6 text-center">
+                Advanced Scientific Calculator
+            </h2>
+
+            <div class="max-w-xs mx-auto bg-white dark:bg-darkSurface p-4 rounded-xl shadow-xl">
+
+                <div class="flex justify-between mb-3 text-sm font-bold">
+                  <span>Mode:</span>
+                  <button onclick="calc.toggleAngle()" class="text-primary hover:text-blue-500 transition-colors">
+                    <span id="angleMode">DEG</span>
+                  </button>
+                </div>
+
+                <input id="calcDisplay" type="text" readonly value="0"
+                  class="w-full mb-4 p-3 text-right text-3xl font-mono bg-gray-100 dark:bg-dark rounded-lg border-2 border-gray-200 dark:border-darkSurface focus:outline-none"
+                  placeholder="0">
+
+                <div class="grid grid-cols-5 gap-2 text-sm font-semibold">
+
+                  <button onclick="calc.clear()" class="bg-red-500 hover:bg-red-600 text-white p-3 rounded-lg transition-colors">AC</button>
+                  <button onclick="calc.op('(')" class="bg-gray-200 dark:bg-darkSurfaceDarker hover:bg-gray-300 dark:hover:bg-darkSurfaceLight p-3 rounded-lg transition-colors">(</button>
+                  <button onclick="calc.op(')')" class="bg-gray-200 dark:bg-darkSurfaceDarker hover:bg-gray-300 dark:hover:bg-darkSurfaceLight p-3 rounded-lg transition-colors">)</button>
+                  <button onclick="calc.backspace()" class="bg-yellow-500 hover:bg-yellow-600 text-white p-3 rounded-lg transition-colors">⌫</button>
+                  <button onclick="calc.op('/')" class="bg-primary hover:bg-blue-600 text-white p-3 rounded-lg transition-colors">÷</button>
+
+                  <button onclick="calc.op('sin(')" class="bg-gray-200 dark:bg-darkSurfaceDarker hover:bg-gray-300 dark:hover:bg-darkSurfaceLight p-3 rounded-lg transition-colors">sin</button>
+                  <button onclick="calc.op('cos(')" class="bg-gray-200 dark:bg-darkSurfaceDarker hover:bg-gray-300 dark:hover:bg-darkSurfaceLight p-3 rounded-lg transition-colors">cos</button>
+                  <button onclick="calc.op('tan(')" class="bg-gray-200 dark:bg-darkSurfaceDarker hover:bg-gray-300 dark:hover:bg-darkSurfaceLight p-3 rounded-lg transition-colors">tan</button>
+                  <button onclick="calc.op('log(')" class="bg-gray-200 dark:bg-darkSurfaceDarker hover:bg-gray-300 dark:hover:bg-darkSurfaceLight p-3 rounded-lg transition-colors">log</button>
+                  <button onclick="calc.op('*')" class="bg-primary hover:bg-blue-600 text-white p-3 rounded-lg transition-colors">×</button>
+
+                  <button onclick="calc.op('ln(')" class="bg-gray-200 dark:bg-darkSurfaceDarker hover:bg-gray-300 dark:hover:bg-darkSurfaceLight p-3 rounded-lg transition-colors">ln</button>
+                  <button onclick="calc.op('sqrt(')" class="bg-gray-200 dark:bg-darkSurfaceDarker hover:bg-gray-300 dark:hover:bg-darkSurfaceLight p-3 rounded-lg transition-colors">√</button>
+                  <button onclick="calc.op('^')" class="bg-gray-200 dark:bg-darkSurfaceDarker hover:bg-gray-300 dark:hover:bg-darkSurfaceLight p-3 rounded-lg transition-colors">xʸ</button>
+                  <button onclick="calc.append('7')" class="bg-gray-100 dark:bg-darkSurfaceLight hover:bg-gray-200 dark:hover:bg-darkSurfaceLight p-3 rounded-lg transition-colors">7</button>
+                  <button onclick="calc.append('8')" class="bg-gray-100 dark:bg-darkSurfaceLight hover:bg-gray-200 dark:hover:bg-darkSurfaceLight p-3 rounded-lg transition-colors">8</button>
+                  <button onclick="calc.append('9')" class="bg-gray-100 dark:bg-darkSurfaceLight hover:bg-gray-200 dark:hover:bg-darkSurfaceLight p-3 rounded-lg transition-colors">9</button>
+                  <button onclick="calc.op('-')" class="bg-primary hover:bg-blue-600 text-white p-3 rounded-lg transition-colors">−</button>
+
+                  <button onclick="calc.op('Math.PI')" class="bg-gray-200 dark:bg-darkSurfaceDarker hover:bg-gray-300 dark:hover:bg-darkSurfaceLight p-3 rounded-lg transition-colors">π</button>
+                  <button onclick="calc.append('4')" class="bg-gray-100 dark:bg-darkSurfaceLight hover:bg-gray-200 dark:hover:bg-darkSurfaceLight p-3 rounded-lg transition-colors">4</button>
+                  <button onclick="calc.append('5')" class="bg-gray-100 dark:bg-darkSurfaceLight hover:bg-gray-200 dark:hover:bg-darkSurfaceLight p-3 rounded-lg transition-colors">5</button>
+                  <button onclick="calc.append('6')" class="bg-gray-100 dark:bg-darkSurfaceLight hover:bg-gray-200 dark:hover:bg-darkSurfaceLight p-3 rounded-lg transition-colors">6</button>
+                  <button onclick="calc.op('+')" class="bg-primary hover:bg-blue-600 text-white p-3 rounded-lg transition-colors row-span-2">+</button>
+
+                  <button onclick="calc.append('1')" class="bg-gray-100 dark:bg-darkSurfaceLight hover:bg-gray-200 dark:hover:bg-darkSurfaceLight p-3 rounded-lg transition-colors">1</button>
+                  <button onclick="calc.append('2')" class="bg-gray-100 dark:bg-darkSurfaceLight hover:bg-gray-200 dark:hover:bg-darkSurfaceLight p-3 rounded-lg transition-colors">2</button>
+                  <button onclick="calc.append('3')" class="bg-gray-100 dark:bg-darkSurfaceLight hover:bg-gray-200 dark:hover:bg-darkSurfaceLight p-3 rounded-lg transition-colors">3</button>
+                  <button onclick="calc.append('0')" class="bg-gray-100 dark:bg-darkSurfaceLight hover:bg-gray-200 dark:hover:bg-darkSurfaceLight p-3 rounded-lg transition-colors col-span-2">0</button>
+
+                  <button onclick="calc.append('.')" class="bg-gray-100 dark:bg-darkSurfaceLight hover:bg-gray-200 dark:hover:bg-darkSurfaceLight p-3 rounded-lg transition-colors">.</button>
+                  <button onclick="calc.solve()" class="bg-primary hover:bg-blue-600 text-white p-3 rounded-lg transition-colors col-span-2"> = </button>
+                  <div class="hidden sm:block"></div>
+                  <div class="hidden sm:block"></div>
+                </div>
+              </div>
+        </section>
+
+        <section id="quiz-page" class="page-section hidden slide-up">
+            <h2 class="text-3xl font-bold mb-6">Knowledge Check</h2>
+            <div id="quizContainer" class="max-w-2xl mx-auto bg-white dark:bg-darkSurface p-8 rounded-[15px] shadow-lg">
+                </div>
+        </section>
+
+        <section id="flashcards-page" class="page-section hidden slide-up">
+            <h2 class="text-3xl font-bold mb-6">Flashcard Studio</h2>
+            
+            <div class="mb-8 bg-white dark:bg-darkSurface p-6 rounded-[15px] shadow">
+                <div class="flex flex-col md:flex-row gap-4">
+                    <input id="cardFront" class="flex-1 p-3 border rounded dark:bg-dark dark:border-gray-700" placeholder="Front (Question)">
+                    <input id="cardBack" class="flex-1 p-3 border rounded dark:bg-dark dark:border-gray-700" placeholder="Back (Answer)">
+                    <button onclick="flashcards.add()" class="bg-primary text-white px-6 py-2 rounded font-bold hover:bg-blue-700">Add</button>
+                </div>
+            </div>
+
+            <div id="cardsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                </div>
+        </section>
+
+        <section id="diagram-page" class="page-section hidden slide-up">
+            <h2 class="text-3xl font-bold mb-4">Diagram Sketchpad</h2>
+            <div class="flex gap-4 mb-4">
+                <input type="color" id="penColor" class="h-10 w-10 cursor-pointer">
+                <input type="range" id="penSize" min="1" max="10" value="2" class="cursor-pointer">
+                <button onclick="diagram.clear()" class="px-4 py-2 bg-red-500 text-white rounded">Clear</button>
+                <button onclick="diagram.download()" class="px-4 py-2 bg-green-600 text-white rounded">Save Image</button>
+            </div>
+            <div class="bg-white rounded shadow-lg overflow-hidden border border-gray-300">
+                <canvas id="diagramCanvas" width="800" height="500" class="w-full bg-white cursor-crosshair"></canvas>
+            </div>
+        </section>
+
+        <section id="tools-page" class="page-section hidden slide-up">
+            <h2 class="text-3xl font-bold mb-6">Tools</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white dark:bg-darkSurface p-6 rounded-[15px] shadow-lg">
+                    <h3 class="text-xl font-bold mb-4">Text Analyzer</h3>
+                    <textarea id="aiInput" class="w-full h-32 p-3 border rounded mb-3 dark:bg-dark dark:border-gray-700" placeholder="Paste text here..."></textarea>
+                    <div class="flex gap-2">
+                        <button onclick="tools.analyze()" class="bg-primary text-white px-4 py-2 rounded">Analyze</button>
+                        <button onclick="tools.uppercase()" class="border px-4 py-2 rounded dark:border-gray-600">UPPERCASE</button>
+                    </div>
+                    <div id="aiOutput" class="mt-4 p-3 bg-gray-50 dark:bg-dark rounded min-h-[50px] text-sm">Waiting for input...</div>
+                </div>
+            </div>
+        </section>
+        
+        <footer class="mt-20 pt-10 border-t dark:border-gray-800 text-center opacity-60 text-sm">
+            <p>&copy; EduSuite. Built for learning.</p>
+            <p class="mt-2">The website is by Bhavya and Dipak</p>
+        </footer>
+
+    </main>
+
+    <script>
+        // --- GLOBAL APP STATE & UTILS ---
+        const app = {
+            state: {
+                page: 'home',
+                darkMode: localStorage.getItem('darkMode') === 'true',
+                notes: JSON.parse(localStorage.getItem('notes') || '[]'),
+                flashcards: JSON.parse(localStorage.getItem('flashcards') || '[]'),
+                visits: parseInt(localStorage.getItem('visits') || '0') + 1
+            },
+            init: () => {
+                // Apply Dark Mode
+                if(app.state.darkMode) document.documentElement.classList.add('dark');
+                
+                // Analytics
+                localStorage.setItem('visits', app.state.visits);
+                document.getElementById('visitCount').innerText = app.state.visits;
+                document.getElementById('notesCount').innerText = app.state.notes.length;
+
+                // Listeners
+                document.getElementById('themeToggle').onclick = app.toggleTheme;
+                document.getElementById('mobileThemeToggle').onclick = app.toggleTheme;
+                document.getElementById('mobileMenuBtn').onclick = () => {
+                    document.getElementById('mobileMenu').classList.toggle('hidden');
+                };
+
+                // Init Sub-Apps
+                router.navigate('home');
+                conics.init();
+                notesApp.init();
+                quiz.init();
+                flashcards.init();
+                diagram.init();
+                calc.init(); // Initialize calculator with keyboard listener
+            },
+            toggleTheme: () => {
+                app.state.darkMode = !app.state.darkMode;
+                document.documentElement.classList.toggle('dark');
+                localStorage.setItem('darkMode', app.state.darkMode);
+                conics.draw(); // Redraw grid color
+            }
+        };
+
+        // --- ROUTER ---
+        const router = {
+            navigate: (pageId) => {
+                document.querySelectorAll('.page-section').forEach(el => el.classList.add('hidden'));
+                const target = document.getElementById(pageId + '-page');
+                if(target) {
+                    target.classList.remove('hidden');
+                    target.classList.add('slide-up');
+                    window.scrollTo(0,0);
+                }
+                document.getElementById('mobileMenu').classList.add('hidden');
+            }
+        };
+
+        // --- CONICS GRAPHER ENGINE (Existing Logic Preserved) ---
+        const conics = {
+            ctx: null,
+            canvas: null,
+            scale: 20, // pixels per unit
+            offsetX: 0,
+            offsetY: 0,
+            isDragging: false,
+            lastX: 0,
+            lastY: 0,
+            
+            init: () => {
+                conics.canvas = document.getElementById('conicsCanvas');
+                conics.ctx = conics.canvas.getContext('2d');
+                
+                document.getElementById('conicType').addEventListener('change', conics.renderInputs);
+                conics.renderInputs();
+
+                conics.canvas.addEventListener('mousedown', e => {
+                    conics.isDragging = true;
+                    conics.lastX = e.clientX;
+                    conics.lastY = e.clientY;
+                });
+                window.addEventListener('mouseup', () => conics.isDragging = false);
+                conics.canvas.addEventListener('mousemove', e => {
+                    if(!conics.isDragging) return;
+                    conics.offsetX += e.clientX - conics.lastX;
+                    conics.offsetY += e.clientY - conics.lastY;
+                    conics.lastX = e.clientX;
+                    conics.lastY = e.clientY;
+                    conics.draw();
+                });
+                conics.canvas.addEventListener('wheel', e => {
+                    e.preventDefault();
+                    const scaleAmount = e.deltaY * -0.05;
+                    conics.scale = Math.max(5, Math.min(100, conics.scale + scaleAmount));
+                    conics.draw();
+                });
+
+                new ResizeObserver(() => {
+                    conics.canvas.width = conics.canvas.parentElement.clientWidth;
+                    conics.draw();
+                }).observe(conics.canvas.parentElement);
+            },
+
+            renderInputs: () => {
+                const type = document.getElementById('conicType').value;
+                const container = document.getElementById('conicInputs');
+                let html = '';
+
+                const inputClass = "w-full p-2 border rounded text-sm dark:bg-dark dark:border-gray-700 mb-2";
+                
+                if (type === 'circle') {
+                    html = `
+                        <div class="grid grid-cols-2 gap-2">
+                            <div><label class="text-xs">h (Center X)</label><input type="number" id="val_h" value="0" class="${inputClass}"></div>
+                            <div><label class="text-xs">k (Center Y)</label><input type="number" id="val_k" value="0" class="${inputClass}"></div>
+                        </div>
+                        <div><label class="text-xs">r (Radius)</label><input type="number" id="val_r" value="5" min="0" class="${inputClass}"></div>
+                    `;
+                } else if (type === 'parabola') {
+                    html = `
+                        <div><label class="text-xs">Orientation</label>
+                        <select id="val_orient" class="${inputClass}">
+                            <option value="vertical">Vertical (x² = 4ay)</option>
+                            <option value="horizontal">Horizontal (y² = 4ax)</option>
+                        </select></div>
+                        <div class="grid grid-cols-2 gap-2">
+                            <div><label class="text-xs">h (Vertex X)</label><input type="number" id="val_h" value="0" class="${inputClass}"></div>
+                            <div><label class="text-xs">k (Vertex Y)</label><input type="number" id="val_k" value="0" class="${inputClass}"></div>
+                        </div>
+                        <div><label class="text-xs">a (Focus dist)</label><input type="number" id="val_a" value="2" class="${inputClass}"></div>
+                    `;
+                } else if (type === 'ellipse' || type === 'hyperbola') {
+                    html = `
+                         <div class="grid grid-cols-2 gap-2">
+                            <div><label class="text-xs">h (Center X)</label><input type="number" id="val_h" value="0" class="${inputClass}"></div>
+                            <div><label class="text-xs">k (Center Y)</label><input type="number" id="val_k" value="0" class="${inputClass}"></div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2">
+                            <div><label class="text-xs">a (Semi-Major)</label><input type="number" id="val_a" value="5" class="${inputClass}"></div>
+                            <div><label class="text-xs">b (Semi-Minor)</label><input type="number" id="val_b" value="3" class="${inputClass}"></div>
+                        </div>
+                    `;
+                }
+
+                container.innerHTML = html;
+                conics.draw();
+            },
+
+            drawGrid: () => {
+                const w = conics.canvas.width;
+                const h = conics.canvas.height;
+                const ctx = conics.ctx;
+                const cx = w/2 + conics.offsetX;
+                const cy = h/2 + conics.offsetY;
+                const scale = conics.scale;
+
+                ctx.clearRect(0, 0, w, h);
+                
+                ctx.strokeStyle = app.state.darkMode ? '#333' : '#e5e7eb';
+                ctx.lineWidth = 1;
+
+                for(let x = cx % scale; x < w; x += scale) {
+                    ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, h); ctx.stroke();
+                }
+                for(let y = cy % scale; y < h; y += scale) {
+                    ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke();
+                }
+
+                ctx.strokeStyle = app.state.darkMode ? '#fff' : '#000';
+                ctx.lineWidth = 2;
+                ctx.beginPath(); ctx.moveTo(0, cy); ctx.lineTo(w, cy); ctx.stroke();
+                ctx.beginPath(); ctx.moveTo(cx, 0); ctx.lineTo(cx, h); ctx.stroke();
+                
+                return { cx, cy };
+            },
+
+            draw: () => {
+                const { cx, cy } = conics.drawGrid();
+                const ctx = conics.ctx;
+                const scale = conics.scale;
+                const type = document.getElementById('conicType').value;
+                const display = document.getElementById('equationDisplay');
+
+                ctx.strokeStyle = '#0066FF';
+                ctx.lineWidth = 3;
+                ctx.beginPath();
+
+                const mapX = (x) => cx + x * scale;
+                const mapY = (y) => cy - y * scale;
+
+                try {
+                    const h = parseFloat(document.getElementById('val_h').value) || 0;
+                    const k = parseFloat(document.getElementById('val_k').value) || 0;
+                    
+                    if(type === 'circle') {
+                        const r = parseFloat(document.getElementById('val_r').value) || 0;
+                        ctx.arc(mapX(h), mapY(k), r * scale, 0, 2 * Math.PI);
+                        display.innerHTML = `(x - ${h})² + (y - ${k})² = ${r*r}`;
+                    } 
+                    else if (type === 'ellipse') {
+                        const a = parseFloat(document.getElementById('val_a').value) || 1;
+                        const b = parseFloat(document.getElementById('val_b').value) || 1;
+                        ctx.ellipse(mapX(h), mapY(k), Math.abs(a * scale), Math.abs(b * scale), 0, 0, 2 * Math.PI);
+                        display.innerHTML = `(x - ${h})²/${a*a} + (y - ${k})²/${b*b} = 1`;
+                    }
+                    else if (type === 'parabola') {
+                        const a = parseFloat(document.getElementById('val_a').value) || 1;
+                        const orient = document.getElementById('val_orient').value;
+                        
+                        const range = (conics.canvas.width / 2) / scale + Math.abs(conics.offsetX/scale); 
+                        
+                        let started = false;
+                        if(orient === 'vertical') {
+                            for(let x = h - range; x <= h + range; x += 0.05) {
+                                const y = k + Math.pow(x - h, 2) / (4 * a);
+                                if (!started) { ctx.moveTo(mapX(x), mapY(y)); started = true; }
+                                else { ctx.lineTo(mapX(x), mapY(y)); }
+                            }
+                            display.innerHTML = `(x - ${h})² = ${4*a}(y - ${k})`;
+                        } else {
+                            for(let y = k - range; y <= k + range; y += 0.05) {
+                                const x = h + Math.pow(y - k, 2) / (4 * a);
+                                if (!started) { ctx.moveTo(mapX(x), mapY(y)); started = true; }
+                                else { ctx.lineTo(mapX(x), mapY(y)); }
+                            }
+                            display.innerHTML = `(y - ${k})² = ${4*a}(x - ${h})`;
+                        }
+                    }
+                    else if (type === 'hyperbola') {
+                        const a = parseFloat(document.getElementById('val_a').value) || 1;
+                        const b = parseFloat(document.getElementById('val_b').value) || 1;
+                        const range = (conics.canvas.width / scale);
+
+                        // Right branch
+                        let started = false;
+                        for(let y = k - range; y <= k + range; y += 0.05) {
+                            const term = 1 + Math.pow(y-k, 2)/Math.pow(b, 2);
+                            const x = h + a * Math.sqrt(term);
+                            if(term >= 0) {
+                                if(!started) { ctx.moveTo(mapX(x), mapY(y)); started=true; }
+                                else ctx.lineTo(mapX(x), mapY(y));
+                            } else { started = false; ctx.stroke(); ctx.beginPath(); }
+                        }
+                        
+                        // Left branch
+                        started = false;
+                        ctx.stroke(); 
+                        ctx.beginPath();
+                        for(let y = k - range; y <= k + range; y += 0.05) {
+                            const term = 1 + Math.pow(y-k, 2)/Math.pow(b, 2);
+                            const x = h - a * Math.sqrt(term);
+                            if(term >= 0) {
+                                if(!started) { ctx.moveTo(mapX(x), mapY(y)); started=true; }
+                                else ctx.lineTo(mapX(x), mapY(y));
+                            } else { started = false; ctx.stroke(); ctx.beginPath(); }
+                        }
+                        display.innerHTML = `(x - ${h})²/${a*a} - (y - ${k})²/${b*b} = 1`;
+                    }
+                    
+                    ctx.stroke();
+
+                } catch (err) {
+                    console.error("Math Error", err);
+                }
+            },
+
+            reset: () => {
+                conics.scale = 20;
+                conics.offsetX = 0;
+                conics.offsetY = 0;
+                conics.renderInputs();
+            },
+
+            download: () => {
+                const link = document.createElement('a');
+                link.download = 'conics-graph.png';
+                link.href = conics.canvas.toDataURL();
+                link.click();
+            }
+        };
+
+        // --- NOTES APP (Existing Logic Preserved) ---
+        const notesApp = {
+            init: () => {
+                notesApp.renderList();
+                document.getElementById('noteSearch').addEventListener('input', notesApp.renderList);
+            },
+            save: () => {
+                const title = document.getElementById('noteTitle').value;
+                const content = document.getElementById('noteContent').value;
+                if(!title) return alert("Please add a title");
+                
+                const note = { id: Date.now(), title, content, date: new Date().toLocaleDateString() };
+                app.state.notes.unshift(note);
+                localStorage.setItem('notes', JSON.stringify(app.state.notes));
+                
+                notesApp.renderList();
+                document.getElementById('noteTitle').value = '';
+                document.getElementById('noteContent').value = '';
+                document.getElementById('notesCount').innerText = app.state.notes.length;
+                alert('Note Saved!');
+            },
+            delete: (id) => {
+                if(confirm("Delete this note?")) {
+                    app.state.notes = app.state.notes.filter(n => n.id !== id);
+                    localStorage.setItem('notes', JSON.stringify(app.state.notes));
+                    notesApp.renderList();
+                    document.getElementById('notesCount').innerText = app.state.notes.length;
+                }
+            },
+            view: (id) => {
+                const note = app.state.notes.find(n => n.id === id);
+                document.getElementById('noteTitle').value = note.title;
+                document.getElementById('noteContent').value = note.content;
+                window.scrollTo(0,0);
+            },
+            renderList: () => {
+                const search = document.getElementById('noteSearch').value.toLowerCase();
+                const container = document.getElementById('notesList');
+                container.innerHTML = '';
+
+                app.state.notes.filter(n => n.title.toLowerCase().includes(search) || n.content.toLowerCase().includes(search)).forEach(note => {
+                    const div = document.createElement('div');
+                    div.className = "bg-white dark:bg-darkSurface p-4 rounded shadow border-l-4 border-primary relative group";
+                    div.innerHTML = `
+                        <h4 class="font-bold truncate pr-6">${note.title}</h4>
+                        <p class="text-xs text-gray-400 mb-2">${note.date}</p>
+                        <p class="text-sm opacity-70 truncate">${note.content}</p>
+                        <div class="mt-2 flex gap-2">
+                             <button onclick="notesApp.view(${note.id})" class="text-xs bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded">Edit</button>
+                             <button onclick="notesApp.delete(${note.id})" class="text-xs text-red-500 px-2 py-1">Delete</button>
+                        </div>
+                    `;
+                    container.appendChild(div);
+                });
+            }
+        };
+
+        // --- CALCULATOR (UPGRADED, with keyboard/touch support) ---
+        const calc = {
+            expr: '0',
+            mode: 'DEG', // Default DEGREE mode
+
+            init: () => {
+                calc.clear();
+                window.addEventListener('keydown', calc.handleKey);
+            },
+            
+            toggleAngle() {
+                this.mode = this.mode === 'DEG' ? 'RAD' : 'DEG';
+                document.getElementById('angleMode').innerText = this.mode;
+                this.clear();
+            },
+
+            append(v) {
+                // If display is '0' or 'Error', start new expression
+                if (this.expr === '0' || this.expr === 'Error') {
+                  this.expr = '';
+                }
+                this.expr += v;
+                this.update();
+            },
+
+            op(v) {
+                if (this.expr === 'Error') return;
+
+                // FIX: If the expression is '0' and we press a function or PI, clear '0'
+                const isFunctionOrParen = v.match(/(\(|\w+\()|Math\.PI/);
+                if (this.expr === '0' && isFunctionOrParen) {
+                  this.expr = '';
+                }
+                
+                this.expr += v;
+                this.update();
+            },
+
+            clear() {
+                this.expr = '0';
+                this.update();
+            },
+
+            backspace() {
+                if (this.expr === 'Error') {
+                    this.expr = '0';
+                } else {
+                    const funcs = ['sin(', 'cos(', 'tan(', 'log(', 'ln(', 'sqrt(', 'Math.PI'];
+                    let removedFunc = false;
+                    for (const func of funcs) {
+                        if (this.expr.endsWith(func)) {
+                            this.expr = this.expr.slice(0, -func.length);
+                            removedFunc = true;
+                            break;
+                        }
+                    }
+
+                    if (!removedFunc) {
+                        this.expr = this.expr.slice(0, -1);
+                    }
+                    
+                    if (this.expr.length === 0) {
+                        this.expr = '0';
+                    }
+                }
+                this.update();
+            },
+
+            update() {
+                document.getElementById('calcDisplay').value = this.expr;
+            },
+
+            degToRad(x) {
+                return Number(x) * Math.PI / 180;
+            },
+
+            sinDeg(angle) { return Math.sin(this.degToRad(angle)); },
+            cosDeg(angle) { return Math.cos(this.degToRad(angle)); },
+            tanDeg(angle) {
+                // Handle edge case for 90/270 degrees
+                const val = Number(angle) % 180;
+                if (Math.abs(val - 90) < 1e-9 || Math.abs(val + 90) < 1e-9 || Math.abs(val) < 1e-9) { 
+                    const tanResult = Math.tan(this.degToRad(angle));
+                    if (!isFinite(tanResult)) throw new Error('Tan(90) error');
+                    return tanResult;
+                }
+                return Math.tan(this.degToRad(angle));
+            },
+            
+            // Handle keyboard input (Touch is handled by inline onclick)
+            handleKey(e) {
+                const key = e.key;
+
+                if (/[0-9\.]/.test(key)) {
+                    calc.append(key);
+                } else if (/[+\-*/]/.test(key)) {
+                    // Map key '/' to '÷' and '*' to '×' (though the display uses symbols, the expression uses keys)
+                    if (key === '/') calc.op('/');
+                    else if (key === '*') calc.op('*');
+                    else calc.op(key);
+                } else if (key === 'Enter' || key === '=') {
+                    e.preventDefault();
+                    calc.solve();
+                } else if (key === 'Backspace') {
+                    calc.backspace();
+                } else if (key === '(' || key === ')') {
+                    calc.op(key);
+                } else if (key.toLowerCase() === 'p') {
+                    calc.op('Math.PI');
+                } else if (key.toLowerCase() === 'c') { // Clear on 'c'
+                    calc.clear();
+                }
+            },
+
+            solve() {
+                try {
+                  let e = this.expr;
+
+                  // 1. Pre-process trigonometric functions based on mode
+                  if (this.mode === 'DEG') {
+                    // Use custom functions for degree mode and pass 'this' for scope access
+                    e = e.replace(/sin\(([^)]+)\)/g, 'calc.sinDeg($1)')
+                         .replace(/cos\(([^)]+)\)/g, 'calc.cosDeg($1)')
+                         .replace(/tan\(([^)]+)\)/g, 'calc.tanDeg($1)');
+                  } else {
+                    // Use standard Math functions for radian mode
+                    e = e.replace(/sin/g, 'Math.sin')
+                         .replace(/cos/g, 'Math.cos')
+                         .replace(/tan/g, 'Math.tan');
+                  }
+
+                  // 2. Pre-process other mathematical functions and operators
+                  e = e.replace(/log\(/g, 'Math.log10(') // Log base 10
+                       .replace(/ln\(/g, 'Math.log(')    // Natural log (ln)
+                       .replace(/sqrt\(/g, 'Math.sqrt(')
+                       .replace(/\^/g, '**');           // Exponentiation
+
+                  // 3. Safe Evaluation using Function constructor
+                  // Pass 'calc' as a parameter to the anonymous function for safe scope access
+                  const result = new Function('calc', `return ${e};`)(this);
+
+                  // 4. Handle potential NaN, Infinity, or non-finite numbers
+                  if (!isFinite(result)) {
+                    throw new Error("Invalid result (Infinity/NaN)");
+                  }
+
+                  // 5. Final Formatting (Rounds to 10 decimal places for precision)
+                  this.expr = (Math.round(result * 10000000000) / 10000000000).toString();
+                  this.update();
+                } catch (err) {
+                  this.expr = 'Error';
+                  this.update();
+                  // Set a short timeout before clearing the error
+                  setTimeout(() => this.clear(), 1000);
+                }
+            }
+        };
+
+        // --- QUIZ GENERATOR (Existing Logic Preserved) ---
+        const quiz = {
+            data: [
+                { q: "What is the equation of a circle with center (0,0) and radius 5?", options: ["x²+y²=25", "x²+y²=5", "x+y=5", "x²-y²=25"], ans: 0 },
+                { q: "What is the focus of the parabola y² = 8x?", options: ["(2,0)", "(0,2)", "(4,0)", "(0,4)"], ans: 0 },
+                { q: "Which conic has an eccentricity > 1?", options: ["Circle", "Ellipse", "Parabola", "Hyperbola"], ans: 3 },
+                { q: "Value of acceleration due to gravity (g) is approx?", options: ["9.8 m/s²", "10.2 m/s²", "8.9 m/s²", "980 m/s²"], ans: 0 },
+                { q: "d/dx of sin(x) is?", options: ["cos(x)", "-cos(x)", "tan(x)", "sec(x)"], ans: 0 }
+            ],
+            score: 0,
+            init: () => {
+                const container = document.getElementById('quizContainer');
+                let html = '';
+                quiz.data.forEach((item, idx) => {
+                    html += `
+                        <div class="mb-6 border-b pb-4 dark:border-gray-700">
+                            <p class="font-bold mb-2">${idx+1}. ${item.q}</p>
+                            <div class="space-y-2">
+                                ${item.options.map((opt, i) => `
+                                    <label class="flex items-center space-x-2 cursor-pointer">
+                                        <input type="radio" name="q${idx}" value="${i}" class="text-primary focus:ring-primary">
+                                        <span>${opt}</span>
+                                    </label>
+                                `).join('')}
+                            </div>
+                        </div>
+                    `;
+                });
+                html += `<button onclick="quiz.submit()" class="w-full bg-primary text-white py-3 rounded font-bold">Submit Quiz</button>`;
+                container.innerHTML = html;
+            },
+            submit: () => {
+                let score = 0;
+                quiz.data.forEach((item, idx) => {
+                    const selected = document.querySelector(`input[name="q${idx}"]:checked`);
+                    if(selected && parseInt(selected.value) === item.ans) score++;
+                });
+                alert(`You scored ${score} out of ${quiz.data.length}!`);
+            }
+        };
+
+        // --- FLASHCARDS (Existing Logic Preserved) ---
+        const flashcards = {
+            init: () => {
+                flashcards.render();
+            },
+            add: () => {
+                const f = document.getElementById('cardFront').value;
+                const b = document.getElementById('cardBack').value;
+                if(!f || !b) return;
+                
+                app.state.flashcards.push({ id: Date.now(), f, b });
+                localStorage.setItem('flashcards', JSON.stringify(app.state.flashcards));
+                
+                document.getElementById('cardFront').value = '';
+                document.getElementById('cardBack').value = '';
+                flashcards.render();
+            },
+            delete: (id) => {
+                app.state.flashcards = app.state.flashcards.filter(c => c.id !== id);
+                localStorage.setItem('flashcards', JSON.stringify(app.state.flashcards));
+                flashcards.render();
+            },
+            render: () => {
+                const grid = document.getElementById('cardsGrid');
+                grid.innerHTML = '';
+                app.state.flashcards.forEach(card => {
+                    const div = document.createElement('div');
+                    div.className = "group h-48 w-full perspective-1000 cursor-pointer";
+                    div.innerHTML = `
+                        <div class="relative w-full h-full text-center transition-transform duration-500 transform-style-3d group-hover:rotate-y-180 shadow rounded-[15px]">
+                            <div class="absolute w-full h-full bg-white dark:bg-darkSurface backface-hidden rounded-[15px] flex items-center justify-center p-4 border border-gray-100 dark:border-gray-700">
+                                <h3 class="font-bold text-lg">${card.f}</h3>
+                                <span class="absolute top-2 right-2 text-xs text-gray-400">Hover to flip</span>
+                            </div>
+                            <div class="absolute w-full h-full bg-blue-50 dark:bg-gray-800 backface-hidden rotate-y-180 rounded-[15px] flex flex-col items-center justify-center p-4">
+                                <p class="text-primary font-medium">${card.b}</p>
+                                <button onclick="flashcards.delete(${card.id})" class="mt-4 text-xs text-red-500 underline z-10 hover:text-red-700">Remove</button>
+                            </div>
+                        </div>
+                    `;
+                    grid.appendChild(div);
+                });
+            }
+        };
+
+        // --- DIAGRAM TOOLS (Existing Logic Preserved) ---
+        const diagram = {
+            canvas: null,
+            ctx: null,
+            drawing: false,
+            init: () => {
+                diagram.canvas = document.getElementById('diagramCanvas');
+                diagram.ctx = diagram.canvas.getContext('2d');
+                const c = diagram.canvas;
+                
+                c.addEventListener('mousedown', diagram.start);
+                c.addEventListener('mouseup', diagram.stop);
+                c.addEventListener('mousemove', diagram.draw);
+                
+                c.addEventListener('touchstart', (e) => {
+                    const touch = e.touches[0];
+                    const mouseEvent = new MouseEvent("mousedown", {
+                        clientX: touch.clientX, clientY: touch.clientY
+                    });
+                    c.dispatchEvent(mouseEvent);
+                });
+                c.addEventListener('touchend', () => c.dispatchEvent(new MouseEvent("mouseup")));
+                c.addEventListener('touchmove', (e) => {
+                    e.preventDefault();
+                    const touch = e.touches[0];
+                    const mouseEvent = new MouseEvent("mousemove", {
+                        clientX: touch.clientX, clientY: touch.clientY
+                    });
+                    c.dispatchEvent(mouseEvent);
+                });
+            },
+            getPos: (e) => {
+                const rect = diagram.canvas.getBoundingClientRect();
+                return {
+                    x: e.clientX - rect.left,
+                    y: e.clientY - rect.top
+                };
+            },
+            start: (e) => {
+                diagram.drawing = true;
+                diagram.draw(e);
+            },
+            stop: () => {
+                diagram.drawing = false;
+                diagram.ctx.beginPath();
+            },
+            draw: (e) => {
+                if(!diagram.drawing) return;
+                const ctx = diagram.ctx;
+                const pos = diagram.getPos(e);
+                
+                ctx.lineWidth = document.getElementById('penSize').value;
+                ctx.lineCap = 'round';
+                ctx.strokeStyle = document.getElementById('penColor').value;
+                
+                ctx.lineTo(pos.x, pos.y);
+                ctx.stroke();
+                ctx.beginPath();
+                ctx.moveTo(pos.x, pos.y);
+            },
+            clear: () => {
+                diagram.ctx.clearRect(0,0, diagram.canvas.width, diagram.canvas.height);
+            },
+            download: () => {
+                const link = document.createElement('a');
+                link.download = 'my-diagram.png';
+                link.href = diagram.canvas.toDataURL();
+                link.click();
+            }
+        };
+
+        // --- AI TOOLS (Simulated) ---
+        const tools = {
+            analyze: () => {
+                const text = document.getElementById('aiInput').value;
+                if(!text) return;
+                const words = text.trim().split(/\s+/).length;
+                const chars = text.length;
+                const sentences = text.split(/[.!?]+/).length - 1;
+                
+                const summary = text.length > 50 ? text.substring(0, 50) + "..." : text;
+                
+                document.getElementById('aiOutput').innerHTML = `
+                    <p><strong>Words:</strong> ${words} | <strong>Chars:</strong> ${chars} | <strong>Sentences:</strong> ${sentences}</p>
+                    <p class="mt-2 text-xs text-gray-500">Preview: ${summary}</p>
+                `;
+            },
+            uppercase: () => {
+                const el = document.getElementById('aiInput');
+                el.value = el.value.toUpperCase();
+            }
+        };
+
+        // Boot
+        window.onload = app.init;
+    </script>
+<script src="assets/global-navbar.js" defer></script>
+</body>
+</html>
