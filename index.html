@@ -4,6 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>hjp - Advanced Learning Platform by h.j.parikh highschool zarola</title>
+    <script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+  import { getFirestore, doc, setDoc, increment } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+  // Replace with your Firebase configuration object
+ // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyAtDRRnUE3FM06gPrs9mHWXJnU9fXv5B54",
+  authDomain: "edu-suite-a55a5.firebaseapp.com",
+  projectId: "edu-suite-a55a5",
+  storageBucket: "edu-suite-a55a5.firebasestorage.app",
+  messagingSenderId: "5059668896",
+  appId: "1:5059668896:web:76fc4c09c1d298ca8012c5",
+  measurementId: "G-8G4448P207"
+};
+        async function trackPageView(pageName) {
+  // Document reference in the 'analytics' collection
+  const pageRef = doc(db, "analytics", pageName);
+
+  try {
+    // Increment totalViews by 1 safely
+    await setDoc(pageRef, {
+      totalViews: increment(1),
+      lastVisited: new Date()
+    }, { merge: true });
+    
+    console.log(`Page view tracked for: ${pageName}`);
+  } catch (error) {
+    console.error("Error tracking analytics: ", error);
+  }
+}
+
+// Automatically track on page load
+const currentPage = window.location.pathname.replace(/\//g, "_") || "home";
+trackPageView(currentPage);
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+</script>
     
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
