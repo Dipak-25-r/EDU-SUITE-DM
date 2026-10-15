@@ -19,27 +19,7 @@ const firebaseConfig = {
   appId: "1:5059668896:web:76fc4c09c1d298ca8012c5",
   measurementId: "G-8G4448P207"
 };
-        async function trackPageView(pageName) {
-  // Document reference in the 'analytics' collection
-  const pageRef = doc(db, "analytics", pageName);
-
-  try {
-    // Increment totalViews by 1 safely
-    await setDoc(pageRef, {
-      totalViews: increment(1),
-      lastVisited: new Date()
-    }, { merge: true });
-    
-    console.log(`Page view tracked for: ${pageName}`);
-  } catch (error) {
-    console.error("Error tracking analytics: ", error);
-  }
-}
-
-// Automatically track on page load
-const currentPage = window.location.pathname.replace(/\//g, "_") || "home";
-trackPageView(currentPage);
-
+  
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
 </script>
