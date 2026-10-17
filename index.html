@@ -19,6 +19,10 @@ const firebaseConfig = {
   appId: "1:5059668896:web:76fc4c09c1d298ca8012c5",
   measurementId: "G-8G4448P207"
 };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
         async function trackPageView(pageName) {
   // Document reference in the 'analytics' collection
   const pageRef = doc(db, "analytics", pageName);
@@ -39,9 +43,6 @@ const firebaseConfig = {
 // Automatically track on page load
 const currentPage = window.location.pathname.replace(/\//g, "_") || "home";
 trackPageView(currentPage);
-
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
 </script>
     
     <script src="https://cdn.tailwindcss.com"></script>
