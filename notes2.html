@@ -1,78 +1,95 @@
 <!DOCTYPE html>
 <html lang="gu">
+
 <head>
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-5MXP3RTV');</script>
-<!-- End Google Tag Manager -->
+    <!-- Google Tag Manager -->
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-5MXP3RTV');</script>
+    <!-- End Google Tag Manager -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GSEB ધોરણ ૧૧ ગણિત પાઠ્યપુસ્તક</title>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8G4448P207"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-8G4448P207');
+    </script>
     <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-  import { getFirestore, doc, setDoc, increment } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, doc, setDoc, increment } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-  // Replace with your Firebase configuration object
- // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyAtDRRnUE3FM06gPrs9mHWXJnU9fXv5B54",
-  authDomain: "edu-suite-a55a5.firebaseapp.com",
-  projectId: "edu-suite-a55a5",
-  storageBucket: "edu-suite-a55a5.firebasestorage.app",
-  messagingSenderId: "5059668896",
-  appId: "1:5059668896:web:76fc4c09c1d298ca8012c5",
-  measurementId: "G-8G4448P207"
-};
+        // Replace with your Firebase configuration object
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+            apiKey: "AIzaSyAtDRRnUE3FM06gPrs9mHWXJnU9fXv5B54",
+            authDomain: "edu-suite-a55a5.firebaseapp.com",
+            projectId: "edu-suite-a55a5",
+            storageBucket: "edu-suite-a55a5.firebasestorage.app",
+            messagingSenderId: "5059668896",
+            appId: "1:5059668896:web:76fc4c09c1d298ca8012c5",
+            measurementId: "G-8G4448P207"
+        };
 
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
 
         async function trackPageView(pageName) {
-  // Document reference in the 'analytics' collection
-  const pageRef = doc(db, "analytics", pageName);
+            // Document reference in the 'analytics' collection
+            const pageRef = doc(db, "analytics", pageName);
 
-  try {
-    // Increment totalViews by 1 safely
-    await setDoc(pageRef, {
-      totalViews: increment(1),
-      lastVisited: new Date()
-    }, { merge: true });
-    
-    console.log(`Page view tracked for: ${pageName}`);
-  } catch (error) {
-    console.error("Error tracking analytics: ", error);
-  }
-}
+            try {
+                // Increment totalViews by 1 safely
+                await setDoc(pageRef, {
+                    totalViews: increment(1),
+                    lastVisited: new Date()
+                }, { merge: true });
 
-// Automatically track on page load
-const currentPage = window.location.pathname.replace(/\//g, "_") || "home";
-trackPageView(currentPage);
-</script>
+                console.log(`Page view tracked for: ${pageName}`);
+            } catch (error) {
+                console.error("Error tracking analytics: ", error);
+            }
+        }
+
+        // Automatically track on page load
+        const currentPage = window.location.pathname.replace(/\//g, "_") || "home";
+        trackPageView(currentPage);
+    </script>
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         /* Custom Font for Gujarati (Simulating Textbook Look) */
         @import url('https://fonts.googleapis.com/css2?family=Tiro+Gujarati:wght@400;700&display=swap');
-        
+
         :root {
-            --book-bg: #f5f0e9; /* Off-white, paper color */
+            --book-bg: #f5f0e9;
+            /* Off-white, paper color */
             --border-color: #8d8b85;
-            --primary-color: #0b5030; /* Green/Deep Teal for titles */
+            --primary-color: #0b5030;
+            /* Green/Deep Teal for titles */
         }
 
         body {
             font-family: 'Tiro Gujarati', serif;
-            background-color: #e5e7eb; /* Light gray background for desk/table */
+            background-color: #e5e7eb;
+            /* Light gray background for desk/table */
             color: #1f2937;
         }
 
         /* ---------------- Book Container Styling ---------------- */
         .book-container {
-            perspective: 1500px; /* 3D effect perspective */
+            perspective: 1500px;
+            /* 3D effect perspective */
             max-width: 1200px;
             margin: 2rem auto;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
@@ -80,7 +97,8 @@ trackPageView(currentPage);
             background-color: #fff;
             display: flex;
             min-height: 85vh;
-            overflow: hidden; /* Hide content overflow */
+            overflow: hidden;
+            /* Hide content overflow */
         }
 
         /* Page Content Area (Right side, where chapters appear) */
@@ -99,23 +117,27 @@ trackPageView(currentPage);
             transform: rotateY(-10deg) scale(0.98);
             box-shadow: -15px 0 30px rgba(0, 0, 0, 0.2);
         }
-        
+
         /* Inner scrollable area */
         .inner-scroll {
             height: 100%;
             overflow-y: auto;
-            padding-right: 15px; /* Space for scrollbar */
-            scroll-behavior: smooth; /* Smooth scrolling for chapter navigation */
+            padding-right: 15px;
+            /* Space for scrollbar */
+            scroll-behavior: smooth;
+            /* Smooth scrolling for chapter navigation */
         }
-        
+
         /* Custom Scrollbar for inner content */
         .inner-scroll::-webkit-scrollbar {
             width: 8px;
         }
+
         .inner-scroll::-webkit-scrollbar-thumb {
             background: #ccc;
             border-radius: 4px;
         }
+
         .inner-scroll::-webkit-scrollbar-track {
             background: #eee;
         }
@@ -127,7 +149,7 @@ trackPageView(currentPage);
             padding: 2rem 1.5rem;
             border-radius: 8px 0 0 8px;
         }
-        
+
         /* ---------------- Textbook Elements ---------------- */
         .chapter-title {
             color: var(--primary-color);
@@ -137,24 +159,27 @@ trackPageView(currentPage);
             border-bottom: 3px double var(--primary-color);
             padding-bottom: 0.5rem;
         }
-        
+
         .formula-box {
             border: 3px solid var(--primary-color);
             padding: 1rem;
             margin: 1.5rem 0;
-            background-color: #e0f2f1; /* Light teal background */
+            background-color: #e0f2f1;
+            /* Light teal background */
             border-radius: 6px;
             box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
         }
 
         .solved-example {
-            border-left: 5px solid #f97316; /* Orange marker */
+            border-left: 5px solid #f97316;
+            /* Orange marker */
             padding-left: 1rem;
             margin: 1.5rem 0;
-            background-color: #fffbeb; /* Light yellow background */
+            background-color: #fffbeb;
+            /* Light yellow background */
             border-radius: 4px;
         }
-        
+
         /* Responsive adjustments */
         @media (max-width: 1024px) {
             .book-container {
@@ -164,14 +189,18 @@ trackPageView(currentPage);
                 min-height: 100vh;
                 border-radius: 0;
             }
-            .index-sidebar, .book-content {
+
+            .index-sidebar,
+            .book-content {
                 width: 100%;
                 border-left: none;
                 padding: 1.5rem 1rem;
             }
+
             .book-content {
                 min-height: 70vh;
             }
+
             .inner-scroll {
                 height: auto;
                 max-height: none;
@@ -180,313 +209,352 @@ trackPageView(currentPage);
             }
         }
     </style>
-<link rel="stylesheet" href="assets/global-navbar.css">
+    <link rel="stylesheet" href="assets/global-navbar.css">
 </head>
+
 <body>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5MXP3RTV"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5MXP3RTV" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
 
-<div class="book-container">
-    
-    <!-- Left Sidebar: Search and Index -->
-    <div class="index-sidebar">
-        <h2 class="text-xl font-bold text-gray-800 mb-4">અનુક્રમણિકા (Table of Contents)</h2>
-        
-        <!-- Search Bar -->
-        <div class="mb-6">
-            <input type="text" id="chapterSearch" onkeyup="filterChapters()" 
-                   class="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-green-600 focus:border-green-600"
-                   placeholder="પ્રકરણ શોધો...">
+    <div class="book-container">
+
+        <!-- Left Sidebar: Search and Index -->
+        <div class="index-sidebar">
+            <h2 class="text-xl font-bold text-gray-800 mb-4">અનુક્રમણિકા (Table of Contents)</h2>
+
+            <!-- Search Bar -->
+            <div class="mb-6">
+                <input type="text" id="chapterSearch" onkeyup="filterChapters()"
+                    class="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-green-600 focus:border-green-600"
+                    placeholder="પ્રકરણ શોધો...">
+            </div>
+
+            <!-- Chapter Index -->
+            <nav id="chapterIndex">
+                <!-- Links use JS to navigate and trigger the page-flip animation -->
+                <a href="#chapter1"
+                    class="index-link block py-2 text-md text-gray-700 hover:text-primary-color hover:bg-gray-100 rounded-md px-2 transition duration-150"
+                    onclick="navigateChapter('chapter1', event)">૧. ગણ (Sets)</a>
+                <a href="#chapter2"
+                    class="index-link block py-2 text-md text-gray-700 hover:text-primary-color hover:bg-gray-100 rounded-md px-2 transition duration-150"
+                    onclick="navigateChapter('chapter2', event)">૨. સંબંધો અને વિધેયો (R & F)</a>
+                <a href="#chapter3"
+                    class="index-link block py-2 text-md text-gray-700 hover:text-primary-color hover:bg-gray-100 rounded-md px-2 transition duration-150"
+                    onclick="navigateChapter('chapter3', event)">૩. ત્રિકોણમિતિ (Trigonometry)</a>
+                <a href="#chapter4"
+                    class="index-link block py-2 text-md text-gray-700 hover:text-primary-color hover:bg-gray-100 rounded-md px-2 transition duration-150"
+                    onclick="navigateChapter('chapter4', event)">૪. સુરેખ અસમતાઓ (Linear Inequality)</a>
+                <a href="#chapter5"
+                    class="index-link block py-2 text-md text-gray-700 hover:text-primary-color hover:bg-gray-100 rounded-md px-2 transition duration-150"
+                    onclick="navigateChapter('chapter5', event)">૫. ક્રમચય અને સંચય (P & C)</a>
+                <a href="#chapter6"
+                    class="index-link block py-2 text-md text-gray-700 hover:text-primary-color hover:bg-gray-100 rounded-md px-2 transition duration-150"
+                    onclick="navigateChapter('chapter6', event)">૬. દ્વિપદી પ્રમેય (Binomial Theorem)</a>
+                <a href="#chapter7"
+                    class="index-link block py-2 text-md text-gray-700 hover:text-primary-color hover:bg-gray-100 rounded-md px-2 transition duration-150"
+                    onclick="navigateChapter('chapter7', event)">૭. સુરેખાઓ (Straight Lines)</a>
+                <a href="#chapter8"
+                    class="index-link block py-2 text-md text-gray-700 hover:text-primary-color hover:bg-gray-100 rounded-md px-2 transition duration-150"
+                    onclick="navigateChapter('chapter8', event)">૮. શંકુચ્છેદ (Conic Sections)</a>
+                <a href="#chapter9"
+                    class="index-link block py-2 text-md text-gray-700 hover:text-primary-color hover:bg-gray-100 rounded-md px-2 transition duration-150"
+                    onclick="navigateChapter('chapter9', event)">૯. લિમિટ અને વિકલિત (Limits & Derivatives)</a>
+            </nav>
         </div>
-        
-        <!-- Chapter Index -->
-        <nav id="chapterIndex">
-            <!-- Links use JS to navigate and trigger the page-flip animation -->
-            <a href="#chapter1" class="index-link block py-2 text-md text-gray-700 hover:text-primary-color hover:bg-gray-100 rounded-md px-2 transition duration-150" onclick="navigateChapter('chapter1', event)">૧. ગણ (Sets)</a>
-            <a href="#chapter2" class="index-link block py-2 text-md text-gray-700 hover:text-primary-color hover:bg-gray-100 rounded-md px-2 transition duration-150" onclick="navigateChapter('chapter2', event)">૨. સંબંધો અને વિધેયો (R & F)</a>
-            <a href="#chapter3" class="index-link block py-2 text-md text-gray-700 hover:text-primary-color hover:bg-gray-100 rounded-md px-2 transition duration-150" onclick="navigateChapter('chapter3', event)">૩. ત્રિકોણમિતિ (Trigonometry)</a>
-            <a href="#chapter4" class="index-link block py-2 text-md text-gray-700 hover:text-primary-color hover:bg-gray-100 rounded-md px-2 transition duration-150" onclick="navigateChapter('chapter4', event)">૪. સુરેખ અસમતાઓ (Linear Inequality)</a>
-            <a href="#chapter5" class="index-link block py-2 text-md text-gray-700 hover:text-primary-color hover:bg-gray-100 rounded-md px-2 transition duration-150" onclick="navigateChapter('chapter5', event)">૫. ક્રમચય અને સંચય (P & C)</a>
-            <a href="#chapter6" class="index-link block py-2 text-md text-gray-700 hover:text-primary-color hover:bg-gray-100 rounded-md px-2 transition duration-150" onclick="navigateChapter('chapter6', event)">૬. દ્વિપદી પ્રમેય (Binomial Theorem)</a>
-            <a href="#chapter7" class="index-link block py-2 text-md text-gray-700 hover:text-primary-color hover:bg-gray-100 rounded-md px-2 transition duration-150" onclick="navigateChapter('chapter7', event)">૭. સુરેખાઓ (Straight Lines)</a>
-            <a href="#chapter8" class="index-link block py-2 text-md text-gray-700 hover:text-primary-color hover:bg-gray-100 rounded-md px-2 transition duration-150" onclick="navigateChapter('chapter8', event)">૮. શંકુચ્છેદ (Conic Sections)</a>
-            <a href="#chapter9" class="index-link block py-2 text-md text-gray-700 hover:text-primary-color hover:bg-gray-100 rounded-md px-2 transition duration-150" onclick="navigateChapter('chapter9', event)">૯. લિમિટ અને વિકલિત (Limits & Derivatives)</a>
-        </nav>
-    </div>
-    
-    <!-- Right Side: Content Pages -->
-    <div id="bookContent" class="book-content shadow-lg lg:shadow-xl">
-        <div class="inner-scroll h-full">
 
-            <!-- Title Page / Introduction -->
-            <section id="title-page" class="mb-10 pt-16 h-full flex flex-col justify-center items-center text-center">
-                <h1 class="text-6xl font-extrabold text-primary-color mb-4">ધોરણ ૧૧ ગણિત</h1>
-                <h2 class="text-3xl font-semibold text-gray-700 mb-8">ગુજરાત રાજ્ય શિક્ષણ બોર્ડ (GSEB)</h2>
-                <div class="w-full max-w-sm h-64 bg-gray-200 border-4 border-primary-color rounded-lg flex items-center justify-center text-gray-500 text-xl font-bold">
-                    
-                </div>
-                <p class="mt-8 text-xl text-gray-600">ગણિતના અદ્ભુત વિશ્વમાં આપનું સ્વાગત છે!</p>
-            </section>
-            
-            
-            <!-- Chapter 1: ગણ (Sets) -->
-            <section id="chapter1" class="chapter-section pt-10 pb-16">
-                <h3 class="chapter-title" id="ch1_start">૧. ગણ (Sets)</h3>
-                <p class="mb-4 text-gray-700 text-lg leading-relaxed">ગણ એ સુનિશ્ચિત અને સુવ્યાખ્યાયિત વસ્તુઓનો સમૂહ છે. ગણનું નિરૂપણ મુખ્યત્વે બે રીતે થાય છે: યાદીની રીત અને ગુણધર્મની રીત.</p>
+        <!-- Right Side: Content Pages -->
+        <div id="bookContent" class="book-content shadow-lg lg:shadow-xl">
+            <div class="inner-scroll h-full">
 
-                <div class="formula-box">
-                    <h4 class="font-bold text-xl mb-2">મહત્વના સૂત્રો</h4>
-                    <p class="text-lg">
-                        <strong class="block mb-2">બૈજિક ગણનો સરવાળો:</strong> $$\vert A \cup B \vert = \vert A \vert + \vert B \vert - \vert A \cap B \vert$$
-                        <strong class="block mb-2">પૂરક ગણ:</strong> $$\text{A' = U - A}$$
-                    </p>
-                </div>
-                
-                <h4 class="text-2xl font-semibold mt-8 mb-4 border-b border-gray-300 pb-2">ઉકેલાયેલું ઉદાહરણ</h4>
-                <div class="solved-example">
-                    <p class="font-bold mb-2">પ્રશ્ન:</p>
-                    <p>જો A = {1, 2, 3, 4} અને B = {3, 4, 5, 6} હોય, તો A $\cup$ B અને A $\cap$ B શોધો.</p>
-                    <p class="font-bold mt-2 mb-1">ઉકેલના પગલાં:</p>
-                    <ul class="list-disc ml-6 text-gray-700">
-                        <li>A $\cup$ B (યોગ ગણ) માં A અથવા B ના બધા સભ્યો આવે.</li>
-                        <li>$$A \cup B = \{1, 2, 3, 4, 5, 6\}$$</li>
-                        <li>A $\cap$ B (છેદ ગણ) માં A અને B બંનેના સામાન્ય સભ્યો આવે.</li>
-                        <li>$$A \cap B = \{3, 4\}$$</li>
+                <!-- Title Page / Introduction -->
+                <section id="title-page"
+                    class="mb-10 pt-16 h-full flex flex-col justify-center items-center text-center">
+                    <h1 class="text-6xl font-extrabold text-primary-color mb-4">ધોરણ ૧૧ ગણિત</h1>
+                    <h2 class="text-3xl font-semibold text-gray-700 mb-8">ગુજરાત રાજ્ય શિક્ષણ બોર્ડ (GSEB)</h2>
+                    <div
+                        class="w-full max-w-sm h-64 bg-gray-200 border-4 border-primary-color rounded-lg flex items-center justify-center text-gray-500 text-xl font-bold">
+
+                    </div>
+                    <p class="mt-8 text-xl text-gray-600">ગણિતના અદ્ભુત વિશ્વમાં આપનું સ્વાગત છે!</p>
+                </section>
+
+
+                <!-- Chapter 1: ગણ (Sets) -->
+                <section id="chapter1" class="chapter-section pt-10 pb-16">
+                    <h3 class="chapter-title" id="ch1_start">૧. ગણ (Sets)</h3>
+                    <p class="mb-4 text-gray-700 text-lg leading-relaxed">ગણ એ સુનિશ્ચિત અને સુવ્યાખ્યાયિત વસ્તુઓનો સમૂહ
+                        છે. ગણનું નિરૂપણ મુખ્યત્વે બે રીતે થાય છે: યાદીની રીત અને ગુણધર્મની રીત.</p>
+
+                    <div class="formula-box">
+                        <h4 class="font-bold text-xl mb-2">મહત્વના સૂત્રો</h4>
+                        <p class="text-lg">
+                            <strong class="block mb-2">બૈજિક ગણનો સરવાળો:</strong> $$\vert A \cup B \vert = \vert A
+                            \vert + \vert B \vert - \vert A \cap B \vert$$
+                            <strong class="block mb-2">પૂરક ગણ:</strong> $$\text{A' = U - A}$$
+                        </p>
+                    </div>
+
+                    <h4 class="text-2xl font-semibold mt-8 mb-4 border-b border-gray-300 pb-2">ઉકેલાયેલું ઉદાહરણ</h4>
+                    <div class="solved-example">
+                        <p class="font-bold mb-2">પ્રશ્ન:</p>
+                        <p>જો A = {1, 2, 3, 4} અને B = {3, 4, 5, 6} હોય, તો A $\cup$ B અને A $\cap$ B શોધો.</p>
+                        <p class="font-bold mt-2 mb-1">ઉકેલના પગલાં:</p>
+                        <ul class="list-disc ml-6 text-gray-700">
+                            <li>A $\cup$ B (યોગ ગણ) માં A અથવા B ના બધા સભ્યો આવે.</li>
+                            <li>$$A \cup B = \{1, 2, 3, 4, 5, 6\}$$</li>
+                            <li>A $\cap$ B (છેદ ગણ) માં A અને B બંનેના સામાન્ય સભ્યો આવે.</li>
+                            <li>$$A \cap B = \{3, 4\}$$</li>
+                        </ul>
+                    </div>
+
+                    <h4 class="text-2xl font-semibold mt-8 mb-4 border-b border-gray-300 pb-2">ચિત્રાત્મક રજૂઆત</h4>
+                    <div class="flex justify-center p-4 bg-white rounded-lg shadow-inner mb-6">
+                        <!-- SVG Diagram: Venn Diagram -->
+                        <svg width="200" height="150" viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="0" y="0" width="200" height="150" fill="#f0f9ff" stroke="#333" stroke-width="1" />
+                            <!-- Set A -->
+                            <ellipse cx="70" cy="75" rx="50" ry="60" fill="rgba(255, 165, 0, 0.4)" stroke="orange"
+                                stroke-width="2" />
+                            <text x="70" y="30" text-anchor="middle" fill="#333" font-size="16">ગણ A</text>
+                            <!-- Set B -->
+                            <ellipse cx="130" cy="75" rx="50" ry="60" fill="rgba(0, 191, 255, 0.4)" stroke="deepskyblue"
+                                stroke-width="2" />
+                            <text x="130" y="30" text-anchor="middle" fill="#333" font-size="16">ગણ B</text>
+                            <!-- Intersection -->
+                            <text x="100" y="75" text-anchor="middle" fill="#333" font-size="12">A $\cap$ B</text>
+                            <text x="180" y="140" fill="#333" font-size="12">U (સાર્વત્રિક ગણ)</text>
+                        </svg>
+                    </div>
+
+                    <h4 class="text-2xl font-semibold mt-8 mb-4 border-b border-gray-300 pb-2">પ્રેક્ટિસ પ્રશ્નો</h4>
+                    <ul class="list-decimal ml-6 text-gray-700 space-y-2">
+                        <li>જો $U = \{1, 2, ..., 10\}$ અને $A = \{2, 4, 6, 8, 10\}$ હોય, તો $A'$ શોધો.</li>
+                        <li>ગણ $\{x : x \in N \text{ અને } x^2 < 16\}$ ને યાદીની રીતે લખો.</li>
                     </ul>
-                </div>
+                </section>
 
-                <h4 class="text-2xl font-semibold mt-8 mb-4 border-b border-gray-300 pb-2">ચિત્રાત્મક રજૂઆત</h4>
-                <div class="flex justify-center p-4 bg-white rounded-lg shadow-inner mb-6">
-                    <!-- SVG Diagram: Venn Diagram -->
-                    <svg width="200" height="150" viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="0" y="0" width="200" height="150" fill="#f0f9ff" stroke="#333" stroke-width="1"/>
-                        <!-- Set A -->
-                        <ellipse cx="70" cy="75" rx="50" ry="60" fill="rgba(255, 165, 0, 0.4)" stroke="orange" stroke-width="2"/>
-                        <text x="70" y="30" text-anchor="middle" fill="#333" font-size="16">ગણ A</text>
-                        <!-- Set B -->
-                        <ellipse cx="130" cy="75" rx="50" ry="60" fill="rgba(0, 191, 255, 0.4)" stroke="deepskyblue" stroke-width="2"/>
-                        <text x="130" y="30" text-anchor="middle" fill="#333" font-size="16">ગણ B</text>
-                        <!-- Intersection -->
-                        <text x="100" y="75" text-anchor="middle" fill="#333" font-size="12">A $\cap$ B</text>
-                        <text x="180" y="140" fill="#333" font-size="12">U (સાર્વત્રિક ગણ)</text>
-                    </svg>
-                </div>
-                
-                <h4 class="text-2xl font-semibold mt-8 mb-4 border-b border-gray-300 pb-2">પ્રેક્ટિસ પ્રશ્નો</h4>
-                <ul class="list-decimal ml-6 text-gray-700 space-y-2">
-                    <li>જો $U = \{1, 2, ..., 10\}$ અને $A = \{2, 4, 6, 8, 10\}$ હોય, તો $A'$ શોધો.</li>
-                    <li>ગણ $\{x : x \in N \text{ અને } x^2 < 16\}$ ને યાદીની રીતે લખો.</li>
-                </ul>
-            </section>
+                <!-- Chapter 2: સંબંધો અને વિધેયો (Relations & Functions) -->
+                <section id="chapter2" class="chapter-section pt-10 pb-16">
+                    <h3 class="chapter-title">૨. સંબંધો અને વિધેયો (Relations & Functions)</h3>
+                    <p class="mb-4 text-gray-700 text-lg leading-relaxed">બે અરિક્ત ગણ A અને B માટે, A થી B પરનો સંબંધ એ
+                        કાર્ટેઝિયન ગુણાકાર $A \times B$ નો ઉપગણ છે. વિધેય એ એક ખાસ પ્રકારનો સંબંધ છે જ્યાં પ્રત્યેક ઘટક
+                        એક અને માત્ર એક જ પ્રતિબિંબ ધરાવે છે.</p>
 
-            <!-- Chapter 2: સંબંધો અને વિધેયો (Relations & Functions) -->
-            <section id="chapter2" class="chapter-section pt-10 pb-16">
-                <h3 class="chapter-title">૨. સંબંધો અને વિધેયો (Relations & Functions)</h3>
-                <p class="mb-4 text-gray-700 text-lg leading-relaxed">બે અરિક્ત ગણ A અને B માટે, A થી B પરનો સંબંધ એ કાર્ટેઝિયન ગુણાકાર $A \times B$ નો ઉપગણ છે. વિધેય એ એક ખાસ પ્રકારનો સંબંધ છે જ્યાં પ્રત્યેક ઘટક એક અને માત્ર એક જ પ્રતિબિંબ ધરાવે છે.</p>
+                    <div class="formula-box">
+                        <h4 class="font-bold text-xl mb-2">મહત્વના સૂત્રો</h4>
+                        <p class="text-lg">
+                            <strong class="block mb-2">વિધેયની વ્યાખ્યા:</strong> $$\text{A થી B પરનું વિધેય } f: A \to
+                            B \text{ હોય, તો પ્રત્યેક } x \in A \text{ માટે અનન્ય } y \in B \text{ મળે છે.}$$
+                            <strong class="block mb-2">માનાંક વિધેય:</strong> $$f(x) = |x| = \begin{cases} x, & \text{જો
+                            } x \ge 0 \\ -x, & \text{જો } x < 0 \end{cases}$$ </p>
+                    </div>
 
-                <div class="formula-box">
-                    <h4 class="font-bold text-xl mb-2">મહત્વના સૂત્રો</h4>
-                    <p class="text-lg">
-                        <strong class="block mb-2">વિધેયની વ્યાખ્યા:</strong> $$\text{A થી B પરનું વિધેય } f: A \to B \text{ હોય, તો પ્રત્યેક } x \in A \text{ માટે અનન્ય } y \in B \text{ મળે છે.}$$
-                        <strong class="block mb-2">માનાંક વિધેય:</strong> $$f(x) = |x| = \begin{cases} x, & \text{જો } x \ge 0 \\ -x, & \text{જો } x < 0 \end{cases}$$
-                    </p>
-                </div>
-                
-                <h4 class="text-2xl font-semibold mt-8 mb-4 border-b border-gray-300 pb-2">ઉકેલાયેલું ઉદાહરણ</h4>
-                <div class="solved-example">
-                    <p class="font-bold mb-2">પ્રશ્ન:</p>
-                    <p>જો $f(x) = x^2 + 2$ હોય, તો $f(3)$ અને $f(-1)$ શોધો.</p>
-                    <p class="font-bold mt-2 mb-1">ઉકેલના પગલાં:</p>
-                    <ul class="list-disc ml-6 text-gray-700">
-                        <li>$x=3$ મૂકતાં: $f(3) = (3)^2 + 2 = 9 + 2 = 11$</li>
-                        <li>$x=-1$ મૂકતાં: $f(-1) = (-1)^2 + 2 = 1 + 2 = 3$</li>
+                    <h4 class="text-2xl font-semibold mt-8 mb-4 border-b border-gray-300 pb-2">ઉકેલાયેલું ઉદાહરણ</h4>
+                    <div class="solved-example">
+                        <p class="font-bold mb-2">પ્રશ્ન:</p>
+                        <p>જો $f(x) = x^2 + 2$ હોય, તો $f(3)$ અને $f(-1)$ શોધો.</p>
+                        <p class="font-bold mt-2 mb-1">ઉકેલના પગલાં:</p>
+                        <ul class="list-disc ml-6 text-gray-700">
+                            <li>$x=3$ મૂકતાં: $f(3) = (3)^2 + 2 = 9 + 2 = 11$</li>
+                            <li>$x=-1$ મૂકતાં: $f(-1) = (-1)^2 + 2 = 1 + 2 = 3$</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- ... (Remaining chapters follow the same structure) ... -->
+
+                <!-- Chapter 3: ત્રિકોણમિતિ (Trigonometry) -->
+                <section id="chapter3" class="chapter-section pt-10 pb-16">
+                    <h3 class="chapter-title">૩. ત્રિકોણમિતિ (Trigonometry)</h3>
+                    <p class="mb-4 text-gray-700 text-lg leading-relaxed">ત્રિકોણમિતિ એ ત્રિકોણની બાજુઓ અને ખૂણાઓ
+                        વચ્ચેના સંબંધનો અભ્યાસ છે. રેડિયન અને અંશ એ ખૂણાના માપના એકમો છે.</p>
+
+                    <div class="formula-box">
+                        <h4 class="font-bold text-xl mb-2">મહત્વના સૂત્રો</h4>
+                        <p class="text-lg">
+                            <strong class="block mb-2">પાયથાગોરસ ઓળખ:</strong> $$\sin^2\theta + \cos^2\theta = 1$$
+                            <strong class="block mb-2">સરવાળાના સૂત્રો:</strong> $$\cos(A+B) = \cos A \cos B - \sin A
+                            \sin B$$
+                        </p>
+                    </div>
+
+                    <h4 class="text-2xl font-semibold mt-8 mb-4 border-b border-gray-300 pb-2">પ્રેક્ટિસ પ્રશ્નો</h4>
+                    <ul class="list-decimal ml-6 text-gray-700 space-y-2">
+                        <li>$\cos 15^{\circ}$ નું મૂલ્ય શોધો.</li>
+                        <li>જો $\tan x = -\frac{4}{3}$ હોય અને $x$ બીજા ચરણમાં હોય, તો $\sin x$ અને $\cos x$ શોધો.</li>
                     </ul>
-                </div>
-            </section>
-            
-            <!-- ... (Remaining chapters follow the same structure) ... -->
+                </section>
 
-            <!-- Chapter 3: ત્રિકોણમિતિ (Trigonometry) -->
-            <section id="chapter3" class="chapter-section pt-10 pb-16">
-                <h3 class="chapter-title">૩. ત્રિકોણમિતિ (Trigonometry)</h3>
-                <p class="mb-4 text-gray-700 text-lg leading-relaxed">ત્રિકોણમિતિ એ ત્રિકોણની બાજુઓ અને ખૂણાઓ વચ્ચેના સંબંધનો અભ્યાસ છે. રેડિયન અને અંશ એ ખૂણાના માપના એકમો છે.</p>
+                <!-- Chapter 4: સુરેખ અસમતાઓ (Linear Inequality) -->
+                <section id="chapter4" class="chapter-section pt-10 pb-16">
+                    <h3 class="chapter-title">૪. સુરેખ અસમતાઓ (Linear Inequality)</h3>
+                    <p class="mb-4 text-gray-700 text-lg leading-relaxed">અસમતા એ એક ગાણિતિક વિધાન છે જે બે મૂલ્યો સમાન
+                        નથી તે દર્શાવે છે. સુરેખ અસમતાઓનું નિરાકરણ રેખાકૃતિ દ્વારા પણ થઈ શકે છે.</p>
 
-                <div class="formula-box">
-                    <h4 class="font-bold text-xl mb-2">મહત્વના સૂત્રો</h4>
-                    <p class="text-lg">
-                        <strong class="block mb-2">પાયથાગોરસ ઓળખ:</strong> $$\sin^2\theta + \cos^2\theta = 1$$
-                        <strong class="block mb-2">સરવાળાના સૂત્રો:</strong> $$\cos(A+B) = \cos A \cos B - \sin A \sin B$$
-                    </p>
-                </div>
-                
-                <h4 class="text-2xl font-semibold mt-8 mb-4 border-b border-gray-300 pb-2">પ્રેક્ટિસ પ્રશ્નો</h4>
-                <ul class="list-decimal ml-6 text-gray-700 space-y-2">
-                    <li>$\cos 15^{\circ}$ નું મૂલ્ય શોધો.</li>
-                    <li>જો $\tan x = -\frac{4}{3}$ હોય અને $x$ બીજા ચરણમાં હોય, તો $\sin x$ અને $\cos x$ શોધો.</li>
-                </ul>
-            </section>
-            
-            <!-- Chapter 4: સુરેખ અસમતાઓ (Linear Inequality) -->
-            <section id="chapter4" class="chapter-section pt-10 pb-16">
-                <h3 class="chapter-title">૪. સુરેખ અસમતાઓ (Linear Inequality)</h3>
-                <p class="mb-4 text-gray-700 text-lg leading-relaxed">અસમતા એ એક ગાણિતિક વિધાન છે જે બે મૂલ્યો સમાન નથી તે દર્શાવે છે. સુરેખ અસમતાઓનું નિરાકરણ રેખાકૃતિ દ્વારા પણ થઈ શકે છે.</p>
-                
-                <h4 class="text-2xl font-semibold mt-8 mb-4 border-b border-gray-300 pb-2">ઉકેલાયેલું ઉદાહરણ</h4>
-                <div class="solved-example">
-                    <p class="font-bold mb-2">પ્રશ્ન:</p>
-                    <p>$3x + 1 < 10$ ને ઉકેલો અને સંખ્યા રેખા પર નિરૂપણ કરો.</p>
-                    <p class="font-bold mt-2 mb-1">ઉકેલના પગલાં:</p>
-                    <ul class="list-disc ml-6 text-gray-700">
-                        <li>$3x < 10 - 1 \implies 3x < 9$</li>
-                        <li>$x < 3$</li>
-                        <li>સંખ્યા રેખા પર (3, $\infty$) ના અંતરાલને દર્શાવો.</li>
-                    </ul>
-                </div>
-            </section>
-            
-            <!-- Chapter 5: ક્રમચય અને સંચય (Permutations & Combinations) -->
-            <section id="chapter5" class="chapter-section pt-10 pb-16">
-                <h3 class="chapter-title">૫. ક્રમચય અને સંચય (Permutations & Combinations)</h3>
-                <p class="mb-4 text-gray-700 text-lg leading-relaxed">ક્રમચય એ પસંદગીના ક્રમનું મહત્વ દર્શાવે છે, જ્યારે સંચય માત્ર વસ્તુઓની પસંદગી પર ધ્યાન કેન્દ્રિત કરે છે.</p>
+                    <h4 class="text-2xl font-semibold mt-8 mb-4 border-b border-gray-300 pb-2">ઉકેલાયેલું ઉદાહરણ</h4>
+                    <div class="solved-example">
+                        <p class="font-bold mb-2">પ્રશ્ન:</p>
+                        <p>$3x + 1 < 10$ ને ઉકેલો અને સંખ્યા રેખા પર નિરૂપણ કરો.</p>
+                                <p class="font-bold mt-2 mb-1">ઉકેલના પગલાં:</p>
+                                <ul class="list-disc ml-6 text-gray-700">
+                                    <li>$3x < 10 - 1 \implies 3x < 9$</li>
+                                    <li>$x < 3$</li>
+                                    <li>સંખ્યા રેખા પર (3, $\infty$) ના અંતરાલને દર્શાવો.</li>
+                                </ul>
+                    </div>
+                </section>
 
-                <div class="formula-box">
-                    <h4 class="font-bold text-xl mb-2">મહત્વના સૂત્રો</h4>
-                    <p class="text-lg">
-                        <strong class="block mb-2">ક્રમચય (Permutation):</strong> $${}_n P_r = \frac{n!}{(n-r)!}$$
-                        <strong class="block mb-2">સંચય (Combination):</strong> $${}_n C_r = \frac{n!}{r! (n-r)!}$$
-                    </p>
-                </div>
-            </section>
+                <!-- Chapter 5: ક્રમચય અને સંચય (Permutations & Combinations) -->
+                <section id="chapter5" class="chapter-section pt-10 pb-16">
+                    <h3 class="chapter-title">૫. ક્રમચય અને સંચય (Permutations & Combinations)</h3>
+                    <p class="mb-4 text-gray-700 text-lg leading-relaxed">ક્રમચય એ પસંદગીના ક્રમનું મહત્વ દર્શાવે છે,
+                        જ્યારે સંચય માત્ર વસ્તુઓની પસંદગી પર ધ્યાન કેન્દ્રિત કરે છે.</p>
 
-            <!-- Chapter 6: દ્વિપદી પ્રમેય (Binomial Theorem) -->
-            <section id="chapter6" class="chapter-section pt-10 pb-16">
-                <h3 class="chapter-title">૬. દ્વિપદી પ્રમેય (Binomial Theorem)</h3>
-                <p class="mb-4 text-gray-700 text-lg leading-relaxed">દ્વિપદી પ્રમેય કોઈપણ ધન પૂર્ણાંક ઘાત માટે $(a+b)^n$ નું વિસ્તરણ કરવાની રીત આપે છે. તેના સહગુણકો પાસ્કલના ત્રિકોણ દ્વારા મળે છે.</p>
-            </section>
+                    <div class="formula-box">
+                        <h4 class="font-bold text-xl mb-2">મહત્વના સૂત્રો</h4>
+                        <p class="text-lg">
+                            <strong class="block mb-2">ક્રમચય (Permutation):</strong> $${}_n P_r = \frac{n!}{(n-r)!}$$
+                            <strong class="block mb-2">સંચય (Combination):</strong> $${}_n C_r = \frac{n!}{r! (n-r)!}$$
+                        </p>
+                    </div>
+                </section>
 
-            <!-- Chapter 7: સુરેખાઓ (Straight Lines) -->
-            <section id="chapter7" class="chapter-section pt-10 pb-16">
-                <h3 class="chapter-title">૭. સુરેખાઓ (Straight Lines)</h3>
-                <p class="mb-4 text-gray-700 text-lg leading-relaxed">યામ ભૂમિતિમાં, સુરેખાનું સમીકરણ એ બે ચલ x અને y માં એક ઘાતવાળું સમીકરણ હોય છે.</p>
+                <!-- Chapter 6: દ્વિપદી પ્રમેય (Binomial Theorem) -->
+                <section id="chapter6" class="chapter-section pt-10 pb-16">
+                    <h3 class="chapter-title">૬. દ્વિપદી પ્રમેય (Binomial Theorem)</h3>
+                    <p class="mb-4 text-gray-700 text-lg leading-relaxed">દ્વિપદી પ્રમેય કોઈપણ ધન પૂર્ણાંક ઘાત માટે
+                        $(a+b)^n$ નું વિસ્તરણ કરવાની રીત આપે છે. તેના સહગુણકો પાસ્કલના ત્રિકોણ દ્વારા મળે છે.</p>
+                </section>
 
-                <div class="formula-box">
-                    <h4 class="font-bold text-xl mb-2">મહત્વના સૂત્રો</h4>
-                    <p class="text-lg">
-                        <strong class="block mb-2">ઢાળનું સૂત્ર:</strong> $$m = \frac{y_2 - y_1}{x_2 - x_1}$$
-                        <strong class="block mb-2">અંત:ખંડ સ્વરૂપ:</strong> $$\frac{x}{a} + \frac{y}{b} = 1$$
-                    </p>
-                </div>
-            </section>
+                <!-- Chapter 7: સુરેખાઓ (Straight Lines) -->
+                <section id="chapter7" class="chapter-section pt-10 pb-16">
+                    <h3 class="chapter-title">૭. સુરેખાઓ (Straight Lines)</h3>
+                    <p class="mb-4 text-gray-700 text-lg leading-relaxed">યામ ભૂમિતિમાં, સુરેખાનું સમીકરણ એ બે ચલ x અને
+                        y માં એક ઘાતવાળું સમીકરણ હોય છે.</p>
 
-            <!-- Chapter 8: શંકુચ્છેદ (Conic Sections) -->
-            <section id="chapter8" class="chapter-section pt-10 pb-16">
-                <h3 class="chapter-title">૮. શંકુચ્છેદ (Conic Sections)</h3>
-                <p class="mb-4 text-gray-700 text-lg leading-relaxed">શંકુચ્છેદ એ શંકુ અને સમતલના છેદનથી મળતા આકારો (વર્તુળ, પરવલય, ઉપવલય, અતિવલય) છે.</p>
-                
-                <h4 class="text-2xl font-semibold mt-8 mb-4 border-b border-gray-300 pb-2">ચિત્રાત્મક રજૂઆત</h4>
-                <div class="flex justify-center p-4 bg-white rounded-lg shadow-inner mb-6">
-                    [Image of Conic sections diagram showing Parabola, Ellipse, Hyperbola]
-                </div>
-            </section>
+                    <div class="formula-box">
+                        <h4 class="font-bold text-xl mb-2">મહત્વના સૂત્રો</h4>
+                        <p class="text-lg">
+                            <strong class="block mb-2">ઢાળનું સૂત્ર:</strong> $$m = \frac{y_2 - y_1}{x_2 - x_1}$$
+                            <strong class="block mb-2">અંત:ખંડ સ્વરૂપ:</strong> $$\frac{x}{a} + \frac{y}{b} = 1$$
+                        </p>
+                    </div>
+                </section>
 
-            <!-- Chapter 9: લિમિટ અને વિકલિત (Limits & Derivatives) -->
-            <section id="chapter9" class="chapter-section pt-10 pb-16">
-                <h3 class="chapter-title">૯. લિમિટ અને વિકલિત (Limits & Derivatives)</h3>
-                <p class="mb-4 text-gray-700 text-lg leading-relaxed">લિમિટ એ વિધેયના મૂલ્યનું અનુમાન છે જેમ જેમ ચલ કોઈ ચોક્કસ મૂલ્યની નજીક જાય છે. વિકલિત એ ફેરફારનો દર દર્શાવે છે.</p>
+                <!-- Chapter 8: શંકુચ્છેદ (Conic Sections) -->
+                <section id="chapter8" class="chapter-section pt-10 pb-16">
+                    <h3 class="chapter-title">૮. શંકુચ્છેદ (Conic Sections)</h3>
+                    <p class="mb-4 text-gray-700 text-lg leading-relaxed">શંકુચ્છેદ એ શંકુ અને સમતલના છેદનથી મળતા આકારો
+                        (વર્તુળ, પરવલય, ઉપવલય, અતિવલય) છે.</p>
 
-                <div class="formula-box">
-                    <h4 class="font-bold text-xl mb-2">મહત્વના સૂત્રો</h4>
-                    <p class="text-lg">
-                        <strong class="block mb-2">વિકલિતની વ્યાખ્યા:</strong> $$\frac{d}{dx} f(x) = \lim_{h \to 0} \frac{f(x+h) - f(x)}{h}$$
-                        <strong class="block mb-2">ગુણાકારનો નિયમ:</strong> $$\frac{d}{dx} (u \cdot v) = u \frac{dv}{dx} + v \frac{du}{dx}$$
-                    </p>
-                </div>
-            </section>
+                    <h4 class="text-2xl font-semibold mt-8 mb-4 border-b border-gray-300 pb-2">ચિત્રાત્મક રજૂઆત</h4>
+                    <div class="flex justify-center p-4 bg-white rounded-lg shadow-inner mb-6">
+                        [Image of Conic sections diagram showing Parabola, Ellipse, Hyperbola]
+                    </div>
+                </section>
 
+                <!-- Chapter 9: લિમિટ અને વિકલિત (Limits & Derivatives) -->
+                <section id="chapter9" class="chapter-section pt-10 pb-16">
+                    <h3 class="chapter-title">૯. લિમિટ અને વિકલિત (Limits & Derivatives)</h3>
+                    <p class="mb-4 text-gray-700 text-lg leading-relaxed">લિમિટ એ વિધેયના મૂલ્યનું અનુમાન છે જેમ જેમ ચલ
+                        કોઈ ચોક્કસ મૂલ્યની નજીક જાય છે. વિકલિત એ ફેરફારનો દર દર્શાવે છે.</p>
+
+                    <div class="formula-box">
+                        <h4 class="font-bold text-xl mb-2">મહત્વના સૂત્રો</h4>
+                        <p class="text-lg">
+                            <strong class="block mb-2">વિકલિતની વ્યાખ્યા:</strong> $$\frac{d}{dx} f(x) = \lim_{h \to 0}
+                            \frac{f(x+h) - f(x)}{h}$$
+                            <strong class="block mb-2">ગુણાકારનો નિયમ:</strong> $$\frac{d}{dx} (u \cdot v) = u
+                            \frac{dv}{dx} + v \frac{du}{dx}$$
+                        </p>
+                    </div>
+                </section>
+
+            </div>
         </div>
     </div>
-</div>
 
-<script>
-    // JavaScript for Interactive Features
-    const contentDiv = document.getElementById('bookContent');
-    const innerScroll = contentDiv.querySelector('.inner-scroll');
-    const chapterSections = document.querySelectorAll('.chapter-section');
-    
-    // --- Smooth Scrolling & Page Flip Animation ---
-    function navigateChapter(chapterId, event) {
-        if (event) event.preventDefault();
-        
-        const targetSection = document.getElementById(chapterId);
-        if (!targetSection) return;
+    <script>
+        // JavaScript for Interactive Features
+        const contentDiv = document.getElementById('bookContent');
+        const innerScroll = contentDiv.querySelector('.inner-scroll');
+        const chapterSections = document.querySelectorAll('.chapter-section');
 
-        // 1. Trigger Page Flip Effect (CSS Class)
-        contentDiv.classList.add('page-flip-effect');
-        
-        // 2. Scroll to the target chapter's start
-        // Use requestAnimationFrame for smoother timing after the flip starts
-        setTimeout(() => {
-            targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            
-            // 3. Remove Page Flip Effect after scrolling
-            // Wait for the scroll and animation duration (0.6s)
+        // --- Smooth Scrolling & Page Flip Animation ---
+        function navigateChapter(chapterId, event) {
+            if (event) event.preventDefault();
+
+            const targetSection = document.getElementById(chapterId);
+            if (!targetSection) return;
+
+            // 1. Trigger Page Flip Effect (CSS Class)
+            contentDiv.classList.add('page-flip-effect');
+
+            // 2. Scroll to the target chapter's start
+            // Use requestAnimationFrame for smoother timing after the flip starts
             setTimeout(() => {
-                contentDiv.classList.remove('page-flip-effect');
-            }, 700); 
+                targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
-        }, 100); // Small delay to ensure the flip effect initiates visually
-    }
+                // 3. Remove Page Flip Effect after scrolling
+                // Wait for the scroll and animation duration (0.6s)
+                setTimeout(() => {
+                    contentDiv.classList.remove('page-flip-effect');
+                }, 700);
 
-    // Initialize - show the title page first
-    document.addEventListener('DOMContentLoaded', () => {
-        // Scroll to the top on load
-        innerScroll.scrollTop = 0;
-        // Optionally, navigate to the first chapter directly
-        // navigateChapter('chapter1');
-    });
+            }, 100); // Small delay to ensure the flip effect initiates visually
+        }
 
-    // --- Search Functionality ---
-    function filterChapters() {
-        const input = document.getElementById('chapterSearch');
-        const filter = input.value.toUpperCase();
-        const nav = document.getElementById('chapterIndex');
-        const links = nav.getElementsByTagName('a');
+        // Initialize - show the title page first
+        document.addEventListener('DOMContentLoaded', () => {
+            // Scroll to the top on load
+            innerScroll.scrollTop = 0;
+            // Optionally, navigate to the first chapter directly
+            // navigateChapter('chapter1');
+        });
 
-        for (let i = 0; i < links.length; i++) {
-            const linkText = links[i].textContent || links[i].innerText;
-            if (linkText.toUpperCase().indexOf(filter) > -1) {
-                links[i].style.display = "";
-            } else {
-                links[i].style.display = "none";
+        // --- Search Functionality ---
+        function filterChapters() {
+            const input = document.getElementById('chapterSearch');
+            const filter = input.value.toUpperCase();
+            const nav = document.getElementById('chapterIndex');
+            const links = nav.getElementsByTagName('a');
+
+            for (let i = 0; i < links.length; i++) {
+                const linkText = links[i].textContent || links[i].innerText;
+                if (linkText.toUpperCase().indexOf(filter) > -1) {
+                    links[i].style.display = "";
+                } else {
+                    links[i].style.display = "none";
+                }
             }
         }
-    }
 
-    // --- Page Flip Effect on scroll (Light, Smooth Animation) ---
-    // This adds a subtle 3D tilt effect on scroll, mimicking the weight of the book content shifting.
-    innerScroll.addEventListener('scroll', () => {
-        const maxScroll = innerScroll.scrollHeight - innerScroll.clientHeight;
-        const currentScroll = innerScroll.scrollTop;
-        
-        if (maxScroll > 0) {
-            // Calculate a rotation based on scroll position (0 to 1)
-            let scrollRatio = currentScroll / maxScroll;
-            
-            // Apply a small, subtle rotation (e.g., -1 degree max)
-            let rotationY = scrollRatio * -1; 
-            
-            // Apply subtle scaling for depth effect
-            let scale = 1.0 - (Math.abs(scrollRatio - 0.5) * 0.05); // Scale between 0.975 and 1.0
-            
-            contentDiv.style.transform = `rotateY(${rotationY}deg) scale(${scale})`;
-            contentDiv.style.boxShadow = `-20px 0 40px rgba(0, 0, 0, ${0.2 + scrollRatio * 0.1})`;
-        }
-    });
+        // --- Page Flip Effect on scroll (Light, Smooth Animation) ---
+        // This adds a subtle 3D tilt effect on scroll, mimicking the weight of the book content shifting.
+        innerScroll.addEventListener('scroll', () => {
+            const maxScroll = innerScroll.scrollHeight - innerScroll.clientHeight;
+            const currentScroll = innerScroll.scrollTop;
 
-</script>
+            if (maxScroll > 0) {
+                // Calculate a rotation based on scroll position (0 to 1)
+                let scrollRatio = currentScroll / maxScroll;
 
-<script src="assets/global-navbar.js" defer></script>
+                // Apply a small, subtle rotation (e.g., -1 degree max)
+                let rotationY = scrollRatio * -1;
+
+                // Apply subtle scaling for depth effect
+                let scale = 1.0 - (Math.abs(scrollRatio - 0.5) * 0.05); // Scale between 0.975 and 1.0
+
+                contentDiv.style.transform = `rotateY(${rotationY}deg) scale(${scale})`;
+                contentDiv.style.boxShadow = `-20px 0 40px rgba(0, 0, 0, ${0.2 + scrollRatio * 0.1})`;
+            }
+        });
+
+    </script>
+
+    <script src="assets/global-navbar.js" defer></script>
 </body>
+
 </html>

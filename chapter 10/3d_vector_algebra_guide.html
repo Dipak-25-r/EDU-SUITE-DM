@@ -1,63 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-5MXP3RTV');</script>
-<!-- End Google Tag Manager -->
+    <!-- Google Tag Manager -->
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-5MXP3RTV');</script>
+    <!-- End Google Tag Manager -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>3D Vector Algebra Guide & Visualizer</title>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8G4448P207"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-8G4448P207');
+    </script>
     <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-  import { getFirestore, doc, setDoc, increment } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, doc, setDoc, increment } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-  // Replace with your Firebase configuration object
- // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyAtDRRnUE3FM06gPrs9mHWXJnU9fXv5B54",
-  authDomain: "edu-suite-a55a5.firebaseapp.com",
-  projectId: "edu-suite-a55a5",
-  storageBucket: "edu-suite-a55a5.firebasestorage.app",
-  messagingSenderId: "5059668896",
-  appId: "1:5059668896:web:76fc4c09c1d298ca8012c5",
-  measurementId: "G-8G4448P207"
-};
+        // Replace with your Firebase configuration object
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+            apiKey: "AIzaSyAtDRRnUE3FM06gPrs9mHWXJnU9fXv5B54",
+            authDomain: "edu-suite-a55a5.firebaseapp.com",
+            projectId: "edu-suite-a55a5",
+            storageBucket: "edu-suite-a55a5.firebasestorage.app",
+            messagingSenderId: "5059668896",
+            appId: "1:5059668896:web:76fc4c09c1d298ca8012c5",
+            measurementId: "G-8G4448P207"
+        };
 
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
 
         async function trackPageView(pageName) {
-  // Document reference in the 'analytics' collection
-  const pageRef = doc(db, "analytics", pageName);
+            // Document reference in the 'analytics' collection
+            const pageRef = doc(db, "analytics", pageName);
 
-  try {
-    // Increment totalViews by 1 safely
-    await setDoc(pageRef, {
-      totalViews: increment(1),
-      lastVisited: new Date()
-    }, { merge: true });
-    
-    console.log(`Page view tracked for: ${pageName}`);
-  } catch (error) {
-    console.error("Error tracking analytics: ", error);
-  }
-}
+            try {
+                // Increment totalViews by 1 safely
+                await setDoc(pageRef, {
+                    totalViews: increment(1),
+                    lastVisited: new Date()
+                }, { merge: true });
 
-// Automatically track on page load
-const currentPage = window.location.pathname.replace(/\//g, "_") || "home";
-trackPageView(currentPage);
-</script>
+                console.log(`Page view tracked for: ${pageName}`);
+            } catch (error) {
+                console.error("Error tracking analytics: ", error);
+            }
+        }
+
+        // Automatically track on page load
+        const currentPage = window.location.pathname.replace(/\//g, "_") || "home";
+        trackPageView(currentPage);
+    </script>
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Font Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <!-- Three.js for 3D Vector Visualizer -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
@@ -78,7 +92,8 @@ trackPageView(currentPage);
             }
         };
     </script>
-    <script type="text/javascript" id="mathjax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <script type="text/javascript" id="mathjax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
 
     <script>
         tailwind.config = {
@@ -105,53 +120,63 @@ trackPageView(currentPage);
             min-height: 100vh;
             color: #f8fafc;
         }
+
         .glass-card {
             background: rgba(30, 41, 59, 0.7);
             backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
+
         .glass-card-hover {
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
+
         .glass-card-hover:hover {
             transform: translateY(-4px);
             box-shadow: 0 12px 24px -10px rgba(0, 137, 123, 0.3);
             border-color: rgba(0, 137, 123, 0.4);
         }
+
         .custom-scrollbar::-webkit-scrollbar {
             width: 6px;
             height: 6px;
         }
+
         .custom-scrollbar::-webkit-scrollbar-track {
             background: rgba(15, 23, 42, 0.6);
         }
+
         .custom-scrollbar::-webkit-scrollbar-thumb {
             background: #00897B;
             border-radius: 4px;
         }
+
         canvas {
             display: block;
             width: 100%;
             height: 100%;
         }
     </style>
-<link rel="stylesheet" href="../assets/global-navbar.css">
+    <link rel="stylesheet" href="../assets/global-navbar.css">
 </head>
+
 <body class="custom-scrollbar antialiased pb-12">
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5MXP3RTV"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5MXP3RTV" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
 
     <!-- Top Navigation Header -->
     <header class="sticky top-0 z-50 glass-card border-b border-slate-700/50 px-4 lg:px-8 py-4">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
             <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-purple-700 via-teal-600 to-amber-500 flex items-center justify-center text-white font-black text-xl shadow-lg">
+                <div
+                    class="w-10 h-10 rounded-xl bg-gradient-to-tr from-purple-700 via-teal-600 to-amber-500 flex items-center justify-center text-white font-black text-xl shadow-lg">
                     📐
                 </div>
                 <div>
-                    <h1 class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-teal-300 via-purple-300 to-amber-300">
+                    <h1
+                        class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-teal-300 via-purple-300 to-amber-300">
                         3D Vector Algebra Guide
                     </h1>
                     <p class="text-xs text-slate-400">Comprehensive Vector Mathematics & Interactive Visualizer</p>
@@ -160,11 +185,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             <!-- Tab Switchers -->
             <nav class="flex bg-slate-900/80 p-1.5 rounded-xl border border-slate-700/60 text-sm font-medium">
-                <button id="tab-btn-vector" onclick="switchTab('vector')" class="flex items-center gap-2 px-4 py-2 rounded-lg text-white bg-tealBlue shadow transition-all">
+                <button id="tab-btn-vector" onclick="switchTab('vector')"
+                    class="flex items-center gap-2 px-4 py-2 rounded-lg text-white bg-tealBlue shadow transition-all">
                     <i class="fa-solid fa-cube"></i>
                     <span>Vector Algebra Material</span>
                 </button>
-                <button id="tab-btn-calc" onclick="switchTab('calc')" class="flex items-center gap-2 px-4 py-2 rounded-lg text-slate-400 hover:text-white transition-all">
+                <button id="tab-btn-calc" onclick="switchTab('calc')"
+                    class="flex items-center gap-2 px-4 py-2 rounded-lg text-slate-400 hover:text-white transition-all">
                     <i class="fa-solid fa-calculator"></i>
                     <span>3D Calc & Visualizer</span>
                 </button>
@@ -179,12 +206,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <section id="tab-vector" class="space-y-8">
             <!-- Hero Header -->
             <div class="glass-card p-6 rounded-2xl border border-teal-500/20 relative overflow-hidden">
-                <div class="absolute -right-10 -bottom-10 w-60 h-60 bg-teal-600/10 rounded-full blur-3xl pointer-events-none"></div>
-                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-teal-900/60 text-teal-300 border border-teal-500/30 mb-2">
+                <div
+                    class="absolute -right-10 -bottom-10 w-60 h-60 bg-teal-600/10 rounded-full blur-3xl pointer-events-none">
+                </div>
+                <span
+                    class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-teal-900/60 text-teal-300 border border-teal-500/30 mb-2">
                     📐 Vector Mathematics Material
                 </span>
                 <h2 class="text-2xl lg:text-3xl font-extrabold text-white">3D Vector Algebra & Operations Guide</h2>
-                <p class="text-sm text-slate-300 mt-1">Position vectors, direction cosines, vector addition rules, and scalar vs vector product properties.</p>
+                <p class="text-sm text-slate-300 mt-1">Position vectors, direction cosines, vector addition rules, and
+                    scalar vs vector product properties.</p>
             </div>
 
             <!-- 3D Space & Position Vector Block -->
@@ -192,7 +223,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <!-- Theoretical Card -->
                 <div class="glass-card p-6 rounded-2xl border border-slate-700">
                     <div class="flex items-center gap-3 mb-4">
-                        <div class="w-10 h-10 rounded-lg bg-tealBlue/20 text-teal-400 flex items-center justify-center text-lg font-bold">
+                        <div
+                            class="w-10 h-10 rounded-lg bg-tealBlue/20 text-teal-400 flex items-center justify-center text-lg font-bold">
                             📍
                         </div>
                         <div>
@@ -203,22 +235,27 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
                     <ul class="space-y-3 text-sm text-slate-300">
                         <li class="bg-slate-900/60 p-3 rounded-xl border border-slate-800">
-                            <strong class="text-amber-400">Position Vector ($\vec{OP}$):</strong> For point $P(x, y, z)$ relative to origin $O(0, 0, 0)$:
+                            <strong class="text-amber-400">Position Vector ($\vec{OP}$):</strong> For point $P(x, y, z)$
+                            relative to origin $O(0, 0, 0)$:
                             <div class="font-mono text-xs text-teal-300 mt-1">
-                                $\vec{OP} = x\hat{i} + y\hat{j} + z\hat{k}$ &nbsp;|&nbsp; $|\vec{OP}| = \sqrt{x^2 + y^2 + z^2}$
+                                $\vec{OP} = x\hat{i} + y\hat{j} + z\hat{k}$ &nbsp;|&nbsp; $|\vec{OP}| = \sqrt{x^2 + y^2
+                                + z^2}$
                             </div>
                         </li>
                         <li class="bg-slate-900/60 p-3 rounded-xl border border-slate-800">
-                            <strong class="text-teal-400">Direction Angles & Cosines:</strong> Angles $\alpha, \beta, \gamma$ with axes $X, Y, Z$.
+                            <strong class="text-teal-400">Direction Angles & Cosines:</strong> Angles $\alpha, \beta,
+                            \gamma$ with axes $X, Y, Z$.
                             <div class="grid grid-cols-3 gap-2 mt-2 font-mono text-xs text-center">
                                 <div class="bg-slate-800 p-2 rounded">$l = \cos\alpha = \frac{x}{r}$</div>
                                 <div class="bg-slate-800 p-2 rounded">$m = \cos\beta = \frac{y}{r}$</div>
                                 <div class="bg-slate-800 p-2 rounded">$n = \cos\gamma = \frac{z}{r}$</div>
                             </div>
                         </li>
-                        <li class="bg-slate-900/60 p-3 rounded-xl border border-slate-800 flex justify-between items-center">
+                        <li
+                            class="bg-slate-900/60 p-3 rounded-xl border border-slate-800 flex justify-between items-center">
                             <span>Fundamental Identity:</span>
-                            <span class="font-mono text-sm font-bold text-coralAccent bg-slate-800 px-3 py-1 rounded-lg">
+                            <span
+                                class="font-mono text-sm font-bold text-coralAccent bg-slate-800 px-3 py-1 rounded-lg">
                                 $l^2 + m^2 + n^2 = 1$
                             </span>
                         </li>
@@ -231,37 +268,40 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <span>3D Spatial Diagram</span>
                         <span class="text-xs text-teal-400 font-mono">P(x,y,z) Vector Projection</span>
                     </h4>
-                    <div class="w-full h-64 bg-slate-900/90 rounded-xl border border-slate-800 flex items-center justify-center relative overflow-hidden">
+                    <div
+                        class="w-full h-64 bg-slate-900/90 rounded-xl border border-slate-800 flex items-center justify-center relative overflow-hidden">
                         <svg viewBox="0 0 300 240" class="w-full h-full text-slate-300">
                             <!-- Axes -->
                             <!-- Z-axis (Vertical) -->
-                            <line x1="120" y1="130" x2="120" y2="20" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+                            <line x1="120" y1="130" x2="120" y2="20" stroke="#64748b" stroke-width="2"
+                                marker-end="url(#arrow)" />
                             <text x="110" y="25" fill="#a855f7" font-size="12" font-weight="bold">Z (zk̂)</text>
 
                             <!-- Y-axis (Horizontal Right) -->
-                            <line x1="120" y1="130" x2="260" y2="130" stroke="#64748b" stroke-width="2"/>
+                            <line x1="120" y1="130" x2="260" y2="130" stroke="#64748b" stroke-width="2" />
                             <text x="265" y="134" fill="#00897B" font-size="12" font-weight="bold">Y (yĵ)</text>
 
                             <!-- X-axis (Diagonal Down-Left) -->
-                            <line x1="120" y1="130" x2="30" y2="210" stroke="#64748b" stroke-width="2"/>
+                            <line x1="120" y1="130" x2="30" y2="210" stroke="#64748b" stroke-width="2" />
                             <text x="15" y="220" fill="#FFB300" font-size="12" font-weight="bold">X (xî)</text>
 
                             <!-- Origin -->
-                            <circle cx="120" cy="130" r="4" fill="#f8fafc"/>
+                            <circle cx="120" cy="130" r="4" fill="#f8fafc" />
                             <text x="105" y="145" fill="#94a3b8" font-size="11">O(0,0,0)</text>
 
                             <!-- Vector OP -->
-                            <line x1="120" y1="130" x2="210" y2="50" stroke="#FF7043" stroke-width="3"/>
-                            <circle cx="210" cy="50" r="5" fill="#FF7043"/>
+                            <line x1="120" y1="130" x2="210" y2="50" stroke="#FF7043" stroke-width="3" />
+                            <circle cx="210" cy="50" r="5" fill="#FF7043" />
                             <text x="218" y="48" fill="#FF7043" font-size="12" font-weight="bold">P(x, y, z)</text>
 
                             <!-- Projection lines -->
-                            <line x1="210" y1="50" x2="210" y2="130" stroke="#475569" stroke-dasharray="4"/>
-                            <line x1="210" y1="130" x2="120" y2="130" stroke="#475569" stroke-dasharray="4"/>
-                            <line x1="210" y1="130" x2="165" y2="170" stroke="#475569" stroke-dasharray="4"/>
+                            <line x1="210" y1="50" x2="210" y2="130" stroke="#475569" stroke-dasharray="4" />
+                            <line x1="210" y1="130" x2="120" y2="130" stroke="#475569" stroke-dasharray="4" />
+                            <line x1="210" y1="130" x2="165" y2="170" stroke="#475569" stroke-dasharray="4" />
 
                             <!-- Vector Label -->
-                            <text x="155" y="80" fill="#2dd4bf" font-size="11" font-weight="bold">r = xî + yĵ + zk̂</text>
+                            <text x="155" y="80" fill="#2dd4bf" font-size="11" font-weight="bold">r = xî + yĵ +
+                                zk̂</text>
                         </svg>
                     </div>
                 </div>
@@ -278,42 +318,48 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <div class="flex items-center gap-2 text-amber-400 font-bold mb-1">
                             <span>0️⃣ Null Vector (શૂન્ય સદિશ)</span>
                         </div>
-                        <p class="text-xs text-slate-300">Initial & terminal points coincide ($\vec{0}$). Magnitude is $0$, direction is arbitrary.</p>
+                        <p class="text-xs text-slate-300">Initial & terminal points coincide ($\vec{0}$). Magnitude is
+                            $0$, direction is arbitrary.</p>
                     </div>
                     <!-- Unit Vector -->
                     <div class="glass-card p-4 rounded-xl border border-slate-700">
                         <div class="flex items-center gap-2 text-teal-400 font-bold mb-1">
                             <span>🎯 Unit Vector (એકમ સદિશ)</span>
                         </div>
-                        <p class="text-xs text-slate-300">Magnitude is exactly $1$ unit. Normalized form: $\hat{a} = \frac{\vec{a}}{|\vec{a}|}$.</p>
+                        <p class="text-xs text-slate-300">Magnitude is exactly $1$ unit. Normalized form: $\hat{a} =
+                            \frac{\vec{a}}{|\vec{a}|}$.</p>
                     </div>
                     <!-- Co-initial Vectors -->
                     <div class="glass-card p-4 rounded-xl border border-slate-700">
                         <div class="flex items-center gap-2 text-purple-400 font-bold mb-1">
                             <span>📍 Co-initial Vectors (સમઉદ્ભવ)</span>
                         </div>
-                        <p class="text-xs text-slate-300">Two or more vectors sharing the exact same starting/initial point.</p>
+                        <p class="text-xs text-slate-300">Two or more vectors sharing the exact same starting/initial
+                            point.</p>
                     </div>
                     <!-- Collinear Vectors -->
                     <div class="glass-card p-4 rounded-xl border border-slate-700">
                         <div class="flex items-center gap-2 text-coralAccent font-bold mb-1">
                             <span>📏 Collinear Vectors (સમરેખ)</span>
                         </div>
-                        <p class="text-xs text-slate-300">Vectors parallel to the same straight line, regardless of magnitudes or direction senses.</p>
+                        <p class="text-xs text-slate-300">Vectors parallel to the same straight line, regardless of
+                            magnitudes or direction senses.</p>
                     </div>
                     <!-- Equal Vectors -->
                     <div class="glass-card p-4 rounded-xl border border-slate-700">
                         <div class="flex items-center gap-2 text-emerald-400 font-bold mb-1">
                             <span>⚖️ Equal Vectors (સમાન સદિશો)</span>
                         </div>
-                        <p class="text-xs text-slate-300">Vectors having both identical magnitude AND direction ($\vec{a} = \vec{b}$).</p>
+                        <p class="text-xs text-slate-300">Vectors having both identical magnitude AND direction
+                            ($\vec{a} = \vec{b}$).</p>
                     </div>
                     <!-- Negative Vector -->
                     <div class="glass-card p-4 rounded-xl border border-slate-700">
                         <div class="flex items-center gap-2 text-rose-400 font-bold mb-1">
                             <span>🔄 Negative Vector (ઋણ સદિશ)</span>
                         </div>
-                        <p class="text-xs text-slate-300">Vector with equal magnitude but strictly opposite direction ($\vec{BA} = -\vec{AB}$).</p>
+                        <p class="text-xs text-slate-300">Vector with equal magnitude but strictly opposite direction
+                            ($\vec{BA} = -\vec{AB}$).</p>
                     </div>
                 </div>
             </div>
@@ -327,23 +373,26 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <!-- Triangle Law -->
                     <div class="bg-slate-900/80 p-5 rounded-xl border border-slate-800">
-                        <h4 class="font-bold text-amber-300 text-base mb-2">Triangle Law of Addition (ત્રિકોણનો નિયમ)</h4>
+                        <h4 class="font-bold text-amber-300 text-base mb-2">Triangle Law of Addition (ત્રિકોણનો નિયમ)
+                        </h4>
                         <p class="text-xs text-slate-300 mb-3">
-                            If two vectors are represented by two sides of a triangle taken in order, their sum is represented by the third side taken in reverse order.
+                            If two vectors are represented by two sides of a triangle taken in order, their sum is
+                            represented by the third side taken in reverse order.
                         </p>
                         <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 flex justify-center">
                             <svg viewBox="0 0 240 140" class="w-56 h-32">
-                                <line x1="20" y1="110" x2="140" y2="110" stroke="#38bdf8" stroke-width="2.5"/>
-                                <line x1="140" y1="110" x2="200" y2="30" stroke="#34d399" stroke-width="2.5"/>
-                                <line x1="20" y1="110" x2="200" y2="30" stroke="#f43f5e" stroke-width="2.5" stroke-dasharray="4"/>
+                                <line x1="20" y1="110" x2="140" y2="110" stroke="#38bdf8" stroke-width="2.5" />
+                                <line x1="140" y1="110" x2="200" y2="30" stroke="#34d399" stroke-width="2.5" />
+                                <line x1="20" y1="110" x2="200" y2="30" stroke="#f43f5e" stroke-width="2.5"
+                                    stroke-dasharray="4" />
                                 <text x="75" y="128" fill="#38bdf8" font-size="11" font-weight="bold">a (AB)</text>
                                 <text x="178" y="75" fill="#34d399" font-size="11" font-weight="bold">b (BC)</text>
                                 <text x="80" y="60" fill="#f43f5e" font-size="11" font-weight="bold">a + b (AC)</text>
-                                <circle cx="20" cy="110" r="3" fill="#fff"/>
+                                <circle cx="20" cy="110" r="3" fill="#fff" />
                                 <text x="10" y="115" fill="#fff" font-size="10">A</text>
-                                <circle cx="140" cy="110" r="3" fill="#fff"/>
+                                <circle cx="140" cy="110" r="3" fill="#fff" />
                                 <text x="145" y="120" fill="#fff" font-size="10">B</text>
-                                <circle cx="200" cy="30" r="3" fill="#fff"/>
+                                <circle cx="200" cy="30" r="3" fill="#fff" />
                                 <text x="205" y="25" fill="#fff" font-size="10">C</text>
                             </svg>
                         </div>
@@ -356,22 +405,29 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <div class="bg-slate-900/80 p-5 rounded-xl border border-slate-800">
                         <h4 class="font-bold text-teal-300 text-base mb-2">Parallelogram Law (સમાંતરબાજુ ચતુષ્કોણ)</h4>
                         <p class="text-xs text-slate-300 mb-3">
-                            If two co-initial vectors represent adjacent sides of a parallelogram, their resultant is the diagonal passing through their common initial point.
+                            If two co-initial vectors represent adjacent sides of a parallelogram, their resultant is
+                            the diagonal passing through their common initial point.
                         </p>
                         <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 flex justify-center">
                             <svg viewBox="0 0 240 140" class="w-56 h-32">
-                                <line x1="30" y1="110" x2="130" y2="110" stroke="#38bdf8" stroke-width="2.5"/>
-                                <line x1="30" y1="110" x2="80" y2="30" stroke="#a78bfa" stroke-width="2.5"/>
-                                <line x1="130" y1="110" x2="180" y2="30" stroke="#a78bfa" stroke-width="1.5" stroke-dasharray="3"/>
-                                <line x1="80" y1="30" x2="180" y2="30" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="3"/>
-                                <line x1="30" y1="110" x2="180" y2="30" stroke="#fbbf24" stroke-width="2.5"/>
+                                <line x1="30" y1="110" x2="130" y2="110" stroke="#38bdf8" stroke-width="2.5" />
+                                <line x1="30" y1="110" x2="80" y2="30" stroke="#a78bfa" stroke-width="2.5" />
+                                <line x1="130" y1="110" x2="180" y2="30" stroke="#a78bfa" stroke-width="1.5"
+                                    stroke-dasharray="3" />
+                                <line x1="80" y1="30" x2="180" y2="30" stroke="#38bdf8" stroke-width="1.5"
+                                    stroke-dasharray="3" />
+                                <line x1="30" y1="110" x2="180" y2="30" stroke="#fbbf24" stroke-width="2.5" />
                                 <text x="75" y="125" fill="#38bdf8" font-size="11" font-weight="bold">a (OA)</text>
                                 <text x="35" y="65" fill="#a78bfa" font-size="11" font-weight="bold">b (OB)</text>
                                 <text x="105" y="60" fill="#fbbf24" font-size="11" font-weight="bold">a + b (OC)</text>
-                                <circle cx="30" cy="110" r="3" fill="#fff"/><text x="18" y="115" fill="#fff" font-size="10">O</text>
-                                <circle cx="130" cy="110" r="3" fill="#fff"/><text x="135" y="120" fill="#fff" font-size="10">A</text>
-                                <circle cx="80" cy="30" r="3" fill="#fff"/><text x="70" y="25" fill="#fff" font-size="10">B</text>
-                                <circle cx="180" cy="30" r="3" fill="#fff"/><text x="188" y="25" fill="#fff" font-size="10">C</text>
+                                <circle cx="30" cy="110" r="3" fill="#fff" /><text x="18" y="115" fill="#fff"
+                                    font-size="10">O</text>
+                                <circle cx="130" cy="110" r="3" fill="#fff" /><text x="135" y="120" fill="#fff"
+                                    font-size="10">A</text>
+                                <circle cx="80" cy="30" r="3" fill="#fff" /><text x="70" y="25" fill="#fff"
+                                    font-size="10">B</text>
+                                <circle cx="180" cy="30" r="3" fill="#fff" /><text x="188" y="25" fill="#fff"
+                                    font-size="10">C</text>
                             </svg>
                         </div>
                         <div class="mt-3 text-center text-xs font-mono text-amber-300">
@@ -393,7 +449,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             <tr class="bg-slate-900/90 text-slate-200 border-b border-slate-700">
                                 <th class="p-3">Feature</th>
                                 <th class="p-3 text-teal-400">🔵 Scalar / Dot Product ($\vec{a} \cdot \vec{b}$)</th>
-                                <th class="p-3 text-coralAccent">🔴 Vector / Cross Product ($\vec{a} \times \vec{b}$)</th>
+                                <th class="p-3 text-coralAccent">🔴 Vector / Cross Product ($\vec{a} \times \vec{b}$)
+                                </th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-slate-800">
@@ -405,27 +462,34 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             <tr>
                                 <td class="p-3 font-semibold text-slate-400">Definition Formula</td>
                                 <td class="p-3 font-mono text-teal-300">$|\vec{a}||\vec{b}|\cos\theta$</td>
-                                <td class="p-3 font-mono text-coralAccent">$|\vec{a}||\vec{b}|\sin\theta \cdot \hat{n}$</td>
+                                <td class="p-3 font-mono text-coralAccent">$|\vec{a}||\vec{b}|\sin\theta \cdot \hat{n}$
+                                </td>
                             </tr>
                             <tr>
                                 <td class="p-3 font-semibold text-slate-400">Commutativity</td>
-                                <td class="p-3 text-emerald-400 font-mono">$\vec{a}\cdot\vec{b} = \vec{b}\cdot\vec{a}$ (Yes)</td>
-                                <td class="p-3 text-rose-400 font-mono">$\vec{a}\times\vec{b} = -(\vec{b}\times\vec{a})$ (Anti)</td>
+                                <td class="p-3 text-emerald-400 font-mono">$\vec{a}\cdot\vec{b} = \vec{b}\cdot\vec{a}$
+                                    (Yes)</td>
+                                <td class="p-3 text-rose-400 font-mono">$\vec{a}\times\vec{b} = -(\vec{b}\times\vec{a})$
+                                    (Anti)</td>
                             </tr>
                             <tr>
                                 <td class="p-3 font-semibold text-slate-400">Zero Result Condition</td>
-                                <td class="p-3">$\vec{a}\cdot\vec{b} = 0 \iff \vec{a} \perp \vec{b}$ (Perpendicular)</td>
-                                <td class="p-3">$\vec{a}\times\vec{b} = \vec{0} \iff \vec{a} \parallel \vec{b}$ (Parallel)</td>
+                                <td class="p-3">$\vec{a}\cdot\vec{b} = 0 \iff \vec{a} \perp \vec{b}$ (Perpendicular)
+                                </td>
+                                <td class="p-3">$\vec{a}\times\vec{b} = \vec{0} \iff \vec{a} \parallel \vec{b}$
+                                    (Parallel)</td>
                             </tr>
                             <tr>
-                                <td class="p-3 font-semibold text-slate-400">Unit Vectors ($\hat{i},\hat{j},\hat{k}$)</td>
+                                <td class="p-3 font-semibold text-slate-400">Unit Vectors ($\hat{i},\hat{j},\hat{k}$)
+                                </td>
                                 <td class="p-3 font-mono text-xs">
                                     $\hat{i}\cdot\hat{i} = \hat{j}\cdot\hat{j} = \hat{k}\cdot\hat{k} = 1$<br>
                                     $\hat{i}\cdot\hat{j} = \hat{j}\cdot\hat{k} = \hat{k}\cdot\hat{i} = 0$
                                 </td>
                                 <td class="p-3 font-mono text-xs">
                                     $\hat{i}\times\hat{i} = \hat{j}\times\hat{j} = \hat{k}\times\hat{k} = \vec{0}$<br>
-                                    $\hat{i}\times\hat{j} = \hat{k}, \quad \hat{j}\times\hat{k} = \hat{i}, \quad \hat{k}\times\hat{i} = \hat{j}$
+                                    $\hat{i}\times\hat{j} = \hat{k}, \quad \hat{j}\times\hat{k} = \hat{i}, \quad
+                                    \hat{k}\times\hat{i} = \hat{j}$
                                 </td>
                             </tr>
                             <tr>
@@ -434,13 +498,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                                     $a_1b_1 + a_2b_2 + a_3b_3$
                                 </td>
                                 <td class="p-3 font-mono text-xs text-coralAccent">
-                                    $\begin{vmatrix} \hat{i} & \hat{j} & \hat{k} \\ a_1 & a_2 & a_3 \\ b_1 & b_2 & b_3 \end{vmatrix}$
+                                    $\begin{vmatrix} \hat{i} & \hat{j} & \hat{k} \\ a_1 & a_2 & a_3 \\ b_1 & b_2 & b_3
+                                    \end{vmatrix}$
                                 </td>
                             </tr>
                             <tr>
                                 <td class="p-3 font-semibold text-slate-400">Geometric Application</td>
                                 <td class="p-3">Angle between vectors & projection</td>
-                                <td class="p-3">Triangle area ($\frac{1}{2}|\vec{a}\times\vec{b}|$) & Parallelogram area</td>
+                                <td class="p-3">Triangle area ($\frac{1}{2}|\vec{a}\times\vec{b}|$) & Parallelogram area
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -451,11 +517,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <!-- TAB 3: INTERACTIVE 3D CALCULATOR & VISUALIZER -->
         <section id="tab-calc" class="hidden space-y-6">
             <div class="glass-card p-6 rounded-2xl border border-amber-500/20">
-                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-amber-900/60 text-amber-300 border border-amber-500/30 mb-2">
+                <span
+                    class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-amber-900/60 text-amber-300 border border-amber-500/30 mb-2">
                     🧮 Interactive Tool
                 </span>
                 <h2 class="text-2xl font-bold text-white">3D Vector Computation Engine & Visualizer</h2>
-                <p class="text-sm text-slate-300 mt-1">Input two 3D vectors to dynamically compute magnitudes, direction cosines, dot product, cross product, and render them in 3D canvas space.</p>
+                <p class="text-sm text-slate-300 mt-1">Input two 3D vectors to dynamically compute magnitudes, direction
+                    cosines, dot product, cross product, and render them in 3D canvas space.</p>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
@@ -467,38 +535,46 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
                         <!-- Vector A Input -->
                         <div class="space-y-2 mb-4">
-                            <label class="text-xs font-bold text-teal-400 uppercase tracking-wider">Vector A ($\vec{a}$)</label>
+                            <label class="text-xs font-bold text-teal-400 uppercase tracking-wider">Vector A
+                                ($\vec{a}$)</label>
                             <div class="grid grid-cols-3 gap-2">
                                 <div>
                                     <span class="text-xs text-slate-400 block">X ($a_1$)</span>
-                                    <input type="number" id="vA_x" value="3" oninput="calculateVectors()" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-sm font-mono text-white focus:border-teal-400">
+                                    <input type="number" id="vA_x" value="3" oninput="calculateVectors()"
+                                        class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-sm font-mono text-white focus:border-teal-400">
                                 </div>
                                 <div>
                                     <span class="text-xs text-slate-400 block">Y ($a_2$)</span>
-                                    <input type="number" id="vA_y" value="2" oninput="calculateVectors()" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-sm font-mono text-white focus:border-teal-400">
+                                    <input type="number" id="vA_y" value="2" oninput="calculateVectors()"
+                                        class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-sm font-mono text-white focus:border-teal-400">
                                 </div>
                                 <div>
                                     <span class="text-xs text-slate-400 block">Z ($a_3$)</span>
-                                    <input type="number" id="vA_z" value="4" oninput="calculateVectors()" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-sm font-mono text-white focus:border-teal-400">
+                                    <input type="number" id="vA_z" value="4" oninput="calculateVectors()"
+                                        class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-sm font-mono text-white focus:border-teal-400">
                                 </div>
                             </div>
                         </div>
 
                         <!-- Vector B Input -->
                         <div class="space-y-2">
-                            <label class="text-xs font-bold text-amber-400 uppercase tracking-wider">Vector B ($\vec{b}$)</label>
+                            <label class="text-xs font-bold text-amber-400 uppercase tracking-wider">Vector B
+                                ($\vec{b}$)</label>
                             <div class="grid grid-cols-3 gap-2">
                                 <div>
                                     <span class="text-xs text-slate-400 block">X ($b_1$)</span>
-                                    <input type="number" id="vB_x" value="1" oninput="calculateVectors()" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-sm font-mono text-white focus:border-amber-400">
+                                    <input type="number" id="vB_x" value="1" oninput="calculateVectors()"
+                                        class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-sm font-mono text-white focus:border-amber-400">
                                 </div>
                                 <div>
                                     <span class="text-xs text-slate-400 block">Y ($b_2$)</span>
-                                    <input type="number" id="vB_y" value="5" oninput="calculateVectors()" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-sm font-mono text-white focus:border-amber-400">
+                                    <input type="number" id="vB_y" value="5" oninput="calculateVectors()"
+                                        class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-sm font-mono text-white focus:border-amber-400">
                                 </div>
                                 <div>
                                     <span class="text-xs text-slate-400 block">Z ($b_3$)</span>
-                                    <input type="number" id="vB_z" value="2" oninput="calculateVectors()" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-sm font-mono text-white focus:border-amber-400">
+                                    <input type="number" id="vB_z" value="2" oninput="calculateVectors()"
+                                        class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-sm font-mono text-white focus:border-amber-400">
                                 </div>
                             </div>
                         </div>
@@ -536,16 +612,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 </div>
 
                 <!-- Right Column: Interactive 3D Canvas (7 Cols) -->
-                <div class="lg:col-span-7 glass-card p-4 rounded-2xl border border-slate-700 flex flex-col min-h-[420px]">
+                <div
+                    class="lg:col-span-7 glass-card p-4 rounded-2xl border border-slate-700 flex flex-col min-h-[420px]">
                     <div class="flex items-center justify-between mb-2 px-2">
-                        <span class="text-xs font-bold text-slate-300">Interactive 3D Viewport (Click & Drag to rotate)</span>
+                        <span class="text-xs font-bold text-slate-300">Interactive 3D Viewport (Click & Drag to
+                            rotate)</span>
                         <div class="flex items-center gap-3 text-xs">
-                            <span class="flex items-center gap-1"><span class="w-3 h-3 bg-teal-400 rounded-full inline-block"></span> $\vec{a}$</span>
-                            <span class="flex items-center gap-1"><span class="w-3 h-3 bg-amber-400 rounded-full inline-block"></span> $\vec{b}$</span>
-                            <span class="flex items-center gap-1"><span class="w-3 h-3 bg-coralAccent rounded-full inline-block"></span> $\vec{a} \times \vec{b}$</span>
+                            <span class="flex items-center gap-1"><span
+                                    class="w-3 h-3 bg-teal-400 rounded-full inline-block"></span> $\vec{a}$</span>
+                            <span class="flex items-center gap-1"><span
+                                    class="w-3 h-3 bg-amber-400 rounded-full inline-block"></span> $\vec{b}$</span>
+                            <span class="flex items-center gap-1"><span
+                                    class="w-3 h-3 bg-coralAccent rounded-full inline-block"></span> $\vec{a} \times
+                                \vec{b}$</span>
                         </div>
                     </div>
-                    <div id="three-container" class="w-full flex-1 rounded-xl bg-slate-950 border border-slate-800 relative overflow-hidden">
+                    <div id="three-container"
+                        class="w-full flex-1 rounded-xl bg-slate-950 border border-slate-800 relative overflow-hidden">
                         <!-- Canvas inserted by JavaScript -->
                     </div>
                 </div>
@@ -555,7 +638,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </main>
 
     <!-- Notification Toast Container -->
-    <div id="toast" class="fixed bottom-5 right-5 bg-teal-600 text-white text-sm px-4 py-3 rounded-xl shadow-2xl opacity-0 transition-opacity duration-300 pointer-events-none z-50 flex items-center gap-2">
+    <div id="toast"
+        class="fixed bottom-5 right-5 bg-teal-600 text-white text-sm px-4 py-3 rounded-xl shadow-2xl opacity-0 transition-opacity duration-300 pointer-events-none z-50 flex items-center gap-2">
         <i class="fa-solid fa-circle-check"></i>
         <span id="toast-msg">Notification Message</span>
     </div>
@@ -608,8 +692,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             const bz = parseFloat(document.getElementById('vB_z').value) || 0;
 
             // Magnitudes
-            const magA = Math.sqrt(ax*ax + ay*ay + az*az);
-            const magB = Math.sqrt(bx*bx + by*by + bz*bz);
+            const magA = Math.sqrt(ax * ax + ay * ay + az * az);
+            const magB = Math.sqrt(bx * bx + by * by + bz * bz);
 
             // Dot Product
             const dot = (ax * bx) + (ay * by) + (az * bz);
@@ -625,7 +709,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             const cx = (ay * bz) - (az * by);
             const cy = (az * bx) - (ax * bz);
             const cz = (ax * by) - (ay * bx);
-            const magCross = Math.sqrt(cx*cx + cy*cy + cz*cz);
+            const magCross = Math.sqrt(cx * cx + cy * cy + cz * cz);
             const triArea = (magCross / 2).toFixed(2);
 
             // Update UI elements
@@ -711,7 +795,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             const lenA = dirA.length();
             if (lenA > 0) {
                 dirA.normalize();
-                arrowA = new THREE.ArrowHelper(dirA, new THREE.Vector3(0,0,0), lenA, 0x2dd4bf, 0.5, 0.3);
+                arrowA = new THREE.ArrowHelper(dirA, new THREE.Vector3(0, 0, 0), lenA, 0x2dd4bf, 0.5, 0.3);
                 scene.add(arrowA);
             }
 
@@ -719,7 +803,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             const lenB = dirB.length();
             if (lenB > 0) {
                 dirB.normalize();
-                arrowB = new THREE.ArrowHelper(dirB, new THREE.Vector3(0,0,0), lenB, 0xfbbf24, 0.5, 0.3);
+                arrowB = new THREE.ArrowHelper(dirB, new THREE.Vector3(0, 0, 0), lenB, 0xfbbf24, 0.5, 0.3);
                 scene.add(arrowB);
             }
 
@@ -727,16 +811,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             const lenC = dirC.length();
             if (lenC > 0) {
                 dirC.normalize();
-                arrowCross = new THREE.ArrowHelper(dirC, new THREE.Vector3(0,0,0), Math.min(lenC, 10), 0xff7043, 0.5, 0.3);
+                arrowCross = new THREE.ArrowHelper(dirC, new THREE.Vector3(0, 0, 0), Math.min(lenC, 10), 0xff7043, 0.5, 0.3);
                 scene.add(arrowCross);
             }
         }
 
         // Initialize on Load
-        window.onload = function() {
+        window.onload = function () {
             calculateVectors();
         };
     </script>
-<script src="../assets/global-navbar.js" defer></script>
+    <script src="../assets/global-navbar.js" defer></script>
 </body>
+
 </html>

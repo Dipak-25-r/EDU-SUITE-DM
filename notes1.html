@@ -1,61 +1,74 @@
 <!DOCTYPE html>
 <html lang="gu">
+
 <head>
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-5MXP3RTV');</script>
-<!-- End Google Tag Manager -->
+    <!-- Google Tag Manager -->
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-5MXP3RTV');</script>
+    <!-- End Google Tag Manager -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ધોરણ ૧૧ ગણિત નોંધો - E-Book</title>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8G4448P207"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-8G4448P207');
+    </script>
     <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-  import { getFirestore, doc, setDoc, increment } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, doc, setDoc, increment } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-  // Replace with your Firebase configuration object
- // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyAtDRRnUE3FM06gPrs9mHWXJnU9fXv5B54",
-  authDomain: "edu-suite-a55a5.firebaseapp.com",
-  projectId: "edu-suite-a55a5",
-  storageBucket: "edu-suite-a55a5.firebasestorage.app",
-  messagingSenderId: "5059668896",
-  appId: "1:5059668896:web:76fc4c09c1d298ca8012c5",
-  measurementId: "G-8G4448P207"
-};
+        // Replace with your Firebase configuration object
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+            apiKey: "AIzaSyAtDRRnUE3FM06gPrs9mHWXJnU9fXv5B54",
+            authDomain: "edu-suite-a55a5.firebaseapp.com",
+            projectId: "edu-suite-a55a5",
+            storageBucket: "edu-suite-a55a5.firebasestorage.app",
+            messagingSenderId: "5059668896",
+            appId: "1:5059668896:web:76fc4c09c1d298ca8012c5",
+            measurementId: "G-8G4448P207"
+        };
 
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
 
         async function trackPageView(pageName) {
-  // Document reference in the 'analytics' collection
-  const pageRef = doc(db, "analytics", pageName);
+            // Document reference in the 'analytics' collection
+            const pageRef = doc(db, "analytics", pageName);
 
-  try {
-    // Increment totalViews by 1 safely
-    await setDoc(pageRef, {
-      totalViews: increment(1),
-      lastVisited: new Date()
-    }, { merge: true });
-    
-    console.log(`Page view tracked for: ${pageName}`);
-  } catch (error) {
-    console.error("Error tracking analytics: ", error);
-  }
-}
+            try {
+                // Increment totalViews by 1 safely
+                await setDoc(pageRef, {
+                    totalViews: increment(1),
+                    lastVisited: new Date()
+                }, { merge: true });
 
-// Automatically track on page load
-const currentPage = window.location.pathname.replace(/\//g, "_") || "home";
-trackPageView(currentPage);
-</script>
+                console.log(`Page view tracked for: ${pageName}`);
+            } catch (error) {
+                console.error("Error tracking analytics: ", error);
+            }
+        }
+
+        // Automatically track on page load
+        const currentPage = window.location.pathname.replace(/\//g, "_") || "home";
+        trackPageView(currentPage);
+    </script>
 
     <style>
         /* === BASE STYLES & FONT === */
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Gujarati:wght@300;400;700&display=swap');
-        
+
         :root {
             --paper-color: #fafafa;
             --line-color: #ddd;
@@ -93,13 +106,15 @@ trackPageView(currentPage);
             content: '';
             position: absolute;
             top: 0;
-            left: 50px; /* Vertical Margin Line */
+            left: 50px;
+            /* Vertical Margin Line */
             width: 1px;
             height: 100%;
-            background-color: #f08080; /* Light Red */
+            background-color: #f08080;
+            /* Light Red */
             opacity: 0.7;
         }
-        
+
         /* Optional: Add a subtle 'curl' for the page flip look on hover/focus */
         .page:hover {
             box-shadow: 10px 10px 25px rgba(0, 0, 0, 0.2);
@@ -182,7 +197,8 @@ trackPageView(currentPage);
 
         /* === MAIN CONTENT LAYOUT === */
         main {
-            margin-left: 280px; /* Space for the fixed TOC */
+            margin-left: 280px;
+            /* Space for the fixed TOC */
             padding: 20px;
         }
 
@@ -195,28 +211,32 @@ trackPageView(currentPage);
         }
 
         .section-title {
-            color: #c90000; /* Red emphasis for sections */
+            color: #c90000;
+            /* Red emphasis for sections */
             margin-top: 25px;
             font-weight: 700;
         }
 
         /* Formula Box Styling */
         .formula-box {
-            border: 2px solid #333; /* Black border */
+            border: 2px solid #333;
+            /* Black border */
             padding: 15px;
             margin: 20px 0;
-            background-color: #fffacd; /* Light Yellow Background */
+            background-color: #fffacd;
+            /* Light Yellow Background */
             border-radius: 5px;
             font-size: 1.1em;
             font-weight: bold;
         }
-        
+
         /* Solved Example Styling */
         .solved-example {
             border-left: 5px solid var(--primary-color);
             padding-left: 15px;
             margin: 15px 0;
-            background-color: #e8f0fe; /* Light Blue Background */
+            background-color: #e8f0fe;
+            /* Light Blue Background */
             border-radius: 3px;
         }
 
@@ -235,13 +255,14 @@ trackPageView(currentPage);
             margin: 20px 0;
             text-align: center;
             background-color: white;
-            height: 200px; /* Fixed height for illustration */
+            height: 200px;
+            /* Fixed height for illustration */
             display: flex;
             justify-content: center;
             align-items: center;
             flex-direction: column;
         }
-        
+
         /* === RESPONSIVENESS === */
         @media (max-width: 900px) {
             #toc {
@@ -269,13 +290,14 @@ trackPageView(currentPage);
             }
         }
     </style>
-<link rel="stylesheet" href="assets/global-navbar.css">
+    <link rel="stylesheet" href="assets/global-navbar.css">
 </head>
+
 <body>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5MXP3RTV"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5MXP3RTV" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
 
     <header>
         <div class="header-content">
@@ -287,21 +309,24 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <nav id="toc">
         <h3>અનુક્રમણિકા</h3>
         <ul>
-            </ul>
+        </ul>
     </nav>
 
     <main>
         <div class="page" id="chapter-cover">
             <h2>મુખપૃષ્ઠ</h2>
-            <p>આ વેબસાઇટ ગુજરાત રાજ્ય શાળા પાઠ્યપુસ્તક મંડળ (GSEB) ના ધોરણ ૧૧ ગણિતના પાઠ્યક્રમ પર આધારિત છે. તમામ સામગ્રી ફક્ત શૈક્ષણિક હેતુઓ માટે છે.</p>
-            <p style="text-align: center; margin-top: 50px;">શરૂ કરવા માટે ડાબી બાજુની અનુક્રમણિકામાંથી એક પ્રકરણ પસંદ કરો.</p>
+            <p>આ વેબસાઇટ ગુજરાત રાજ્ય શાળા પાઠ્યપુસ્તક મંડળ (GSEB) ના ધોરણ ૧૧ ગણિતના પાઠ્યક્રમ પર આધારિત છે. તમામ
+                સામગ્રી ફક્ત શૈક્ષણિક હેતુઓ માટે છે.</p>
+            <p style="text-align: center; margin-top: 50px;">શરૂ કરવા માટે ડાબી બાજુની અનુક્રમણિકામાંથી એક પ્રકરણ પસંદ
+                કરો.</p>
             <p style="text-align: right; margin-top: 100px;">તારીખ: <span id="current-date"></span></p>
         </div>
 
         <div class="page chapter" id="chapter-1">
             <h2>૧. ગણ (Sets)</h2>
             <h3 class="section-title">સ્પષ્ટ ગુજરાતી સમજૂતી</h3>
-            <p>ગણ એ સુનિશ્ચિત અને સુવ્યાખ્યાયિત વસ્તુઓના સંગ્રહને કહેવાય છે. ગણના ઘટકોને છગડિયા કૌંસમાં { } દર્શાવવામાં આવે છે. ઉદાહરણ તરીકે, પ્રાકૃતિક સંખ્યાઓનો ગણ $\mathbb{N} = \{1, 2, 3, \ldots\}$</p>
+            <p>ગણ એ સુનિશ્ચિત અને સુવ્યાખ્યાયિત વસ્તુઓના સંગ્રહને કહેવાય છે. ગણના ઘટકોને છગડિયા કૌંસમાં { } દર્શાવવામાં
+                આવે છે. ઉદાહરણ તરીકે, પ્રાકૃતિક સંખ્યાઓનો ગણ $\mathbb{N} = \{1, 2, 3, \ldots\}$</p>
 
             <h3 class="section-title">મહત્વના સૂત્રો (Formulas)</h3>
             <div class="formula-box">
@@ -314,7 +339,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             <h3 class="section-title">સોલ્વ કરેલ ઉદાહરણો (Solved Examples)</h3>
             <div class="solved-example">
-                <p><strong>ઉદાહરણ ૧:</strong> જો $A = \{1, 2, 3\}$ અને $B = \{3, 4, 5\}$ હોય, તો $A \cup B$ અને $A \cap B$ શોધો.</p>
+                <p><strong>ઉદાહરણ ૧:</strong> જો $A = \{1, 2, 3\}$ અને $B = \{3, 4, 5\}$ હોય, તો $A \cup B$ અને $A \cap
+                    B$ શોધો.</p>
                 <p><strong>ઉકેલ:</strong></p>
                 <ol>
                     <li>$A \cup B = \{1, 2, 3, 4, 5\}$</li>
@@ -325,8 +351,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <h3 class="section-title">SVG/Canvas આકૃતિ</h3>
             <div class="diagram-placeholder">
                 <svg width="150" height="150" viewBox="0 0 100 100">
-                    <circle cx="40" cy="50" r="30" fill="lightblue" opacity="0.6"/>
-                    <circle cx="60" cy="50" r="30" fill="lightgreen" opacity="0.6"/>
+                    <circle cx="40" cy="50" r="30" fill="lightblue" opacity="0.6" />
+                    <circle cx="60" cy="50" r="30" fill="lightgreen" opacity="0.6" />
                     <text x="30" y="20" font-size="10" fill="#333">ગણ A</text>
                     <text x="70" y="20" font-size="10" fill="#333">ગણ B</text>
                 </svg>
@@ -341,11 +367,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 </ol>
             </div>
         </div>
-        
+
         <div class="page chapter" id="chapter-2">
             <h2>૨. સંબંધો અને વિધેયો (Relations & Functions)</h2>
             <h3 class="section-title">સ્પષ્ટ ગુજરાતી સમજૂતી</h3>
-            <p>બે અરિક્ત ગણ A અને B માટે, ગણ A થી B પરનો સંબંધ એ કાર્તેઝીય ગુણાકાર $A \times B$ નો ઉપગણ છે. વિધેય એ એક ખાસ પ્રકારનો સંબંધ છે જેમાં A ના પ્રત્યેક ઘટક B ના અનન્ય ઘટક સાથે જોડાયેલો હોય છે.</p>
+            <p>બે અરિક્ત ગણ A અને B માટે, ગણ A થી B પરનો સંબંધ એ કાર્તેઝીય ગુણાકાર $A \times B$ નો ઉપગણ છે. વિધેય એ એક
+                ખાસ પ્રકારનો સંબંધ છે જેમાં A ના પ્રત્યેક ઘટક B ના અનન્ય ઘટક સાથે જોડાયેલો હોય છે.</p>
 
             <h3 class="section-title">મહત્વના સૂત્રો (Formulas)</h3>
             <div class="formula-box">
@@ -355,12 +382,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <li>**સંબંધોની કુલ સંખ્યા:** જો $n(A)=p$ અને $n(B)=q$, તો સંબંધોની સંખ્યા $2^{pq}$ છે.</li>
                 </ul>
             </div>
-             <h3 class="section-title">SVG/Canvas આકૃતિ</h3>
+            <h3 class="section-title">SVG/Canvas આકૃતિ</h3>
             <div class="diagram-placeholder">
                 <canvas id="functionCanvas" width="200" height="150"></canvas>
                 <p>વિધેયનું આરેખણ (Canvas Placeholder)</p>
             </div>
-            
+
             <h3 class="section-title">અભ્યાસ પ્રશ્નો (Practice Questions)</h3>
             <div class="practice-questions">
                 <ol>
@@ -373,7 +400,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="page chapter" id="chapter-3">
             <h2>૩. ત્રિકોણમિતિ (Trigonometry)</h2>
             <h3 class="section-title">સ્પષ્ટ ગુજરાતી સમજૂતી</h3>
-            <p>ત્રિકોણમિતિ એ ત્રિકોણની બાજુઓ અને ખૂણાઓ વચ્ચેના સંબંધનો અભ્યાસ છે. રેડિયન અને ડિગ્રી માપ ખૂણાઓ માપવા માટે વપરાય છે. $\sin$, $\cos$, $\tan$ મુખ્ય ત્રિકોણમિતિય વિધેયો છે.</p>
+            <p>ત્રિકોણમિતિ એ ત્રિકોણની બાજુઓ અને ખૂણાઓ વચ્ચેના સંબંધનો અભ્યાસ છે. રેડિયન અને ડિગ્રી માપ ખૂણાઓ માપવા માટે
+                વપરાય છે. $\sin$, $\cos$, $\tan$ મુખ્ય ત્રિકોણમિતિય વિધેયો છે.</p>
 
             <h3 class="section-title">મહત્વના સૂત્રો (Formulas)</h3>
             <div class="formula-box">
@@ -383,17 +411,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <li>**ડબલ એંગલ સૂત્રો:** $\cos(2x) = \cos^2 x - \sin^2 x$</li>
                 </ul>
             </div>
-            
-             <h3 class="section-title">SVG/Canvas આકૃતિ</h3>
+
+            <h3 class="section-title">SVG/Canvas આકૃતિ</h3>
             <div class="diagram-placeholder">
                 <svg width="200" height="200" viewBox="0 0 100 100">
-                    <circle cx="50" cy="50" r="45" stroke="#333" fill="none"/>
-                    <line x1="50" y1="50" x2="95" y2="50" stroke="red"/>
+                    <circle cx="50" cy="50" r="45" stroke="#333" fill="none" />
+                    <line x1="50" y1="50" x2="95" y2="50" stroke="red" />
                     <text x="50" y="15" font-size="8" text-anchor="middle">એકમ વર્તુળ</text>
                 </svg>
                 <p>એકમ વર્તુળ</p>
             </div>
-            
+
             <h3 class="section-title">અભ્યાસ પ્રશ્નો (Practice Questions)</h3>
             <div class="practice-questions">
                 <ol>
@@ -406,7 +434,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="page chapter" id="chapter-4">
             <h2>૪. સુરેખ અસમાનતાઓ (Linear Inequality)</h2>
             <h3 class="section-title">સ્પષ્ટ ગુજરાતી સમજૂતી</h3>
-            <p>સુરેખ અસમાનતામાં, સમીકરણના બદલે $<, >, \le, \ge$ ચિહ્નોનો ઉપયોગ થાય છે. અસમાનતાનો ઉકેલ સામાન્ય રીતે સંખ્યા રેખા પર અથવા સમતલમાં અર્ધ-સમતલ તરીકે દર્શાવવામાં આવે છે.</p>
+            <p>સુરેખ અસમાનતામાં, સમીકરણના બદલે $<,>, \le, \ge$ ચિહ્નોનો ઉપયોગ થાય છે. અસમાનતાનો ઉકેલ સામાન્ય રીતે સંખ્યા
+                    રેખા પર અથવા સમતલમાં અર્ધ-સમતલ તરીકે દર્શાવવામાં આવે છે.</p>
 
             <h3 class="section-title">મહત્વના સૂત્રો (Formulas)</h3>
             <div class="formula-box">
@@ -415,17 +444,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <li>**નિયમ:** અસમાનતાના બંને બાજુએ ઋણ સંખ્યા વડે ગુણવાથી કે ભાગવાથી અસમાનતાનું ચિહ્ન બદલાય છે.</li>
                 </ul>
             </div>
-            
-             <h3 class="section-title">SVG/Canvas આકૃતિ</h3>
+
+            <h3 class="section-title">SVG/Canvas આકૃતિ</h3>
             <div class="diagram-placeholder">
                 <p>સંખ્યા રેખા પર $x > 3$ દર્શાવતી આકૃતિ માટે પ્લેસહોલ્ડર.</p>
             </div>
         </div>
-        
+
         <div class="page chapter" id="chapter-5">
             <h2>૫. ક્રમચય અને સંચય (Permutations & Combinations)</h2>
             <h3 class="section-title">સ્પષ્ટ ગુજરાતી સમજૂતી</h3>
-            <p>ક્રમચય એ વસ્તુઓની ગોઠવણી છે જ્યાં **ક્રમ મહત્વનો** છે. સંચય એ વસ્તુઓની પસંદગી છે જ્યાં **ક્રમ મહત્વનો નથી**.</p>
+            <p>ક્રમચય એ વસ્તુઓની ગોઠવણી છે જ્યાં **ક્રમ મહત્વનો** છે. સંચય એ વસ્તુઓની પસંદગી છે જ્યાં **ક્રમ મહત્વનો
+                નથી**.</p>
 
             <h3 class="section-title">મહત્વના સૂત્રો (Formulas)</h3>
             <div class="formula-box">
@@ -450,7 +480,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 </ul>
             </div>
         </div>
-        
+
         <div class="page chapter" id="chapter-7">
             <h2>૭. સુરેખાઓ (Straight Lines)</h2>
             <h3 class="section-title">સ્પષ્ટ ગુજરાતી સમજૂતી</h3>
@@ -464,7 +494,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <li>**બિંદુ-ઢાળ સ્વરૂપ:** $y - y_1 = m(x - x_1)$</li>
                 </ul>
             </div>
-             <h3 class="section-title">SVG/Canvas આકૃતિ</h3>
+            <h3 class="section-title">SVG/Canvas આકૃતિ</h3>
             <div class="diagram-placeholder">
                 <p>યામાક્ષ પદ્ધતિમાં સુરેખાની આકૃતિ માટે પ્લેસહોલ્ડર.</p>
             </div>
@@ -473,7 +503,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="page chapter" id="chapter-8">
             <h2>૮. શંકુચ્છેદ (Conic Sections)</h2>
             <h3 class="section-title">સ્પષ્ટ ગુજરાતી સમજૂતી</h3>
-            <p>શંકુચ્છેદ એ શંકુ અને સમતલના છેદથી મળતા વક્રો છે: વર્તુળ, પરવલય, ઉપવલય અને અતિવલય. પ્રત્યેકનું પોતાનું પ્રમાણભૂત સમીકરણ હોય છે.</p>
+            <p>શંકુચ્છેદ એ શંકુ અને સમતલના છેદથી મળતા વક્રો છે: વર્તુળ, પરવલય, ઉપવલય અને અતિવલય. પ્રત્યેકનું પોતાનું
+                પ્રમાણભૂત સમીકરણ હોય છે.</p>
 
             <h3 class="section-title">મહત્વના સૂત્રો (Formulas)</h3>
             <div class="formula-box">
@@ -483,7 +514,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <li>**ઉપવલય:** $\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1$</li>
                 </ul>
             </div>
-             <h3 class="section-title">SVG/Canvas આકૃતિ</h3>
+            <h3 class="section-title">SVG/Canvas આકૃતિ</h3>
             <div class="diagram-placeholder">
                 <p>શંકુ અને સમતલના છેદ દર્શાવતી આકૃતિ માટે પ્લેસહોલ્ડર.</p>
             </div>
@@ -492,7 +523,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="page chapter" id="chapter-9">
             <h2>૯. લિમિટ્સ અને વિકલનો (Limits & Derivatives)</h2>
             <h3 class="section-title">સ્પષ્ટ ગુજરાતી સમજૂતી</h3>
-            <p>લિમિટ્સ (સીમાઓ) એ વિધેયના મૂલ્યને નિર્ધારિત કરે છે જ્યારે ચલ કોઈ ચોક્કસ મૂલ્યની નજીક પહોંચે છે. વિકલન (Derivative) એ ફેરફારનો તાત્કાલિક દર છે.</p>
+            <p>લિમિટ્સ (સીમાઓ) એ વિધેયના મૂલ્યને નિર્ધારિત કરે છે જ્યારે ચલ કોઈ ચોક્કસ મૂલ્યની નજીક પહોંચે છે. વિકલન
+                (Derivative) એ ફેરફારનો તાત્કાલિક દર છે.</p>
 
             <h3 class="section-title">મહત્વના સૂત્રો (Formulas)</h3>
             <div class="formula-box">
@@ -503,11 +535,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 </ul>
             </div>
         </div>
-        
+
     </main>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // Set current date on cover page
             const currentDateElement = document.getElementById('current-date');
             if (currentDateElement) {
@@ -519,12 +551,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             // === DYNAMIC TABLE OF CONTENTS (TOC) GENERATION ===
             const chapters = document.querySelectorAll('.chapter h2');
             const tocList = document.querySelector('#toc ul');
-            
+
             chapters.forEach((heading, index) => {
                 const chapterTitle = heading.textContent;
                 const chapterId = `chapter-${index + 1}`;
                 const chapterDiv = heading.closest('.chapter');
-                
+
                 // Ensure the chapter div has a unique ID for linking
                 chapterDiv.id = chapterId;
 
@@ -533,7 +565,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 const link = document.createElement('a');
                 link.href = `#${chapterId}`;
                 link.textContent = chapterTitle;
-                
+
                 // Add smooth scroll functionality to links
                 link.addEventListener('click', (e) => {
                     e.preventDefault();
@@ -541,18 +573,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         behavior: 'smooth'
                     });
                 });
-                
+
                 listItem.appendChild(link);
                 tocList.appendChild(listItem);
             });
-            
+
             // === SEARCH BAR FUNCTIONALITY (Simple Filter) ===
             const searchBar = document.getElementById('search-bar');
             const pages = document.querySelectorAll('.page');
 
-            searchBar.addEventListener('keyup', function() {
+            searchBar.addEventListener('keyup', function () {
                 const filter = searchBar.value.toLowerCase();
-                
+
                 pages.forEach(page => {
                     // Check if the page content contains the search term
                     const textContent = page.textContent.toLowerCase();
@@ -563,7 +595,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     }
                 });
             });
-            
+
             // === CANVAS EXAMPLE (Drawing a simple line graph) ===
             const canvas = document.getElementById('functionCanvas');
             if (canvas && canvas.getContext) {
@@ -571,10 +603,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 ctx.beginPath();
                 ctx.moveTo(10, 140);
                 ctx.lineTo(190, 10);
-                ctx.strokeStyle = var(--primary-color);
+                ctx.strokeStyle = var(--primary - color);
                 ctx.lineWidth = 2;
                 ctx.stroke();
-                
+
                 // Axes
                 ctx.strokeStyle = '#ccc';
                 ctx.lineWidth = 1;
@@ -587,6 +619,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         });
     </script>
 
-<script src="assets/global-navbar.js" defer></script>
+    <script src="assets/global-navbar.js" defer></script>
 </body>
+
 </html>

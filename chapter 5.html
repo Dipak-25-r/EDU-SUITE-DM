@@ -1,56 +1,69 @@
 <!DOCTYPE html>
 <html lang="gu" class="scroll-smooth">
+
 <head>
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-5MXP3RTV');</script>
-<!-- End Google Tag Manager -->
+    <!-- Google Tag Manager -->
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-5MXP3RTV');</script>
+    <!-- End Google Tag Manager -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>સાતત્ય અને વિકલનીયતા - ધોરણ ૧૨ ગણિત (Chapter 5)</title>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8G4448P207"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-8G4448P207');
+    </script>
     <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-  import { getFirestore, doc, setDoc, increment } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, doc, setDoc, increment } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-  // Replace with your Firebase configuration object
- // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyAtDRRnUE3FM06gPrs9mHWXJnU9fXv5B54",
-  authDomain: "edu-suite-a55a5.firebaseapp.com",
-  projectId: "edu-suite-a55a5",
-  storageBucket: "edu-suite-a55a5.firebasestorage.app",
-  messagingSenderId: "5059668896",
-  appId: "1:5059668896:web:76fc4c09c1d298ca8012c5",
-  measurementId: "G-8G4448P207"
-};
+        // Replace with your Firebase configuration object
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+            apiKey: "AIzaSyAtDRRnUE3FM06gPrs9mHWXJnU9fXv5B54",
+            authDomain: "edu-suite-a55a5.firebaseapp.com",
+            projectId: "edu-suite-a55a5",
+            storageBucket: "edu-suite-a55a5.firebasestorage.app",
+            messagingSenderId: "5059668896",
+            appId: "1:5059668896:web:76fc4c09c1d298ca8012c5",
+            measurementId: "G-8G4448P207"
+        };
 
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
 
         async function trackPageView(pageName) {
-  // Document reference in the 'analytics' collection
-  const pageRef = doc(db, "analytics", pageName);
+            // Document reference in the 'analytics' collection
+            const pageRef = doc(db, "analytics", pageName);
 
-  try {
-    // Increment totalViews by 1 safely
-    await setDoc(pageRef, {
-      totalViews: increment(1),
-      lastVisited: new Date()
-    }, { merge: true });
-    
-    console.log(`Page view tracked for: ${pageName}`);
-  } catch (error) {
-    console.error("Error tracking analytics: ", error);
-  }
-}
+            try {
+                // Increment totalViews by 1 safely
+                await setDoc(pageRef, {
+                    totalViews: increment(1),
+                    lastVisited: new Date()
+                }, { merge: true });
 
-// Automatically track on page load
-const currentPage = window.location.pathname.replace(/\//g, "_") || "home";
-trackPageView(currentPage);
-</script>
+                console.log(`Page view tracked for: ${pageName}`);
+            } catch (error) {
+                console.error("Error tracking analytics: ", error);
+            }
+        }
+
+        // Automatically track on page load
+        const currentPage = window.location.pathname.replace(/\//g, "_") || "home";
+        trackPageView(currentPage);
+    </script>
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -78,7 +91,9 @@ trackPageView(currentPage);
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Gujarati:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Gujarati:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- MathJax for rendering LaTeX equations -->
@@ -98,65 +113,79 @@ trackPageView(currentPage);
         .custom-scrollbar::-webkit-scrollbar {
             width: 6px;
         }
+
         .custom-scrollbar::-webkit-scrollbar-track {
             background: rgba(0, 0, 0, 0.05);
         }
+
         .custom-scrollbar::-webkit-scrollbar-thumb {
             background: rgba(156, 163, 175, 0.5);
             border-radius: 4px;
         }
+
         .glass {
             background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(12px);
         }
+
         .dark .glass {
             background: rgba(15, 23, 42, 0.85);
             backdrop-filter: blur(12px);
         }
     </style>
-<link rel="stylesheet" href="assets/global-navbar.css">
+    <link rel="stylesheet" href="assets/global-navbar.css">
 </head>
-<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 font-sans min-h-screen flex flex-col transition-colors duration-200">
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5MXP3RTV"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
+
+<body
+    class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 font-sans min-h-screen flex flex-col transition-colors duration-200">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5MXP3RTV" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
 
     <!-- Top Navigation Bar -->
     <header class="sticky top-0 z-50 glass border-b border-slate-200 dark:border-slate-800 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
             <!-- Brand / Title -->
             <div class="flex items-center gap-3">
-                <button id="mobileMenuBtn" class="lg:hidden p-2 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg">
+                <button id="mobileMenuBtn"
+                    class="lg:hidden p-2 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg">
                     <i class="fa-solid fa-bars text-xl"></i>
                 </button>
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-500 to-indigo-600 flex items-center justify-center text-white font-bold text-xl shadow-md">
+                <div
+                    class="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-500 to-indigo-600 flex items-center justify-center text-white font-bold text-xl shadow-md">
                     ∫
                 </div>
                 <div>
-                    <h1 class="font-bold text-lg sm:text-xl bg-gradient-to-r from-sky-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent">
+                    <h1
+                        class="font-bold text-lg sm:text-xl bg-gradient-to-r from-sky-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent">
                         ધોરણ ૧૨ ગણિત - પ્રકરણ ૫
                     </h1>
-                    <p class="text-xs text-slate-500 dark:text-slate-400 font-medium hidden sm:block">સાતત્ય અને વિકલનીયતા (Continuity & Differentiability)</p>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 font-medium hidden sm:block">સાતત્ય અને
+                        વિકલનીયતા (Continuity & Differentiability)</p>
                 </div>
             </div>
 
             <!-- Search Bar & Controls -->
             <div class="flex items-center gap-3">
                 <div class="relative hidden md:block w-64">
-                    <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
-                    <input type="text" id="searchInput" placeholder="ટોપિક અથવા સૂત્ર શોધો..." 
-                           class="w-full pl-9 pr-4 py-1.5 text-sm rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-sky-500 transition-all">
+                    <i
+                        class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+                    <input type="text" id="searchInput" placeholder="ટોપિક અથવા સૂત્ર શોધો..."
+                        class="w-full pl-9 pr-4 py-1.5 text-sm rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-sky-500 transition-all">
                 </div>
 
                 <!-- Theme Toggle -->
-                <button id="themeToggle" class="p-2.5 rounded-full text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" title="થિમ બદલો">
+                <button id="themeToggle"
+                    class="p-2.5 rounded-full text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+                    title="થિમ બદલો">
                     <i class="fa-solid fa-moon dark:hidden text-lg"></i>
                     <i class="fa-solid fa-sun hidden dark:block text-amber-400 text-lg"></i>
                 </button>
 
                 <!-- Cheat Sheet Modal Trigger -->
-                <button onclick="toggleModal()" class="px-3 py-1.5 rounded-lg bg-gradient-to-r from-sky-500 to-blue-600 text-white font-medium text-xs sm:text-sm shadow-md hover:opacity-90 transition-opacity flex items-center gap-1.5">
+                <button onclick="toggleModal()"
+                    class="px-3 py-1.5 rounded-lg bg-gradient-to-r from-sky-500 to-blue-600 text-white font-medium text-xs sm:text-sm shadow-md hover:opacity-90 transition-opacity flex items-center gap-1.5">
                     <i class="fa-solid fa-bolt"></i>
                     <span>ઝડપી સૂત્રો</span>
                 </button>
@@ -166,9 +195,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <!-- Main Content Layout -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-1 flex gap-6 w-full">
-        
+
         <!-- Sidebar Navigation (Desktop & Mobile Drawer) -->
-        <aside id="sidebar" class="fixed inset-y-0 left-0 z-40 w-72 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 transform -translate-x-full lg:translate-x-0 lg:static lg:z-auto transition-transform duration-300 flex flex-col h-[calc(100vh-4rem)] lg:h-auto rounded-xl lg:border lg:shadow-sm overflow-hidden">
+        <aside id="sidebar"
+            class="fixed inset-y-0 left-0 z-40 w-72 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 transform -translate-x-full lg:translate-x-0 lg:static lg:z-auto transition-transform duration-300 flex flex-col h-[calc(100vh-4rem)] lg:h-auto rounded-xl lg:border lg:shadow-sm overflow-hidden">
             <div class="p-4 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
                 <span class="font-bold text-sm tracking-wide text-slate-500 uppercase flex items-center gap-2">
                     <i class="fa-solid fa-list-ol text-sky-500"></i> અનુક્રમણિકા (Topics)
@@ -180,84 +210,96 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             <!-- Navigation Links -->
             <nav class="flex-1 overflow-y-auto p-3 space-y-1 custom-scrollbar" id="navLinks">
-                <button data-topic="t1" class="nav-btn w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium transition-all flex items-center justify-between bg-sky-50 dark:bg-sky-950/50 text-sky-700 dark:text-sky-300 font-semibold border-l-4 border-sky-500">
+                <button data-topic="t1"
+                    class="nav-btn w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium transition-all flex items-center justify-between bg-sky-50 dark:bg-sky-950/50 text-sky-700 dark:text-sky-300 font-semibold border-l-4 border-sky-500">
                     <span class="flex items-center gap-2.5 truncate">
                         <span>📌</span> 1. સાતત્ય (Continuity)
                     </span>
                     <i class="fa-solid fa-chevron-right text-xs opacity-70"></i>
                 </button>
 
-                <button data-topic="t2" class="nav-btn w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium transition-all flex items-center justify-between text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800">
+                <button data-topic="t2"
+                    class="nav-btn w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium transition-all flex items-center justify-between text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800">
                     <span class="flex items-center gap-2.5 truncate">
                         <span>🧮</span> 2. સતત વિધેયો & બીજગણિત
                     </span>
                     <i class="fa-solid fa-chevron-right text-xs opacity-70"></i>
                 </button>
 
-                <button data-topic="t3" class="nav-btn w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium transition-all flex items-center justify-between text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800">
+                <button data-topic="t3"
+                    class="nav-btn w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium transition-all flex items-center justify-between text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800">
                     <span class="flex items-center gap-2.5 truncate">
                         <span>📈</span> 3. વિકલનીયતા (Differentiability)
                     </span>
                     <i class="fa-solid fa-chevron-right text-xs opacity-70"></i>
                 </button>
 
-                <button data-topic="t4" class="nav-btn w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium transition-all flex items-center justify-between text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800">
+                <button data-topic="t4"
+                    class="nav-btn w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium transition-all flex items-center justify-between text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800">
                     <span class="flex items-center gap-2.5 truncate">
                         <span>🔗</span> 4. સંબંધ & સાંકળનો નિયમ
                     </span>
                     <i class="fa-solid fa-chevron-right text-xs opacity-70"></i>
                 </button>
 
-                <button data-topic="t5" class="nav-btn w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium transition-all flex items-center justify-between text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800">
+                <button data-topic="t5"
+                    class="nav-btn w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium transition-all flex items-center justify-between text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800">
                     <span class="flex items-center gap-2.5 truncate">
                         <span>📐</span> 5. પ્રમાણિત વિધેયોનાં વિકલન
                     </span>
                     <i class="fa-solid fa-chevron-right text-xs opacity-70"></i>
                 </button>
 
-                <button data-topic="t6" class="nav-btn w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium transition-all flex items-center justify-between text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800">
+                <button data-topic="t6"
+                    class="nav-btn w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium transition-all flex items-center justify-between text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800">
                     <span class="flex items-center gap-2.5 truncate">
                         <span>🧩</span> 6. ગૂઢ વિધેયનાં વિકલિત
                     </span>
                     <i class="fa-solid fa-chevron-right text-xs opacity-70"></i>
                 </button>
 
-                <button data-topic="t7" class="nav-btn w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium transition-all flex items-center justify-between text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800">
+                <button data-topic="t7"
+                    class="nav-btn w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium transition-all flex items-center justify-between text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800">
                     <span class="flex items-center gap-2.5 truncate">
                         <span>🔄</span> 7. પ્રતિવિધેયો & નિત્યસમ
                     </span>
                     <i class="fa-solid fa-chevron-right text-xs opacity-70"></i>
                 </button>
 
-                <button data-topic="t8" class="nav-btn w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium transition-all flex items-center justify-between text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800">
+                <button data-topic="t8"
+                    class="nav-btn w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium transition-all flex items-center justify-between text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800">
                     <span class="flex items-center gap-2.5 truncate">
                         <span>🔁</span> 8. અગત્યનાં આદેશો
                     </span>
                     <i class="fa-solid fa-chevron-right text-xs opacity-70"></i>
                 </button>
 
-                <button data-topic="t9" class="nav-btn w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium transition-all flex items-center justify-between text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800">
+                <button data-topic="t9"
+                    class="nav-btn w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium transition-all flex items-center justify-between text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800">
                     <span class="flex items-center gap-2.5 truncate">
                         <span>📊</span> 9. ઘાતાંકીય & લઘુગણકીય
                     </span>
                     <i class="fa-solid fa-chevron-right text-xs opacity-70"></i>
                 </button>
 
-                <button data-topic="t10" class="nav-btn w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium transition-all flex items-center justify-between text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800">
+                <button data-topic="t10"
+                    class="nav-btn w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium transition-all flex items-center justify-between text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800">
                     <span class="flex items-center gap-2.5 truncate">
                         <span>🪵</span> 10. લઘુગણકીય વિકલન
                     </span>
                     <i class="fa-solid fa-chevron-right text-xs opacity-70"></i>
                 </button>
 
-                <button data-topic="t11" class="nav-btn w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium transition-all flex items-center justify-between text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800">
+                <button data-topic="t11"
+                    class="nav-btn w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium transition-all flex items-center justify-between text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800">
                     <span class="flex items-center gap-2.5 truncate">
                         <span>⚙️</span> 11. પ્રચલ વિધેય & અનંત શ્રેઢી
                     </span>
                     <i class="fa-solid fa-chevron-right text-xs opacity-70"></i>
                 </button>
 
-                <button data-topic="t12" class="nav-btn w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium transition-all flex items-center justify-between text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800">
+                <button data-topic="t12"
+                    class="nav-btn w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium transition-all flex items-center justify-between text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800">
                     <span class="flex items-center gap-2.5 truncate">
                         <span>⚡</span> 12. દ્વિતીય કક્ષાનો વિકલિત
                     </span>
@@ -275,30 +317,40 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <!-- TOPIC 1: CONTINUITY -->
             <section id="t1" class="topic-section space-y-6">
                 <!-- Header Banner -->
-                <div class="p-6 rounded-2xl bg-gradient-to-r from-sky-500 via-blue-600 to-indigo-600 text-white shadow-lg relative overflow-hidden">
+                <div
+                    class="p-6 rounded-2xl bg-gradient-to-r from-sky-500 via-blue-600 to-indigo-600 text-white shadow-lg relative overflow-hidden">
                     <div class="relative z-10">
-                        <span class="inline-block px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-xs font-semibold uppercase tracking-wider mb-2">Topic 01</span>
+                        <span
+                            class="inline-block px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-xs font-semibold uppercase tracking-wider mb-2">Topic
+                            01</span>
                         <h2 class="text-2xl sm:text-3xl font-extrabold mb-2">📌 યાદ રાખો: સાતત્ય (Continuity)</h2>
-                        <p class="text-sky-100 text-sm sm:text-base max-w-2xl">વિધેયના સાતત્યની વ્યાખ્યા, લક્ષની શરતો અને આલેખીય સમજુતી.</p>
+                        <p class="text-sky-100 text-sm sm:text-base max-w-2xl">વિધેયના સાતત્યની વ્યાખ્યા, લક્ષની શરતો
+                            અને આલેખીય સમજુતી.</p>
                     </div>
-                    <i class="fa-solid fa-wave-square absolute -right-4 -bottom-6 text-9xl text-white/10 pointer-events-none"></i>
+                    <i
+                        class="fa-solid fa-wave-square absolute -right-4 -bottom-6 text-9xl text-white/10 pointer-events-none"></i>
                 </div>
 
                 <!-- Concept Card with SVG Graph -->
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     <!-- Left: Mathematical Definition -->
-                    <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm space-y-4">
+                    <div
+                        class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm space-y-4">
                         <h3 class="text-lg font-bold text-sky-600 dark:text-sky-400 flex items-center gap-2">
                             <i class="fa-solid fa-book-open"></i> વિધેયની વ્યાખ્યા અને શરત
                         </h3>
                         <p class="text-sm leading-relaxed text-slate-600 dark:text-slate-300">
-                            ધારો કે, $f$ એ વાસ્તવિક સંખ્યાના કોઈ ઉપગણ પર વ્યાખ્યાયિત વાસ્તવિક વિધેય છે અને $c$ એ $f$ ના પ્રદેશનું કોઈ બિંદુ છે.
+                            ધારો કે, $f$ એ વાસ્તવિક સંખ્યાના કોઈ ઉપગણ પર વ્યાખ્યાયિત વાસ્તવિક વિધેય છે અને $c$ એ $f$ ના
+                            પ્રદેશનું કોઈ બિંદુ છે.
                         </p>
-                        <div class="p-4 rounded-xl bg-sky-50 dark:bg-sky-950/40 border border-sky-200 dark:border-sky-800 text-center font-bold text-lg">
+                        <div
+                            class="p-4 rounded-xl bg-sky-50 dark:bg-sky-950/40 border border-sky-200 dark:border-sky-800 text-center font-bold text-lg">
                             જો $\lim_{x\rightarrow c}f(x)=f(c)$ હોય, તો $f$ એ $c$ આગળ સતત છે તેમ કહેવાય.
                         </div>
-                        <div class="p-4 rounded-xl bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-200 dark:border-indigo-800 space-y-2">
-                            <p class="text-xs uppercase font-bold text-indigo-600 dark:text-indigo-400 tracking-wider">ડાબી અને જમણી બાજુનું લક્ષ (LHL & RHL):</p>
+                        <div
+                            class="p-4 rounded-xl bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-200 dark:border-indigo-800 space-y-2">
+                            <p class="text-xs uppercase font-bold text-indigo-600 dark:text-indigo-400 tracking-wider">
+                                ડાબી અને જમણી બાજુનું લક્ષ (LHL & RHL):</p>
                             <p class="text-sm font-semibold text-center">
                                 $\lim_{x\rightarrow c^{-}}f(x)=\lim_{x\rightarrow c^{+}}f(x)=f(c)$
                             </p>
@@ -307,27 +359,34 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             </p>
                         </div>
                         <p class="text-xs text-slate-500 dark:text-slate-400">
-                            ✨ <strong>નોંધ:</strong> જો $f$ એ $c$ આગળ સતત ના હોય, તો આપણે $f$ એ $c$ આગળ અસતત છે તેમ કહીશું અને $c$ ને વિધેય $f$ માટેનું અસાતત્ય બિંદુ કહે છે.
+                            ✨ <strong>નોંધ:</strong> જો $f$ એ $c$ આગળ સતત ના હોય, તો આપણે $f$ એ $c$ આગળ અસતત છે તેમ
+                            કહીશું અને $c$ ને વિધેય $f$ માટેનું અસાતત્ય બિંદુ કહે છે.
                         </p>
                     </div>
 
                     <!-- Right: Interactive Piecewise Graph (PDF Page 1 Graph) -->
-                    <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col justify-between">
+                    <div
+                        class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col justify-between">
                         <div>
-                            <h3 class="text-lg font-bold text-amber-600 dark:text-amber-400 flex items-center gap-2 mb-2">
+                            <h3
+                                class="text-lg font-bold text-amber-600 dark:text-amber-400 flex items-center gap-2 mb-2">
                                 <i class="fa-solid fa-chart-line"></i> ઉદાહરણનો આલેખ ($x=0$ આગળ અસતત)
                             </h3>
                             <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">
-                                $f(x) = \begin{cases} 1, & x \le 0 \\ 2, & x > 0 \end{cases}$ નો આલેખ. $x=0$ આગળ પેન ઉઠાવવી પડે છે.
+                                $f(x) = \begin{cases} 1, & x \le 0 \\ 2, & x > 0 \end{cases}$ નો આલેખ. $x=0$ આગળ પેન
+                                ઉઠાવવી પડે છે.
                             </p>
                         </div>
 
                         <!-- Drawn SVG Graph -->
-                        <div class="w-full h-64 bg-slate-50 dark:bg-slate-900 rounded-xl p-2 border border-slate-200 dark:border-slate-800 flex items-center justify-center">
+                        <div
+                            class="w-full h-64 bg-slate-50 dark:bg-slate-900 rounded-xl p-2 border border-slate-200 dark:border-slate-800 flex items-center justify-center">
                             <svg class="w-full h-full max-w-sm" viewBox="0 0 300 240">
                                 <!-- Axes -->
-                                <line x1="20" y1="180" x2="280" y2="180" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrow)"/>
-                                <line x1="150" y1="220" x2="150" y2="20" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrow)"/>
+                                <line x1="20" y1="180" x2="280" y2="180" stroke="#94a3b8" stroke-width="2"
+                                    marker-end="url(#arrow)" />
+                                <line x1="150" y1="220" x2="150" y2="20" stroke="#94a3b8" stroke-width="2"
+                                    marker-end="url(#arrow)" />
                                 <text x="275" y="175" class="text-xs fill-slate-500 font-bold">X</text>
                                 <text x="10" y="175" class="text-xs fill-slate-500 font-bold">X'</text>
                                 <text x="155" y="25" class="text-xs fill-slate-500 font-bold">Y</text>
@@ -336,15 +395,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
                                 <!-- Points & Lines -->
                                 <!-- Line y=1 for x <= 0 -->
-                                <line x1="50" y1="120" x2="150" y2="120" stroke="#ef4444" stroke-width="3"/>
-                                <polygon points="50,120 60,115 60,125" fill="#ef4444"/>
-                                <circle cx="150" cy="120" r="5" fill="#ffffff" stroke="#ef4444" stroke-width="2"/>
+                                <line x1="50" y1="120" x2="150" y2="120" stroke="#ef4444" stroke-width="3" />
+                                <polygon points="50,120 60,115 60,125" fill="#ef4444" />
+                                <circle cx="150" cy="120" r="5" fill="#ffffff" stroke="#ef4444" stroke-width="2" />
                                 <text x="160" y="125" class="text-xs font-bold fill-red-500">(0, 1)</text>
 
                                 <!-- Line y=2 for x > 0 -->
-                                <line x1="150" y1="60" x2="250" y2="60" stroke="#06b6d4" stroke-width="3"/>
-                                <polygon points="250,60 240,55 240,65" fill="#06b6d4"/>
-                                <circle cx="150" cy="60" r="5" fill="#ffffff" stroke="#06b6d4" stroke-width="2"/>
+                                <line x1="150" y1="60" x2="250" y2="60" stroke="#06b6d4" stroke-width="3" />
+                                <polygon points="250,60 240,55 240,65" fill="#06b6d4" />
+                                <circle cx="150" cy="60" r="5" fill="#ffffff" stroke="#06b6d4" stroke-width="2" />
                                 <text x="110" y="65" class="text-xs font-bold fill-cyan-600">(0, 2)</text>
 
                                 <text x="170" y="45" class="text-xs font-bold fill-indigo-500">$y=f(x)$</text>
@@ -354,42 +413,56 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 </div>
 
                 <!-- Continuous vs Discontinuous Visual Graphs -->
-                <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm space-y-4">
+                <div
+                    class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm space-y-4">
                     <h3 class="text-lg font-bold text-slate-800 dark:text-slate-100 flex items-center gap-2">
-                        <i class="fa-solid fa-shapes text-indigo-500"></i> સાતત્યનો આલેખ (Continuous vs Discontinuous Curve)
+                        <i class="fa-solid fa-shapes text-indigo-500"></i> સાતત્યનો આલેખ (Continuous vs Discontinuous
+                        Curve)
                     </h3>
                     <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                        જે વિધેયનો આલેખ નિશ્ચિત બિંદુ આસપાસ કાગળના સમતલમાં પેન ઉઠાવ્યા વગર દોરી શકાય તે વિધેયને તે બિંદુ આગળ સતત છે તેમ કહેવાય.
+                        જે વિધેયનો આલેખ નિશ્ચિત બિંદુ આસપાસ કાગળના સમતલમાં પેન ઉઠાવ્યા વગર દોરી શકાય તે વિધેયને તે બિંદુ
+                        આગળ સતત છે તેમ કહેવાય.
                     </p>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
                         <!-- Continuous Graph SVG -->
-                        <div class="p-4 rounded-xl bg-emerald-50/50 dark:bg-emerald-950/20 border border-emerald-200 dark:border-emerald-800 text-center space-y-2">
-                            <span class="inline-block px-3 py-1 rounded-full bg-emerald-500 text-white text-xs font-bold">સતત વિધેય (Continuous Function)</span>
+                        <div
+                            class="p-4 rounded-xl bg-emerald-50/50 dark:bg-emerald-950/20 border border-emerald-200 dark:border-emerald-800 text-center space-y-2">
+                            <span
+                                class="inline-block px-3 py-1 rounded-full bg-emerald-500 text-white text-xs font-bold">સતત
+                                વિધેય (Continuous Function)</span>
                             <div class="h-44 flex items-center justify-center">
                                 <svg class="w-full h-full max-w-xs" viewBox="0 0 260 160">
-                                    <line x1="20" y1="130" x2="240" y2="130" stroke="#94a3b8" stroke-width="1.5"/>
-                                    <line x1="130" y1="150" x2="130" y2="10" stroke="#94a3b8" stroke-width="1.5"/>
+                                    <line x1="20" y1="130" x2="240" y2="130" stroke="#94a3b8" stroke-width="1.5" />
+                                    <line x1="130" y1="150" x2="130" y2="10" stroke="#94a3b8" stroke-width="1.5" />
                                     <!-- Smooth continuous wave curve -->
-                                    <path d="M 30 110 C 60 40, 90 120, 130 30 C 170 80, 200 40, 230 110" fill="none" stroke="#10b981" stroke-width="3"/>
+                                    <path d="M 30 110 C 60 40, 90 120, 130 30 C 170 80, 200 40, 230 110" fill="none"
+                                        stroke="#10b981" stroke-width="3" />
                                 </svg>
                             </div>
-                            <p class="text-xs text-emerald-700 dark:text-emerald-300 font-medium">આલેખ ક્યાંય પણ તૂટ્યા વગર સળંગ ચાલે છે.</p>
+                            <p class="text-xs text-emerald-700 dark:text-emerald-300 font-medium">આલેખ ક્યાંય પણ તૂટ્યા
+                                વગર સળંગ ચાલે છે.</p>
                         </div>
 
                         <!-- Discontinuous Graph SVG -->
-                        <div class="p-4 rounded-xl bg-rose-50/50 dark:bg-rose-950/20 border border-rose-200 dark:border-rose-800 text-center space-y-2">
-                            <span class="inline-block px-3 py-1 rounded-full bg-rose-500 text-white text-xs font-bold">અસતત વિધેય (Discontinuous Function)</span>
+                        <div
+                            class="p-4 rounded-xl bg-rose-50/50 dark:bg-rose-950/20 border border-rose-200 dark:border-rose-800 text-center space-y-2">
+                            <span
+                                class="inline-block px-3 py-1 rounded-full bg-rose-500 text-white text-xs font-bold">અસતત
+                                વિધેય (Discontinuous Function)</span>
                             <div class="h-44 flex items-center justify-center">
                                 <svg class="w-full h-full max-w-xs" viewBox="0 0 260 160">
-                                    <line x1="20" y1="130" x2="240" y2="130" stroke="#94a3b8" stroke-width="1.5"/>
-                                    <line x1="130" y1="150" x2="130" y2="10" stroke="#94a3b8" stroke-width="1.5"/>
+                                    <line x1="20" y1="130" x2="240" y2="130" stroke="#94a3b8" stroke-width="1.5" />
+                                    <line x1="130" y1="150" x2="130" y2="10" stroke="#94a3b8" stroke-width="1.5" />
                                     <!-- Discontinuous broken curves -->
-                                    <path d="M 30 110 C 60 40, 100 80, 140 30" fill="none" stroke="#f43f5e" stroke-width="3"/>
-                                    <path d="M 160 120 C 180 140, 210 90, 230 70" fill="none" stroke="#f43f5e" stroke-width="3"/>
+                                    <path d="M 30 110 C 60 40, 100 80, 140 30" fill="none" stroke="#f43f5e"
+                                        stroke-width="3" />
+                                    <path d="M 160 120 C 180 140, 210 90, 230 70" fill="none" stroke="#f43f5e"
+                                        stroke-width="3" />
                                 </svg>
                             </div>
-                            <p class="text-xs text-rose-700 dark:text-rose-300 font-medium">આલેખ વચ્ચેથી તૂટે છે (Gap / Break).</p>
+                            <p class="text-xs text-rose-700 dark:text-rose-300 font-medium">આલેખ વચ્ચેથી તૂટે છે (Gap /
+                                Break).</p>
                         </div>
                     </div>
                 </div>
@@ -397,112 +470,146 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             <!-- TOPIC 2: CONTINUOUS FUNCTIONS & ALGEBRA -->
             <section id="t2" class="topic-section space-y-6 hidden">
-                <div class="p-6 rounded-2xl bg-gradient-to-r from-emerald-500 via-teal-600 to-cyan-600 text-white shadow-lg">
-                    <span class="inline-block px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-xs font-semibold uppercase tracking-wider mb-2">Topic 02</span>
+                <div
+                    class="p-6 rounded-2xl bg-gradient-to-r from-emerald-500 via-teal-600 to-cyan-600 text-white shadow-lg">
+                    <span
+                        class="inline-block px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-xs font-semibold uppercase tracking-wider mb-2">Topic
+                        02</span>
                     <h2 class="text-2xl sm:text-3xl font-extrabold mb-2">🧮 સતત વિધેયો અને તેનું બીજગણિત</h2>
-                    <p class="text-teal-100 text-sm sm:text-base">નિયમિત સતત વિધેયો અને તેમના સરવાળા, બાદબાકી, ગુણાકાર, ભાગાકારના નિયમો.</p>
+                    <p class="text-teal-100 text-sm sm:text-base">નિયમિત સતત વિધેયો અને તેમના સરવાળા, બાદબાકી, ગુણાકાર,
+                        ભાગાકારના નિયમો.</p>
                 </div>
 
                 <!-- Continuous Functions Grid -->
-                <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm space-y-4">
+                <div
+                    class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm space-y-4">
                     <h3 class="text-lg font-bold text-teal-600 dark:text-teal-400 flex items-center gap-2">
                         <i class="fa-solid fa-check-double"></i> હંમેશા સતત રહેતા વિધેયો (Standard Continuous Functions)
                     </h3>
                     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-                        <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 flex items-start gap-3">
-                            <span class="p-2 rounded-lg bg-teal-100 dark:bg-teal-900 text-teal-600 dark:text-teal-300 text-lg">📌</span>
+                        <div
+                            class="p-4 rounded-xl bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 flex items-start gap-3">
+                            <span
+                                class="p-2 rounded-lg bg-teal-100 dark:bg-teal-900 text-teal-600 dark:text-teal-300 text-lg">📌</span>
                             <div>
                                 <p class="font-bold text-sm">અચળ વિધેય</p>
-                                <p class="text-xs text-slate-500 dark:text-slate-400">પ્રત્યેક અચળ વિધેય $f(x)=c$ સતત છે.</p>
+                                <p class="text-xs text-slate-500 dark:text-slate-400">પ્રત્યેક અચળ વિધેય $f(x)=c$ સતત
+                                    છે.</p>
                             </div>
                         </div>
 
-                        <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 flex items-start gap-3">
-                            <span class="p-2 rounded-lg bg-teal-100 dark:bg-teal-900 text-teal-600 dark:text-teal-300 text-lg">📌</span>
+                        <div
+                            class="p-4 rounded-xl bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 flex items-start gap-3">
+                            <span
+                                class="p-2 rounded-lg bg-teal-100 dark:bg-teal-900 text-teal-600 dark:text-teal-300 text-lg">📌</span>
                             <div>
                                 <p class="font-bold text-sm">એકમ વિધેય</p>
-                                <p class="text-xs text-slate-500 dark:text-slate-400">પ્રત્યેક એકમ વિધેય $f(x)=x$ સતત છે.</p>
+                                <p class="text-xs text-slate-500 dark:text-slate-400">પ્રત્યેક એકમ વિધેય $f(x)=x$ સતત
+                                    છે.</p>
                             </div>
                         </div>
 
-                        <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 flex items-start gap-3">
-                            <span class="p-2 rounded-lg bg-teal-100 dark:bg-teal-900 text-teal-600 dark:text-teal-300 text-lg">📌</span>
+                        <div
+                            class="p-4 rounded-xl bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 flex items-start gap-3">
+                            <span
+                                class="p-2 rounded-lg bg-teal-100 dark:bg-teal-900 text-teal-600 dark:text-teal-300 text-lg">📌</span>
                             <div>
                                 <p class="font-bold text-sm">બહુપદીય વિધેય</p>
-                                <p class="text-xs text-slate-500 dark:text-slate-400">પ્રત્યેક બહુપદીય વિધેય $P(x)$ સતત છે.</p>
+                                <p class="text-xs text-slate-500 dark:text-slate-400">પ્રત્યેક બહુપદીય વિધેય $P(x)$ સતત
+                                    છે.</p>
                             </div>
                         </div>
 
-                        <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 flex items-start gap-3">
-                            <span class="p-2 rounded-lg bg-teal-100 dark:bg-teal-900 text-teal-600 dark:text-teal-300 text-lg">📌</span>
+                        <div
+                            class="p-4 rounded-xl bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 flex items-start gap-3">
+                            <span
+                                class="p-2 rounded-lg bg-teal-100 dark:bg-teal-900 text-teal-600 dark:text-teal-300 text-lg">📌</span>
                             <div>
                                 <p class="font-bold text-sm">સંમેય વિધેય</p>
-                                <p class="text-xs text-slate-500 dark:text-slate-400">પ્રત્યેક સંમેય વિધેય $\frac{p(x)}{q(x)}$ સતત છે.</p>
+                                <p class="text-xs text-slate-500 dark:text-slate-400">પ્રત્યેક સંમેય વિધેય
+                                    $\frac{p(x)}{q(x)}$ સતત છે.</p>
                             </div>
                         </div>
 
-                        <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 flex items-start gap-3 sm:col-span-2 md:col-span-2">
-                            <span class="p-2 rounded-lg bg-teal-100 dark:bg-teal-900 text-teal-600 dark:text-teal-300 text-lg">📌</span>
+                        <div
+                            class="p-4 rounded-xl bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 flex items-start gap-3 sm:col-span-2 md:col-span-2">
+                            <span
+                                class="p-2 rounded-lg bg-teal-100 dark:bg-teal-900 text-teal-600 dark:text-teal-300 text-lg">📌</span>
                             <div>
                                 <p class="font-bold text-sm">ત્રિકોણમિતીય વિધેયો</p>
-                                <p class="text-xs text-slate-500 dark:text-slate-400">બધાં જ ત્રિકોણમિતીય વિધેયો ($\sin x, \cos x, \dots$) તેમનાં પ્રદેશમાં સતત છે.</p>
+                                <p class="text-xs text-slate-500 dark:text-slate-400">બધાં જ ત્રિકોણમિતીય વિધેયો ($\sin
+                                    x, \cos x, \dots$) તેમનાં પ્રદેશમાં સતત છે.</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Algebra Theorems -->
-                <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm space-y-6">
+                <div
+                    class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm space-y-6">
                     <div>
                         <h3 class="text-lg font-bold text-indigo-600 dark:text-indigo-400 flex items-center gap-2">
                             <i class="fa-solid fa-square-root-variable"></i> પ્રમેય - ૧: સતત વિધેયોનું બીજગણિત
                         </h3>
                         <p class="text-sm text-slate-600 dark:text-slate-300 mt-1">
-                            ધારો કે $f$ અને $g$ પ્રત્યેક વાસ્તવિક સંખ્યા $c$ આગળ સતત હોય તેવાં બે વાસ્તવિક વિધેયો છે, તો:
+                            ધારો કે $f$ અને $g$ પ્રત્યેક વાસ્તવિક સંખ્યા $c$ આગળ સતત હોય તેવાં બે વાસ્તવિક વિધેયો છે,
+                            તો:
                         </p>
                     </div>
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div class="p-4 rounded-xl bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-200 dark:border-indigo-800 flex items-center gap-3">
-                            <span class="w-8 h-8 rounded-full bg-indigo-600 text-white flex items-center justify-center font-bold text-sm">1</span>
+                        <div
+                            class="p-4 rounded-xl bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-200 dark:border-indigo-800 flex items-center gap-3">
+                            <span
+                                class="w-8 h-8 rounded-full bg-indigo-600 text-white flex items-center justify-center font-bold text-sm">1</span>
                             <div>
                                 <p class="font-bold text-slate-800 dark:text-slate-100">સરવાળો ($f+g$)</p>
                                 <p class="text-xs text-slate-500 dark:text-slate-400">$f+g$ એ $x=c$ આગળ સતત છે.</p>
                             </div>
                         </div>
 
-                        <div class="p-4 rounded-xl bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-200 dark:border-indigo-800 flex items-center gap-3">
-                            <span class="w-8 h-8 rounded-full bg-indigo-600 text-white flex items-center justify-center font-bold text-sm">2</span>
+                        <div
+                            class="p-4 rounded-xl bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-200 dark:border-indigo-800 flex items-center gap-3">
+                            <span
+                                class="w-8 h-8 rounded-full bg-indigo-600 text-white flex items-center justify-center font-bold text-sm">2</span>
                             <div>
                                 <p class="font-bold text-slate-800 dark:text-slate-100">બાદબાકી ($f-g$)</p>
                                 <p class="text-xs text-slate-500 dark:text-slate-400">$f-g$ એ $x=c$ આગળ સતત છે.</p>
                             </div>
                         </div>
 
-                        <div class="p-4 rounded-xl bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-200 dark:border-indigo-800 flex items-center gap-3">
-                            <span class="w-8 h-8 rounded-full bg-indigo-600 text-white flex items-center justify-center font-bold text-sm">3</span>
+                        <div
+                            class="p-4 rounded-xl bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-200 dark:border-indigo-800 flex items-center gap-3">
+                            <span
+                                class="w-8 h-8 rounded-full bg-indigo-600 text-white flex items-center justify-center font-bold text-sm">3</span>
                             <div>
                                 <p class="font-bold text-slate-800 dark:text-slate-100">ગુણાકાર ($f \cdot g$)</p>
-                                <p class="text-xs text-slate-500 dark:text-slate-400">$f \cdot g$ એ $x=c$ આગળ સતત છે.</p>
+                                <p class="text-xs text-slate-500 dark:text-slate-400">$f \cdot g$ એ $x=c$ આગળ સતત છે.
+                                </p>
                             </div>
                         </div>
 
-                        <div class="p-4 rounded-xl bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-200 dark:border-indigo-800 flex items-center gap-3">
-                            <span class="w-8 h-8 rounded-full bg-indigo-600 text-white flex items-center justify-center font-bold text-sm">4</span>
+                        <div
+                            class="p-4 rounded-xl bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-200 dark:border-indigo-800 flex items-center gap-3">
+                            <span
+                                class="w-8 h-8 rounded-full bg-indigo-600 text-white flex items-center justify-center font-bold text-sm">4</span>
                             <div>
                                 <p class="font-bold text-slate-800 dark:text-slate-100">ભાગાકાર ($\frac{f}{g}$)</p>
-                                <p class="text-xs text-slate-500 dark:text-slate-400">$\left(\frac{f}{g}\right)$ સતત છે ($g(c) \ne 0$).</p>
+                                <p class="text-xs text-slate-500 dark:text-slate-400">$\left(\frac{f}{g}\right)$ સતત છે
+                                    ($g(c) \ne 0$).</p>
                             </div>
                         </div>
                     </div>
 
                     <!-- Theorem 2 & Extra Properties -->
-                    <div class="p-4 rounded-xl bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800 space-y-2">
+                    <div
+                        class="p-4 rounded-xl bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800 space-y-2">
                         <h4 class="font-bold text-amber-700 dark:text-amber-300 text-sm">
                             ⭐ પ્રમેય - ૨ & વધારાના ગુણધર્મો:
                         </h4>
                         <ul class="text-xs sm:text-sm text-slate-700 dark:text-slate-300 space-y-1 list-disc pl-5">
-                            <li><strong>સંયોજિત વિધેય:</strong> જો $g$ એ $c$ આગળ સતત હોય અને $f$ એ $g(c)$ આગળ સતત હોય તો $(f \circ g)$ પણ $c$ આગળ સતત થાય.</li>
+                            <li><strong>સંયોજિત વિધેય:</strong> જો $g$ એ $c$ આગળ સતત હોય અને $f$ એ $g(c)$ આગળ સતત હોય તો
+                                $(f \circ g)$ પણ $c$ આગળ સતત થાય.</li>
                             <li><strong>માનક વિધેય:</strong> જો $f$ સતત હોય તો તેનો માનક $|f|$ પણ સતત છે.</li>
                             <li><strong>અચળ ગુણાંક:</strong> $c \cdot f$ પણ સતત વિધેય છે (જ્યાં $c =$ અચળ).</li>
                         </ul>
@@ -512,22 +619,29 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             <!-- TOPIC 3: DIFFERENTIABILITY -->
             <section id="t3" class="topic-section space-y-6 hidden">
-                <div class="p-6 rounded-2xl bg-gradient-to-r from-purple-500 via-violet-600 to-indigo-600 text-white shadow-lg">
-                    <span class="inline-block px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-xs font-semibold uppercase tracking-wider mb-2">Topic 03</span>
+                <div
+                    class="p-6 rounded-2xl bg-gradient-to-r from-purple-500 via-violet-600 to-indigo-600 text-white shadow-lg">
+                    <span
+                        class="inline-block px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-xs font-semibold uppercase tracking-wider mb-2">Topic
+                        03</span>
                     <h2 class="text-2xl sm:text-3xl font-extrabold mb-2">📈 વિકલનીયતા (Differentiability)</h2>
-                    <p class="text-purple-100 text-sm sm:text-base">વિકલિતની વ્યાખ્યા, સ્પર્શકનો ઢાળ અને ખૂણા પર વિકલનીયતાનો અભાવ.</p>
+                    <p class="text-purple-100 text-sm sm:text-base">વિકલિતની વ્યાખ્યા, સ્પર્શકનો ઢાળ અને ખૂણા પર
+                        વિકલનીયતાનો અભાવ.</p>
                 </div>
 
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     <!-- Definition Card -->
-                    <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm space-y-4">
+                    <div
+                        class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm space-y-4">
                         <h3 class="text-lg font-bold text-purple-600 dark:text-purple-400 flex items-center gap-2">
                             <i class="fa-solid fa-square-root-variable"></i> વિકલિતની પ્રથમ સિદ્ધાંત વ્યાખ્યા
                         </h3>
                         <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                            ધારો કે $f$ વાસ્તવિક વિધેય છે અને $c$ તેના પ્રદેશનું કોઈ બિંદુ છે. જો લક્ષનું અસ્તિત્વ હોય તો:
+                            ધારો કે $f$ વાસ્તવિક વિધેય છે અને $c$ તેના પ્રદેશનું કોઈ બિંદુ છે. જો લક્ષનું અસ્તિત્વ હોય
+                            તો:
                         </p>
-                        <div class="p-4 rounded-xl bg-purple-50 dark:bg-purple-950/40 border border-purple-200 dark:border-purple-800 text-center font-bold text-lg">
+                        <div
+                            class="p-4 rounded-xl bg-purple-50 dark:bg-purple-950/40 border border-purple-200 dark:border-purple-800 text-center font-bold text-lg">
                             $$f'(c) = \lim_{h\rightarrow 0}\frac{f(c+h)-f(c)}{h}$$
                         </div>
                         <p class="text-sm text-slate-600 dark:text-slate-300">
@@ -539,54 +653,66 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     </div>
 
                     <!-- Sharp Corner SVG Graph (Non-Differentiable) -->
-                    <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col justify-between">
+                    <div
+                        class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col justify-between">
                         <div>
                             <h3 class="text-lg font-bold text-rose-600 dark:text-rose-400 flex items-center gap-2 mb-2">
                                 <i class="fa-solid fa-triangle-exclamation"></i> ખૂણા પર વિકલનીયતા (Sharp Corner)
                             </h3>
                             <p class="text-xs text-slate-500 dark:text-slate-400">
-                                આલેખમાં જ્યાં તીક્ષ્ણ ખૂણો (Sharp Corner) પડે ત્યાં સ્પર્શક ન મળતો હોવાથી વિધેય વિકલનીય નથી.
+                                આલેખમાં જ્યાં તીક્ષ્ણ ખૂણો (Sharp Corner) પડે ત્યાં સ્પર્શક ન મળતો હોવાથી વિધેય વિકલનીય
+                                નથી.
                             </p>
                         </div>
 
                         <!-- Sharp Corner SVG -->
-                        <div class="w-full h-56 bg-slate-50 dark:bg-slate-900 rounded-xl p-2 border border-slate-200 dark:border-slate-800 flex items-center justify-center">
+                        <div
+                            class="w-full h-56 bg-slate-50 dark:bg-slate-900 rounded-xl p-2 border border-slate-200 dark:border-slate-800 flex items-center justify-center">
                             <svg class="w-full h-full max-w-xs" viewBox="0 0 260 200">
-                                <line x1="20" y1="150" x2="240" y2="150" stroke="#94a3b8" stroke-width="2"/>
-                                <line x1="130" y1="180" x2="130" y2="20" stroke="#94a3b8" stroke-width="2"/>
-                                
+                                <line x1="20" y1="150" x2="240" y2="150" stroke="#94a3b8" stroke-width="2" />
+                                <line x1="130" y1="180" x2="130" y2="20" stroke="#94a3b8" stroke-width="2" />
+
                                 <!-- Sharp V-shaped graph -->
-                                <path d="M 50 50 L 160 140 L 220 30" fill="none" stroke="#e11d48" stroke-width="3"/>
-                                <circle cx="160" cy="140" r="5" fill="#e11d48"/>
-                                
-                                <text x="175" y="145" class="text-xs font-bold fill-rose-600">$f(x)$ આ બિંદુએ વિકલનીય નથી</text>
+                                <path d="M 50 50 L 160 140 L 220 30" fill="none" stroke="#e11d48" stroke-width="3" />
+                                <circle cx="160" cy="140" r="5" fill="#e11d48" />
+
+                                <text x="175" y="145" class="text-xs font-bold fill-rose-600">$f(x)$ આ બિંદુએ વિકલનીય
+                                    નથી</text>
                             </svg>
                         </div>
                     </div>
                 </div>
 
                 <!-- Differentiable Functions List -->
-                <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm space-y-4">
+                <div
+                    class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm space-y-4">
                     <h3 class="text-lg font-bold text-slate-800 dark:text-slate-100 flex items-center gap-2">
-                        <i class="fa-solid fa-list-check text-purple-500"></i> વિકલનીય વિધેયોની યાદી (Differentiable Functions)
+                        <i class="fa-solid fa-list-check text-purple-500"></i> વિકલનીય વિધેયોની યાદી (Differentiable
+                        Functions)
                     </h3>
                     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 text-sm">
-                        <div class="p-3 rounded-lg bg-slate-50 dark:bg-slate-700/40 border border-slate-200 dark:border-slate-600">
+                        <div
+                            class="p-3 rounded-lg bg-slate-50 dark:bg-slate-700/40 border border-slate-200 dark:border-slate-600">
                             ✔️ દરેક બહુપદીય વિધેય $P(x)$ ($x \in \mathbb{R}$)
                         </div>
-                        <div class="p-3 rounded-lg bg-slate-50 dark:bg-slate-700/40 border border-slate-200 dark:border-slate-600">
+                        <div
+                            class="p-3 rounded-lg bg-slate-50 dark:bg-slate-700/40 border border-slate-200 dark:border-slate-600">
                             ✔️ ઘાતાંકીય વિધેય $a^x$ ($a>0, x \in \mathbb{R}$)
                         </div>
-                        <div class="p-3 rounded-lg bg-slate-50 dark:bg-slate-700/40 border border-slate-200 dark:border-slate-600">
+                        <div
+                            class="p-3 rounded-lg bg-slate-50 dark:bg-slate-700/40 border border-slate-200 dark:border-slate-600">
                             ✔️ પ્રત્યેક અચળ વિધેય
                         </div>
-                        <div class="p-3 rounded-lg bg-slate-50 dark:bg-slate-700/40 border border-slate-200 dark:border-slate-600">
+                        <div
+                            class="p-3 rounded-lg bg-slate-50 dark:bg-slate-700/40 border border-slate-200 dark:border-slate-600">
                             ✔️ લઘુગુણકીય વિધેય તેના પ્રદેશમાં
                         </div>
-                        <div class="p-3 rounded-lg bg-slate-50 dark:bg-slate-700/40 border border-slate-200 dark:border-slate-600">
+                        <div
+                            class="p-3 rounded-lg bg-slate-50 dark:bg-slate-700/40 border border-slate-200 dark:border-slate-600">
                             ✔️ ત્રિકોણમિતીય અને પ્રતિવિધેયો
                         </div>
-                        <div class="p-3 rounded-lg bg-slate-50 dark:bg-slate-700/40 border border-slate-200 dark:border-slate-600">
+                        <div
+                            class="p-3 rounded-lg bg-slate-50 dark:bg-slate-700/40 border border-slate-200 dark:border-slate-600">
                             ✔️ સંયોજિત અને બીજગણિતીય ક્રિયાઓ
                         </div>
                     </div>
@@ -595,8 +721,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             <!-- TOPIC 4: RELATION & CHAIN RULE -->
             <section id="t4" class="topic-section space-y-6 hidden">
-                <div class="p-6 rounded-2xl bg-gradient-to-r from-pink-500 via-rose-600 to-red-600 text-white shadow-lg">
-                    <span class="inline-block px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-xs font-semibold uppercase tracking-wider mb-2">Topic 04</span>
+                <div
+                    class="p-6 rounded-2xl bg-gradient-to-r from-pink-500 via-rose-600 to-red-600 text-white shadow-lg">
+                    <span
+                        class="inline-block px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-xs font-semibold uppercase tracking-wider mb-2">Topic
+                        04</span>
                     <h2 class="text-2xl sm:text-3xl font-extrabold mb-2">🔗 સાતત્ય-વિકલનીયતા સંબંધ અને સાંકળનો નિયમ</h2>
                     <p class="text-pink-100 text-sm sm:text-base">પ્રમેય - ૩, વિકલનના મૂળભૂત નિયમો અને Chain Rule.</p>
                 </div>
@@ -607,36 +736,46 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <i class="fa-solid fa-lightbulb"></i>
                     </div>
                     <div>
-                        <h3 class="font-bold text-amber-800 dark:text-amber-300 text-base">પ્રમેય - ૩ (સાતત્ય અને વિકલનીયતા વચ્ચેનો સંબંધ)</h3>
+                        <h3 class="font-bold text-amber-800 dark:text-amber-300 text-base">પ્રમેય - ૩ (સાતત્ય અને
+                            વિકલનીયતા વચ્ચેનો સંબંધ)</h3>
                         <p class="text-sm text-slate-700 dark:text-slate-300 mt-0.5">
                             "જો વિધેય $f$ એ બિંદુ $c$ આગળ વિકલનીય હોય, તો તે બિંદુ $c$ આગળ <strong>સતત પણ છે</strong>."
-                            <span class="text-xs text-amber-600 dark:text-amber-400 block font-semibold">(નોંધ: પરંતુ આનું ઉલટું વિધાન હંમેશા સત્ય નથી, દા.ત. $|x|$ એ $x=0$ આગળ સતત છે પણ વિકલનીય નથી)</span>
+                            <span class="text-xs text-amber-600 dark:text-amber-400 block font-semibold">(નોંધ: પરંતુ
+                                આનું ઉલટું વિધાન હંમેશા સત્ય નથી, દા.ત. $|x|$ એ $x=0$ આગળ સતત છે પણ વિકલનીય નથી)</span>
                         </p>
                     </div>
                 </div>
 
                 <!-- Derivative Rules Grid -->
-                <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm space-y-4">
+                <div
+                    class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm space-y-4">
                     <h3 class="text-lg font-bold text-slate-800 dark:text-slate-100 flex items-center gap-2">
-                        <i class="fa-solid fa-calculator text-rose-500"></i> વિકલનનાં મૂળભૂત નિયમો (Rules of Differentiation)
+                        <i class="fa-solid fa-calculator text-rose-500"></i> વિકલનનાં મૂળભૂત નિયમો (Rules of
+                        Differentiation)
                     </h3>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 text-center space-y-2">
-                            <span class="text-xs font-bold uppercase text-slate-500 tracking-wider">સરવાળો / બાદબાકી</span>
+                        <div
+                            class="p-4 rounded-xl bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 text-center space-y-2">
+                            <span class="text-xs font-bold uppercase text-slate-500 tracking-wider">સરવાળો /
+                                બાદબાકી</span>
                             <p class="font-bold text-sm sm:text-base text-sky-600 dark:text-sky-400">
                                 $$\frac{d}{dx}(u \pm v) = \frac{du}{dx} \pm \frac{dv}{dx}$$
                             </p>
                         </div>
 
-                        <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 text-center space-y-2">
-                            <span class="text-xs font-bold uppercase text-slate-500 tracking-wider">ગુણાકારનો નિયમ (Product)</span>
+                        <div
+                            class="p-4 rounded-xl bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 text-center space-y-2">
+                            <span class="text-xs font-bold uppercase text-slate-500 tracking-wider">ગુણાકારનો નિયમ
+                                (Product)</span>
                             <p class="font-bold text-sm sm:text-base text-indigo-600 dark:text-indigo-400">
                                 $$\frac{d}{dx}(uv) = u\frac{dv}{dx} + v\frac{du}{dx}$$
                             </p>
                         </div>
 
-                        <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 text-center space-y-2">
-                            <span class="text-xs font-bold uppercase text-slate-500 tracking-wider">ભાગાકારનો નિયમ (Quotient)</span>
+                        <div
+                            class="p-4 rounded-xl bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 text-center space-y-2">
+                            <span class="text-xs font-bold uppercase text-slate-500 tracking-wider">ભાગાકારનો નિયમ
+                                (Quotient)</span>
                             <p class="font-bold text-sm sm:text-base text-purple-600 dark:text-purple-400">
                                 $$\frac{d}{dx}\left(\frac{u}{v}\right) = \frac{v\frac{du}{dx} - u\frac{dv}{dx}}{v^2}$$
                             </p>
@@ -645,28 +784,35 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 </div>
 
                 <!-- Chain Rule Box -->
-                <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm space-y-4">
+                <div
+                    class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm space-y-4">
                     <h3 class="text-lg font-bold text-rose-600 dark:text-rose-400 flex items-center gap-2">
                         <i class="fa-solid fa-link"></i> પ્રમેય - ૪: સંયોજિત વિધેયનું વિકલન (Chain Rule)
                     </h3>
                     <p class="text-sm text-slate-600 dark:text-slate-300">
                         ધારો કે $f = v \circ u$, $t = u(x)$ અને $f = v(t)$ હોય તો:
                     </p>
-                    <div class="p-4 rounded-xl bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-800 text-center font-bold text-lg">
+                    <div
+                        class="p-4 rounded-xl bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-800 text-center font-bold text-lg">
                         $$\frac{df}{dx} = \frac{dv}{dt} \cdot \frac{dt}{dx}$$
                     </div>
                     <p class="text-xs text-slate-500 dark:text-slate-400">
-                        વ્યાપક રીતે $y = f(g(h(x)))$ માટે: $\frac{dy}{dx} = \frac{dy}{du} \cdot \frac{du}{dv} \cdot \frac{dv}{dx} = f'(u) \cdot g'(v) \cdot h'(x)$
+                        વ્યાપક રીતે $y = f(g(h(x)))$ માટે: $\frac{dy}{dx} = \frac{dy}{du} \cdot \frac{du}{dv} \cdot
+                        \frac{dv}{dx} = f'(u) \cdot g'(v) \cdot h'(x)$
                     </p>
                 </div>
             </section>
 
             <!-- TOPIC 5: STANDARD DERIVATIVES -->
             <section id="t5" class="topic-section space-y-6 hidden">
-                <div class="p-6 rounded-2xl bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white shadow-lg">
-                    <span class="inline-block px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-xs font-semibold uppercase tracking-wider mb-2">Topic 05</span>
+                <div
+                    class="p-6 rounded-2xl bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white shadow-lg">
+                    <span
+                        class="inline-block px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-xs font-semibold uppercase tracking-wider mb-2">Topic
+                        05</span>
                     <h2 class="text-2xl sm:text-3xl font-extrabold mb-2">📐 પ્રમાણિત વિધેયોનાં વિકલન (1 to 13)</h2>
-                    <p class="text-blue-100 text-sm sm:text-base">બધાં પ્રમાણિત વિધેયોના વિકલનના તૈયાર સૂત્રોની યાદી.</p>
+                    <p class="text-blue-100 text-sm sm:text-base">બધાં પ્રમાણિત વિધેયોના વિકલનના તૈયાર સૂત્રોની યાદી.
+                    </p>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="standardFormulasGrid">
@@ -676,13 +822,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             <!-- TOPIC 6: IMPLICIT FUNCTIONS -->
             <section id="t6" class="topic-section space-y-6 hidden">
-                <div class="p-6 rounded-2xl bg-gradient-to-r from-amber-500 via-orange-600 to-red-600 text-white shadow-lg">
-                    <span class="inline-block px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-xs font-semibold uppercase tracking-wider mb-2">Topic 06</span>
-                    <h2 class="text-2xl sm:text-3xl font-extrabold mb-2">🧩 ગૂઢ વિધેયનાં વિકલિત (Implicit Functions)</h2>
-                    <p class="text-orange-100 text-sm sm:text-base">અસ્પષ્ટ સમીકરણોનું $x$ સાપેક્ષ વિકલન કરવાની રીત અને ઉદાહરણો.</p>
+                <div
+                    class="p-6 rounded-2xl bg-gradient-to-r from-amber-500 via-orange-600 to-red-600 text-white shadow-lg">
+                    <span
+                        class="inline-block px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-xs font-semibold uppercase tracking-wider mb-2">Topic
+                        06</span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold mb-2">🧩 ગૂઢ વિધેયનાં વિકલિત (Implicit Functions)
+                    </h2>
+                    <p class="text-orange-100 text-sm sm:text-base">અસ્પષ્ટ સમીકરણોનું $x$ સાપેક્ષ વિકલન કરવાની રીત અને
+                        ઉદાહરણો.</p>
                 </div>
 
-                <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm space-y-6">
+                <div
+                    class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm space-y-6">
                     <div>
                         <h3 class="text-lg font-bold text-orange-600 dark:text-orange-400 flex items-center gap-2">
                             <i class="fa-solid fa-list-ol"></i> વિકલન મેળવવાના પગલાં (Steps)
@@ -690,17 +842,26 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     </div>
 
                     <div class="space-y-3">
-                        <div class="p-4 rounded-xl bg-orange-50 dark:bg-orange-950/30 border border-orange-200 dark:border-orange-800 flex items-start gap-3">
-                            <span class="w-7 h-7 rounded-full bg-orange-500 text-white flex items-center justify-center font-bold text-xs shrink-0">1</span>
-                            <p class="text-sm text-slate-700 dark:text-slate-300">સમીકરણની બંને બાજુ $x$ પ્રત્યે વિકલન લેવામાં આવે છે.</p>
+                        <div
+                            class="p-4 rounded-xl bg-orange-50 dark:bg-orange-950/30 border border-orange-200 dark:border-orange-800 flex items-start gap-3">
+                            <span
+                                class="w-7 h-7 rounded-full bg-orange-500 text-white flex items-center justify-center font-bold text-xs shrink-0">1</span>
+                            <p class="text-sm text-slate-700 dark:text-slate-300">સમીકરણની બંને બાજુ $x$ પ્રત્યે વિકલન
+                                લેવામાં આવે છે.</p>
                         </div>
-                        <div class="p-4 rounded-xl bg-orange-50 dark:bg-orange-950/30 border border-orange-200 dark:border-orange-800 flex items-start gap-3">
-                            <span class="w-7 h-7 rounded-full bg-orange-500 text-white flex items-center justify-center font-bold text-xs shrink-0">2</span>
-                            <p class="text-sm text-slate-700 dark:text-slate-300">$\frac{dy}{dx}$ પદ ધરાવતાં બધાં જ પદો સમીકરણની એક બાજુ તથા બાકીનાં પદો બીજી બાજુ લેવામાં આવે છે.</p>
+                        <div
+                            class="p-4 rounded-xl bg-orange-50 dark:bg-orange-950/30 border border-orange-200 dark:border-orange-800 flex items-start gap-3">
+                            <span
+                                class="w-7 h-7 rounded-full bg-orange-500 text-white flex items-center justify-center font-bold text-xs shrink-0">2</span>
+                            <p class="text-sm text-slate-700 dark:text-slate-300">$\frac{dy}{dx}$ પદ ધરાવતાં બધાં જ પદો
+                                સમીકરણની એક બાજુ તથા બાકીનાં પદો બીજી બાજુ લેવામાં આવે છે.</p>
                         </div>
-                        <div class="p-4 rounded-xl bg-orange-50 dark:bg-orange-950/30 border border-orange-200 dark:border-orange-800 flex items-start gap-3">
-                            <span class="w-7 h-7 rounded-full bg-orange-500 text-white flex items-center justify-center font-bold text-xs shrink-0">3</span>
-                            <p class="text-sm text-slate-700 dark:text-slate-300">$\frac{dy}{dx}$ ને કર્તા બનાવી કિંમત શોધો: $\frac{dy}{dx} = \frac{g(x,y)}{f(x,y)}$</p>
+                        <div
+                            class="p-4 rounded-xl bg-orange-50 dark:bg-orange-950/30 border border-orange-200 dark:border-orange-800 flex items-start gap-3">
+                            <span
+                                class="w-7 h-7 rounded-full bg-orange-500 text-white flex items-center justify-center font-bold text-xs shrink-0">3</span>
+                            <p class="text-sm text-slate-700 dark:text-slate-300">$\frac{dy}{dx}$ ને કર્તા બનાવી કિંમત
+                                શોધો: $\frac{dy}{dx} = \frac{g(x,y)}{f(x,y)}$</p>
                         </div>
                     </div>
 
@@ -716,69 +877,97 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             <!-- TOPIC 7: INVERSE TRIG & IDENTITIES -->
             <section id="t7" class="topic-section space-y-6 hidden">
-                <div class="p-6 rounded-2xl bg-gradient-to-r from-teal-500 via-emerald-600 to-green-600 text-white shadow-lg">
-                    <span class="inline-block px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-xs font-semibold uppercase tracking-wider mb-2">Topic 07</span>
+                <div
+                    class="p-6 rounded-2xl bg-gradient-to-r from-teal-500 via-emerald-600 to-green-600 text-white shadow-lg">
+                    <span
+                        class="inline-block px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-xs font-semibold uppercase tracking-wider mb-2">Topic
+                        07</span>
                     <h2 class="text-2xl sm:text-3xl font-extrabold mb-2">🔄 ત્રિકોણમિતીય પ્રતિવિધેયો & નિત્યસમો</h2>
-                    <p class="text-teal-100 text-sm sm:text-base">Inverse Trig Derivatives અને ૧૫ અગત્યના ત્રિકોણમિતીય નિત્યસમો.</p>
+                    <p class="text-teal-100 text-sm sm:text-base">Inverse Trig Derivatives અને ૧૫ અગત્યના ત્રિકોણમિતીય
+                        નિત્યસમો.</p>
                 </div>
 
                 <!-- Inverse Trig Formulas Grid -->
-                <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm space-y-4">
+                <div
+                    class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm space-y-4">
                     <h3 class="text-lg font-bold text-teal-600 dark:text-teal-400 flex items-center gap-2">
-                        <i class="fa-solid fa-square-root-variable"></i> પ્રતિવિધેયોનાં વિકલિત (Inverse Trig Derivatives)
+                        <i class="fa-solid fa-square-root-variable"></i> પ્રતિવિધેયોનાં વિકલિત (Inverse Trig
+                        Derivatives)
                     </h3>
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                        <div class="p-3 rounded-xl bg-teal-50 dark:bg-teal-950/40 border border-teal-200 dark:border-teal-800 text-center">
+                        <div
+                            class="p-3 rounded-xl bg-teal-50 dark:bg-teal-950/40 border border-teal-200 dark:border-teal-800 text-center">
                             $$\frac{d}{dx}(\sin^{-1}x) = \frac{1}{\sqrt{1-x^2}}$$
                         </div>
-                        <div class="p-3 rounded-xl bg-teal-50 dark:bg-teal-950/40 border border-teal-200 dark:border-teal-800 text-center">
+                        <div
+                            class="p-3 rounded-xl bg-teal-50 dark:bg-teal-950/40 border border-teal-200 dark:border-teal-800 text-center">
                             $$\frac{d}{dx}(\cos^{-1}x) = -\frac{1}{\sqrt{1-x^2}}$$
                         </div>
-                        <div class="p-3 rounded-xl bg-teal-50 dark:bg-teal-950/40 border border-teal-200 dark:border-teal-800 text-center">
+                        <div
+                            class="p-3 rounded-xl bg-teal-50 dark:bg-teal-950/40 border border-teal-200 dark:border-teal-800 text-center">
                             $$\frac{d}{dx}(\tan^{-1}x) = \frac{1}{1+x^2}$$
                         </div>
-                        <div class="p-3 rounded-xl bg-teal-50 dark:bg-teal-950/40 border border-teal-200 dark:border-teal-800 text-center">
+                        <div
+                            class="p-3 rounded-xl bg-teal-50 dark:bg-teal-950/40 border border-teal-200 dark:border-teal-800 text-center">
                             $$\frac{d}{dx}(\cot^{-1}x) = \frac{-1}{1+x^2}$$
                         </div>
-                        <div class="p-3 rounded-xl bg-teal-50 dark:bg-teal-950/40 border border-teal-200 dark:border-teal-800 text-center">
+                        <div
+                            class="p-3 rounded-xl bg-teal-50 dark:bg-teal-950/40 border border-teal-200 dark:border-teal-800 text-center">
                             $$\frac{d}{dx}(\sec^{-1}x) = \frac{1}{|x|\sqrt{x^2-1}}$$
                         </div>
-                        <div class="p-3 rounded-xl bg-teal-50 dark:bg-teal-950/40 border border-teal-200 dark:border-teal-800 text-center">
+                        <div
+                            class="p-3 rounded-xl bg-teal-50 dark:bg-teal-950/40 border border-teal-200 dark:border-teal-800 text-center">
                             $$\frac{d}{dx}(\csc^{-1}x) = \frac{-1}{|x|\sqrt{x^2-1}}$$
                         </div>
                     </div>
                 </div>
 
                 <!-- Trigonometric Identities List -->
-                <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm space-y-4">
+                <div
+                    class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm space-y-4">
                     <h3 class="text-lg font-bold text-slate-800 dark:text-slate-100 flex items-center gap-2">
                         <i class="fa-solid fa-list text-emerald-500"></i> ઉપયોગી ત્રિકોણમિતીય નિત્યસમ (1 to 15)
                     </h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs sm:text-sm font-semibold">
-                        <div class="p-2.5 rounded-lg bg-slate-50 dark:bg-slate-700/40">1. $\sin 2x = 2 \sin x \cos x = \frac{2 \tan x}{1+\tan^2 x}$</div>
-                        <div class="p-2.5 rounded-lg bg-slate-50 dark:bg-slate-700/40">2. $\cos 2x = \cos^2 x - \sin^2 x = 2\cos^2 x - 1 = \frac{1-\tan^2 x}{1+\tan^2 x}$</div>
-                        <div class="p-2.5 rounded-lg bg-slate-50 dark:bg-slate-700/40">3. $\tan 2x = \frac{2 \tan x}{1-\tan^2 x}$</div>
-                        <div class="p-2.5 rounded-lg bg-slate-50 dark:bg-slate-700/40">4. $\tan(x \pm y) = \frac{\tan x \pm \tan y}{1 \mp \tan x \tan y}$</div>
-                        <div class="p-2.5 rounded-lg bg-slate-50 dark:bg-slate-700/40">5. $\sin^{-1}x + \cos^{-1}x = \frac{\pi}{2}, \quad \tan^{-1}x + \cot^{-1}x = \frac{\pi}{2}$</div>
-                        <div class="p-2.5 rounded-lg bg-slate-50 dark:bg-slate-700/40">6. $2\tan^{-1}x = \sin^{-1}(\frac{2x}{1+x^2}) = \cos^{-1}(\frac{1-x^2}{1+x^2}) = \tan^{-1}(\frac{2x}{1-x^2})$</div>
-                        <div class="p-2.5 rounded-lg bg-slate-50 dark:bg-slate-700/40">7. $\sin 3x = 3\sin x - 4\sin^3 x, \quad \cos 3x = 4\cos^3 x - 3\cos x$</div>
-                        <div class="p-2.5 rounded-lg bg-slate-50 dark:bg-slate-700/40">8. $\tan 3x = \frac{3\tan x - \tan^3 x}{1-3\tan^2 x}$</div>
+                        <div class="p-2.5 rounded-lg bg-slate-50 dark:bg-slate-700/40">1. $\sin 2x = 2 \sin x \cos x =
+                            \frac{2 \tan x}{1+\tan^2 x}$</div>
+                        <div class="p-2.5 rounded-lg bg-slate-50 dark:bg-slate-700/40">2. $\cos 2x = \cos^2 x - \sin^2 x
+                            = 2\cos^2 x - 1 = \frac{1-\tan^2 x}{1+\tan^2 x}$</div>
+                        <div class="p-2.5 rounded-lg bg-slate-50 dark:bg-slate-700/40">3. $\tan 2x = \frac{2 \tan
+                            x}{1-\tan^2 x}$</div>
+                        <div class="p-2.5 rounded-lg bg-slate-50 dark:bg-slate-700/40">4. $\tan(x \pm y) = \frac{\tan x
+                            \pm \tan y}{1 \mp \tan x \tan y}$</div>
+                        <div class="p-2.5 rounded-lg bg-slate-50 dark:bg-slate-700/40">5. $\sin^{-1}x + \cos^{-1}x =
+                            \frac{\pi}{2}, \quad \tan^{-1}x + \cot^{-1}x = \frac{\pi}{2}$</div>
+                        <div class="p-2.5 rounded-lg bg-slate-50 dark:bg-slate-700/40">6. $2\tan^{-1}x =
+                            \sin^{-1}(\frac{2x}{1+x^2}) = \cos^{-1}(\frac{1-x^2}{1+x^2}) = \tan^{-1}(\frac{2x}{1-x^2})$
+                        </div>
+                        <div class="p-2.5 rounded-lg bg-slate-50 dark:bg-slate-700/40">7. $\sin 3x = 3\sin x - 4\sin^3
+                            x, \quad \cos 3x = 4\cos^3 x - 3\cos x$</div>
+                        <div class="p-2.5 rounded-lg bg-slate-50 dark:bg-slate-700/40">8. $\tan 3x = \frac{3\tan x -
+                            \tan^3 x}{1-3\tan^2 x}$</div>
                     </div>
                 </div>
             </section>
 
             <!-- TOPIC 8: IMPORTANT SUBSTITUTIONS -->
             <section id="t8" class="topic-section space-y-6 hidden">
-                <div class="p-6 rounded-2xl bg-gradient-to-r from-violet-600 via-purple-600 to-pink-600 text-white shadow-lg">
-                    <span class="inline-block px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-xs font-semibold uppercase tracking-wider mb-2">Topic 08</span>
-                    <h2 class="text-2xl sm:text-3xl font-extrabold mb-2">🔁 કેટલાક અગત્યનાં આદેશો (Important Substitutions)</h2>
+                <div
+                    class="p-6 rounded-2xl bg-gradient-to-r from-violet-600 via-purple-600 to-pink-600 text-white shadow-lg">
+                    <span
+                        class="inline-block px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-xs font-semibold uppercase tracking-wider mb-2">Topic
+                        08</span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold mb-2">🔁 કેટલાક અગત્યનાં આદેશો (Important
+                        Substitutions)</h2>
                     <p class="text-violet-100 text-sm sm:text-base">ત્રિકોણમિતીય સરળતા માટે ધારવાના આદેશોનો કોષ્ટક.</p>
                 </div>
 
-                <div class="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden">
+                <div
+                    class="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden">
                     <div class="overflow-x-auto">
                         <table class="w-full text-left text-sm">
-                            <thead class="bg-violet-50 dark:bg-violet-950/50 text-violet-700 dark:text-violet-300 font-bold uppercase text-xs border-b border-slate-200 dark:border-slate-700">
+                            <thead
+                                class="bg-violet-50 dark:bg-violet-950/50 text-violet-700 dark:text-violet-300 font-bold uppercase text-xs border-b border-slate-200 dark:border-slate-700">
                                 <tr>
                                     <th class="p-4">ક્રમ</th>
                                     <th class="p-4">અભિવ્યક્તિ (Expression)</th>
@@ -789,27 +978,33 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                                 <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/30">
                                     <td class="p-4 font-bold">1</td>
                                     <td class="p-4 font-semibold text-indigo-600 dark:text-indigo-400">$a^2 - x^2$</td>
-                                    <td class="p-4 font-bold text-emerald-600 dark:text-emerald-400">$x = a\sin\theta$ અથવા $x = a\cos\theta$</td>
+                                    <td class="p-4 font-bold text-emerald-600 dark:text-emerald-400">$x = a\sin\theta$
+                                        અથવા $x = a\cos\theta$</td>
                                 </tr>
                                 <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/30">
                                     <td class="p-4 font-bold">2</td>
                                     <td class="p-4 font-semibold text-indigo-600 dark:text-indigo-400">$a^2 + x^2$</td>
-                                    <td class="p-4 font-bold text-emerald-600 dark:text-emerald-400">$x = a\tan\theta$ અથવા $x = a\cot\theta$</td>
+                                    <td class="p-4 font-bold text-emerald-600 dark:text-emerald-400">$x = a\tan\theta$
+                                        અથવા $x = a\cot\theta$</td>
                                 </tr>
                                 <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/30">
                                     <td class="p-4 font-bold">3</td>
                                     <td class="p-4 font-semibold text-indigo-600 dark:text-indigo-400">$x^2 - a^2$</td>
-                                    <td class="p-4 font-bold text-emerald-600 dark:text-emerald-400">$x = a\sec\theta$ અથવા $x = a\csc\theta$</td>
+                                    <td class="p-4 font-bold text-emerald-600 dark:text-emerald-400">$x = a\sec\theta$
+                                        અથવા $x = a\csc\theta$</td>
                                 </tr>
                                 <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/30">
                                     <td class="p-4 font-bold">4</td>
                                     <td class="p-4 font-semibold text-indigo-600 dark:text-indigo-400">$a \pm x$</td>
-                                    <td class="p-4 font-bold text-emerald-600 dark:text-emerald-400">$x = a\cos\theta$ અથવા $x = a\cos 2\theta$</td>
+                                    <td class="p-4 font-bold text-emerald-600 dark:text-emerald-400">$x = a\cos\theta$
+                                        અથવા $x = a\cos 2\theta$</td>
                                 </tr>
                                 <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/30">
                                     <td class="p-4 font-bold">5</td>
-                                    <td class="p-4 font-semibold text-indigo-600 dark:text-indigo-400">$\sqrt{\frac{a+x}{a-x}}$ અથવા $\sqrt{\frac{a-x}{a+x}}$</td>
-                                    <td class="p-4 font-bold text-emerald-600 dark:text-emerald-400">$x = a\cos 2\theta$ અથવા $x = a\cos\theta$</td>
+                                    <td class="p-4 font-semibold text-indigo-600 dark:text-indigo-400">
+                                        $\sqrt{\frac{a+x}{a-x}}$ અથવા $\sqrt{\frac{a-x}{a+x}}$</td>
+                                    <td class="p-4 font-bold text-emerald-600 dark:text-emerald-400">$x = a\cos 2\theta$
+                                        અથવા $x = a\cos\theta$</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -819,15 +1014,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             <!-- TOPIC 9: EXPONENTIAL & LOGARITHMIC -->
             <section id="t9" class="topic-section space-y-6 hidden">
-                <div class="p-6 rounded-2xl bg-gradient-to-r from-cyan-500 via-blue-600 to-indigo-600 text-white shadow-lg">
-                    <span class="inline-block px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-xs font-semibold uppercase tracking-wider mb-2">Topic 09</span>
+                <div
+                    class="p-6 rounded-2xl bg-gradient-to-r from-cyan-500 via-blue-600 to-indigo-600 text-white shadow-lg">
+                    <span
+                        class="inline-block px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-xs font-semibold uppercase tracking-wider mb-2">Topic
+                        09</span>
                     <h2 class="text-2xl sm:text-3xl font-extrabold mb-2">📊 ઘાતાંકીય અને લઘુગણકીય વિધેયો</h2>
-                    <p class="text-cyan-100 text-sm sm:text-base">$y=e^x$ અને $y=\log_e x$ નો આલેખ, ગુણધર્મો અને પ્રતિબિંબ.</p>
+                    <p class="text-cyan-100 text-sm sm:text-base">$y=e^x$ અને $y=\log_e x$ નો આલેખ, ગુણધર્મો અને
+                        પ્રતિબિંબ.</p>
                 </div>
 
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     <!-- Graph SVG (PDF Page 8 Mirror Reflection Graph) -->
-                    <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col justify-between">
+                    <div
+                        class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col justify-between">
                         <div>
                             <h3 class="text-lg font-bold text-cyan-600 dark:text-cyan-400 flex items-center gap-2 mb-2">
                                 <i class="fa-solid fa-chart-area"></i> $y=e^x$ અને $y=\log_e x$ નો સંયુક્ત આલેખ
@@ -838,28 +1038,30 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         </div>
 
                         <!-- SVG Graph -->
-                        <div class="w-full h-64 bg-slate-50 dark:bg-slate-900 rounded-xl p-2 border border-slate-200 dark:border-slate-800 flex items-center justify-center">
+                        <div
+                            class="w-full h-64 bg-slate-50 dark:bg-slate-900 rounded-xl p-2 border border-slate-200 dark:border-slate-800 flex items-center justify-center">
                             <svg class="w-full h-full max-w-sm" viewBox="0 0 280 240">
                                 <!-- Grid Axes -->
-                                <line x1="20" y1="140" x2="260" y2="140" stroke="#94a3b8" stroke-width="2"/>
-                                <line x1="140" y1="220" x2="140" y2="20" stroke="#94a3b8" stroke-width="2"/>
+                                <line x1="20" y1="140" x2="260" y2="140" stroke="#94a3b8" stroke-width="2" />
+                                <line x1="140" y1="220" x2="140" y2="20" stroke="#94a3b8" stroke-width="2" />
                                 <text x="250" y="135" class="text-xs fill-slate-500">X</text>
                                 <text x="145" y="25" class="text-xs fill-slate-500">Y</text>
                                 <text x="128" y="155" class="text-xs fill-slate-500">O</text>
 
                                 <!-- Mirror Line y=x -->
-                                <line x1="40" y1="220" x2="240" y2="20" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4,4"/>
+                                <line x1="40" y1="220" x2="240" y2="20" stroke="#94a3b8" stroke-width="1.5"
+                                    stroke-dasharray="4,4" />
                                 <text x="220" y="35" class="text-xs fill-slate-400 font-semibold">(y=x)</text>
 
                                 <!-- Exponential Curve y=e^x -->
-                                <path d="M 30 135 Q 120 130 180 30" fill="none" stroke="#06b6d4" stroke-width="3"/>
-                                <circle cx="140" cy="100" r="4" fill="#06b6d4"/>
+                                <path d="M 30 135 Q 120 130 180 30" fill="none" stroke="#06b6d4" stroke-width="3" />
+                                <circle cx="140" cy="100" r="4" fill="#06b6d4" />
                                 <text x="110" y="100" class="text-xs font-bold fill-cyan-600">(0, 1)</text>
                                 <text x="185" y="30" class="text-xs font-bold fill-cyan-600">$y=e^x$</text>
 
                                 <!-- Logarithmic Curve y=log_e(x) -->
-                                <path d="M 145 230 Q 150 120 250 100" fill="none" stroke="#8b5cf6" stroke-width="3"/>
-                                <circle cx="180" cy="140" r="4" fill="#8b5cf6"/>
+                                <path d="M 145 230 Q 150 120 250 100" fill="none" stroke="#8b5cf6" stroke-width="3" />
+                                <circle cx="180" cy="140" r="4" fill="#8b5cf6" />
                                 <text x="180" y="158" class="text-xs font-bold fill-purple-600">(1, 0)</text>
                                 <text x="220" y="90" class="text-xs font-bold fill-purple-600">$y=\log_e x$</text>
                             </svg>
@@ -867,24 +1069,30 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     </div>
 
                     <!-- Logarithm Properties -->
-                    <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm space-y-4">
+                    <div
+                        class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm space-y-4">
                         <h3 class="text-lg font-bold text-indigo-600 dark:text-indigo-400 flex items-center gap-2">
                             <i class="fa-solid fa-list-check"></i> લઘુગણકીય વિધેયોનાં ગુણધર્મો
                         </h3>
                         <div class="space-y-2 text-xs sm:text-sm font-semibold">
-                            <div class="p-2.5 rounded-lg bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-100 dark:border-indigo-800">
+                            <div
+                                class="p-2.5 rounded-lg bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-100 dark:border-indigo-800">
                                 1. $\log_a(mn) = \log_a m + \log_a n$
                             </div>
-                            <div class="p-2.5 rounded-lg bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-100 dark:border-indigo-800">
+                            <div
+                                class="p-2.5 rounded-lg bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-100 dark:border-indigo-800">
                                 2. $\log_e\left(\frac{m}{n}\right) = \log_e m - \log_e n$
                             </div>
-                            <div class="p-2.5 rounded-lg bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-100 dark:border-indigo-800">
+                            <div
+                                class="p-2.5 rounded-lg bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-100 dark:border-indigo-800">
                                 3. $\log_a(m^n) = n \cdot \log_a m$
                             </div>
-                            <div class="p-2.5 rounded-lg bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-100 dark:border-indigo-800">
+                            <div
+                                class="p-2.5 rounded-lg bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-100 dark:border-indigo-800">
                                 4. આધાર પરિવર્તન: $\log_a x = \frac{\log_e x}{\log_e a}$
                             </div>
-                            <div class="p-2.5 rounded-lg bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-100 dark:border-indigo-800">
+                            <div
+                                class="p-2.5 rounded-lg bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-100 dark:border-indigo-800">
                                 5. $e^{\log_e x} = x \quad (x>0)$
                             </div>
                         </div>
@@ -894,31 +1102,43 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             <!-- TOPIC 10: LOGARITHMIC DIFFERENTIATION -->
             <section id="t10" class="topic-section space-y-6 hidden">
-                <div class="p-6 rounded-2xl bg-gradient-to-r from-emerald-600 via-teal-600 to-green-600 text-white shadow-lg">
-                    <span class="inline-block px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-xs font-semibold uppercase tracking-wider mb-2">Topic 10</span>
-                    <h2 class="text-2xl sm:text-3xl font-extrabold mb-2">🪵 લઘુગણકીય વિકલન (Logarithmic Differentiation)</h2>
-                    <p class="text-emerald-100 text-sm sm:text-base">જ્યારે વિધેયની ઘાતમાં વિધેય હોય ($[f(x)]^{g(x)}$) ત્યારે વિકલન કરવાની રીત.</p>
+                <div
+                    class="p-6 rounded-2xl bg-gradient-to-r from-emerald-600 via-teal-600 to-green-600 text-white shadow-lg">
+                    <span
+                        class="inline-block px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-xs font-semibold uppercase tracking-wider mb-2">Topic
+                        10</span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold mb-2">🪵 લઘુગણકીય વિકલન (Logarithmic Differentiation)
+                    </h2>
+                    <p class="text-emerald-100 text-sm sm:text-base">જ્યારે વિધેયની ઘાતમાં વિધેય હોય ($[f(x)]^{g(x)}$)
+                        ત્યારે વિકલન કરવાની રીત.</p>
                 </div>
 
-                <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm space-y-4">
+                <div
+                    class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm space-y-4">
                     <h3 class="text-lg font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-2">
                         <i class="fa-solid fa-gear"></i> ચાર મુખ્ય કિસ્સાઓ (Cases)
                     </h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600">
-                            <p class="font-bold text-sm text-emerald-600 dark:text-emerald-400 mb-1">(i) ગુણાકાર સ્વરૂપ:</p>
+                        <div
+                            class="p-4 rounded-xl bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600">
+                            <p class="font-bold text-sm text-emerald-600 dark:text-emerald-400 mb-1">(i) ગુણાકાર સ્વરૂપ:
+                            </p>
                             <p class="text-xs text-slate-600 dark:text-slate-300">$y = u(x)v(x)w(x)$</p>
                             <p class="text-xs font-semibold mt-2">$\log y = \log u(x) + \log v(x) + \log w(x)$</p>
                         </div>
 
-                        <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600">
-                            <p class="font-bold text-sm text-emerald-600 dark:text-emerald-400 mb-1">(ii) ભાગાકાર સ્વરૂપ:</p>
+                        <div
+                            class="p-4 rounded-xl bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600">
+                            <p class="font-bold text-sm text-emerald-600 dark:text-emerald-400 mb-1">(ii) ભાગાકાર
+                                સ્વરૂપ:</p>
                             <p class="text-xs text-slate-600 dark:text-slate-300">$y = \frac{u(x)}{v(x)}$</p>
                             <p class="text-xs font-semibold mt-2">$\log y = \log u(x) - \log v(x)$</p>
                         </div>
 
-                        <div class="p-4 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 md:col-span-2">
-                            <p class="font-bold text-sm text-emerald-700 dark:text-emerald-300 mb-1">(iii) વિધેયની ઘાતમાં વિધેય (મહત્વનું!):</p>
+                        <div
+                            class="p-4 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 md:col-span-2">
+                            <p class="font-bold text-sm text-emerald-700 dark:text-emerald-300 mb-1">(iii) વિધેયની
+                                ઘાતમાં વિધેય (મહત્વનું!):</p>
                             <p class="text-xs text-slate-600 dark:text-slate-300">$y = [f(x)]^{g(x)}$</p>
                             <p class="text-sm font-bold text-indigo-600 dark:text-indigo-400 mt-2">
                                 બંને બાજુ $\log$ લેતાં: $$\log y = g(x) \cdot \log f(x)$$
@@ -930,28 +1150,36 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             <!-- TOPIC 11: PARAMETRIC & INFINITE SERIES -->
             <section id="t11" class="topic-section space-y-6 hidden">
-                <div class="p-6 rounded-2xl bg-gradient-to-r from-fuchsia-600 via-pink-600 to-rose-600 text-white shadow-lg">
-                    <span class="inline-block px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-xs font-semibold uppercase tracking-wider mb-2">Topic 11</span>
+                <div
+                    class="p-6 rounded-2xl bg-gradient-to-r from-fuchsia-600 via-pink-600 to-rose-600 text-white shadow-lg">
+                    <span
+                        class="inline-block px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-xs font-semibold uppercase tracking-wider mb-2">Topic
+                        11</span>
                     <h2 class="text-2xl sm:text-3xl font-extrabold mb-2">⚙️ પ્રચલ વિધેય & અનંત શ્રેઢીનું વિકલન</h2>
-                    <p class="text-pink-100 text-sm sm:text-base">Parametric equations, એક વિધેયનું બીજા સાપેક્ષ વિકલન અને Infinite series.</p>
+                    <p class="text-pink-100 text-sm sm:text-base">Parametric equations, એક વિધેયનું બીજા સાપેક્ષ વિકલન
+                        અને Infinite series.</p>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <!-- Parametric Form Card -->
-                    <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm space-y-4">
+                    <div
+                        class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm space-y-4">
                         <h3 class="text-lg font-bold text-fuchsia-600 dark:text-fuchsia-400 flex items-center gap-2">
                             <i class="fa-solid fa-sliders"></i> પ્રચલ વિધેયનું વિકલિત
                         </h3>
                         <p class="text-sm text-slate-600 dark:text-slate-300">
                             જો $x = f(t)$ અને $y = g(t)$ હોય, તો સાંકળના નિયમ પ્રમાણે:
                         </p>
-                        <div class="p-4 rounded-xl bg-fuchsia-50 dark:bg-fuchsia-950/40 border border-fuchsia-200 dark:border-fuchsia-800 text-center font-bold text-lg">
-                            $$\frac{dy}{dx} = \frac{\frac{dy}{dt}}{\frac{dx}{dt}} = \frac{g'(t)}{f'(t)} \quad (f'(t) \ne 0)$$
+                        <div
+                            class="p-4 rounded-xl bg-fuchsia-50 dark:bg-fuchsia-950/40 border border-fuchsia-200 dark:border-fuchsia-800 text-center font-bold text-lg">
+                            $$\frac{dy}{dx} = \frac{\frac{dy}{dt}}{\frac{dx}{dt}} = \frac{g'(t)}{f'(t)} \quad (f'(t) \ne
+                            0)$$
                         </div>
                     </div>
 
                     <!-- Infinite Series Worked Example -->
-                    <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm space-y-4">
+                    <div
+                        class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm space-y-4">
                         <h3 class="text-lg font-bold text-rose-600 dark:text-rose-400 flex items-center gap-2">
                             <i class="fa-solid fa-infinity"></i> અનંત શ્રેઢીનું વિકલન (Infinite Series Example)
                         </h3>
@@ -970,23 +1198,33 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             <!-- TOPIC 12: SECOND ORDER DERIVATIVE -->
             <section id="t12" class="topic-section space-y-6 hidden">
-                <div class="p-6 rounded-2xl bg-gradient-to-r from-amber-500 via-yellow-600 to-orange-600 text-white shadow-lg">
-                    <span class="inline-block px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-xs font-semibold uppercase tracking-wider mb-2">Topic 12</span>
-                    <h2 class="text-2xl sm:text-3xl font-extrabold mb-2">⚡ દ્વિતીય કક્ષાનો વિકલિત (Second Order Derivative)</h2>
-                    <p class="text-amber-100 text-sm sm:text-base">દ્વિતીય વિકલિત $\frac{d^2y}{dx^2}$, $f''(x)$, $y''$, $y_2$ અને પ્રચલ સ્વરૂપ.</p>
+                <div
+                    class="p-6 rounded-2xl bg-gradient-to-r from-amber-500 via-yellow-600 to-orange-600 text-white shadow-lg">
+                    <span
+                        class="inline-block px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-xs font-semibold uppercase tracking-wider mb-2">Topic
+                        12</span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold mb-2">⚡ દ્વિતીય કક્ષાનો વિકલિત (Second Order
+                        Derivative)</h2>
+                    <p class="text-amber-100 text-sm sm:text-base">દ્વિતીય વિકલિત $\frac{d^2y}{dx^2}$, $f''(x)$, $y''$,
+                        $y_2$ અને પ્રચલ સ્વરૂપ.</p>
                 </div>
 
-                <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm space-y-6">
-                    <div class="p-4 rounded-xl bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800 text-center space-y-2">
-                        <p class="text-xs uppercase font-bold text-amber-600 dark:text-amber-400 tracking-wider">દ્વિતીય વિકલિતની વ્યાખ્યા:</p>
+                <div
+                    class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm space-y-6">
+                    <div
+                        class="p-4 rounded-xl bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800 text-center space-y-2">
+                        <p class="text-xs uppercase font-bold text-amber-600 dark:text-amber-400 tracking-wider">દ્વિતીય
+                            વિકલિતની વ્યાખ્યા:</p>
                         <p class="text-base font-bold text-slate-800 dark:text-slate-100">
                             $$\frac{d}{dx}\left(\frac{dy}{dx}\right) = \frac{d^2y}{dx^2} = f''(x) = y'' = y_2$$
                         </p>
                     </div>
 
                     <!-- Parametric Second Derivative -->
-                    <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 space-y-2">
-                        <h4 class="font-bold text-sm text-slate-800 dark:text-slate-100">⚙️ પ્રચલ સ્વરૂપમાં દ્વિતીય વિકલન:</h4>
+                    <div
+                        class="p-4 rounded-xl bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 space-y-2">
+                        <h4 class="font-bold text-sm text-slate-800 dark:text-slate-100">⚙️ પ્રચલ સ્વરૂપમાં દ્વિતીય
+                            વિકલન:</h4>
                         <p class="text-xs text-slate-600 dark:text-slate-300">
                             જો $y = f(t)$ અને $x = \phi(t)$ હોય, પ્રથમ વિકલન $\frac{dy}{dx} = g(t)$ મળે.
                         </p>
@@ -1001,8 +1239,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
     <!-- Quick Formula Modal / Cheat Sheet -->
-    <div id="cheatSheetModal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-200">
-        <div class="bg-white dark:bg-slate-800 rounded-2xl max-w-2xl w-full max-h-[85vh] flex flex-col shadow-2xl border border-slate-200 dark:border-slate-700">
+    <div id="cheatSheetModal"
+        class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-200">
+        <div
+            class="bg-white dark:bg-slate-800 rounded-2xl max-w-2xl w-full max-h-[85vh] flex flex-col shadow-2xl border border-slate-200 dark:border-slate-700">
             <div class="p-4 border-b border-slate-200 dark:border-slate-700 flex items-center justify-between">
                 <h3 class="font-bold text-lg text-slate-800 dark:text-slate-100 flex items-center gap-2">
                     <i class="fa-solid fa-bolt text-amber-500"></i> ઝડપી વિકલન સૂત્રો (Quick Cheat Sheet)
@@ -1013,18 +1253,26 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </div>
             <div class="p-6 overflow-y-auto space-y-4 custom-scrollbar text-sm">
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <div class="p-2.5 rounded-lg bg-slate-100 dark:bg-slate-700/50">$\frac{d}{dx}(x^n) = n x^{n-1}$</div>
-                    <div class="p-2.5 rounded-lg bg-slate-100 dark:bg-slate-700/50">$\frac{d}{dx}(\sin x) = \cos x$</div>
-                    <div class="p-2.5 rounded-lg bg-slate-100 dark:bg-slate-700/50">$\frac{d}{dx}(\cos x) = -\sin x$</div>
-                    <div class="p-2.5 rounded-lg bg-slate-100 dark:bg-slate-700/50">$\frac{d}{dx}(\tan x) = \sec^2 x$</div>
+                    <div class="p-2.5 rounded-lg bg-slate-100 dark:bg-slate-700/50">$\frac{d}{dx}(x^n) = n x^{n-1}$
+                    </div>
+                    <div class="p-2.5 rounded-lg bg-slate-100 dark:bg-slate-700/50">$\frac{d}{dx}(\sin x) = \cos x$
+                    </div>
+                    <div class="p-2.5 rounded-lg bg-slate-100 dark:bg-slate-700/50">$\frac{d}{dx}(\cos x) = -\sin x$
+                    </div>
+                    <div class="p-2.5 rounded-lg bg-slate-100 dark:bg-slate-700/50">$\frac{d}{dx}(\tan x) = \sec^2 x$
+                    </div>
                     <div class="p-2.5 rounded-lg bg-slate-100 dark:bg-slate-700/50">$\frac{d}{dx}(e^x) = e^x$</div>
-                    <div class="p-2.5 rounded-lg bg-slate-100 dark:bg-slate-700/50">$\frac{d}{dx}(\log_e x) = \frac{1}{x}$</div>
-                    <div class="p-2.5 rounded-lg bg-slate-100 dark:bg-slate-700/50">$\frac{d}{dx}(\tan^{-1}x) = \frac{1}{1+x^2}$</div>
-                    <div class="p-2.5 rounded-lg bg-slate-100 dark:bg-slate-700/50">$\frac{d}{dx}(\sin^{-1}x) = \frac{1}{\sqrt{1-x^2}}$</div>
+                    <div class="p-2.5 rounded-lg bg-slate-100 dark:bg-slate-700/50">$\frac{d}{dx}(\log_e x) =
+                        \frac{1}{x}$</div>
+                    <div class="p-2.5 rounded-lg bg-slate-100 dark:bg-slate-700/50">$\frac{d}{dx}(\tan^{-1}x) =
+                        \frac{1}{1+x^2}$</div>
+                    <div class="p-2.5 rounded-lg bg-slate-100 dark:bg-slate-700/50">$\frac{d}{dx}(\sin^{-1}x) =
+                        \frac{1}{\sqrt{1-x^2}}$</div>
                 </div>
             </div>
             <div class="p-4 border-t border-slate-200 dark:border-slate-700 text-right">
-                <button onclick="toggleModal()" class="px-4 py-2 bg-slate-200 dark:bg-slate-700 rounded-lg font-medium text-xs">બંધ કરો</button>
+                <button onclick="toggleModal()"
+                    class="px-4 py-2 bg-slate-200 dark:bg-slate-700 rounded-lg font-medium text-xs">બંધ કરો</button>
             </div>
         </div>
     </div>
@@ -1145,6 +1393,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             });
         });
     </script>
-<script src="assets/global-navbar.js" defer></script>
+    <script src="assets/global-navbar.js" defer></script>
 </body>
+
 </html>

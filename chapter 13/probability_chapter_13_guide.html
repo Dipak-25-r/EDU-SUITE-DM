@@ -1,58 +1,71 @@
 <!DOCTYPE html>
 <html lang="gu" class="scroll-smooth">
+
 <head>
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-5MXP3RTV');</script>
-<!-- End Google Tag Manager -->
+    <!-- Google Tag Manager -->
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-5MXP3RTV');</script>
+    <!-- End Google Tag Manager -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ધોરણ 12 : ગણિત દર્પણ - પ્રકરણ 13 સંભાવના (Probability Master Class)</title>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8G4448P207"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-8G4448P207');
+    </script>
     <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-  import { getFirestore, doc, setDoc, increment } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, doc, setDoc, increment } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-  // Replace with your Firebase configuration object
- // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyAtDRRnUE3FM06gPrs9mHWXJnU9fXv5B54",
-  authDomain: "edu-suite-a55a5.firebaseapp.com",
-  projectId: "edu-suite-a55a5",
-  storageBucket: "edu-suite-a55a5.firebasestorage.app",
-  messagingSenderId: "5059668896",
-  appId: "1:5059668896:web:76fc4c09c1d298ca8012c5",
-  measurementId: "G-8G4448P207"
-};
+        // Replace with your Firebase configuration object
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+            apiKey: "AIzaSyAtDRRnUE3FM06gPrs9mHWXJnU9fXv5B54",
+            authDomain: "edu-suite-a55a5.firebaseapp.com",
+            projectId: "edu-suite-a55a5",
+            storageBucket: "edu-suite-a55a5.firebasestorage.app",
+            messagingSenderId: "5059668896",
+            appId: "1:5059668896:web:76fc4c09c1d298ca8012c5",
+            measurementId: "G-8G4448P207"
+        };
 
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
 
         async function trackPageView(pageName) {
-  // Document reference in the 'analytics' collection
-  const pageRef = doc(db, "analytics", pageName);
+            // Document reference in the 'analytics' collection
+            const pageRef = doc(db, "analytics", pageName);
 
-  try {
-    // Increment totalViews by 1 safely
-    await setDoc(pageRef, {
-      totalViews: increment(1),
-      lastVisited: new Date()
-    }, { merge: true });
-    
-    console.log(`Page view tracked for: ${pageName}`);
-  } catch (error) {
-    console.error("Error tracking analytics: ", error);
-  }
-}
+            try {
+                // Increment totalViews by 1 safely
+                await setDoc(pageRef, {
+                    totalViews: increment(1),
+                    lastVisited: new Date()
+                }, { merge: true });
 
-// Automatically track on page load
-const currentPage = window.location.pathname.replace(/\//g, "_") || "home";
-trackPageView(currentPage);
-</script>
+                console.log(`Page view tracked for: ${pageName}`);
+            } catch (error) {
+                console.error("Error tracking analytics: ", error);
+            }
+        }
 
-    
+        // Automatically track on page load
+        const currentPage = window.location.pathname.replace(/\//g, "_") || "home";
+        trackPageView(currentPage);
+    </script>
+
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -85,7 +98,8 @@ trackPageView(currentPage);
     <!-- KaTeX for Mathematical Expressions -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" onload="initKaTeX()"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+        onload="initKaTeX()"></script>
 
     <script>
         // Configure KaTeX auto-render options to support single $ inline delimiters
@@ -93,10 +107,10 @@ trackPageView(currentPage);
             if (typeof renderMathInElement === 'function') {
                 renderMathInElement(document.body, {
                     delimiters: [
-                        {left: '$$', right: '$$', display: true},
-                        {left: '$', right: '$', display: false},
-                        {left: '\\(', right: '\\)', display: false},
-                        {left: '\\[', right: '\\]', display: true}
+                        { left: '$$', right: '$$', display: true },
+                        { left: '$', right: '$', display: false },
+                        { left: '\\(', right: '\\)', display: false },
+                        { left: '\\[', right: '\\]', display: true }
                     ],
                     throwOnError: false
                 });
@@ -113,33 +127,40 @@ trackPageView(currentPage);
             backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.5);
         }
+
         .gradient-bg {
             background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 35%, #ec4899 70%, #f43f5e 100%);
         }
+
         .gradient-text {
             background: linear-gradient(135deg, #4f46e5, #ec4899);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
+
         .custom-scrollbar::-webkit-scrollbar {
             width: 6px;
             height: 6px;
         }
+
         .custom-scrollbar::-webkit-scrollbar-thumb {
             background: #cbd5e1;
             border-radius: 9999px;
         }
+
         .custom-scrollbar::-webkit-scrollbar-thumb:hover {
             background: #94a3b8;
         }
     </style>
-<link rel="stylesheet" href="../assets/global-navbar.css">
+    <link rel="stylesheet" href="../assets/global-navbar.css">
 </head>
-<body class="bg-slate-50 text-slate-800 min-h-screen font-sans flex flex-col antialiased selection:bg-pink-500 selection:text-white">
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5MXP3RTV"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
+
+<body
+    class="bg-slate-50 text-slate-800 min-h-screen font-sans flex flex-col antialiased selection:bg-pink-500 selection:text-white">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5MXP3RTV" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
 
     <!-- Top Sticky Header -->
     <header class="sticky top-0 z-50 bg-slate-900/90 text-white backdrop-blur-md border-b border-slate-800 shadow-xl">
@@ -147,9 +168,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div class="flex items-center justify-between h-16">
                 <!-- Logo & Title -->
                 <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('sec-13-1')">
-                    <span class="p-2 bg-gradient-to-tr from-amber-400 to-rose-500 rounded-xl text-2xl shadow-lg shadow-rose-500/30">🎲</span>
+                    <span
+                        class="p-2 bg-gradient-to-tr from-amber-400 to-rose-500 rounded-xl text-2xl shadow-lg shadow-rose-500/30">🎲</span>
                     <div>
-                        <h1 class="font-bold text-lg sm:text-xl tracking-tight leading-none bg-gradient-to-r from-amber-200 via-pink-300 to-indigo-300 bg-clip-text text-transparent">
+                        <h1
+                            class="font-bold text-lg sm:text-xl tracking-tight leading-none bg-gradient-to-r from-amber-200 via-pink-300 to-indigo-300 bg-clip-text text-transparent">
                             ધોરણ 12 : ગણિત દર્પણ
                         </h1>
                         <p class="text-xs text-slate-400">પ્રકરણ 13 : સંભાવના (Probability)</p>
@@ -157,14 +180,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 </div>
 
                 <!-- Desktop Search / Quick Jump -->
-                <div class="hidden md:flex items-center space-x-2 bg-slate-800/80 px-3 py-1.5 rounded-full border border-slate-700 w-72">
+                <div
+                    class="hidden md:flex items-center space-x-2 bg-slate-800/80 px-3 py-1.5 rounded-full border border-slate-700 w-72">
                     <i class="fa-solid fa-magnifying-glass text-slate-400 text-sm"></i>
-                    <input type="text" id="searchInput" onkeyup="filterContent()" placeholder="શોધો (દા.ત. શરતી, બેયૂઝ, $P(A)$)..." class="bg-transparent border-none text-xs text-white placeholder-slate-400 focus:outline-none w-full">
+                    <input type="text" id="searchInput" onkeyup="filterContent()"
+                        placeholder="શોધો (દા.ત. શરતી, બેયૂઝ, $P(A)$)..."
+                        class="bg-transparent border-none text-xs text-white placeholder-slate-400 focus:outline-none w-full">
                 </div>
 
                 <!-- Quick Action Switcher -->
                 <div class="flex items-center space-x-2">
-                    <button onclick="toggleDesignPrinciplesModal()" class="px-3 py-1.5 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white rounded-full text-xs font-semibold shadow-md flex items-center space-x-1 transition hover:scale-105">
+                    <button onclick="toggleDesignPrinciplesModal()"
+                        class="px-3 py-1.5 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white rounded-full text-xs font-semibold shadow-md flex items-center space-x-1 transition hover:scale-105">
                         <span>✨ 20 UX નિયમો</span>
                     </button>
                     <button id="mobileMenuBtn" class="md:hidden p-2 text-slate-300 hover:text-white focus:outline-none">
@@ -176,34 +203,51 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
         <!-- Progress Indicator -->
         <div class="w-full bg-slate-800 h-1">
-            <div id="progressBar" class="bg-gradient-to-r from-amber-400 via-rose-500 to-indigo-500 h-1 w-1/5 transition-all duration-300"></div>
+            <div id="progressBar"
+                class="bg-gradient-to-r from-amber-400 via-rose-500 to-indigo-500 h-1 w-1/5 transition-all duration-300">
+            </div>
         </div>
     </header>
 
     <div class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col md:flex-row gap-6">
 
         <!-- Mobile Drawer Navigation -->
-        <div id="mobileDrawer" class="hidden md:hidden fixed inset-0 z-40 bg-slate-900/80 backdrop-blur-sm p-6 overflow-y-auto">
+        <div id="mobileDrawer"
+            class="hidden md:hidden fixed inset-0 z-40 bg-slate-900/80 backdrop-blur-sm p-6 overflow-y-auto">
             <div class="flex justify-between items-center mb-6">
                 <h3 class="text-white font-bold text-lg">📁 વિષય દર્પણ (Navigation)</h3>
                 <button onclick="toggleMobileMenu()" class="text-slate-400 hover:text-white text-2xl">&times;</button>
             </div>
             <nav class="space-y-2">
-                <a onclick="switchTab('sec-13-1'); toggleMobileMenu()" class="block px-4 py-3 rounded-xl bg-indigo-600 text-white font-medium">13.1 પ્રાસ્તાવિક & સૂત્રો 📜</a>
-                <a onclick="switchTab('sec-13-2'); toggleMobileMenu()" class="block px-4 py-3 rounded-xl bg-slate-800 text-slate-200 hover:bg-slate-700">13.2 શરતી સંભાવના 🎯</a>
-                <a onclick="switchTab('sec-13-3'); toggleMobileMenu()" class="block px-4 py-3 rounded-xl bg-slate-800 text-slate-200 hover:bg-slate-700">13.3 ગુણાકારનો પ્રમેય ✖️</a>
-                <a onclick="switchTab('sec-13-4'); toggleMobileMenu()" class="block px-4 py-3 rounded-xl bg-slate-800 text-slate-200 hover:bg-slate-700">13.4 નિરપેક્ષ ઘટનાઓ 🕊️</a>
-                <a onclick="switchTab('sec-13-5'); toggleMobileMenu()" class="block px-4 py-3 rounded-xl bg-slate-800 text-slate-200 hover:bg-slate-700">13.5 બેયૂઝનો પ્રમેય & આલેખ 📊</a>
-                <a onclick="switchTab('sec-ux-principles'); toggleMobileMenu()" class="block px-4 py-3 rounded-xl bg-amber-500/20 text-amber-300 border border-amber-500/40">🎨 20 Design Principles</a>
+                <a onclick="switchTab('sec-13-1'); toggleMobileMenu()"
+                    class="block px-4 py-3 rounded-xl bg-indigo-600 text-white font-medium">13.1 પ્રાસ્તાવિક & સૂત્રો
+                    📜</a>
+                <a onclick="switchTab('sec-13-2'); toggleMobileMenu()"
+                    class="block px-4 py-3 rounded-xl bg-slate-800 text-slate-200 hover:bg-slate-700">13.2 શરતી સંભાવના
+                    🎯</a>
+                <a onclick="switchTab('sec-13-3'); toggleMobileMenu()"
+                    class="block px-4 py-3 rounded-xl bg-slate-800 text-slate-200 hover:bg-slate-700">13.3 ગુણાકારનો
+                    પ્રમેય ✖️</a>
+                <a onclick="switchTab('sec-13-4'); toggleMobileMenu()"
+                    class="block px-4 py-3 rounded-xl bg-slate-800 text-slate-200 hover:bg-slate-700">13.4 નિરપેક્ષ
+                    ઘટનાઓ 🕊️</a>
+                <a onclick="switchTab('sec-13-5'); toggleMobileMenu()"
+                    class="block px-4 py-3 rounded-xl bg-slate-800 text-slate-200 hover:bg-slate-700">13.5 બેયૂઝનો
+                    પ્રમેય & આલેખ 📊</a>
+                <a onclick="switchTab('sec-ux-principles'); toggleMobileMenu()"
+                    class="block px-4 py-3 rounded-xl bg-amber-500/20 text-amber-300 border border-amber-500/40">🎨 20
+                    Design Principles</a>
             </nav>
         </div>
 
         <!-- Sidebar Navigation (Desktop) -->
         <aside class="hidden md:block w-72 shrink-0 space-y-4">
             <div class="glass-card rounded-2xl p-4 shadow-xl border border-slate-200/80 sticky top-24">
-                <h2 class="text-xs font-bold uppercase tracking-wider text-slate-400 px-3 mb-3">મુખ્ય ટોપિક્સ (Topics)</h2>
+                <h2 class="text-xs font-bold uppercase tracking-wider text-slate-400 px-3 mb-3">મુખ્ય ટોપિક્સ (Topics)
+                </h2>
                 <nav class="space-y-1.5" id="desktopNav">
-                    <button onclick="switchTab('sec-13-1')" id="nav-sec-13-1" class="nav-btn active w-full text-left px-4 py-3 rounded-xl text-sm font-semibold flex items-center justify-between bg-gradient-to-r from-indigo-600 to-indigo-700 text-white shadow-md shadow-indigo-500/20 transition-all">
+                    <button onclick="switchTab('sec-13-1')" id="nav-sec-13-1"
+                        class="nav-btn active w-full text-left px-4 py-3 rounded-xl text-sm font-semibold flex items-center justify-between bg-gradient-to-r from-indigo-600 to-indigo-700 text-white shadow-md shadow-indigo-500/20 transition-all">
                         <span class="flex items-center space-x-2">
                             <span class="text-lg">📌</span>
                             <span>13.1 પ્રાસ્તાવિક</span>
@@ -211,7 +255,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <i class="fa-solid fa-chevron-right text-xs opacity-70"></i>
                     </button>
 
-                    <button onclick="switchTab('sec-13-2')" id="nav-sec-13-2" class="nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-medium flex items-center justify-between text-slate-600 hover:bg-slate-100 hover:text-indigo-600 transition-all">
+                    <button onclick="switchTab('sec-13-2')" id="nav-sec-13-2"
+                        class="nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-medium flex items-center justify-between text-slate-600 hover:bg-slate-100 hover:text-indigo-600 transition-all">
                         <span class="flex items-center space-x-2">
                             <span class="text-lg">🎯</span>
                             <span>13.2 શરતી સંભાવના</span>
@@ -219,7 +264,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <i class="fa-solid fa-chevron-right text-xs opacity-40"></i>
                     </button>
 
-                    <button onclick="switchTab('sec-13-3')" id="nav-sec-13-3" class="nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-medium flex items-center justify-between text-slate-600 hover:bg-slate-100 hover:text-indigo-600 transition-all">
+                    <button onclick="switchTab('sec-13-3')" id="nav-sec-13-3"
+                        class="nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-medium flex items-center justify-between text-slate-600 hover:bg-slate-100 hover:text-indigo-600 transition-all">
                         <span class="flex items-center space-x-2">
                             <span class="text-lg">✖️</span>
                             <span>13.3 ગુણાકારનો પ્રમેય</span>
@@ -227,7 +273,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <i class="fa-solid fa-chevron-right text-xs opacity-40"></i>
                     </button>
 
-                    <button onclick="switchTab('sec-13-4')" id="nav-sec-13-4" class="nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-medium flex items-center justify-between text-slate-600 hover:bg-slate-100 hover:text-indigo-600 transition-all">
+                    <button onclick="switchTab('sec-13-4')" id="nav-sec-13-4"
+                        class="nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-medium flex items-center justify-between text-slate-600 hover:bg-slate-100 hover:text-indigo-600 transition-all">
                         <span class="flex items-center space-x-2">
                             <span class="text-lg">🕊️</span>
                             <span>13.4 નિરપેક્ષ ઘટનાઓ</span>
@@ -235,7 +282,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <i class="fa-solid fa-chevron-right text-xs opacity-40"></i>
                     </button>
 
-                    <button onclick="switchTab('sec-13-5')" id="nav-sec-13-5" class="nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-medium flex items-center justify-between text-slate-600 hover:bg-slate-100 hover:text-indigo-600 transition-all">
+                    <button onclick="switchTab('sec-13-5')" id="nav-sec-13-5"
+                        class="nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-medium flex items-center justify-between text-slate-600 hover:bg-slate-100 hover:text-indigo-600 transition-all">
                         <span class="flex items-center space-x-2">
                             <span class="text-lg">📊</span>
                             <span>13.5 બેયૂઝનો પ્રમેય</span>
@@ -244,7 +292,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     </button>
 
                     <div class="pt-3 border-t border-slate-200">
-                        <button onclick="switchTab('sec-ux-principles')" id="nav-sec-ux-principles" class="nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-semibold flex items-center justify-between bg-gradient-to-r from-amber-500 to-rose-500 text-white shadow-md shadow-rose-500/20 hover:opacity-95 transition-all">
+                        <button onclick="switchTab('sec-ux-principles')" id="nav-sec-ux-principles"
+                            class="nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-semibold flex items-center justify-between bg-gradient-to-r from-amber-500 to-rose-500 text-white shadow-md shadow-rose-500/20 hover:opacity-95 transition-all">
                             <span class="flex items-center space-x-2">
                                 <span class="text-lg">💎</span>
                                 <span>20 Web UI Principles</span>
@@ -273,15 +322,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <!-- SECTION 13.1: પ્રાસ્તાવિક -->
             <section id="sec-13-1" class="tab-content transition-opacity duration-300">
                 <!-- Banner -->
-                <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-500 p-6 sm:p-8 text-white shadow-2xl mb-8">
+                <div
+                    class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-500 p-6 sm:p-8 text-white shadow-2xl mb-8">
                     <div class="absolute -right-10 -bottom-10 opacity-20 text-9xl">💡</div>
                     <div class="relative z-10">
-                        <span class="inline-block px-3 py-1 bg-white/20 backdrop-blur-md rounded-full text-xs font-semibold tracking-wider mb-3 uppercase">
+                        <span
+                            class="inline-block px-3 py-1 bg-white/20 backdrop-blur-md rounded-full text-xs font-semibold tracking-wider mb-3 uppercase">
                             પ્રકરણ 13 • વિભાગ 13.1
                         </span>
                         <h2 class="text-2xl sm:text-4xl font-extrabold mb-3">13.1 પ્રાસ્તાવિક (Introduction)</h2>
                         <p class="text-sm sm:text-base text-indigo-100 max-w-2xl leading-relaxed">
-                            મિત્રો, આપણે યાદચ્છિક પ્રયોગની સંભાવનાનો અભ્યાસ ઘટનાઓની અનિશ્ચિતતાના માપ તરીકે કર્યો છે. યાદચ્છિક પ્રયોગનાં પરિણામો પરના વિધેય તરીકે સંભાવનાનું નિરૂપણ કર્યું છે. સમસંભાવી પરિણામોના વિકલ્પમાં આપણે સંભાવનાના પૂર્વધારણાયુક્ત સિદ્ધાંત અને પ્રશિષ્ટ સિદ્ધાંતની વચ્ચે સમાનતા પણ સ્થાપિત કરી છે.
+                            મિત્રો, આપણે યાદચ્છિક પ્રયોગની સંભાવનાનો અભ્યાસ ઘટનાઓની અનિશ્ચિતતાના માપ તરીકે કર્યો છે.
+                            યાદચ્છિક પ્રયોગનાં પરિણામો પરના વિધેય તરીકે સંભાવનાનું નિરૂપણ કર્યું છે. સમસંભાવી પરિણામોના
+                            વિકલ્પમાં આપણે સંભાવનાના પૂર્વધારણાયુક્ત સિદ્ધાંત અને પ્રશિષ્ટ સિદ્ધાંતની વચ્ચે સમાનતા પણ
+                            સ્થાપિત કરી છે.
                         </p>
                     </div>
                 </div>
@@ -293,16 +347,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             <span class="p-2 bg-indigo-100 text-indigo-600 rounded-xl text-lg">🧮</span>
                             <span>અગત્યના પુનરાવર્તન સૂત્રો (1 થી 13)</span>
                         </h3>
-                        <span class="text-xs font-semibold bg-indigo-50 text-indigo-600 px-3 py-1 rounded-full border border-indigo-200">
+                        <span
+                            class="text-xs font-semibold bg-indigo-50 text-indigo-600 px-3 py-1 rounded-full border border-indigo-200">
                             A, B અને C ઘટનાઓ છે
                         </span>
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="formulaGrid">
                         <!-- Formula 1 -->
-                        <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-indigo-400 hover:shadow-md transition">
+                        <div
+                            class="p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-indigo-400 hover:shadow-md transition">
                             <div class="flex items-center justify-between mb-2">
-                                <span class="w-7 h-7 rounded-full bg-indigo-600 text-white font-bold text-xs flex items-center justify-center">1</span>
+                                <span
+                                    class="w-7 h-7 rounded-full bg-indigo-600 text-white font-bold text-xs flex items-center justify-center">1</span>
                                 <span class="text-xs text-slate-400 font-mono">યોગ ઘટના સંભાવના</span>
                             </div>
                             <div class="text-base font-semibold text-slate-800 text-center py-2 overflow-x-auto">
@@ -311,10 +368,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         </div>
 
                         <!-- Formula 2 -->
-                        <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-indigo-400 hover:shadow-md transition">
+                        <div
+                            class="p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-indigo-400 hover:shadow-md transition">
                             <div class="flex items-center justify-between mb-2">
-                                <span class="w-7 h-7 rounded-full bg-indigo-600 text-white font-bold text-xs flex items-center justify-center">2</span>
-                                <span class="text-xs bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded-full font-medium">પરસ્પર નિવારક $A \cap B = \emptyset$</span>
+                                <span
+                                    class="w-7 h-7 rounded-full bg-indigo-600 text-white font-bold text-xs flex items-center justify-center">2</span>
+                                <span
+                                    class="text-xs bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded-full font-medium">પરસ્પર
+                                    નિવારક $A \cap B = \emptyset$</span>
                             </div>
                             <div class="text-base font-semibold text-slate-800 text-center py-2 overflow-x-auto">
                                 $$P(A \cup B) = P(A) + P(B)$$
@@ -322,20 +383,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         </div>
 
                         <!-- Formula 3 -->
-                        <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-indigo-400 hover:shadow-md transition md:col-span-2">
+                        <div
+                            class="p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-indigo-400 hover:shadow-md transition md:col-span-2">
                             <div class="flex items-center justify-between mb-2">
-                                <span class="w-7 h-7 rounded-full bg-indigo-600 text-white font-bold text-xs flex items-center justify-center">3</span>
+                                <span
+                                    class="w-7 h-7 rounded-full bg-indigo-600 text-white font-bold text-xs flex items-center justify-center">3</span>
                                 <span class="text-xs text-slate-400 font-mono">ત્રણ ઘટનાઓનો યોગ</span>
                             </div>
                             <div class="text-base font-semibold text-slate-800 text-center py-2 overflow-x-auto">
-                                $$P(A \cup B \cup C) = P(A) + P(B) + P(C) - P(A \cap B) - P(B \cap C) - P(C \cap A) + P(A \cap B \cap C)$$
+                                $$P(A \cup B \cup C) = P(A) + P(B) + P(C) - P(A \cap B) - P(B \cap C) - P(C \cap A) +
+                                P(A \cap B \cap C)$$
                             </div>
                         </div>
 
                         <!-- Formula 4 -->
-                        <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-indigo-400 hover:shadow-md transition">
+                        <div
+                            class="p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-indigo-400 hover:shadow-md transition">
                             <div class="flex items-center justify-between mb-2">
-                                <span class="w-7 h-7 rounded-full bg-indigo-600 text-white font-bold text-xs flex items-center justify-center">4</span>
+                                <span
+                                    class="w-7 h-7 rounded-full bg-indigo-600 text-white font-bold text-xs flex items-center justify-center">4</span>
                                 <span class="text-xs text-slate-400">A, B, C પરસ્પર નિવારક</span>
                             </div>
                             <div class="text-base font-semibold text-slate-800 text-center py-2 overflow-x-auto">
@@ -344,9 +410,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         </div>
 
                         <!-- Formula 5 -->
-                        <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-indigo-400 hover:shadow-md transition">
+                        <div
+                            class="p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-indigo-400 hover:shadow-md transition">
                             <div class="flex items-center justify-between mb-2">
-                                <span class="w-7 h-7 rounded-full bg-indigo-600 text-white font-bold text-xs flex items-center justify-center">5</span>
+                                <span
+                                    class="w-7 h-7 rounded-full bg-indigo-600 text-white font-bold text-xs flex items-center justify-center">5</span>
                                 <span class="text-xs text-slate-400">અસમતા સંબંધ</span>
                             </div>
                             <div class="text-base font-semibold text-slate-800 text-center py-2 overflow-x-auto">
@@ -355,9 +423,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         </div>
 
                         <!-- Formula 6 -->
-                        <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-indigo-400 hover:shadow-md transition">
+                        <div
+                            class="p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-indigo-400 hover:shadow-md transition">
                             <div class="flex items-center justify-between mb-2">
-                                <span class="w-7 h-7 rounded-full bg-indigo-600 text-white font-bold text-xs flex items-center justify-center">6</span>
+                                <span
+                                    class="w-7 h-7 rounded-full bg-indigo-600 text-white font-bold text-xs flex items-center justify-center">6</span>
                                 <span class="text-xs text-slate-400">B પરંતુ A નહિ</span>
                             </div>
                             <div class="text-base font-semibold text-slate-800 text-center py-2 overflow-x-auto">
@@ -366,9 +436,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         </div>
 
                         <!-- Formula 7 -->
-                        <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-indigo-400 hover:shadow-md transition">
+                        <div
+                            class="p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-indigo-400 hover:shadow-md transition">
                             <div class="flex items-center justify-between mb-2">
-                                <span class="w-7 h-7 rounded-full bg-indigo-600 text-white font-bold text-xs flex items-center justify-center">7</span>
+                                <span
+                                    class="w-7 h-7 rounded-full bg-indigo-600 text-white font-bold text-xs flex items-center justify-center">7</span>
                                 <span class="text-xs text-slate-400">A પરંતુ B નહિ</span>
                             </div>
                             <div class="text-base font-semibold text-slate-800 text-center py-2 overflow-x-auto">
@@ -377,9 +449,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         </div>
 
                         <!-- Formula 8 -->
-                        <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-indigo-400 hover:shadow-md transition">
+                        <div
+                            class="p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-indigo-400 hover:shadow-md transition">
                             <div class="flex items-center justify-between mb-2">
-                                <span class="w-7 h-7 rounded-full bg-indigo-600 text-white font-bold text-xs flex items-center justify-center">8</span>
+                                <span
+                                    class="w-7 h-7 rounded-full bg-indigo-600 text-white font-bold text-xs flex items-center justify-center">8</span>
                                 <span class="text-xs text-purple-600 font-medium">ડિ-મોર્ગન નિયમ 1</span>
                             </div>
                             <div class="text-base font-semibold text-slate-800 text-center py-2 overflow-x-auto">
@@ -388,9 +462,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         </div>
 
                         <!-- Formula 9 -->
-                        <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-indigo-400 hover:shadow-md transition">
+                        <div
+                            class="p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-indigo-400 hover:shadow-md transition">
                             <div class="flex items-center justify-between mb-2">
-                                <span class="w-7 h-7 rounded-full bg-indigo-600 text-white font-bold text-xs flex items-center justify-center">9</span>
+                                <span
+                                    class="w-7 h-7 rounded-full bg-indigo-600 text-white font-bold text-xs flex items-center justify-center">9</span>
                                 <span class="text-xs text-purple-600 font-medium">ડિ-મોર્ગન નિયમ 2</span>
                             </div>
                             <div class="text-base font-semibold text-slate-800 text-center py-2 overflow-x-auto">
@@ -399,9 +475,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         </div>
 
                         <!-- Formula 10 -->
-                        <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-indigo-400 hover:shadow-md transition">
+                        <div
+                            class="p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-indigo-400 hover:shadow-md transition">
                             <div class="flex items-center justify-between mb-2">
-                                <span class="w-7 h-7 rounded-full bg-indigo-600 text-white font-bold text-xs flex items-center justify-center">10</span>
+                                <span
+                                    class="w-7 h-7 rounded-full bg-indigo-600 text-white font-bold text-xs flex items-center justify-center">10</span>
                                 <span class="text-xs text-slate-400">કુલ સંભાવના વિભાજન</span>
                             </div>
                             <div class="text-base font-semibold text-slate-800 text-center py-2 overflow-x-auto">
@@ -410,9 +488,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         </div>
 
                         <!-- Formula 11 -->
-                        <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-indigo-400 hover:shadow-md transition">
+                        <div
+                            class="p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-indigo-400 hover:shadow-md transition">
                             <div class="flex items-center justify-between mb-2">
-                                <span class="w-7 h-7 rounded-full bg-indigo-600 text-white font-bold text-xs flex items-center justify-center">11</span>
+                                <span
+                                    class="w-7 h-7 rounded-full bg-indigo-600 text-white font-bold text-xs flex items-center justify-center">11</span>
                                 <span class="text-xs text-slate-400">ફક્ત એક જ ઘટના</span>
                             </div>
                             <div class="text-base font-semibold text-slate-800 text-center py-2 overflow-x-auto">
@@ -421,9 +501,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         </div>
 
                         <!-- Formula 12 & 13 -->
-                        <div class="p-4 rounded-2xl bg-indigo-50 border border-indigo-200 hover:shadow-md transition md:col-span-2 flex flex-col sm:flex-row justify-around items-center gap-4">
+                        <div
+                            class="p-4 rounded-2xl bg-indigo-50 border border-indigo-200 hover:shadow-md transition md:col-span-2 flex flex-col sm:flex-row justify-around items-center gap-4">
                             <div class="text-center">
-                                <span class="text-xs font-semibold text-indigo-500 uppercase">12. નિદર્શાવકાશ & શૂન્ય ઘટના</span>
+                                <span class="text-xs font-semibold text-indigo-500 uppercase">12. નિદર્શાવકાશ & શૂન્ય
+                                    ઘટના</span>
                                 <div class="text-lg font-bold text-indigo-900 mt-1">
                                     $$P(S) = 1, \quad P(\emptyset) = 0$$
                                 </div>
@@ -447,16 +529,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                                 <span class="p-2 bg-pink-100 text-pink-600 rounded-xl text-lg">📖</span>
                                 <span>શાબ્દિક સ્વરૂપ અને તેનાં સમાન ગણ સ્વરૂપ કોષ્ટક</span>
                             </h3>
-                            <p class="text-xs text-slate-500 mt-1">પ્રયોગોને સાપેક્ષ આપેલ ઘટના શાબ્દિક સ્વરૂપે હોય ત્યારે સમાન ગણ સ્વરૂપમાં ફેરવવા માટેની માહિતી</p>
+                            <p class="text-xs text-slate-500 mt-1">પ્રયોગોને સાપેક્ષ આપેલ ઘટના શાબ્દિક સ્વરૂપે હોય
+                                ત્યારે સમાન ગણ સ્વરૂપમાં ફેરવવા માટેની માહિતી</p>
                         </div>
                     </div>
 
                     <div class="overflow-x-auto rounded-2xl border border-slate-200 shadow-sm">
                         <table class="w-full text-left text-sm text-slate-700">
-                            <thead class="bg-gradient-to-r from-slate-900 to-indigo-900 text-white text-xs uppercase tracking-wider">
+                            <thead
+                                class="bg-gradient-to-r from-slate-900 to-indigo-900 text-white text-xs uppercase tracking-wider">
                                 <tr>
                                     <th scope="col" class="px-6 py-4 rounded-tl-xl">શાબ્દિક સ્વરૂપ (Verbal Form)</th>
-                                    <th scope="col" class="px-6 py-4 rounded-tr-xl">તેને સમાન ગણ સ્વરૂપ (Set Representation)</th>
+                                    <th scope="col" class="px-6 py-4 rounded-tr-xl">તેને સમાન ગણ સ્વરૂપ (Set
+                                        Representation)</th>
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-slate-200 bg-white">
@@ -492,7 +577,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                                 </tr>
                                 <tr class="hover:bg-indigo-50/50 transition">
                                     <td class="px-6 py-3.5 font-medium text-slate-900 flex items-center space-x-2">
-                                        <span class="text-teal-500">•</span> <span>A, B અથવા C માંથી ઓછામાં ઓછી એક</span>
+                                        <span class="text-teal-500">•</span> <span>A, B અથવા C માંથી ઓછામાં ઓછી
+                                            એક</span>
                                     </td>
                                     <td class="px-6 py-3.5 font-mono text-indigo-600 font-bold">$A \cup B \cup C$</td>
                                 </tr>
@@ -500,7 +586,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                                     <td class="px-6 py-3.5 font-medium text-slate-900 flex items-center space-x-2">
                                         <span class="text-rose-600">•</span> <span>A અને B માંથી ફક્ત એક જ</span>
                                     </td>
-                                    <td class="px-6 py-3.5 font-mono text-indigo-600 font-bold">$(A \cap B') \cup (A' \cap B)$</td>
+                                    <td class="px-6 py-3.5 font-mono text-indigo-600 font-bold">$(A \cap B') \cup (A'
+                                        \cap B)$</td>
                                 </tr>
                                 <tr class="hover:bg-indigo-50/50 transition">
                                     <td class="px-6 py-3.5 font-medium text-slate-900 flex items-center space-x-2">
@@ -512,7 +599,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                                     <td class="px-6 py-3.5 font-medium text-slate-900 flex items-center space-x-2">
                                         <span class="text-violet-600">•</span> <span>A, B અને C માંથી ફક્ત બે જ</span>
                                     </td>
-                                    <td class="px-6 py-3.5 font-mono text-indigo-600 font-bold">$(A\cap B\cap C') \cup (A\cap B'\cap C) \cup (A'\cap B\cap C)$</td>
+                                    <td class="px-6 py-3.5 font-mono text-indigo-600 font-bold">$(A\cap B\cap C') \cup
+                                        (A\cap B'\cap C) \cup (A'\cap B\cap C)$</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -522,13 +610,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             <!-- SECTION 13.2: શરતી સંભાવના -->
             <section id="sec-13-2" class="tab-content hidden transition-opacity duration-300">
-                <div class="rounded-3xl bg-gradient-to-br from-emerald-600 to-teal-800 p-6 sm:p-8 text-white shadow-2xl mb-8">
-                    <span class="inline-block px-3 py-1 bg-white/20 backdrop-blur-md rounded-full text-xs font-semibold tracking-wider mb-3 uppercase">
+                <div
+                    class="rounded-3xl bg-gradient-to-br from-emerald-600 to-teal-800 p-6 sm:p-8 text-white shadow-2xl mb-8">
+                    <span
+                        class="inline-block px-3 py-1 bg-white/20 backdrop-blur-md rounded-full text-xs font-semibold tracking-wider mb-3 uppercase">
                         પ્રકરણ 13 • વિભાગ 13.2
                     </span>
-                    <h2 class="text-2xl sm:text-4xl font-extrabold mb-3">13.2 શરતી સંભાવના (Conditional Probability)</h2>
+                    <h2 class="text-2xl sm:text-4xl font-extrabold mb-3">13.2 શરતી સંભાવના (Conditional Probability)
+                    </h2>
                     <p class="text-sm sm:text-base text-teal-100 max-w-3xl leading-relaxed">
-                        શરતી સંભાવના એટલે કે જ્યારે એક ઘટના ઉદ્ભવી ચૂકી છે એમ આપેલ હોય તે સંજોગોમાં અન્ય ઘટનાના ઉદ્ભવવાની સંભાવના મેળવવી.
+                        શરતી સંભાવના એટલે કે જ્યારે એક ઘટના ઉદ્ભવી ચૂકી છે એમ આપેલ હોય તે સંજોગોમાં અન્ય ઘટનાના
+                        ઉદ્ભવવાની સંભાવના મેળવવી.
                     </p>
                 </div>
 
@@ -539,7 +631,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             <span>📌 વ્યાખ્યા (Definition):</span>
                         </h3>
                         <p class="text-slate-700 text-sm leading-relaxed">
-                            જો બે ઘટનાઓ $E$ અને $F$ યાદચ્છિક પ્રયોગના એક જ નિદર્શાવકાશ સાથે સંગત હોય, તો આપેલ હોય કે ઘટના $F$ ઉદ્ભવી ચૂકી છે, તો ઘટના $F$ ની શરતે ઘટના $E$ ની શરતી સંભાવના જેનો સંકેત $P(E|F)$ છે.
+                            જો બે ઘટનાઓ $E$ અને $F$ યાદચ્છિક પ્રયોગના એક જ નિદર્શાવકાશ સાથે સંગત હોય, તો આપેલ હોય કે
+                            ઘટના $F$ ઉદ્ભવી ચૂકી છે, તો ઘટના $F$ ની શરતે ઘટના $E$ ની શરતી સંભાવના જેનો સંકેત $P(E|F)$
+                            છે.
                         </p>
                         <div class="mt-4 p-4 bg-white rounded-xl shadow-inner text-center border border-amber-200">
                             <span class="text-xl sm:text-2xl font-bold text-amber-700">
@@ -557,19 +651,29 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                             <!-- Property 1 -->
-                            <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200 hover:border-teal-500 transition">
-                                <span class="inline-block px-2.5 py-1 bg-teal-600 text-white text-xs font-bold rounded-lg mb-3">ગુણધર્મ (i)</span>
-                                <p class="text-xs text-slate-600 mb-2">ધારો કે $E$ અને $F$ એક પ્રયોગના નિદર્શાવકાશ $S$ ની ઘટનાઓ છે ($P(F) \neq 0$):</p>
-                                <div class="font-bold text-slate-900 text-center py-2 bg-white rounded-xl border border-slate-200">
+                            <div
+                                class="p-5 rounded-2xl bg-slate-50 border border-slate-200 hover:border-teal-500 transition">
+                                <span
+                                    class="inline-block px-2.5 py-1 bg-teal-600 text-white text-xs font-bold rounded-lg mb-3">ગુણધર્મ
+                                    (i)</span>
+                                <p class="text-xs text-slate-600 mb-2">ધારો કે $E$ અને $F$ એક પ્રયોગના નિદર્શાવકાશ $S$
+                                    ની ઘટનાઓ છે ($P(F) \neq 0$):</p>
+                                <div
+                                    class="font-bold text-slate-900 text-center py-2 bg-white rounded-xl border border-slate-200">
                                     $$P(S|F) = \frac{P(S\cap F)}{P(F)} = \frac{P(F)}{P(F)} = 1$$
                                 </div>
                             </div>
 
                             <!-- Property 2 -->
-                            <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200 hover:border-teal-500 transition">
-                                <span class="inline-block px-2.5 py-1 bg-teal-600 text-white text-xs font-bold rounded-lg mb-3">ગુણધર્મ (ii)</span>
-                                <p class="text-xs text-slate-600 mb-2">જો $A$ અને $B$ નિદર્શાવકાશ $S$ ની બે ઘટનાઓ હોય:</p>
-                                <div class="font-bold text-slate-900 text-xs text-center py-2 bg-white rounded-xl border border-slate-200 overflow-x-auto">
+                            <div
+                                class="p-5 rounded-2xl bg-slate-50 border border-slate-200 hover:border-teal-500 transition">
+                                <span
+                                    class="inline-block px-2.5 py-1 bg-teal-600 text-white text-xs font-bold rounded-lg mb-3">ગુણધર્મ
+                                    (ii)</span>
+                                <p class="text-xs text-slate-600 mb-2">જો $A$ અને $B$ નિદર્શાવકાશ $S$ ની બે ઘટનાઓ હોય:
+                                </p>
+                                <div
+                                    class="font-bold text-slate-900 text-xs text-center py-2 bg-white rounded-xl border border-slate-200 overflow-x-auto">
                                     $$P((A\cup B)|F) = P(A|F) + P(B|F) - P((A\cap B)|F)$$
                                 </div>
                                 <p class="text-xs text-emerald-600 mt-2 font-medium">જો $A$ અને $B$ પરસ્પર અલગ હોય:</p>
@@ -579,10 +683,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             </div>
 
                             <!-- Property 3 -->
-                            <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200 hover:border-teal-500 transition">
-                                <span class="inline-block px-2.5 py-1 bg-teal-600 text-white text-xs font-bold rounded-lg mb-3">ગુણધર્મ (iii)</span>
+                            <div
+                                class="p-5 rounded-2xl bg-slate-50 border border-slate-200 hover:border-teal-500 transition">
+                                <span
+                                    class="inline-block px-2.5 py-1 bg-teal-600 text-white text-xs font-bold rounded-lg mb-3">ગુણધર્મ
+                                    (iii)</span>
                                 <p class="text-xs text-slate-600 mb-2">પૂરક ઘટના માટે શરતી સંભાવના:</p>
-                                <div class="font-bold text-slate-900 text-center py-4 bg-white rounded-xl border border-slate-200">
+                                <div
+                                    class="font-bold text-slate-900 text-center py-4 bg-white rounded-xl border border-slate-200">
                                     $$P(E^{\prime}|F) = 1 - P(E|F)$$
                                 </div>
                             </div>
@@ -593,29 +701,35 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             <!-- SECTION 13.3: સંભાવના માટેનો ગુણાકારનો પ્રમેય -->
             <section id="sec-13-3" class="tab-content hidden transition-opacity duration-300">
-                <div class="rounded-3xl bg-gradient-to-br from-purple-600 to-indigo-800 p-6 sm:p-8 text-white shadow-2xl mb-8">
-                    <span class="inline-block px-3 py-1 bg-white/20 backdrop-blur-md rounded-full text-xs font-semibold tracking-wider mb-3 uppercase">
+                <div
+                    class="rounded-3xl bg-gradient-to-br from-purple-600 to-indigo-800 p-6 sm:p-8 text-white shadow-2xl mb-8">
+                    <span
+                        class="inline-block px-3 py-1 bg-white/20 backdrop-blur-md rounded-full text-xs font-semibold tracking-wider mb-3 uppercase">
                         પ્રકરણ 13 • વિભાગ 13.3
                     </span>
                     <h2 class="text-2xl sm:text-4xl font-extrabold mb-3">13.3 સંભાવના માટેનો ગુણાકારનો પ્રમેય</h2>
                     <p class="text-sm sm:text-base text-purple-100 max-w-3xl leading-relaxed">
-                        Multiplication Theorem on Probability: બંને ઘટનાઓ $E$ અને $F$ એક સાથે ઉદ્ભવે ($E \cap F$ અથવા $EF$) તેની સંભાવના.
+                        Multiplication Theorem on Probability: બંને ઘટનાઓ $E$ અને $F$ એક સાથે ઉદ્ભવે ($E \cap F$ અથવા
+                        $EF$) તેની સંભાવના.
                     </p>
                 </div>
 
                 <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-xl border border-slate-100 space-y-6">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <!-- Two Events -->
-                        <div class="p-6 rounded-2xl bg-gradient-to-br from-purple-50 to-indigo-50 border border-purple-200">
+                        <div
+                            class="p-6 rounded-2xl bg-gradient-to-br from-purple-50 to-indigo-50 border border-purple-200">
                             <h3 class="text-lg font-bold text-purple-900 mb-3 flex items-center space-x-2">
                                 <span>1️⃣ બે ઘટનાઓ માટે (Two Events):</span>
                             </h3>
                             <p class="text-xs text-slate-600 mb-4 leading-relaxed">
-                                આપેલ છે કે $P(E|F) = \frac{P(E\cap F)}{P(F)}$ ($P(F)\neq 0$) અને $P(F|E) = \frac{P(E\cap F)}{P(E)}$ ($P(E)\neq 0$). તેથી:
+                                આપેલ છે કે $P(E|F) = \frac{P(E\cap F)}{P(F)}$ ($P(F)\neq 0$) અને $P(F|E) = \frac{P(E\cap
+                                F)}{P(E)}$ ($P(E)\neq 0$). તેથી:
                             </p>
                             <div class="p-4 bg-white rounded-xl shadow-md border border-purple-300 text-center">
                                 <div class="text-lg font-bold text-purple-800">
-                                    $$P(E\cap F) = \begin{cases} P(E) \cdot P(F|E), & P(E)\neq 0 \\ P(F) \cdot P(E|F), & P(F)\neq 0 \end{cases}$$
+                                    $$P(E\cap F) = \begin{cases} P(E) \cdot P(F|E), & P(E)\neq 0 \\ P(F) \cdot P(E|F), &
+                                    P(F)\neq 0 \end{cases}$$
                                 </div>
                             </div>
                         </div>
@@ -628,7 +742,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             <p class="text-xs text-slate-600 mb-4 leading-relaxed">
                                 જો $E, F$ અને $G$ નિદર્શાવકાશની ઘટનાઓ હોય તો સંભાવનાનો ગુણાકારનો નિયમ:
                             </p>
-                            <div class="p-4 bg-white rounded-xl shadow-md border border-pink-300 text-center overflow-x-auto">
+                            <div
+                                class="p-4 bg-white rounded-xl shadow-md border border-pink-300 text-center overflow-x-auto">
                                 <div class="text-base font-bold text-pink-800">
                                     $$P(E\cap F\cap G) = P(E)\cdot P(F|E)\cdot P(G|(E\cap F))$$
                                     $$= P(E)\cdot P(F|E)\cdot P(G|EF)$$
@@ -641,8 +756,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             <!-- SECTION 13.4: નિરપેક્ષ ઘટનાઓ -->
             <section id="sec-13-4" class="tab-content hidden transition-opacity duration-300">
-                <div class="rounded-3xl bg-gradient-to-br from-cyan-600 via-blue-600 to-indigo-700 p-6 sm:p-8 text-white shadow-2xl mb-8">
-                    <span class="inline-block px-3 py-1 bg-white/20 backdrop-blur-md rounded-full text-xs font-semibold tracking-wider mb-3 uppercase">
+                <div
+                    class="rounded-3xl bg-gradient-to-br from-cyan-600 via-blue-600 to-indigo-700 p-6 sm:p-8 text-white shadow-2xl mb-8">
+                    <span
+                        class="inline-block px-3 py-1 bg-white/20 backdrop-blur-md rounded-full text-xs font-semibold tracking-wider mb-3 uppercase">
                         પ્રકરણ 13 • વિભાગ 13.4
                     </span>
                     <h2 class="text-2xl sm:text-4xl font-extrabold mb-3">13.4 નિરપેક્ષ ઘટનાઓ (Independent Events)</h2>
@@ -657,7 +774,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <p class="text-sm text-slate-700 leading-relaxed mb-4">
                             જો $P(E)\neq 0$ માટે $P(F|E) = P(F)$ અને $P(F)\neq 0$ માટે $P(E|F) = P(E)$ હોય, અથવા:
                         </p>
-                        <div class="p-4 bg-white rounded-xl border border-cyan-300 text-center font-bold text-xl text-cyan-800">
+                        <div
+                            class="p-4 bg-white rounded-xl border border-cyan-300 text-center font-bold text-xl text-cyan-800">
                             $$P(E\cap F) = P(E) \cdot P(F)$$
                         </div>
                     </div>
@@ -665,21 +783,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <!-- Important Notes (i to v) -->
                     <div class="space-y-3">
                         <h3 class="font-bold text-slate-900 text-base">📌 નોંધો (Key Points):</h3>
-                        
+
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
                                 <span class="font-bold text-indigo-600 text-xs">(i) અવલંબી ઘટનાઓ:</span>
-                                <p class="text-xs text-slate-600 mt-1">જો $P(E\cap F) \neq P(E)\cdot P(F)$ હોય, તો બે ઘટનાઓ $E$ અને $F$ ને **અવલંબી ઘટનાઓ** કહે છે.</p>
+                                <p class="text-xs text-slate-600 mt-1">જો $P(E\cap F) \neq P(E)\cdot P(F)$ હોય, તો બે
+                                    ઘટનાઓ $E$ અને $F$ ને **અવલંબી ઘટનાઓ** કહે છે.</p>
                             </div>
 
                             <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
                                 <span class="font-bold text-indigo-600 text-xs">(ii) નિરપેક્ષ vs પરસ્પર નિવારક:</span>
-                                <p class="text-xs text-slate-600 mt-1">'નિરપેક્ષ' સંભાવનાના સંદર્ભમાં વ્યાખ્યાયિત છે, જ્યારે 'પરસ્પર નિવારક' ઘટનાઓના સંદર્ભમાં વ્યાખ્યાયિત છે.</p>
+                                <p class="text-xs text-slate-600 mt-1">'નિરપેક્ષ' સંભાવનાના સંદર્ભમાં વ્યાખ્યાયિત છે,
+                                    જ્યારે 'પરસ્પર નિવારક' ઘટનાઓના સંદર્ભમાં વ્યાખ્યાયિત છે.</p>
                             </div>
 
                             <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 md:col-span-2">
-                                <span class="font-bold text-indigo-600 text-xs">(iv) ત્રણ ઘટનાઓ A, B, C માટે પરસ્પર નિરપેક્ષતાની શરતો:</span>
-                                <div class="mt-2 grid grid-cols-2 sm:grid-cols-4 gap-2 text-center text-xs font-mono font-semibold text-slate-800">
+                                <span class="font-bold text-indigo-600 text-xs">(iv) ત્રણ ઘટનાઓ A, B, C માટે પરસ્પર
+                                    નિરપેક્ષતાની શરતો:</span>
+                                <div
+                                    class="mt-2 grid grid-cols-2 sm:grid-cols-4 gap-2 text-center text-xs font-mono font-semibold text-slate-800">
                                     <div class="p-2 bg-white rounded border">$P(A\cap B) = P(A)P(B)$</div>
                                     <div class="p-2 bg-white rounded border">$P(A\cap C) = P(A)P(C)$</div>
                                     <div class="p-2 bg-white rounded border">$P(B\cap C) = P(B)P(C)$</div>
@@ -688,11 +810,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             </div>
 
                             <div class="p-4 rounded-xl bg-indigo-50 border border-indigo-200 md:col-span-2">
-                                <span class="font-bold text-indigo-800 text-xs">(v) જો E અને F નિરપેક્ષ ઘટનાઓ હોય તો નીચેની જોડીઓ પણ નિરપેક્ષ છે:</span>
+                                <span class="font-bold text-indigo-800 text-xs">(v) જો E અને F નિરપેક્ષ ઘટનાઓ હોય તો
+                                    નીચેની જોડીઓ પણ નિરપેક્ષ છે:</span>
                                 <div class="flex flex-wrap gap-3 mt-2 text-xs font-semibold text-indigo-700">
                                     <span class="px-3 py-1 bg-white rounded-full border shadow-sm">✨ $E$ અને $F'$</span>
                                     <span class="px-3 py-1 bg-white rounded-full border shadow-sm">✨ $E'$ અને $F$</span>
-                                    <span class="px-3 py-1 bg-white rounded-full border shadow-sm">✨ $E'$ અને $F'$</span>
+                                    <span class="px-3 py-1 bg-white rounded-full border shadow-sm">✨ $E'$ અને
+                                        $F'$</span>
                                 </div>
                             </div>
                         </div>
@@ -702,13 +826,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             <!-- SECTION 13.5: બેયૂઝનો પ્રમેય (With Graphical Diagram) -->
             <section id="sec-13-5" class="tab-content hidden transition-opacity duration-300">
-                <div class="rounded-3xl bg-gradient-to-br from-rose-600 via-pink-600 to-amber-600 p-6 sm:p-8 text-white shadow-2xl mb-8">
-                    <span class="inline-block px-3 py-1 bg-white/20 backdrop-blur-md rounded-full text-xs font-semibold tracking-wider mb-3 uppercase">
+                <div
+                    class="rounded-3xl bg-gradient-to-br from-rose-600 via-pink-600 to-amber-600 p-6 sm:p-8 text-white shadow-2xl mb-8">
+                    <span
+                        class="inline-block px-3 py-1 bg-white/20 backdrop-blur-md rounded-full text-xs font-semibold tracking-wider mb-3 uppercase">
                         પ્રકરણ 13 • વિભાગ 13.5
                     </span>
                     <h2 class="text-2xl sm:text-4xl font-extrabold mb-3">13.5 બેયૂઝનો પ્રમેય (Bayes' Theorem)</h2>
                     <p class="text-sm sm:text-base text-rose-100 max-w-3xl leading-relaxed">
-                        સુવિખ્યાત ગણિતશાસ્ત્રી જહોન બેયૂઝે શરતી સંભાવનાનો ઉપયોગ કરીને પ્રતિસંભાવના શોધવાનો કોયડો ઉકેલ્યો. તેમના મરણોત્તર C. A. 1763 માં પ્રકાશિત થયો.
+                        સુવિખ્યાત ગણિતશાસ્ત્રી જહોન બેયૂઝે શરતી સંભાવનાનો ઉપયોગ કરીને પ્રતિસંભાવના શોધવાનો કોયડો
+                        ઉકેલ્યો. તેમના મરણોત્તર C. A. 1763 માં પ્રકાશિત થયો.
                     </p>
                 </div>
 
@@ -720,28 +847,39 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                                 <span class="p-2 bg-rose-100 text-rose-600 rounded-xl text-lg">📐</span>
                                 <span>13.5.1 નિદર્શાવકાશનું વિભાજન & સંભાવના આલેખ (Partition Diagram)</span>
                             </h3>
-                            <p class="text-xs text-slate-500 mt-1">PDF માં દર્શાવેલ નિદર્શાવકાશ S ના વિભાજન અને ઘટના A નો ઇન્ટરેક્ટિવ વિઝ્યુઅલ ગ્રાફ</p>
+                            <p class="text-xs text-slate-500 mt-1">PDF માં દર્શાવેલ નિદર્શાવકાશ S ના વિભાજન અને ઘટના A
+                                નો ઇન્ટરેક્ટિવ વિઝ્યુઅલ ગ્રાફ</p>
                         </div>
                         <div class="flex space-x-2">
-                            <button onclick="highlightPartition('all')" class="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 rounded-lg text-xs font-medium text-slate-700">બધું દર્શાવો</button>
-                            <button onclick="highlightPartition('A')" class="px-3 py-1.5 bg-rose-500 hover:bg-rose-600 text-white rounded-lg text-xs font-medium shadow-sm">ઘટના A Highlight</button>
+                            <button onclick="highlightPartition('all')"
+                                class="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 rounded-lg text-xs font-medium text-slate-700">બધું
+                                દર્શાવો</button>
+                            <button onclick="highlightPartition('A')"
+                                class="px-3 py-1.5 bg-rose-500 hover:bg-rose-600 text-white rounded-lg text-xs font-medium shadow-sm">ઘટના
+                                A Highlight</button>
                         </div>
                     </div>
 
                     <!-- SVG GRAPH DRAWING EXACTLY AS IN PDF -->
-                    <div class="relative bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900 p-6 rounded-2xl border border-slate-800 text-white shadow-2xl flex flex-col items-center">
+                    <div
+                        class="relative bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900 p-6 rounded-2xl border border-slate-800 text-white shadow-2xl flex flex-col items-center">
                         <div class="w-full max-w-2xl relative">
                             <svg viewBox="0 0 600 350" class="w-full h-auto drop-shadow-xl" id="bayesSvg">
                                 <!-- Outer Sample Space S Rectangle -->
-                                <rect x="20" y="20" width="560" height="310" rx="16" fill="#1e293b" stroke="#38bdf8" stroke-width="3" stroke-dasharray="none" />
-                                
+                                <rect x="20" y="20" width="560" height="310" rx="16" fill="#1e293b" stroke="#38bdf8"
+                                    stroke-width="3" stroke-dasharray="none" />
+
                                 <!-- Label S -->
-                                <text x="300" y="45" font-size="22" font-weight="bold" fill="#38bdf8" text-anchor="middle">S (નિદર્શાવકાશ)</text>
+                                <text x="300" y="45" font-size="22" font-weight="bold" fill="#38bdf8"
+                                    text-anchor="middle">S (નિદર્શાવકાશ)</text>
 
                                 <!-- Partition Vertical Curves / Lines -->
-                                <path d="M 160 20 C 180 120, 140 220, 160 330" fill="none" stroke="#64748b" stroke-width="2" stroke-dasharray="4 4"/>
-                                <path d="M 300 20 C 280 120, 320 220, 300 330" fill="none" stroke="#64748b" stroke-width="2" stroke-dasharray="4 4"/>
-                                <path d="M 440 20 C 460 120, 420 220, 440 330" fill="none" stroke="#64748b" stroke-width="2" stroke-dasharray="4 4"/>
+                                <path d="M 160 20 C 180 120, 140 220, 160 330" fill="none" stroke="#64748b"
+                                    stroke-width="2" stroke-dasharray="4 4" />
+                                <path d="M 300 20 C 280 120, 320 220, 300 330" fill="none" stroke="#64748b"
+                                    stroke-width="2" stroke-dasharray="4 4" />
+                                <path d="M 440 20 C 460 120, 420 220, 440 330" fill="none" stroke="#64748b"
+                                    stroke-width="2" stroke-dasharray="4 4" />
 
                                 <!-- Partition Event Labels -->
                                 <text x="80" y="80" font-size="20" font-weight="bold" fill="#a7f3d0">E₁</text>
@@ -751,13 +889,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                                 <text x="520" y="290" font-size="18" font-weight="bold" fill="#94a3b8">...</text>
 
                                 <!-- Middle Oval Event A Cutting across E1, E2, E3, ... En -->
-                                <ellipse id="svgEventA" cx="300" cy="180" rx="220" ry="85" fill="rgba(244, 63, 94, 0.35)" stroke="#f43f5e" stroke-width="4" class="transition-all duration-300" />
-                                
-                                <text x="300" y="188" font-size="32" font-weight="extrabold" fill="#ffffff" text-anchor="middle" class="drop-shadow">A</text>
+                                <ellipse id="svgEventA" cx="300" cy="180" rx="220" ry="85"
+                                    fill="rgba(244, 63, 94, 0.35)" stroke="#f43f5e" stroke-width="4"
+                                    class="transition-all duration-300" />
+
+                                <text x="300" y="188" font-size="32" font-weight="extrabold" fill="#ffffff"
+                                    text-anchor="middle" class="drop-shadow">A</text>
                             </svg>
                         </div>
                         <p class="text-xs text-slate-400 mt-4 text-center">
-                            આકૃતિ: નિદર્શાવકાશ $S$ નું $E_1, E_2, E_3 \dots E_n$ પરસ્પર અલગ ઘટનાઓમાં વિભાજન અને ઘટના $A$.
+                            આકૃતિ: નિદર્શાવકાશ $S$ નું $E_1, E_2, E_3 \dots E_n$ પરસ્પર અલગ ઘટનાઓમાં વિભાજન અને ઘટના
+                            $A$.
                         </p>
                     </div>
 
@@ -781,10 +923,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <!-- Theorem Statements -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                     <!-- Total Probability Theorem -->
-                    <div class="bg-white rounded-3xl p-6 shadow-xl border border-slate-100 flex flex-col justify-between">
+                    <div
+                        class="bg-white rounded-3xl p-6 shadow-xl border border-slate-100 flex flex-col justify-between">
                         <div>
-                            <span class="px-3 py-1 bg-indigo-100 text-indigo-700 font-bold text-xs rounded-full">13.5.2</span>
-                            <h3 class="text-lg font-bold text-slate-900 mt-2 mb-2">સંપૂર્ણ સંભાવનાનું પ્રમેય (Theorem of Total Probability)</h3>
+                            <span
+                                class="px-3 py-1 bg-indigo-100 text-indigo-700 font-bold text-xs rounded-full">13.5.2</span>
+                            <h3 class="text-lg font-bold text-slate-900 mt-2 mb-2">સંપૂર્ણ સંભાવનાનું પ્રમેય (Theorem of
+                                Total Probability)</h3>
                             <p class="text-xs text-slate-600 leading-relaxed mb-4">
                                 $\{E_1, E_2, \dots, E_n\}$ એ $S$ નું વિભાજન છે. $S$ ની કોઈપણ ઘટના $A$ માટે:
                             </p>
@@ -797,10 +942,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     </div>
 
                     <!-- Bayes Theorem -->
-                    <div class="bg-white rounded-3xl p-6 shadow-xl border border-slate-100 flex flex-col justify-between">
+                    <div
+                        class="bg-white rounded-3xl p-6 shadow-xl border border-slate-100 flex flex-col justify-between">
                         <div>
-                            <span class="px-3 py-1 bg-rose-100 text-rose-700 font-bold text-xs rounded-full">મુખ્ય સૂત્ર</span>
-                            <h3 class="text-lg font-bold text-slate-900 mt-2 mb-2">બેયૂઝનો પ્રમેય (Bayes' Theorem Formula)</h3>
+                            <span class="px-3 py-1 bg-rose-100 text-rose-700 font-bold text-xs rounded-full">મુખ્ય
+                                સૂત્ર</span>
+                            <h3 class="text-lg font-bold text-slate-900 mt-2 mb-2">બેયૂઝનો પ્રમેય (Bayes' Theorem
+                                Formula)</h3>
                             <p class="text-xs text-slate-600 leading-relaxed mb-4">
                                 શૂન્યેતર સંભાવના ધરાવતી ઘટના $A$ માટે પ્રત્યેક $i = 1, 2, 3 \dots n$ માટે:
                             </p>
@@ -833,7 +981,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             શરતી સંભાવના $P(E_i|A)$ ને પૂર્વ ઘટના $E_i$ ની ઉત્તર સંભાવના કહેવાય છે.
                         </div>
                     </div>
-                    <div class="mt-4 p-4 bg-rose-50 border border-rose-200 rounded-xl text-xs text-rose-900 font-medium flex items-center space-x-2">
+                    <div
+                        class="mt-4 p-4 bg-rose-50 border border-rose-200 rounded-xl text-xs text-rose-900 font-medium flex items-center space-x-2">
                         <span>💡</span>
                         <span>બેયૂઝના પ્રમેયને **'કારણો'ની સંભાવનાનું સૂત્ર** (Probability of Causes) પણ કહે છે.</span>
                     </div>
@@ -842,13 +991,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             <!-- SECTION: 20 Web UI/UX Design Principles -->
             <section id="sec-ux-principles" class="tab-content hidden transition-opacity duration-300">
-                <div class="rounded-3xl bg-gradient-to-br from-amber-500 via-orange-500 to-rose-600 p-6 sm:p-8 text-white shadow-2xl mb-8">
-                    <span class="inline-block px-3 py-1 bg-white/20 backdrop-blur-md rounded-full text-xs font-semibold tracking-wider mb-3 uppercase">
+                <div
+                    class="rounded-3xl bg-gradient-to-br from-amber-500 via-orange-500 to-rose-600 p-6 sm:p-8 text-white shadow-2xl mb-8">
+                    <span
+                        class="inline-block px-3 py-1 bg-white/20 backdrop-blur-md rounded-full text-xs font-semibold tracking-wider mb-3 uppercase">
                         UI/UX Architecture
                     </span>
                     <h2 class="text-2xl sm:text-4xl font-extrabold mb-3">🎨 20 Web Design Principles</h2>
                     <p class="text-sm sm:text-base text-amber-100 max-w-3xl leading-relaxed">
-                        These 20 foundational web design principles were actively applied to design this mobile-first, desktop-optimized material web platform!
+                        These 20 foundational web design principles were actively applied to design this mobile-first,
+                        desktop-optimized material web platform!
                     </p>
                 </div>
 
@@ -856,181 +1008,221 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <!-- Principle 1 -->
                     <div class="bg-white p-5 rounded-2xl shadow-md border border-slate-100 hover:shadow-lg transition">
                         <div class="flex items-center space-x-3 mb-2">
-                            <span class="w-8 h-8 rounded-xl bg-amber-500 text-white font-bold flex items-center justify-center text-xs">1</span>
+                            <span
+                                class="w-8 h-8 rounded-xl bg-amber-500 text-white font-bold flex items-center justify-center text-xs">1</span>
                             <h4 class="font-bold text-slate-900 text-sm">Use readable & web-friendly fonts</h4>
                         </div>
-                        <p class="text-xs text-slate-600">Selected typography (Inter/Gujarati) maintaining highest legibility across all screen sizes.</p>
+                        <p class="text-xs text-slate-600">Selected typography (Inter/Gujarati) maintaining highest
+                            legibility across all screen sizes.</p>
                     </div>
 
                     <!-- Principle 2 -->
                     <div class="bg-white p-5 rounded-2xl shadow-md border border-slate-100 hover:shadow-lg transition">
                         <div class="flex items-center space-x-3 mb-2">
-                            <span class="w-8 h-8 rounded-xl bg-amber-500 text-white font-bold flex items-center justify-center text-xs">2</span>
+                            <span
+                                class="w-8 h-8 rounded-xl bg-amber-500 text-white font-bold flex items-center justify-center text-xs">2</span>
                             <h4 class="font-bold text-slate-900 text-sm">Utilize the ‘F’ pattern</h4>
                         </div>
-                        <p class="text-xs text-slate-600">Structured header and topic text layout to match the eye’s natural scanning habits.</p>
+                        <p class="text-xs text-slate-600">Structured header and topic text layout to match the eye’s
+                            natural scanning habits.</p>
                     </div>
 
                     <!-- Principle 3 -->
                     <div class="bg-white p-5 rounded-2xl shadow-md border border-slate-100 hover:shadow-lg transition">
                         <div class="flex items-center space-x-3 mb-2">
-                            <span class="w-8 h-8 rounded-xl bg-amber-500 text-white font-bold flex items-center justify-center text-xs">3</span>
+                            <span
+                                class="w-8 h-8 rounded-xl bg-amber-500 text-white font-bold flex items-center justify-center text-xs">3</span>
                             <h4 class="font-bold text-slate-900 text-sm">Or the ‘Z’ pattern</h4>
                         </div>
-                        <p class="text-xs text-slate-600">Diagonal layout flow leading straight to key topic switches and formula action triggers.</p>
+                        <p class="text-xs text-slate-600">Diagonal layout flow leading straight to key topic switches
+                            and formula action triggers.</p>
                     </div>
 
                     <!-- Principle 4 -->
                     <div class="bg-white p-5 rounded-2xl shadow-md border border-slate-100 hover:shadow-lg transition">
                         <div class="flex items-center space-x-3 mb-2">
-                            <span class="w-8 h-8 rounded-xl bg-amber-500 text-white font-bold flex items-center justify-center text-xs">4</span>
+                            <span
+                                class="w-8 h-8 rounded-xl bg-amber-500 text-white font-bold flex items-center justify-center text-xs">4</span>
                             <h4 class="font-bold text-slate-900 text-sm">Use negative space</h4>
                         </div>
-                        <p class="text-xs text-slate-600">Generous padding and margins around cards reduce visual fatigue and highlight core math content.</p>
+                        <p class="text-xs text-slate-600">Generous padding and margins around cards reduce visual
+                            fatigue and highlight core math content.</p>
                     </div>
 
                     <!-- Principle 5 -->
                     <div class="bg-white p-5 rounded-2xl shadow-md border border-slate-100 hover:shadow-lg transition">
                         <div class="flex items-center space-x-3 mb-2">
-                            <span class="w-8 h-8 rounded-xl bg-amber-500 text-white font-bold flex items-center justify-center text-xs">5</span>
+                            <span
+                                class="w-8 h-8 rounded-xl bg-amber-500 text-white font-bold flex items-center justify-center text-xs">5</span>
                             <h4 class="font-bold text-slate-900 text-sm">Keep your design consistent</h4>
                         </div>
-                        <p class="text-xs text-slate-600">Uniform card roundedness, shadow depth, material badges, and mathematical typesetting.</p>
+                        <p class="text-xs text-slate-600">Uniform card roundedness, shadow depth, material badges, and
+                            mathematical typesetting.</p>
                     </div>
 
                     <!-- Principle 6 -->
                     <div class="bg-white p-5 rounded-2xl shadow-md border border-slate-100 hover:shadow-lg transition">
                         <div class="flex items-center space-x-3 mb-2">
-                            <span class="w-8 h-8 rounded-xl bg-amber-500 text-white font-bold flex items-center justify-center text-xs">6</span>
+                            <span
+                                class="w-8 h-8 rounded-xl bg-amber-500 text-white font-bold flex items-center justify-center text-xs">6</span>
                             <h4 class="font-bold text-slate-900 text-sm">Simple and logical page navigation</h4>
                         </div>
-                        <p class="text-xs text-slate-600">Sidebar navigation and mobile drawer guide students effortlessly without clutter.</p>
+                        <p class="text-xs text-slate-600">Sidebar navigation and mobile drawer guide students
+                            effortlessly without clutter.</p>
                     </div>
 
                     <!-- Principle 7 -->
                     <div class="bg-white p-5 rounded-2xl shadow-md border border-slate-100 hover:shadow-lg transition">
                         <div class="flex items-center space-x-3 mb-2">
-                            <span class="w-8 h-8 rounded-xl bg-amber-500 text-white font-bold flex items-center justify-center text-xs">7</span>
+                            <span
+                                class="w-8 h-8 rounded-xl bg-amber-500 text-white font-bold flex items-center justify-center text-xs">7</span>
                             <h4 class="font-bold text-slate-900 text-sm">Use a complementary color palette</h4>
                         </div>
-                        <p class="text-xs text-slate-600">Material Design 3 vibrant gradients (Indigo, Cyan, Rose, Amber) evoke focus and high energy.</p>
+                        <p class="text-xs text-slate-600">Material Design 3 vibrant gradients (Indigo, Cyan, Rose,
+                            Amber) evoke focus and high energy.</p>
                     </div>
 
                     <!-- Principle 8 -->
                     <div class="bg-white p-5 rounded-2xl shadow-md border border-slate-100 hover:shadow-lg transition">
                         <div class="flex items-center space-x-3 mb-2">
-                            <span class="w-8 h-8 rounded-xl bg-amber-500 text-white font-bold flex items-center justify-center text-xs">8</span>
+                            <span
+                                class="w-8 h-8 rounded-xl bg-amber-500 text-white font-bold flex items-center justify-center text-xs">8</span>
                             <h4 class="font-bold text-slate-900 text-sm">Keep the audience in mind</h4>
                         </div>
-                        <p class="text-xs text-slate-600">Tailored specifically for Class 12 GSEB math students studying probability concepts in Gujarati.</p>
+                        <p class="text-xs text-slate-600">Tailored specifically for Class 12 GSEB math students studying
+                            probability concepts in Gujarati.</p>
                     </div>
 
                     <!-- Principle 9 -->
                     <div class="bg-white p-5 rounded-2xl shadow-md border border-slate-100 hover:shadow-lg transition">
                         <div class="flex items-center space-x-3 mb-2">
-                            <span class="w-8 h-8 rounded-xl bg-amber-500 text-white font-bold flex items-center justify-center text-xs">9</span>
+                            <span
+                                class="w-8 h-8 rounded-xl bg-amber-500 text-white font-bold flex items-center justify-center text-xs">9</span>
                             <h4 class="font-bold text-slate-900 text-sm">Optimize buttons and calls-to-action</h4>
                         </div>
-                        <p class="text-xs text-slate-600">High-contrast primary buttons with subtle scale animations encourage interaction.</p>
+                        <p class="text-xs text-slate-600">High-contrast primary buttons with subtle scale animations
+                            encourage interaction.</p>
                     </div>
 
                     <!-- Principle 10 -->
                     <div class="bg-white p-5 rounded-2xl shadow-md border border-slate-100 hover:shadow-lg transition">
                         <div class="flex items-center space-x-3 mb-2">
-                            <span class="w-8 h-8 rounded-xl bg-amber-500 text-white font-bold flex items-center justify-center text-xs">10</span>
+                            <span
+                                class="w-8 h-8 rounded-xl bg-amber-500 text-white font-bold flex items-center justify-center text-xs">10</span>
                             <h4 class="font-bold text-slate-900 text-sm">Maintain a visual hierarchy</h4>
                         </div>
-                        <p class="text-xs text-slate-600">Section titles, definitions, math formulas, and notes are formatted with descending visual weights.</p>
+                        <p class="text-xs text-slate-600">Section titles, definitions, math formulas, and notes are
+                            formatted with descending visual weights.</p>
                     </div>
 
                     <!-- Principle 11 -->
                     <div class="bg-white p-5 rounded-2xl shadow-md border border-slate-100 hover:shadow-lg transition">
                         <div class="flex items-center space-x-3 mb-2">
-                            <span class="w-8 h-8 rounded-xl bg-amber-500 text-white font-bold flex items-center justify-center text-xs">11</span>
+                            <span
+                                class="w-8 h-8 rounded-xl bg-amber-500 text-white font-bold flex items-center justify-center text-xs">11</span>
                             <h4 class="font-bold text-slate-900 text-sm">Pay attention to the details</h4>
                         </div>
-                        <p class="text-xs text-slate-600">Refined micro-interactions, crisp mathematical rendering with KaTeX, and smooth tab switching.</p>
+                        <p class="text-xs text-slate-600">Refined micro-interactions, crisp mathematical rendering with
+                            KaTeX, and smooth tab switching.</p>
                     </div>
 
                     <!-- Principle 12 -->
                     <div class="bg-white p-5 rounded-2xl shadow-md border border-slate-100 hover:shadow-lg transition">
                         <div class="flex items-center space-x-3 mb-2">
-                            <span class="w-8 h-8 rounded-xl bg-amber-500 text-white font-bold flex items-center justify-center text-xs">12</span>
+                            <span
+                                class="w-8 h-8 rounded-xl bg-amber-500 text-white font-bold flex items-center justify-center text-xs">12</span>
                             <h4 class="font-bold text-slate-900 text-sm">Use Fitts's Law</h4>
                         </div>
-                        <p class="text-xs text-slate-600">Navigation tabs and search triggers feature large hit targets easy to tap on touchscreen phones.</p>
+                        <p class="text-xs text-slate-600">Navigation tabs and search triggers feature large hit targets
+                            easy to tap on touchscreen phones.</p>
                     </div>
 
                     <!-- Principle 13 -->
                     <div class="bg-white p-5 rounded-2xl shadow-md border border-slate-100 hover:shadow-lg transition">
                         <div class="flex items-center space-x-3 mb-2">
-                            <span class="w-8 h-8 rounded-xl bg-amber-500 text-white font-bold flex items-center justify-center text-xs">13</span>
+                            <span
+                                class="w-8 h-8 rounded-xl bg-amber-500 text-white font-bold flex items-center justify-center text-xs">13</span>
                             <h4 class="font-bold text-slate-900 text-sm">Choose your images wisely</h4>
                         </div>
-                        <p class="text-xs text-slate-600">Interactive SVG diagram replaces static raster graphics to clearly illustrate partition of sample space.</p>
+                        <p class="text-xs text-slate-600">Interactive SVG diagram replaces static raster graphics to
+                            clearly illustrate partition of sample space.</p>
                     </div>
 
                     <!-- Principle 14 -->
                     <div class="bg-white p-5 rounded-2xl shadow-md border border-slate-100 hover:shadow-lg transition">
                         <div class="flex items-center space-x-3 mb-2">
-                            <span class="w-8 h-8 rounded-xl bg-amber-500 text-white font-bold flex items-center justify-center text-xs">14</span>
+                            <span
+                                class="w-8 h-8 rounded-xl bg-amber-500 text-white font-bold flex items-center justify-center text-xs">14</span>
                             <h4 class="font-bold text-slate-900 text-sm">Prioritize the user experience</h4>
                         </div>
-                        <p class="text-xs text-slate-600">Instant topic jump and real-time search filter make studying quick and frictionless.</p>
+                        <p class="text-xs text-slate-600">Instant topic jump and real-time search filter make studying
+                            quick and frictionless.</p>
                     </div>
 
                     <!-- Principle 15 -->
                     <div class="bg-white p-5 rounded-2xl shadow-md border border-slate-100 hover:shadow-lg transition">
                         <div class="flex items-center space-x-3 mb-2">
-                            <span class="w-8 h-8 rounded-xl bg-amber-500 text-white font-bold flex items-center justify-center text-xs">15</span>
+                            <span
+                                class="w-8 h-8 rounded-xl bg-amber-500 text-white font-bold flex items-center justify-center text-xs">15</span>
                             <h4 class="font-bold text-slate-900 text-sm">Consider using grid systems</h4>
                         </div>
-                        <p class="text-xs text-slate-600">Strict CSS Grid layout organizes formulas and tables symmetrically.</p>
+                        <p class="text-xs text-slate-600">Strict CSS Grid layout organizes formulas and tables
+                            symmetrically.</p>
                     </div>
 
                     <!-- Principle 16 -->
                     <div class="bg-white p-5 rounded-2xl shadow-md border border-slate-100 hover:shadow-lg transition">
                         <div class="flex items-center space-x-3 mb-2">
-                            <span class="w-8 h-8 rounded-xl bg-amber-500 text-white font-bold flex items-center justify-center text-xs">16</span>
+                            <span
+                                class="w-8 h-8 rounded-xl bg-amber-500 text-white font-bold flex items-center justify-center text-xs">16</span>
                             <h4 class="font-bold text-slate-900 text-sm">Avoid big chunks of text</h4>
                         </div>
-                        <p class="text-xs text-slate-600">Text broken down into bite-sized bullet points, highlight badges, and styled formula blocks.</p>
+                        <p class="text-xs text-slate-600">Text broken down into bite-sized bullet points, highlight
+                            badges, and styled formula blocks.</p>
                     </div>
 
                     <!-- Principle 17 -->
                     <div class="bg-white p-5 rounded-2xl shadow-md border border-slate-100 hover:shadow-lg transition">
                         <div class="flex items-center space-x-3 mb-2">
-                            <span class="w-8 h-8 rounded-xl bg-amber-500 text-white font-bold flex items-center justify-center text-xs">17</span>
+                            <span
+                                class="w-8 h-8 rounded-xl bg-amber-500 text-white font-bold flex items-center justify-center text-xs">17</span>
                             <h4 class="font-bold text-slate-900 text-sm">Use invariance</h4>
                         </div>
-                        <p class="text-xs text-slate-600">Key formulas like Bayes' Theorem and Total Probability are visually distinctive from standard notes.</p>
+                        <p class="text-xs text-slate-600">Key formulas like Bayes' Theorem and Total Probability are
+                            visually distinctive from standard notes.</p>
                     </div>
 
                     <!-- Principle 18 -->
                     <div class="bg-white p-5 rounded-2xl shadow-md border border-slate-100 hover:shadow-lg transition">
                         <div class="flex items-center space-x-3 mb-2">
-                            <span class="w-8 h-8 rounded-xl bg-amber-500 text-white font-bold flex items-center justify-center text-xs">18</span>
+                            <span
+                                class="w-8 h-8 rounded-xl bg-amber-500 text-white font-bold flex items-center justify-center text-xs">18</span>
                             <h4 class="font-bold text-slate-900 text-sm">Hick's Law</h4>
                         </div>
-                        <p class="text-xs text-slate-600">Categorized navigation prevents choice paralysis, letting users focus topic by topic.</p>
+                        <p class="text-xs text-slate-600">Categorized navigation prevents choice paralysis, letting
+                            users focus topic by topic.</p>
                     </div>
 
                     <!-- Principle 19 -->
                     <div class="bg-white p-5 rounded-2xl shadow-md border border-slate-100 hover:shadow-lg transition">
                         <div class="flex items-center space-x-3 mb-2">
-                            <span class="w-8 h-8 rounded-xl bg-amber-500 text-white font-bold flex items-center justify-center text-xs">19</span>
+                            <span
+                                class="w-8 h-8 rounded-xl bg-amber-500 text-white font-bold flex items-center justify-center text-xs">19</span>
                             <h4 class="font-bold text-slate-900 text-sm">Use symmetry</h4>
                         </div>
-                        <p class="text-xs text-slate-600">Balanced multi-column card grids create visual equilibrium and calm reading state.</p>
+                        <p class="text-xs text-slate-600">Balanced multi-column card grids create visual equilibrium and
+                            calm reading state.</p>
                     </div>
 
                     <!-- Principle 20 -->
                     <div class="bg-white p-5 rounded-2xl shadow-md border border-slate-100 hover:shadow-lg transition">
                         <div class="flex items-center space-x-3 mb-2">
-                            <span class="w-8 h-8 rounded-xl bg-amber-500 text-white font-bold flex items-center justify-center text-xs">20</span>
+                            <span
+                                class="w-8 h-8 rounded-xl bg-amber-500 text-white font-bold flex items-center justify-center text-xs">20</span>
                             <h4 class="font-bold text-slate-900 text-sm">Design for both web and mobile</h4>
                         </div>
-                        <p class="text-xs text-slate-600">100% fluid responsive design adapting seamlessly from small mobile screens to 4K displays.</p>
+                        <p class="text-xs text-slate-600">100% fluid responsive design adapting seamlessly from small
+                            mobile screens to 4K displays.</p>
                     </div>
                 </div>
             </section>
@@ -1138,6 +1330,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             }
         });
     </script>
-<script src="../assets/global-navbar.js" defer></script>
+    <script src="../assets/global-navbar.js" defer></script>
 </body>
+
 </html>

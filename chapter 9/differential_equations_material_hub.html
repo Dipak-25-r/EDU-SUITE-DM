@@ -1,66 +1,81 @@
 <!DOCTYPE html>
 <html lang="gu" class="scroll-smooth">
+
 <head>
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-5MXP3RTV');</script>
-<!-- End Google Tag Manager -->
+  <!-- Google Tag Manager -->
+  <script>(function (w, d, s, l, i) {
+      w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+          new Date().getTime(), event: 'gtm.js'
+      }); var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-5MXP3RTV');</script>
+  <!-- End Google Tag Manager -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>9. વિકલ સમીકરણો | Differential Equations - Interactive Study Hub</title>
-    <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-  import { getFirestore, doc, setDoc, increment } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8G4448P207"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
 
-  // Replace with your Firebase configuration object
- // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyAtDRRnUE3FM06gPrs9mHWXJnU9fXv5B54",
-  authDomain: "edu-suite-a55a5.firebaseapp.com",
-  projectId: "edu-suite-a55a5",
-  storageBucket: "edu-suite-a55a5.firebasestorage.app",
-  messagingSenderId: "5059668896",
-  appId: "1:5059668896:web:76fc4c09c1d298ca8012c5",
-  measurementId: "G-8G4448P207"
-};
+    gtag('config', 'G-8G4448P207');
+  </script>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getFirestore, doc, setDoc, increment } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
+    // Replace with your Firebase configuration object
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyAtDRRnUE3FM06gPrs9mHWXJnU9fXv5B54",
+      authDomain: "edu-suite-a55a5.firebaseapp.com",
+      projectId: "edu-suite-a55a5",
+      storageBucket: "edu-suite-a55a5.firebasestorage.app",
+      messagingSenderId: "5059668896",
+      appId: "1:5059668896:web:76fc4c09c1d298ca8012c5",
+      measurementId: "G-8G4448P207"
+    };
 
-        async function trackPageView(pageName) {
-  // Document reference in the 'analytics' collection
-  const pageRef = doc(db, "analytics", pageName);
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
 
-  try {
-    // Increment totalViews by 1 safely
-    await setDoc(pageRef, {
-      totalViews: increment(1),
-      lastVisited: new Date()
-    }, { merge: true });
-    
-    console.log(`Page view tracked for: ${pageName}`);
-  } catch (error) {
-    console.error("Error tracking analytics: ", error);
-  }
-}
+    async function trackPageView(pageName) {
+      // Document reference in the 'analytics' collection
+      const pageRef = doc(db, "analytics", pageName);
 
-// Automatically track on page load
-const currentPage = window.location.pathname.replace(/\//g, "_") || "home";
-trackPageView(currentPage);
-</script>
+      try {
+        // Increment totalViews by 1 safely
+        await setDoc(pageRef, {
+          totalViews: increment(1),
+          lastVisited: new Date()
+        }, { merge: true });
 
-  
+        console.log(`Page view tracked for: ${pageName}`);
+      } catch (error) {
+        console.error("Error tracking analytics: ", error);
+      }
+    }
+
+    // Automatically track on page load
+    const currentPage = window.location.pathname.replace(/\//g, "_") || "home";
+    trackPageView(currentPage);
+  </script>
+
+
   <!-- Google Fonts: Noto Sans Gujarati & Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Gujarati:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+Gujarati:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  
+
   <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
@@ -117,57 +132,69 @@ trackPageView(currentPage);
     body {
       font-family: 'Plus Jakarta Sans', 'Noto Sans Gujarati', sans-serif;
     }
+
     .glass-card {
       background: rgba(255, 255, 255, 0.85);
       backdrop-filter: blur(12px);
       border: 1px solid rgba(229, 231, 235, 0.8);
     }
+
     .dark .glass-card {
       background: rgba(30, 41, 59, 0.85);
       border: 1px solid rgba(51, 65, 85, 0.8);
     }
+
     .gradient-hero {
       background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #ec4899 100%);
     }
+
     .gradient-accent-1 {
       background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
     }
+
     .gradient-accent-2 {
       background: linear-gradient(135deg, #10b981 0%, #059669 100%);
     }
+
     .gradient-accent-3 {
       background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
     }
+
     /* Smooth Scrollbar */
     ::-webkit-scrollbar {
       width: 8px;
       height: 8px;
     }
+
     ::-webkit-scrollbar-track {
       background: #f1f5f9;
     }
+
     .dark ::-webkit-scrollbar-track {
       background: #0f172a;
     }
+
     ::-webkit-scrollbar-thumb {
       background: #818cf8;
       border-radius: 9999px;
     }
   </style>
-<link rel="stylesheet" href="../assets/global-navbar.css">
+  <link rel="stylesheet" href="../assets/global-navbar.css">
 </head>
 
-<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 transition-colors duration-300 font-gujarati antialiased selection:bg-brand-500 selection:text-white">
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5MXP3RTV"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
+<body
+  class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 transition-colors duration-300 font-gujarati antialiased selection:bg-brand-500 selection:text-white">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5MXP3RTV" height="0" width="0"
+      style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
 
   <!-- TOP HEADER / NAVBAR -->
   <header class="sticky top-0 z-40 w-full glass-card border-b shadow-sm transition-all">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
       <div class="flex items-center space-x-3">
-        <div class="w-10 h-10 rounded-xl gradient-hero flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-brand-500/30">
+        <div
+          class="w-10 h-10 rounded-xl gradient-hero flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-brand-500/30">
           9
         </div>
         <div>
@@ -183,17 +210,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <!-- Search bar input -->
         <div class="relative hidden md:block w-64">
           <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
-          <input type="text" id="searchInput" onkeyup="filterTopics()" placeholder="મુદ્દો અથવા સૂત્ર શોધો..." 
-                 class="w-full pl-9 pr-4 py-1.5 text-xs rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-brand-500 transition" />
+          <input type="text" id="searchInput" onkeyup="filterTopics()" placeholder="મુદ્દો અથવા સૂત્ર શોધો..."
+            class="w-full pl-9 pr-4 py-1.5 text-xs rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-brand-500 transition" />
         </div>
 
         <!-- Dark Mode Toggle -->
-        <button onclick="toggleDarkMode()" class="p-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-amber-400 hover:scale-105 transition" title="તીવ્રતા બદલો">
+        <button onclick="toggleDarkMode()"
+          class="p-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-amber-400 hover:scale-105 transition"
+          title="તીવ્રતા બદલો">
           <i id="themeIcon" class="fa-solid fa-moon text-base"></i>
         </button>
 
         <!-- Dynamic Graph Drawer Toggle -->
-        <a href="#concept-graph" class="px-3 py-1.5 text-xs font-semibold rounded-xl bg-brand-600 text-white hover:bg-brand-700 shadow-md transition flex items-center space-x-1.5">
+        <a href="#concept-graph"
+          class="px-3 py-1.5 text-xs font-semibold rounded-xl bg-brand-600 text-white hover:bg-brand-700 shadow-md transition flex items-center space-x-1.5">
           <i class="fa-solid fa-diagram-project"></i>
           <span class="hidden sm:inline">ગ્રાફ / ફ્લોચાર્ટ</span>
         </a>
@@ -207,7 +237,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- DESKTOP TOPIC NAVIGATION SIDEBAR -->
     <aside class="hidden lg:block w-72 flex-shrink-0 sticky top-22 h-[calc(100vh-6rem)] overflow-y-auto pr-2">
       <div class="space-y-4">
-        <div class="p-4 rounded-2xl bg-gradient-to-br from-indigo-500/10 to-purple-500/10 border border-indigo-200 dark:border-indigo-800/40">
+        <div
+          class="p-4 rounded-2xl bg-gradient-to-br from-indigo-500/10 to-purple-500/10 border border-indigo-200 dark:border-indigo-800/40">
           <h2 class="text-sm font-bold text-indigo-700 dark:text-indigo-300 flex items-center space-x-2 mb-1">
             <i class="fa-solid fa-list-check"></i>
             <span>પ્રકરણ અનુક્રમણિકા</span>
@@ -216,47 +247,58 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
 
         <nav class="space-y-1.5 text-sm font-medium" id="sidebar-nav">
-          <a href="#sec-graph" class="nav-link flex items-center space-x-2.5 px-3 py-2.5 rounded-xl text-slate-700 dark:text-slate-200 hover:bg-brand-50 dark:hover:bg-brand-900/30 hover:text-brand-600 transition">
+          <a href="#sec-graph"
+            class="nav-link flex items-center space-x-2.5 px-3 py-2.5 rounded-xl text-slate-700 dark:text-slate-200 hover:bg-brand-50 dark:hover:bg-brand-900/30 hover:text-brand-600 transition">
             <span class="w-2 h-2 rounded-full bg-pink-500"></span>
             <span class="truncate">🗺️ કન્સેપ્ટ માઇન્ડ મેપ</span>
           </a>
-          <a href="#sec-91" class="nav-link flex items-center space-x-2.5 px-3 py-2.5 rounded-xl text-slate-700 dark:text-slate-200 hover:bg-brand-50 dark:hover:bg-brand-900/30 hover:text-brand-600 transition">
+          <a href="#sec-91"
+            class="nav-link flex items-center space-x-2.5 px-3 py-2.5 rounded-xl text-slate-700 dark:text-slate-200 hover:bg-brand-50 dark:hover:bg-brand-900/30 hover:text-brand-600 transition">
             <span class="w-2 h-2 rounded-full bg-brand-500"></span>
             <span class="truncate">9.1 પ્રાસ્તાવિક (Intro)</span>
           </a>
-          <a href="#sec-92" class="nav-link flex items-center space-x-2.5 px-3 py-2.5 rounded-xl text-slate-700 dark:text-slate-200 hover:bg-brand-50 dark:hover:bg-brand-900/30 hover:text-brand-600 transition">
+          <a href="#sec-92"
+            class="nav-link flex items-center space-x-2.5 px-3 py-2.5 rounded-xl text-slate-700 dark:text-slate-200 hover:bg-brand-50 dark:hover:bg-brand-900/30 hover:text-brand-600 transition">
             <span class="w-2 h-2 rounded-full bg-cyan-500"></span>
             <span class="truncate">9.2 પાયાના સિદ્ધાંતો</span>
           </a>
-          <a href="#sec-921" class="nav-link flex items-center space-x-2.5 px-3 py-2.5 rounded-xl text-slate-700 dark:text-slate-200 hover:bg-brand-50 dark:hover:bg-brand-900/30 hover:text-brand-600 transition pl-6 text-xs">
+          <a href="#sec-921"
+            class="nav-link flex items-center space-x-2.5 px-3 py-2.5 rounded-xl text-slate-700 dark:text-slate-200 hover:bg-brand-50 dark:hover:bg-brand-900/30 hover:text-brand-600 transition pl-6 text-xs">
             <i class="fa-solid fa-chevron-right text-[10px] text-slate-400"></i>
             <span class="truncate">9.2.1 વિકલ સમીકરણની કક્ષા (Order)</span>
           </a>
-          <a href="#sec-922" class="nav-link flex items-center space-x-2.5 px-3 py-2.5 rounded-xl text-slate-700 dark:text-slate-200 hover:bg-brand-50 dark:hover:bg-brand-900/30 hover:text-brand-600 transition pl-6 text-xs">
+          <a href="#sec-922"
+            class="nav-link flex items-center space-x-2.5 px-3 py-2.5 rounded-xl text-slate-700 dark:text-slate-200 hover:bg-brand-50 dark:hover:bg-brand-900/30 hover:text-brand-600 transition pl-6 text-xs">
             <i class="fa-solid fa-chevron-right text-[10px] text-slate-400"></i>
             <span class="truncate">9.2.2 વિકલ સમીકરણનું પરિમાણ (Degree)</span>
           </a>
-          <a href="#sec-93" class="nav-link flex items-center space-x-2.5 px-3 py-2.5 rounded-xl text-slate-700 dark:text-slate-200 hover:bg-brand-50 dark:hover:bg-brand-900/30 hover:text-brand-600 transition">
+          <a href="#sec-93"
+            class="nav-link flex items-center space-x-2.5 px-3 py-2.5 rounded-xl text-slate-700 dark:text-slate-200 hover:bg-brand-50 dark:hover:bg-brand-900/30 hover:text-brand-600 transition">
             <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
             <span class="truncate">9.3 વ્યાપક અને વિશિષ્ટ ઉકેલ</span>
           </a>
-          <a href="#sec-94" class="nav-link flex items-center space-x-2.5 px-3 py-2.5 rounded-xl text-slate-700 dark:text-slate-200 hover:bg-brand-50 dark:hover:bg-brand-900/30 hover:text-brand-600 transition">
+          <a href="#sec-94"
+            class="nav-link flex items-center space-x-2.5 px-3 py-2.5 rounded-xl text-slate-700 dark:text-slate-200 hover:bg-brand-50 dark:hover:bg-brand-900/30 hover:text-brand-600 transition">
             <span class="w-2 h-2 rounded-full bg-amber-500"></span>
             <span class="truncate">9.4 ઉકેલ માટેની મુખ્ય 3 રીતો</span>
           </a>
-          <a href="#sec-941" class="nav-link flex items-center space-x-2.5 px-3 py-2.5 rounded-xl text-slate-700 dark:text-slate-200 hover:bg-brand-50 dark:hover:bg-brand-900/30 hover:text-brand-600 transition pl-6 text-xs">
+          <a href="#sec-941"
+            class="nav-link flex items-center space-x-2.5 px-3 py-2.5 rounded-xl text-slate-700 dark:text-slate-200 hover:bg-brand-50 dark:hover:bg-brand-900/30 hover:text-brand-600 transition pl-6 text-xs">
             <i class="fa-solid fa-circle-dot text-[8px] text-indigo-500"></i>
             <span class="truncate">9.4.1 વિયોજનીય ચલની રીત</span>
           </a>
-          <a href="#sec-942" class="nav-link flex items-center space-x-2.5 px-3 py-2.5 rounded-xl text-slate-700 dark:text-slate-200 hover:bg-brand-50 dark:hover:bg-brand-900/30 hover:text-brand-600 transition pl-6 text-xs">
+          <a href="#sec-942"
+            class="nav-link flex items-center space-x-2.5 px-3 py-2.5 rounded-xl text-slate-700 dark:text-slate-200 hover:bg-brand-50 dark:hover:bg-brand-900/30 hover:text-brand-600 transition pl-6 text-xs">
             <i class="fa-solid fa-circle-dot text-[8px] text-purple-500"></i>
             <span class="truncate">9.4.2 સમપરિમાણ વિકલ સમીકરણ</span>
           </a>
-          <a href="#sec-943" class="nav-link flex items-center space-x-2.5 px-3 py-2.5 rounded-xl text-slate-700 dark:text-slate-200 hover:bg-brand-50 dark:hover:bg-brand-900/30 hover:text-brand-600 transition pl-6 text-xs">
+          <a href="#sec-943"
+            class="nav-link flex items-center space-x-2.5 px-3 py-2.5 rounded-xl text-slate-700 dark:text-slate-200 hover:bg-brand-50 dark:hover:bg-brand-900/30 hover:text-brand-600 transition pl-6 text-xs">
             <i class="fa-solid fa-circle-dot text-[8px] text-pink-500"></i>
             <span class="truncate">9.4.3 સુરેખ વિકલ સમીકરણ (Linear)</span>
           </a>
-          <a href="#sec-quiz" class="nav-link flex items-center space-x-2.5 px-3 py-2.5 rounded-xl text-slate-700 dark:text-slate-200 hover:bg-brand-50 dark:hover:bg-brand-900/30 hover:text-brand-600 transition">
+          <a href="#sec-quiz"
+            class="nav-link flex items-center space-x-2.5 px-3 py-2.5 rounded-xl text-slate-700 dark:text-slate-200 hover:bg-brand-50 dark:hover:bg-brand-900/30 hover:text-brand-600 transition">
             <span class="w-2 h-2 rounded-full bg-teal-500"></span>
             <span class="truncate">⚡ ત્વરિત સ્વ-મૂલ્યાંકન / Quiz</span>
           </a>
@@ -268,17 +310,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <main class="flex-1 min-w-0 space-y-8">
 
       <!-- HERO BANNER -->
-      <section class="relative overflow-hidden rounded-3xl gradient-hero text-white p-6 sm:p-8 shadow-xl shadow-indigo-500/20">
+      <section
+        class="relative overflow-hidden rounded-3xl gradient-hero text-white p-6 sm:p-8 shadow-xl shadow-indigo-500/20">
         <div class="relative z-10 max-w-2xl">
-          <div class="inline-flex items-center space-x-2 bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider mb-3">
+          <div
+            class="inline-flex items-center space-x-2 bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider mb-3">
             <span>✨ ધોરણ 12 ગણિત - પ્રકરણ 9</span>
           </div>
           <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight leading-snug mb-2">
-            9. વિકલ સમીકરણો <br/>
+            9. વિકલ સમીકરણો <br />
             <span class="text-yellow-300 font-sans text-2xl sm:text-3xl">(Differential Equations)</span>
           </h1>
           <p class="text-indigo-100 text-sm leading-relaxed mb-4">
-            યાદ રાખો, પાયાના સિદ્ધાંતો, કક્ષા, પરિમાણ, વ્યાપક-વિશિષ્ટ ઉકેલ અને પ્રથમ કક્ષાના વિકલ સમીકરણ ઉકેલવાની ત્રણેય રીતોનો સચોટ અભ્યાસ.
+            યાદ રાખો, પાયાના સિદ્ધાંતો, કક્ષા, પરિમાણ, વ્યાપક-વિશિષ્ટ ઉકેલ અને પ્રથમ કક્ષાના વિકલ સમીકરણ ઉકેલવાની ત્રણેય
+            રીતોનો સચોટ અભ્યાસ.
           </p>
           <div class="flex flex-wrap gap-2 text-xs">
             <span class="bg-white/20 px-2.5 py-1 rounded-lg">📐 કક્ષા (Order)</span>
@@ -287,7 +332,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </div>
         </div>
         <!-- Decorative Shapes -->
-        <div class="absolute -right-10 -bottom-10 w-60 h-60 bg-white/10 rounded-full blur-2xl pointer-events-none"></div>
+        <div class="absolute -right-10 -bottom-10 w-60 h-60 bg-white/10 rounded-full blur-2xl pointer-events-none">
+        </div>
       </section>
 
       <!-- SECTION: GRAPH / FLOWCHART (Topic & Its Relationship Graph) -->
@@ -299,7 +345,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <i class="fa-solid fa-diagram-project"></i>
               </span>
               <div>
-                <h2 class="text-xl font-bold text-slate-800 dark:text-slate-100">વિકલ સમીકરણો - કન્સેપ્ટ નેવિગેશન ગ્રાફ</h2>
+                <h2 class="text-xl font-bold text-slate-800 dark:text-slate-100">વિકલ સમીકરણો - કન્સેપ્ટ નેવિગેશન ગ્રાફ
+                </h2>
                 <p class="text-xs text-slate-500">PDF ની સમગ્ર થીયરીનો વિઝ્યુઅલ ફ્લોચાર્ટ (Interactive Graph)</p>
               </div>
             </div>
@@ -309,7 +356,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </div>
 
           <!-- Mermaid Visual Graph -->
-          <div class="overflow-x-auto p-4 bg-slate-50 dark:bg-slate-800/60 rounded-2xl border border-slate-200 dark:border-slate-700 flex justify-center">
+          <div
+            class="overflow-x-auto p-4 bg-slate-50 dark:bg-slate-800/60 rounded-2xl border border-slate-200 dark:border-slate-700 flex justify-center">
             <pre class="mermaid">
 graph TD
     A["<b>9. વિકલ સમીકરણો</b><br/>Differential Equations"] --> B["<b>9.2 પાયાના સિદ્ધાંતો</b><br/>Ordinary vs Partial"]
@@ -339,11 +387,13 @@ graph TD
 
       <!-- SECTION 9.1: પ્રાસ્તાવિક -->
       <section id="sec-91" class="scroll-mt-24 topic-card">
-        <div class="glass-card rounded-3xl p-6 shadow-md border border-slate-200 dark:border-slate-800 relative overflow-hidden">
+        <div
+          class="glass-card rounded-3xl p-6 shadow-md border border-slate-200 dark:border-slate-800 relative overflow-hidden">
           <div class="absolute top-0 right-0 w-32 h-32 bg-indigo-500/5 rounded-bl-full pointer-events-none"></div>
-          
+
           <div class="flex items-center space-x-3 mb-4 border-b pb-3 dark:border-slate-700">
-            <span class="p-2.5 rounded-2xl bg-indigo-100 dark:bg-indigo-900/40 text-indigo-600 dark:text-indigo-400 text-lg">
+            <span
+              class="p-2.5 rounded-2xl bg-indigo-100 dark:bg-indigo-900/40 text-indigo-600 dark:text-indigo-400 text-lg">
               <i class="fa-solid fa-book-open"></i>
             </span>
             <div>
@@ -354,28 +404,38 @@ graph TD
 
           <div class="space-y-4 text-slate-700 dark:text-slate-300 leading-relaxed text-sm sm:text-base">
             <p class="bg-indigo-50/50 dark:bg-indigo-950/30 p-4 rounded-2xl border-l-4 border-indigo-500">
-              આપેલ વિધેય $g$ માટે વિધેય $f$ એવું મેળવી શકાય કે જેથી $\frac{dy}{dx}=g(x)$, જ્યાં $f(x)=y$ થાય તો આ પ્રકારનાં સમીકરણને <strong>વિકલ સમીકરણ (Differential Equation)</strong> કહેવાય છે.
+              આપેલ વિધેય $g$ માટે વિધેય $f$ એવું મેળવી શકાય કે જેથી $\frac{dy}{dx}=g(x)$, જ્યાં $f(x)=y$ થાય તો આ
+              પ્રકારનાં સમીકરણને <strong>વિકલ સમીકરણ (Differential Equation)</strong> કહેવાય છે.
             </p>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-              <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700">
+              <div
+                class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700">
                 <h3 class="font-bold text-slate-900 dark:text-slate-100 flex items-center space-x-2 mb-2">
                   <i class="fa-solid fa-globe text-brand-500"></i>
                   <span>વિકલ સમીકરણોનો ઉપયોગ :</span>
                 </h3>
                 <ul class="grid grid-cols-2 gap-2 text-xs sm:text-sm font-medium">
-                  <li class="flex items-center space-x-1.5"><i class="fa-solid fa-flask text-pink-500"></i><span>ભૌતિકશાસ્ત્ર</span></li>
-                  <li class="flex items-center space-x-1.5"><i class="fa-solid fa-vial text-purple-500"></i><span>રસાયણશાસ્ત્ર</span></li>
-                  <li class="flex items-center space-x-1.5"><i class="fa-solid fa-dna text-emerald-500"></i><span>જૈવિકશાસ્ત્ર</span></li>
-                  <li class="flex items-center space-x-1.5"><i class="fa-solid fa-brain text-amber-500"></i><span>માનસશાસ્ત્ર</span></li>
-                  <li class="flex items-center space-x-1.5"><i class="fa-solid fa-mountain text-teal-500"></i><span>ભૂસ્તરશાસ્ત્ર</span></li>
-                  <li class="flex items-center space-x-1.5"><i class="fa-solid fa-chart-line text-cyan-500"></i><span>અર્થશાસ્ત્ર</span></li>
+                  <li class="flex items-center space-x-1.5"><i
+                      class="fa-solid fa-flask text-pink-500"></i><span>ભૌતિકશાસ્ત્ર</span></li>
+                  <li class="flex items-center space-x-1.5"><i
+                      class="fa-solid fa-vial text-purple-500"></i><span>રસાયણશાસ્ત્ર</span></li>
+                  <li class="flex items-center space-x-1.5"><i
+                      class="fa-solid fa-dna text-emerald-500"></i><span>જૈવિકશાસ્ત્ર</span></li>
+                  <li class="flex items-center space-x-1.5"><i
+                      class="fa-solid fa-brain text-amber-500"></i><span>માનસશાસ્ત્ર</span></li>
+                  <li class="flex items-center space-x-1.5"><i
+                      class="fa-solid fa-mountain text-teal-500"></i><span>ભૂસ્તરશાસ્ત્ર</span></li>
+                  <li class="flex items-center space-x-1.5"><i
+                      class="fa-solid fa-chart-line text-cyan-500"></i><span>અર્થશાસ્ત્ર</span></li>
                 </ul>
               </div>
 
-              <div class="p-4 rounded-2xl bg-brand-50/40 dark:bg-brand-950/20 border border-brand-200 dark:border-brand-800/40 flex flex-col justify-center">
+              <div
+                class="p-4 rounded-2xl bg-brand-50/40 dark:bg-brand-950/20 border border-brand-200 dark:border-brand-800/40 flex flex-col justify-center">
                 <p class="text-xs sm:text-sm font-semibold text-brand-800 dark:text-brand-300">
-                  💡 <strong>અતિ મહત્વની નોંધ:</strong> વિકલ સમીકરણોનો ઊંડાણપૂર્વક અભ્યાસ એ આધુનિક વૈજ્ઞાનિક સંશોધન માટે અતિ મહત્ત્વનો છે.
+                  💡 <strong>અતિ મહત્વની નોંધ:</strong> વિકલ સમીકરણોનો ઊંડાણપૂર્વક અભ્યાસ એ આધુનિક વૈજ્ઞાનિક સંશોધન માટે
+                  અતિ મહત્ત્વનો છે.
                 </p>
               </div>
             </div>
@@ -400,22 +460,26 @@ graph TD
 
           <!-- Equation Cards Grid -->
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
-            <div class="p-3.5 rounded-2xl bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 flex justify-between items-center">
+            <div
+              class="p-3.5 rounded-2xl bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 flex justify-between items-center">
               <span class="font-mono text-sm font-bold text-slate-500">(1)</span>
               <span class="text-base font-semibold">$x^{2}-3x+3=0$</span>
               <span class="text-xs bg-slate-200 dark:bg-slate-700 px-2 py-0.5 rounded">બીજગણિતીય</span>
             </div>
-            <div class="p-3.5 rounded-2xl bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 flex justify-between items-center">
+            <div
+              class="p-3.5 rounded-2xl bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 flex justify-between items-center">
               <span class="font-mono text-sm font-bold text-slate-500">(2)</span>
               <span class="text-base font-semibold">$\sin x+\cos x=0$</span>
               <span class="text-xs bg-slate-200 dark:bg-slate-700 px-2 py-0.5 rounded">ત્રિકોણમિતિય</span>
             </div>
-            <div class="p-3.5 rounded-2xl bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 flex justify-between items-center">
+            <div
+              class="p-3.5 rounded-2xl bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 flex justify-between items-center">
               <span class="font-mono text-sm font-bold text-slate-500">(3)</span>
               <span class="text-base font-semibold">$x+y=7$</span>
               <span class="text-xs bg-slate-200 dark:bg-slate-700 px-2 py-0.5 rounded">દ્વિચલ સુરેખ</span>
             </div>
-            <div class="p-3.5 rounded-2xl bg-emerald-500/10 border-2 border-emerald-500/40 flex justify-between items-center">
+            <div
+              class="p-3.5 rounded-2xl bg-emerald-500/10 border-2 border-emerald-500/40 flex justify-between items-center">
               <span class="font-mono text-sm font-bold text-emerald-600 dark:text-emerald-400">(4)</span>
               <span class="text-base font-bold text-emerald-700 dark:text-emerald-300">$x\frac{dy}{dx}+y=0$</span>
               <span class="text-xs bg-emerald-500 text-white px-2 py-0.5 rounded font-bold">વિકલ સમીકરણ</span>
@@ -424,17 +488,22 @@ graph TD
 
           <div class="space-y-3 text-sm leading-relaxed">
             <p>
-              સમીકરણો (1), (2) અને (3) ફક્ત સ્વતંત્ર અને / અથવા અવલંબી ચલ ધરાવે છે. જ્યારે સમીકરણ (4) ચલ ઉપરાંત અવલંબી ચલ $y$ નું સ્વતંત્ર ચલ $x$ ને સાપેક્ષ વિકલિત પણ ધરાવે છે. આવા સમીકરણને <strong>વિકલ સમીકરણ</strong> કહે છે.
+              સમીકરણો (1), (2) અને (3) ફક્ત સ્વતંત્ર અને / અથવા અવલંબી ચલ ધરાવે છે. જ્યારે સમીકરણ (4) ચલ ઉપરાંત અવલંબી
+              ચલ $y$ નું સ્વતંત્ર ચલ $x$ ને સાપેક્ષ વિકલિત પણ ધરાવે છે. આવા સમીકરણને <strong>વિકલ સમીકરણ</strong> કહે
+              છે.
             </p>
             <p class="p-3 bg-slate-100 dark:bg-slate-800 rounded-xl border-l-4 border-cyan-500">
-              <strong>વ્યાપક વ્યાખ્યા:</strong> સ્વતંત્ર ચલને સાપેક્ષ અવલંબી ચલના વિકલિતને સમાવતા સમીકરણને વિકલ સમીકરણ કહે છે.
+              <strong>વ્યાપક વ્યાખ્યા:</strong> સ્વતંત્ર ચલને સાપેક્ષ અવલંબી ચલના વિકલિતને સમાવતા સમીકરણને વિકલ સમીકરણ
+              કહે છે.
             </p>
             <p>
-              જે વિકલ સમીકરણ ફક્ત એક જ સ્વતંત્ર ચલની સાપેક્ષે અવલંબી ચલના વિકલિતોને સમાવતા હોય તેમને <strong>સામાન્ય વિકલ સમીકરણો (Ordinary Differential Equations)</strong> કહે છે. <br/>
+              જે વિકલ સમીકરણ ફક્ત એક જ સ્વતંત્ર ચલની સાપેક્ષે અવલંબી ચલના વિકલિતોને સમાવતા હોય તેમને <strong>સામાન્ય
+                વિકલ સમીકરણો (Ordinary Differential Equations)</strong> કહે છે. <br />
               દા.ત., $2\frac{d^{2}y}{dx^{2}}+(\frac{dy}{dx})^{3}=0$ એ સામાન્ય વિકલ સમીકરણ છે.
             </p>
             <p class="text-xs text-slate-500 dark:text-slate-400">
-              * એક કરતાં વધુ સ્વતંત્ર ચલની સાપેક્ષે વિકલિતો સમાવતાં વિકલ સમીકરણોને <strong>આંશિક વિકલ સમીકરણો (Partial Differential Equations)</strong> કહે છે.
+              * એક કરતાં વધુ સ્વતંત્ર ચલની સાપેક્ષે વિકલિતો સમાવતાં વિકલ સમીકરણોને <strong>આંશિક વિકલ સમીકરણો (Partial
+                Differential Equations)</strong> કહે છે.
             </p>
           </div>
 
@@ -460,7 +529,8 @@ graph TD
       <section id="sec-921" class="scroll-mt-24 topic-card">
         <div class="glass-card rounded-3xl p-6 shadow-md border border-slate-200 dark:border-slate-800">
           <div class="flex items-center space-x-3 mb-4 border-b pb-3 dark:border-slate-700">
-            <span class="p-2.5 rounded-2xl bg-purple-100 dark:bg-purple-900/40 text-purple-600 dark:text-purple-400 text-lg">
+            <span
+              class="p-2.5 rounded-2xl bg-purple-100 dark:bg-purple-900/40 text-purple-600 dark:text-purple-400 text-lg">
               <i class="fa-solid fa-layer-group"></i>
             </span>
             <div>
@@ -469,14 +539,17 @@ graph TD
             </div>
           </div>
 
-          <div class="p-4 rounded-2xl bg-purple-500/10 border-l-4 border-purple-500 mb-4 text-sm sm:text-base leading-relaxed">
-            વિકલ સમીકરણમાં સ્વતંત્ર ચલને સાપેક્ષ અવલંબી ચલના વિકલિતોમાં <strong>ઉચ્ચતમ કક્ષાના વિકલિતની કક્ષાને</strong> વિકલ સમીકરણની <strong>કક્ષા (Order)</strong> તરીકે વ્યાખ્યાયિત કરવામાં આવે છે.
+          <div
+            class="p-4 rounded-2xl bg-purple-500/10 border-l-4 border-purple-500 mb-4 text-sm sm:text-base leading-relaxed">
+            વિકલ સમીકરણમાં સ્વતંત્ર ચલને સાપેક્ષ અવલંબી ચલના વિકલિતોમાં <strong>ઉચ્ચતમ કક્ષાના વિકલિતની કક્ષાને</strong>
+            વિકલ સમીકરણની <strong>કક્ષા (Order)</strong> તરીકે વ્યાખ્યાયિત કરવામાં આવે છે.
           </div>
 
           <div class="space-y-3">
             <h3 class="font-bold text-sm text-slate-700 dark:text-slate-200">દાહરણો (Examples):</h3>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 flex justify-between items-center">
+              <div
+                class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 flex justify-between items-center">
                 <div>
                   <p class="text-base font-semibold">$\frac{d^{2}y}{dx^{2}}+y=0$</p>
                   <p class="text-xs text-slate-500">મહત્તમ વિકલિત: $\frac{d^2y}{dx^2}$</p>
@@ -484,7 +557,8 @@ graph TD
                 <span class="bg-purple-600 text-white font-bold text-xs px-3 py-1.5 rounded-xl shadow">કક્ષા = 2</span>
               </div>
 
-              <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 flex justify-between items-center">
+              <div
+                class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 flex justify-between items-center">
                 <div>
                   <p class="text-base font-semibold">$(\frac{d^{3}y}{dx^{3}})+x^{2}(\frac{d^{2}y}{dx^{2}})^{3}=0$</p>
                   <p class="text-xs text-slate-500">મહત્તમ વિકલિત: $\frac{d^3y}{dx^3}$</p>
@@ -500,7 +574,8 @@ graph TD
       <section id="sec-922" class="scroll-mt-24 topic-card">
         <div class="glass-card rounded-3xl p-6 shadow-md border border-slate-200 dark:border-slate-800">
           <div class="flex items-center space-x-3 mb-4 border-b pb-3 dark:border-slate-700">
-            <span class="p-2.5 rounded-2xl bg-emerald-100 dark:bg-emerald-900/40 text-emerald-600 dark:text-emerald-400 text-lg">
+            <span
+              class="p-2.5 rounded-2xl bg-emerald-100 dark:bg-emerald-900/40 text-emerald-600 dark:text-emerald-400 text-lg">
               <i class="fa-solid fa-chart-bar"></i>
             </span>
             <div>
@@ -511,15 +586,18 @@ graph TD
 
           <!-- Alert Note -->
           <div class="p-4 rounded-2xl bg-amber-500/15 border-l-4 border-amber-500 mb-4 text-sm">
-            <strong class="text-amber-800 dark:text-amber-300 font-bold block mb-1">⚠️ વિકલ સમીકરણના પરિમાણ માટે સૌથી મહત્વનો મુદ્દો:</strong>
-            વિકલ સમીકરણ વિકલિતોમાં એટલે કે $y', y'', y'''$ વગેરેમાં <strong>બહુપદીય સમીકરણ (Polynomial Equation in derivatives)</strong> જ હોવું જોઈએ.
+            <strong class="text-amber-800 dark:text-amber-300 font-bold block mb-1">⚠️ વિકલ સમીકરણના પરિમાણ માટે સૌથી
+              મહત્વનો મુદ્દો:</strong>
+            વિકલ સમીકરણ વિકલિતોમાં એટલે કે $y', y'', y'''$ વગેરેમાં <strong>બહુપદીય સમીકરણ (Polynomial Equation in
+              derivatives)</strong> જ હોવું જોઈએ.
           </div>
 
           <div class="space-y-4">
             <p class="text-sm">નીચેનાં વિકલ સમીકરણોનો વિચાર કરો:</p>
 
             <div class="space-y-3 font-mono text-sm">
-              <div class="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 flex flex-wrap justify-between items-center gap-2">
+              <div
+                class="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 flex flex-wrap justify-between items-center gap-2">
                 <div>
                   <span class="text-xs font-bold text-slate-400 mr-2">(1)</span>
                   <span class="font-bold">$\frac{d^{3}y}{dx^{3}}+2(\frac{d^{2}y}{dx^{2}})^{2}-\frac{dy}{dx}+y=0$</span>
@@ -530,7 +608,8 @@ graph TD
                 </div>
               </div>
 
-              <div class="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 flex flex-wrap justify-between items-center gap-2">
+              <div
+                class="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 flex flex-wrap justify-between items-center gap-2">
                 <div>
                   <span class="text-xs font-bold text-slate-400 mr-2">(2)</span>
                   <span class="font-bold">$(\frac{dy}{dx})^{2}+\frac{dy}{dx}-\sin^{2}y=0$</span>
@@ -541,24 +620,30 @@ graph TD
                 </div>
               </div>
 
-              <div class="p-3.5 rounded-2xl bg-red-500/10 border border-red-500/30 flex flex-wrap justify-between items-center gap-2">
+              <div
+                class="p-3.5 rounded-2xl bg-red-500/10 border border-red-500/30 flex flex-wrap justify-between items-center gap-2">
                 <div>
                   <span class="text-xs font-bold text-red-400 mr-2">(3)</span>
                   <span class="font-bold text-red-700 dark:text-red-300">$\frac{dy}{dx}+\sin(\frac{dy}{dx})=0$</span>
                 </div>
                 <div class="flex space-x-2">
                   <span class="bg-purple-100 text-purple-700 text-xs px-2.5 py-1 rounded-lg font-bold">કક્ષા = 1</span>
-                  <span class="bg-red-600 text-white text-xs px-2.5 py-1 rounded-lg font-bold">પરિમાણ વ્યાખ્યાયિત નથી</span>
+                  <span class="bg-red-600 text-white text-xs px-2.5 py-1 rounded-lg font-bold">પરિમાણ વ્યાખ્યાયિત
+                    નથી</span>
                 </div>
               </div>
             </div>
 
             <div class="p-4 rounded-2xl bg-slate-100 dark:bg-slate-800 text-sm leading-relaxed">
               <p class="mb-2">
-                <strong>સમજૂતી:</strong> સમીકરણ (1) એ $y''', y''$ અને $y'$ ની બહુપદી છે. સમીકરણ (2) એ $y'$ ની બહુપદી છે (છતાં $y$ ની બહુપદી નથી). આવાં વિકલ સમીકરણોનાં પરિમાણ મળી શકે છે. પરંતુ સમીકરણ (3) માં $\sin(\frac{dy}{dx})$ હોવાથી તે વિકલિતોમાં બહુપદીય સમીકરણ નથી અને આવા વિકલ સમીકરણનું પરિમાણ મળી શકે નહિ.
+                <strong>સમજૂતી:</strong> સમીકરણ (1) એ $y''', y''$ અને $y'$ ની બહુપદી છે. સમીકરણ (2) એ $y'$ ની બહુપદી છે
+                (છતાં $y$ ની બહુપદી નથી). આવાં વિકલ સમીકરણોનાં પરિમાણ મળી શકે છે. પરંતુ સમીકરણ (3) માં
+                $\sin(\frac{dy}{dx})$ હોવાથી તે વિકલિતોમાં બહુપદીય સમીકરણ નથી અને આવા વિકલ સમીકરણનું પરિમાણ મળી શકે નહિ.
               </p>
               <div class="mt-3 p-3 bg-white dark:bg-slate-900 rounded-xl border border-emerald-400">
-                <strong>📌 વ્યાખ્યા:</strong> જો વિકલ સમીકરણ વિકલિતોની બહુપદી સ્વરૂપે આપેલ હોય, તો વિકલ સમીકરણનું <strong>પરિમાણ (Degree)</strong> એ વિકલ સમીકરણમાં આવતાં ઉચ્ચતમ કક્ષાનાં વિકલિતનો <strong>ઉચ્ચતમ ઘાતાંક (ધન પૂર્ણાંક ઘાતાંક)</strong> છે.
+                <strong>📌 વ્યાખ્યા:</strong> જો વિકલ સમીકરણ વિકલિતોની બહુપદી સ્વરૂપે આપેલ હોય, તો વિકલ સમીકરણનું
+                <strong>પરિમાણ (Degree)</strong> એ વિકલ સમીકરણમાં આવતાં ઉચ્ચતમ કક્ષાનાં વિકલિતનો <strong>ઉચ્ચતમ ઘાતાંક
+                  (ધન પૂર્ણાંક ઘાતાંક)</strong> છે.
               </div>
             </div>
           </div>
@@ -584,33 +669,39 @@ graph TD
 
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <!-- General Solution -->
-            <div class="p-5 rounded-2xl bg-gradient-to-br from-indigo-500/10 to-blue-500/10 border border-indigo-200 dark:border-indigo-800/50">
+            <div
+              class="p-5 rounded-2xl bg-gradient-to-br from-indigo-500/10 to-blue-500/10 border border-indigo-200 dark:border-indigo-800/50">
               <div class="flex items-center space-x-2 mb-2">
                 <span class="w-3 h-3 rounded-full bg-indigo-600"></span>
                 <h3 class="font-bold text-indigo-700 dark:text-indigo-300 text-base">વ્યાપક ઉકેલ (General Solution)</h3>
               </div>
               <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mb-3">
-                વિકલ સમીકરણની <strong>કક્ષા જેટલાં જ સ્વૈર અચળો (Arbitrary Constants)</strong> ધરાવતાં વિકલ સમીકરણનાં ઉકેલને તેનો વ્યાપક ઉકેલ કહે છે.
+                વિકલ સમીકરણની <strong>કક્ષા જેટલાં જ સ્વૈર અચળો (Arbitrary Constants)</strong> ધરાવતાં વિકલ સમીકરણનાં
+                ઉકેલને તેનો વ્યાપક ઉકેલ કહે છે.
               </p>
-              <div class="p-3 bg-white dark:bg-slate-800 rounded-xl text-xs font-mono border border-indigo-100 dark:border-indigo-900">
-                દા.ત., $\frac{d^{2}y}{dx^{2}}+y=0 \leftrightarrow$ કક્ષા 2 છે.<br/>
-                ઉકેલ: <strong class="text-indigo-600 dark:text-indigo-400">$y = A \cos x + B \sin x$</strong><br/>
+              <div
+                class="p-3 bg-white dark:bg-slate-800 rounded-xl text-xs font-mono border border-indigo-100 dark:border-indigo-900">
+                દા.ત., $\frac{d^{2}y}{dx^{2}}+y=0 \leftrightarrow$ કક્ષા 2 છે.<br />
+                ઉકેલ: <strong class="text-indigo-600 dark:text-indigo-400">$y = A \cos x + B \sin x$</strong><br />
                 અહીં સ્વૈર અચળો $A$ અને $B$ એમ 2 છે.
               </div>
             </div>
 
             <!-- Particular Solution -->
-            <div class="p-5 rounded-2xl bg-gradient-to-br from-teal-500/10 to-emerald-500/10 border border-teal-200 dark:border-teal-800/50">
+            <div
+              class="p-5 rounded-2xl bg-gradient-to-br from-teal-500/10 to-emerald-500/10 border border-teal-200 dark:border-teal-800/50">
               <div class="flex items-center space-x-2 mb-2">
                 <span class="w-3 h-3 rounded-full bg-teal-600"></span>
                 <h3 class="font-bold text-teal-700 dark:text-teal-300 text-base">વિશિષ્ટ ઉકેલ (Particular Solution)</h3>
               </div>
               <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mb-3">
-                જે વિકલ સમીકરણનાં ઉકેલમાં સ્વૈર અચળો હોતા નથી, પરંતુ તેમની <strong>ખાસ કિંમતો</strong> હોય છે તેવા ઉકેલને વિશિષ્ટ ઉકેલ કહે છે. વિશિષ્ટ ઉકેલ એ સ્વૈર અચળોથી મુક્ત હોય છે.
+                જે વિકલ સમીકરણનાં ઉકેલમાં સ્વૈર અચળો હોતા નથી, પરંતુ તેમની <strong>ખાસ કિંમતો</strong> હોય છે તેવા
+                ઉકેલને વિશિષ્ટ ઉકેલ કહે છે. વિશિષ્ટ ઉકેલ એ સ્વૈર અચળોથી મુક્ત હોય છે.
               </p>
-              <div class="p-3 bg-white dark:bg-slate-800 rounded-xl text-xs font-mono border border-teal-100 dark:border-teal-900">
-                દા.ત., જો $A = B = 1$ લેવામાં આવે તો:<br/>
-                ઉકેલ: <strong class="text-teal-600 dark:text-teal-400">$y = \cos x + \sin x$</strong><br/>
+              <div
+                class="p-3 bg-white dark:bg-slate-800 rounded-xl text-xs font-mono border border-teal-100 dark:border-teal-900">
+                દા.ત., જો $A = B = 1$ લેવામાં આવે તો:<br />
+                ઉકેલ: <strong class="text-teal-600 dark:text-teal-400">$y = \cos x + \sin x$</strong><br />
                 એ આપેલ વિકલ સમીકરણનો વિશિષ્ટ ઉકેલ છે.
               </div>
             </div>
@@ -622,7 +713,8 @@ graph TD
       <section id="sec-94" class="scroll-mt-24 topic-card">
         <div class="glass-card rounded-3xl p-6 shadow-md border border-slate-200 dark:border-slate-800">
           <div class="flex items-center space-x-3 mb-4 border-b pb-3 dark:border-slate-700">
-            <span class="p-2.5 rounded-2xl bg-amber-100 dark:bg-amber-900/40 text-amber-600 dark:text-amber-400 text-lg">
+            <span
+              class="p-2.5 rounded-2xl bg-amber-100 dark:bg-amber-900/40 text-amber-600 dark:text-amber-400 text-lg">
               <i class="fa-solid fa-calculator"></i>
             </span>
             <div>
@@ -634,18 +726,24 @@ graph TD
           <p class="text-sm mb-4">પ્રથમ કક્ષાના એક પરિમાણીય વિકલ સમીકરણના ઉકેલ માટેની ત્રણ મુખ્ય રીતો છે:</p>
 
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-            <a href="#sec-941" class="p-4 rounded-2xl bg-indigo-50 dark:bg-indigo-900/20 border border-indigo-200 dark:border-indigo-800 hover:scale-105 transition flex flex-col items-center text-center">
-              <span class="w-10 h-10 rounded-full bg-indigo-600 text-white font-bold flex items-center justify-center text-lg mb-2">1</span>
+            <a href="#sec-941"
+              class="p-4 rounded-2xl bg-indigo-50 dark:bg-indigo-900/20 border border-indigo-200 dark:border-indigo-800 hover:scale-105 transition flex flex-col items-center text-center">
+              <span
+                class="w-10 h-10 rounded-full bg-indigo-600 text-white font-bold flex items-center justify-center text-lg mb-2">1</span>
               <span class="font-bold text-sm text-indigo-700 dark:text-indigo-300">વિયોજનીય ચલનાં વિકલ સમીકરણો</span>
             </a>
 
-            <a href="#sec-942" class="p-4 rounded-2xl bg-purple-50 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-800 hover:scale-105 transition flex flex-col items-center text-center">
-              <span class="w-10 h-10 rounded-full bg-purple-600 text-white font-bold flex items-center justify-center text-lg mb-2">2</span>
+            <a href="#sec-942"
+              class="p-4 rounded-2xl bg-purple-50 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-800 hover:scale-105 transition flex flex-col items-center text-center">
+              <span
+                class="w-10 h-10 rounded-full bg-purple-600 text-white font-bold flex items-center justify-center text-lg mb-2">2</span>
               <span class="font-bold text-sm text-purple-700 dark:text-purple-300">સમપરિમાણ વિકલ સમીકરણ</span>
             </a>
 
-            <a href="#sec-943" class="p-4 rounded-2xl bg-pink-50 dark:bg-pink-900/20 border border-pink-200 dark:border-pink-800 hover:scale-105 transition flex flex-col items-center text-center">
-              <span class="w-10 h-10 rounded-full bg-pink-600 text-white font-bold flex items-center justify-center text-lg mb-2">3</span>
+            <a href="#sec-943"
+              class="p-4 rounded-2xl bg-pink-50 dark:bg-pink-900/20 border border-pink-200 dark:border-pink-800 hover:scale-105 transition flex flex-col items-center text-center">
+              <span
+                class="w-10 h-10 rounded-full bg-pink-600 text-white font-bold flex items-center justify-center text-lg mb-2">3</span>
               <span class="font-bold text-sm text-pink-700 dark:text-pink-300">સુરેખ વિકલ સમીકરણ (Linear)</span>
             </a>
           </div>
@@ -656,7 +754,8 @@ graph TD
       <section id="sec-941" class="scroll-mt-24 topic-card">
         <div class="glass-card rounded-3xl p-6 shadow-md border border-slate-200 dark:border-slate-800">
           <div class="flex items-center space-x-3 mb-4 border-b pb-3 dark:border-slate-700">
-            <span class="p-2.5 rounded-2xl bg-indigo-100 dark:bg-indigo-900/40 text-indigo-600 dark:text-indigo-400 text-lg">
+            <span
+              class="p-2.5 rounded-2xl bg-indigo-100 dark:bg-indigo-900/40 text-indigo-600 dark:text-indigo-400 text-lg">
               <i class="fa-solid fa-arrows-split-up-and-left"></i>
             </span>
             <div>
@@ -667,32 +766,40 @@ graph TD
 
           <div class="space-y-4 text-sm leading-relaxed">
             <p>
-              પ્રથમ કક્ષાના એક પરિમાણીય વિકલ સમીકરણનું સ્વરૂપ નીચે પ્રમાણે છે: <br/>
+              પ્રથમ કક્ષાના એક પરિમાણીય વિકલ સમીકરણનું સ્વરૂપ નીચે પ્રમાણે છે: <br />
               $$\frac{dy}{dx}=F(x,y) \quad \text{--- (1)}$$
             </p>
             <p>
-              જો $F(x,y)$ ને $g(x) \cdot h(y)$ તરીકે દર્શાવી શકાય, જ્યાં $g(x)$ એ $x$ નું વિધેય અને $h(y)$ એ $y$ નું વિધેય હોય, તો તેને <strong>વિયોજનીય ચલ પ્રકારનું વિકલ સમીકરણ</strong> કહે છે:
+              જો $F(x,y)$ ને $g(x) \cdot h(y)$ તરીકે દર્શાવી શકાય, જ્યાં $g(x)$ એ $x$ નું વિધેય અને $h(y)$ એ $y$ નું
+              વિધેય હોય, તો તેને <strong>વિયોજનીય ચલ પ્રકારનું વિકલ સમીકરણ</strong> કહે છે:
               $$\frac{dy}{dx}=g(x) \cdot h(y) \quad \text{--- (2)}$$
             </p>
 
-            <div class="p-4 rounded-2xl bg-indigo-50/70 dark:bg-indigo-950/40 border border-indigo-200 dark:border-indigo-800 space-y-2 font-mono">
+            <div
+              class="p-4 rounded-2xl bg-indigo-50/70 dark:bg-indigo-950/40 border border-indigo-200 dark:border-indigo-800 space-y-2 font-mono">
               <p>જો $h(y) \neq 0$ હોય તો ચલોને જુદા પાડીને સમીકરણ:</p>
-              <p class="text-center font-bold text-indigo-600 dark:text-indigo-300">$\frac{1}{h(y)}dy = g(x)dx \quad \text{--- (3)}$</p>
+              <p class="text-center font-bold text-indigo-600 dark:text-indigo-300">$\frac{1}{h(y)}dy = g(x)dx \quad
+                \text{--- (3)}$</p>
               <p>બંને બાજુ સંકલન કરતાં:</p>
-              <p class="text-center font-bold text-indigo-600 dark:text-indigo-300">$\int \frac{1}{h(y)}dy = \int g(x)dx \quad \text{--- (4)}$</p>
+              <p class="text-center font-bold text-indigo-600 dark:text-indigo-300">$\int \frac{1}{h(y)}dy = \int g(x)dx
+                \quad \text{--- (4)}$</p>
               <p class="text-center font-bold text-emerald-600 dark:text-emerald-400">$\therefore H(y) = G(x) + c$</p>
-              <p class="text-xs text-slate-500 font-sans">જ્યાં $H(y)$ અને $G(x)$ એ અનુક્રમે $\frac{1}{h(y)}$ અને $g(x)$ ના પ્રતિવિકલિત છે તથા $c$ સ્વૈર અચળ છે.</p>
+              <p class="text-xs text-slate-500 font-sans">જ્યાં $H(y)$ અને $G(x)$ એ અનુક્રમે $\frac{1}{h(y)}$ અને $g(x)$
+                ના પ્રતિવિકલિત છે તથા $c$ સ્વૈર અચળ છે.</p>
             </div>
 
             <!-- Solved Example Box -->
-            <div class="p-5 rounded-2xl bg-slate-100 dark:bg-slate-800/90 border border-slate-300 dark:border-slate-700">
+            <div
+              class="p-5 rounded-2xl bg-slate-100 dark:bg-slate-800/90 border border-slate-300 dark:border-slate-700">
               <h3 class="font-bold text-base text-slate-900 dark:text-slate-100 flex items-center space-x-2 mb-3">
                 <i class="fa-solid fa-pen-to-square text-indigo-500"></i>
                 <span>પા.પુ.ઉદાહરણ 4 : ગણેલો દાખલો</span>
               </h3>
-              <p class="text-sm font-semibold mb-2">વિકલ સમીકરણ $\frac{dy}{dx}=\frac{x+1}{2-y} \ (y \neq 2)$ નો વ્યાપક ઉકેલ મેળવો.</p>
-              
-              <div class="p-4 rounded-xl bg-white dark:bg-slate-900 space-y-2 text-xs sm:text-sm font-mono border border-slate-200 dark:border-slate-800">
+              <p class="text-sm font-semibold mb-2">વિકલ સમીકરણ $\frac{dy}{dx}=\frac{x+1}{2-y} \ (y \neq 2)$ નો વ્યાપક
+                ઉકેલ મેળવો.</p>
+
+              <div
+                class="p-4 rounded-xl bg-white dark:bg-slate-900 space-y-2 text-xs sm:text-sm font-mono border border-slate-200 dark:border-slate-800">
                 <p>ચલોને વિયોજનીય સ્વરૂપમાં લખતાં:</p>
                 <p class="text-indigo-600 dark:text-indigo-400">$(2 - y) dy = (x + 1) dx$</p>
                 <p>બંને બાજુ સંકલન કરતાં:</p>
@@ -700,7 +807,8 @@ graph TD
                 <p>$2y - \frac{y^2}{2} = \frac{x^2}{2} + x + c_1$</p>
                 <p>બંને બાજુ 2 વડે ગુણતાં:</p>
                 <p>$4y - y^2 = x^2 + 2x + 2c_1$</p>
-                <p class="text-emerald-600 dark:text-emerald-400 font-bold">$x^2 + y^2 + 2x - 4y + c = 0 \quad (c = 2c_1)$</p>
+                <p class="text-emerald-600 dark:text-emerald-400 font-bold">$x^2 + y^2 + 2x - 4y + c = 0 \quad (c =
+                  2c_1)$</p>
                 <p class="text-xs text-slate-500 font-sans">જે આપેલ વિકલ સમીકરણનો વ્યાપક ઉકેલ છે.</p>
               </div>
             </div>
@@ -712,7 +820,8 @@ graph TD
       <section id="sec-942" class="scroll-mt-24 topic-card">
         <div class="glass-card rounded-3xl p-6 shadow-md border border-slate-200 dark:border-slate-800">
           <div class="flex items-center space-x-3 mb-4 border-b pb-3 dark:border-slate-700">
-            <span class="p-2.5 rounded-2xl bg-purple-100 dark:bg-purple-900/40 text-purple-600 dark:text-purple-400 text-lg">
+            <span
+              class="p-2.5 rounded-2xl bg-purple-100 dark:bg-purple-900/40 text-purple-600 dark:text-purple-400 text-lg">
               <i class="fa-solid fa-scale-balanced"></i>
             </span>
             <div>
@@ -722,26 +831,32 @@ graph TD
           </div>
 
           <div class="space-y-4 text-sm leading-relaxed">
-            <div class="p-4 rounded-2xl bg-purple-50/70 dark:bg-purple-950/40 border border-purple-200 dark:border-purple-800">
+            <div
+              class="p-4 rounded-2xl bg-purple-50/70 dark:bg-purple-950/40 border border-purple-200 dark:border-purple-800">
               <p>
-                જો $F(\lambda x, \lambda y) = \lambda^n F(x, y)$ (જ્યાં $\lambda$ શૂન્યેતર અચળ) તો વિધેય $F(x, y)$ એ $n$ ઘાતવાળું <strong>સમપરિમાણીય વિધેય (Homogeneous Function)</strong> છે.
+                જો $F(\lambda x, \lambda y) = \lambda^n F(x, y)$ (જ્યાં $\lambda$ શૂન્યેતર અચળ) તો વિધેય $F(x, y)$ એ $n$
+                ઘાતવાળું <strong>સમપરિમાણીય વિધેય (Homogeneous Function)</strong> છે.
               </p>
               <div class="mt-2 text-xs font-mono bg-white dark:bg-slate-800 p-2.5 rounded-xl">
-                દા.ત., $F(x, y) = y^2 + 2xy \implies F(\lambda x, \lambda y) = \lambda^2 y^2 + 2\lambda^2 xy = \lambda^2 (y^2 + 2xy)$ <br/>
+                દા.ત., $F(x, y) = y^2 + 2xy \implies F(\lambda x, \lambda y) = \lambda^2 y^2 + 2\lambda^2 xy = \lambda^2
+                (y^2 + 2xy)$ <br />
                 $\therefore F(x, y)$ એ 2 ઘાતવાળું સમપરિમાણીય વિધેય છે.
               </div>
             </div>
 
             <p>
-              જો $F(x, y)$ અને $G(x, y)$ એ $x$ અને $y$ માં સમાન ઘાતવાળા સમપરિમાણીય વિધેયો હોય, તો વિકલ સમીકરણ $\frac{dy}{dx} = \frac{F(x, y)}{G(x, y)}$ ને સમપરિમાણીય વિકલ સમીકરણ કહેવાય છે.
+              જો $F(x, y)$ અને $G(x, y)$ એ $x$ અને $y$ માં સમાન ઘાતવાળા સમપરિમાણીય વિધેયો હોય, તો વિકલ સમીકરણ
+              $\frac{dy}{dx} = \frac{F(x, y)}{G(x, y)}$ ને સમપરિમાણીય વિકલ સમીકરણ કહેવાય છે.
             </p>
 
             <div class="p-3.5 rounded-2xl bg-slate-100 dark:bg-slate-800 font-mono text-xs sm:text-sm">
-              દા.ત., $\frac{dy}{dx} = \frac{2xy - x^2}{y^2 + 3xy}$ (અહીં અંશ અને છેદ બંને 2 ઘાતવાળા સમપરિમાણીય વિધેય છે).
+              દા.ત., $\frac{dy}{dx} = \frac{2xy - x^2}{y^2 + 3xy}$ (અહીં અંશ અને છેદ બંને 2 ઘાતવાળા સમપરિમાણીય વિધેય
+              છે).
             </div>
 
             <!-- Method Steps -->
-            <div class="p-5 rounded-2xl bg-gradient-to-br from-purple-500/10 to-indigo-500/10 border border-purple-200 dark:border-purple-800">
+            <div
+              class="p-5 rounded-2xl bg-gradient-to-br from-purple-500/10 to-indigo-500/10 border border-purple-200 dark:border-purple-800">
               <h3 class="font-bold text-purple-700 dark:text-purple-300 text-sm mb-3 flex items-center space-x-2">
                 <i class="fa-solid fa-list-ol"></i>
                 <span>ઉકેલ શોધવાની રીત : (આદેશ $y = vx$)</span>
@@ -750,7 +865,8 @@ graph TD
               <div class="space-y-2 font-mono text-xs sm:text-sm">
                 <p>1. $\frac{dy}{dx} = F(x, y)$ માં <strong>$y = vx$</strong> આદેશ લો.</p>
                 <p>2. $x$ ને સાપેક્ષ વિકલન કરતાં: <strong>$\frac{dy}{dx} = v + x \frac{dv}{dx}$</strong></p>
-                <p>3. $\frac{dy}{dx}$ ની કિંમત મૂકતાં: $v + x \frac{dv}{dx} = g(v) \implies x \frac{dv}{dx} = g(v) - v$</p>
+                <p>3. $\frac{dy}{dx}$ ની કિંમત મૂકતાં: $v + x \frac{dv}{dx} = g(v) \implies x \frac{dv}{dx} = g(v) - v$
+                </p>
                 <p>4. વિયોજનીય ચલ તરીકે લખતાં: <strong>$\frac{dv}{g(v) - v} = \frac{dx}{x}$</strong></p>
                 <p>5. બંને બાજુ સંકલન કરતાં: <strong>$\int \frac{dv}{g(v) - v} = \int \frac{dx}{x} + c$</strong></p>
                 <p>6. સંકલન બાદ $v = \frac{y}{x}$ મૂકતાં વ્યાપક ઉકેલ મળે.</p>
@@ -760,7 +876,8 @@ graph TD
             <!-- Special Note -->
             <div class="p-4 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-xs sm:text-sm">
               <strong class="text-amber-800 dark:text-amber-300 font-bold block mb-1">📌 વિશેષ નોંધ:</strong>
-              જો સમીકરણ $\frac{dx}{dy} = F(x, y) = h(\frac{x}{y})$ સ્વરૂપનું હોય, તો આપણે <strong>$\frac{x}{y} = v$ એટલે કે $x = vy$</strong> આદેશ લઈશું.
+              જો સમીકરણ $\frac{dx}{dy} = F(x, y) = h(\frac{x}{y})$ સ્વરૂપનું હોય, તો આપણે <strong>$\frac{x}{y} = v$ એટલે
+                કે $x = vy$</strong> આદેશ લઈશું.
             </div>
           </div>
         </div>
@@ -781,16 +898,20 @@ graph TD
 
           <div class="space-y-4 text-sm leading-relaxed">
             <p>
-              જો $P$ અને $Q$ અચળ વિધેયો હોય અથવા ફક્ત ચલ $x$ નાં વિધેયો હોય, તો વિકલ સમીકરણ <strong>$\frac{dy}{dx}+Py=Q$</strong> ને પ્રથમ કક્ષાનું સુરેખ વિકલ સમીકરણ (Linear Differential Equation of First Order) કહે છે.
+              જો $P$ અને $Q$ અચળ વિધેયો હોય અથવા ફક્ત ચલ $x$ નાં વિધેયો હોય, તો વિકલ સમીકરણ
+              <strong>$\frac{dy}{dx}+Py=Q$</strong> ને પ્રથમ કક્ષાનું સુરેખ વિકલ સમીકરણ (Linear Differential Equation of
+              First Order) કહે છે.
             </p>
 
             <!-- Types Grid -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
               <!-- Type 1 -->
               <div class="p-4 rounded-2xl bg-pink-50 dark:bg-pink-950/30 border border-pink-200 dark:border-pink-800">
-                <h3 class="font-bold text-pink-700 dark:text-pink-300 text-sm mb-2">પ્રકાર 1: $\frac{dy}{dx} + Py = Q$</h3>
+                <h3 class="font-bold text-pink-700 dark:text-pink-300 text-sm mb-2">પ્રકાર 1: $\frac{dy}{dx} + Py = Q$
+                </h3>
                 <p class="text-xs text-slate-600 dark:text-slate-300 mb-2">જ્યાં $P, Q$ એ $x$ ના વિધેયો અથવા અચળ છે.</p>
-                <div class="space-y-1 font-mono text-xs bg-white dark:bg-slate-900 p-3 rounded-xl border border-pink-100 dark:border-pink-900">
+                <div
+                  class="space-y-1 font-mono text-xs bg-white dark:bg-slate-900 p-3 rounded-xl border border-pink-100 dark:border-pink-900">
                   <p class="text-brand-600 font-bold">I.F. = $e^{\int P \, dx}$</p>
                   <p class="text-emerald-600 font-bold">ઉકેલ: $y \cdot (I.F.) = \int (Q \times I.F.) \, dx + c$</p>
                 </div>
@@ -798,9 +919,12 @@ graph TD
 
               <!-- Type 2 -->
               <div class="p-4 rounded-2xl bg-cyan-50 dark:bg-cyan-950/30 border border-cyan-200 dark:border-cyan-800">
-                <h3 class="font-bold text-cyan-700 dark:text-cyan-300 text-sm mb-2">પ્રકાર 2: $\frac{dx}{dy} + P_1 x = Q_1$</h3>
-                <p class="text-xs text-slate-600 dark:text-slate-300 mb-2">જ્યાં $P_1, Q_1$ એ $y$ ના વિધેયો અથવા અચળ છે.</p>
-                <div class="space-y-1 font-mono text-xs bg-white dark:bg-slate-900 p-3 rounded-xl border border-cyan-100 dark:border-cyan-900">
+                <h3 class="font-bold text-cyan-700 dark:text-cyan-300 text-sm mb-2">પ્રકાર 2: $\frac{dx}{dy} + P_1 x =
+                  Q_1$</h3>
+                <p class="text-xs text-slate-600 dark:text-slate-300 mb-2">જ્યાં $P_1, Q_1$ એ $y$ ના વિધેયો અથવા અચળ છે.
+                </p>
+                <div
+                  class="space-y-1 font-mono text-xs bg-white dark:bg-slate-900 p-3 rounded-xl border border-cyan-100 dark:border-cyan-900">
                   <p class="text-brand-600 font-bold">I.F. = $e^{\int P_1 \, dy}$</p>
                   <p class="text-emerald-600 font-bold">ઉકેલ: $x \cdot (I.F.) = \int (Q_1 \times I.F.) \, dy + c$</p>
                 </div>
@@ -809,32 +933,41 @@ graph TD
 
             <!-- Key Examples -->
             <div class="p-4 rounded-2xl bg-slate-100 dark:bg-slate-800">
-              <h3 class="font-bold text-xs uppercase tracking-wider text-slate-500 mb-2">સુરેખ વિકલ સમીકરણના ઉદાહરણો :</h3>
+              <h3 class="font-bold text-xs uppercase tracking-wider text-slate-500 mb-2">સુરેખ વિકલ સમીકરણના ઉદાહરણો :
+              </h3>
               <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-mono">
-                <li class="bg-white dark:bg-slate-900 p-2 rounded-lg border border-slate-200 dark:border-slate-700">✓ $\frac{dy}{dx} + y = \sin x$</li>
-                <li class="bg-white dark:bg-slate-900 p-2 rounded-lg border border-slate-200 dark:border-slate-700">✓ $\frac{dy}{dx} + (\frac{1}{x})y = e^x$</li>
-                <li class="bg-white dark:bg-slate-900 p-2 rounded-lg border border-slate-200 dark:border-slate-700">✓ $\frac{dy}{dx} + (\frac{y}{x \log x}) = \frac{1}{x}$</li>
-                <li class="bg-white dark:bg-slate-900 p-2 rounded-lg border border-slate-200 dark:border-slate-700">✓ $\frac{dx}{dy} + x = \cos y$</li>
+                <li class="bg-white dark:bg-slate-900 p-2 rounded-lg border border-slate-200 dark:border-slate-700">✓
+                  $\frac{dy}{dx} + y = \sin x$</li>
+                <li class="bg-white dark:bg-slate-900 p-2 rounded-lg border border-slate-200 dark:border-slate-700">✓
+                  $\frac{dy}{dx} + (\frac{1}{x})y = e^x$</li>
+                <li class="bg-white dark:bg-slate-900 p-2 rounded-lg border border-slate-200 dark:border-slate-700">✓
+                  $\frac{dy}{dx} + (\frac{y}{x \log x}) = \frac{1}{x}$</li>
+                <li class="bg-white dark:bg-slate-900 p-2 rounded-lg border border-slate-200 dark:border-slate-700">✓
+                  $\frac{dx}{dy} + x = \cos y$</li>
               </ul>
             </div>
 
             <!-- Steps Box -->
-            <div class="p-5 rounded-2xl bg-gradient-to-r from-indigo-500/10 via-purple-500/10 to-pink-500/10 border border-indigo-200 dark:border-indigo-800">
+            <div
+              class="p-5 rounded-2xl bg-gradient-to-r from-indigo-500/10 via-purple-500/10 to-pink-500/10 border border-indigo-200 dark:border-indigo-800">
               <h3 class="font-bold text-slate-900 dark:text-slate-100 text-sm mb-3 flex items-center space-x-2">
                 <i class="fa-solid fa-list-check text-brand-500"></i>
                 <span>પ્રથમ કક્ષાના સુરેખ સમીકરણને ઉકેલવા માટેનાં ત્રણેય પગલાં :</span>
               </h3>
               <ol class="space-y-2 text-xs sm:text-sm">
                 <li class="flex items-start space-x-2">
-                  <span class="bg-brand-600 text-white w-5 h-5 rounded-full flex items-center justify-center font-bold text-xs flex-shrink-0 mt-0.5">1</span>
+                  <span
+                    class="bg-brand-600 text-white w-5 h-5 rounded-full flex items-center justify-center font-bold text-xs flex-shrink-0 mt-0.5">1</span>
                   <span>આપેલ વિકલ સમીકરણને $\frac{dy}{dx} + Py = Q$ સ્વરૂપમાં ગોઠવી $P$ અને $Q$ નક્કી કરો.</span>
                 </li>
                 <li class="flex items-start space-x-2">
-                  <span class="bg-brand-600 text-white w-5 h-5 rounded-full flex items-center justify-center font-bold text-xs flex-shrink-0 mt-0.5">2</span>
+                  <span
+                    class="bg-brand-600 text-white w-5 h-5 rounded-full flex items-center justify-center font-bold text-xs flex-shrink-0 mt-0.5">2</span>
                   <span>સંકલ્યકારક અવયવ (Integrating Factor) $I.F. = e^{\int P \, dx}$ ની કિંમત શોધો.</span>
                 </li>
                 <li class="flex items-start space-x-2">
-                  <span class="bg-brand-600 text-white w-5 h-5 rounded-full flex items-center justify-center font-bold text-xs flex-shrink-0 mt-0.5">3</span>
+                  <span
+                    class="bg-brand-600 text-white w-5 h-5 rounded-full flex items-center justify-center font-bold text-xs flex-shrink-0 mt-0.5">3</span>
                   <span>સમીકરણનો ઉકેલ $y \cdot (I.F.) = \int (Q \times I.F.) \, dx + c$ મેળવો.</span>
                 </li>
               </ol>
@@ -847,7 +980,8 @@ graph TD
       <section id="sec-quiz" class="scroll-mt-24 topic-card">
         <div class="glass-card rounded-3xl p-6 shadow-xl border-2 border-indigo-500/30">
           <div class="flex items-center space-x-3 mb-4 border-b pb-3 dark:border-slate-700">
-            <span class="p-2.5 rounded-2xl bg-amber-100 dark:bg-amber-900/40 text-amber-600 dark:text-amber-400 text-lg">
+            <span
+              class="p-2.5 rounded-2xl bg-amber-100 dark:bg-amber-900/40 text-amber-600 dark:text-amber-400 text-lg">
               <i class="fa-solid fa-bolt"></i>
             </span>
             <div>
@@ -858,12 +992,21 @@ graph TD
 
           <div id="quizContainer" class="space-y-4">
             <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
-              <p class="text-sm font-semibold mb-3">પ્રશ્ન: સમીકરણ $(\frac{d^3y}{dx^3})^2 + x(\frac{dy}{dx})^4 + y = 0$ ની કક્ષા અને પરિમાણ જણાવો.</p>
+              <p class="text-sm font-semibold mb-3">પ્રશ્ન: સમીકરણ $(\frac{d^3y}{dx^3})^2 + x(\frac{dy}{dx})^4 + y = 0$
+                ની કક્ષા અને પરિમાણ જણાવો.</p>
               <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
-                <button onclick="checkQuiz(this, false)" class="p-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 font-semibold hover:border-brand-500 transition">કક્ષા 1, પરિમાણ 4</button>
-                <button onclick="checkQuiz(this, true)" class="p-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 font-semibold hover:border-brand-500 transition">કક્ષા 3, પરિમાણ 2</button>
-                <button onclick="checkQuiz(this, false)" class="p-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 font-semibold hover:border-brand-500 transition">કક્ષા 2, પરિમાણ 3</button>
-                <button onclick="checkQuiz(this, false)" class="p-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 font-semibold hover:border-brand-500 transition">પરિમાણ વ્યાખ્યાયિત નથી</button>
+                <button onclick="checkQuiz(this, false)"
+                  class="p-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 font-semibold hover:border-brand-500 transition">કક્ષા
+                  1, પરિમાણ 4</button>
+                <button onclick="checkQuiz(this, true)"
+                  class="p-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 font-semibold hover:border-brand-500 transition">કક્ષા
+                  3, પરિમાણ 2</button>
+                <button onclick="checkQuiz(this, false)"
+                  class="p-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 font-semibold hover:border-brand-500 transition">કક્ષા
+                  2, પરિમાણ 3</button>
+                <button onclick="checkQuiz(this, false)"
+                  class="p-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 font-semibold hover:border-brand-500 transition">પરિમાણ
+                  વ્યાખ્યાયિત નથી</button>
               </div>
               <div id="quizFeedback" class="mt-3 text-xs font-bold hidden"></div>
             </div>
@@ -922,7 +1065,7 @@ graph TD
     function checkQuiz(btn, isCorrect) {
       const feedback = document.getElementById('quizFeedback');
       feedback.classList.remove('hidden', 'text-emerald-500', 'text-red-500');
-      
+
       if (isCorrect) {
         feedback.innerText = '✅ સાચો જવાબ! ઉચ્ચતમ વિકલિત d³y/dx³ (કક્ષા 3) નો ઉચ્ચતમ ઘાતાંક 2 (પરિમાણ 2) છે.';
         feedback.classList.add('text-emerald-500');
@@ -934,6 +1077,7 @@ graph TD
       }
     }
   </script>
-<script src="../assets/global-navbar.js" defer></script>
+  <script src="../assets/global-navbar.js" defer></script>
 </body>
+
 </html>

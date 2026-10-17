@@ -1,237 +1,252 @@
 <!DOCTYPEhtml>
-<html lang="en">
-<head>
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-5MXP3RTV');</script>
-<!-- End Google Tag Manager -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-Book Index System</title>
-    <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-  import { getFirestore, doc, setDoc, increment } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+    <html lang="en">
 
-  // Replace with your Firebase configuration object
- // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyAtDRRnUE3FM06gPrs9mHWXJnU9fXv5B54",
-  authDomain: "edu-suite-a55a5.firebaseapp.com",
-  projectId: "edu-suite-a55a5",
-  storageBucket: "edu-suite-a55a5.firebasestorage.app",
-  messagingSenderId: "5059668896",
-  appId: "1:5059668896:web:76fc4c09c1d298ca8012c5",
-  measurementId: "G-8G4448P207"
-};
+    <head>
+        <!-- Google Tag Manager -->
+        <script>(function (w, d, s, l, i) {
+                w[l] = w[l] || []; w[l].push({
+                    'gtm.start':
+                        new Date().getTime(), event: 'gtm.js'
+                }); var f = d.getElementsByTagName(s)[0],
+                    j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                        'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+            })(window, document, 'script', 'dataLayer', 'GTM-5MXP3RTV');</script>
+        <!-- End Google Tag Manager -->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>E-Book Index System</title>
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-8G4448P207"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { dataLayer.push(arguments); }
+            gtag('js', new Date());
 
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
+            gtag('config', 'G-8G4448P207');
+        </script>
+        <script type="module">
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+            import { getFirestore, doc, setDoc, increment } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-        async function trackPageView(pageName) {
-  // Document reference in the 'analytics' collection
-  const pageRef = doc(db, "analytics", pageName);
+            // Replace with your Firebase configuration object
+            // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+            const firebaseConfig = {
+                apiKey: "AIzaSyAtDRRnUE3FM06gPrs9mHWXJnU9fXv5B54",
+                authDomain: "edu-suite-a55a5.firebaseapp.com",
+                projectId: "edu-suite-a55a5",
+                storageBucket: "edu-suite-a55a5.firebasestorage.app",
+                messagingSenderId: "5059668896",
+                appId: "1:5059668896:web:76fc4c09c1d298ca8012c5",
+                measurementId: "G-8G4448P207"
+            };
 
-  try {
-    // Increment totalViews by 1 safely
-    await setDoc(pageRef, {
-      totalViews: increment(1),
-      lastVisited: new Date()
-    }, { merge: true });
-    
-    console.log(`Page view tracked for: ${pageName}`);
-  } catch (error) {
-    console.error("Error tracking analytics: ", error);
-  }
-}
+            const app = initializeApp(firebaseConfig);
+            const db = getFirestore(app);
 
-// Automatically track on page load
-const currentPage = window.location.pathname.replace(/\//g, "_") || "home";
-trackPageView(currentPage);
-</script>
+            async function trackPageView(pageName) {
+                // Document reference in the 'analytics' collection
+                const pageRef = doc(db, "analytics", pageName);
 
-    <style>
-        :root {
-            --primary: #2c3e50;
-            --accent: #3498db;
-            --bg: #f8f9fa;
-            --card-bg: #ffffff;
-            --text: #333333;
-            --border: #e9ecef;
-        }
+                try {
+                    // Increment totalViews by 1 safely
+                    await setDoc(pageRef, {
+                        totalViews: increment(1),
+                        lastVisited: new Date()
+                    }, { merge: true });
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
-            margin: 0;
-            padding: 2rem 1rem;
-            display: flex;
-            justify-content: center;
-        }
+                    console.log(`Page view tracked for: ${pageName}`);
+                } catch (error) {
+                    console.error("Error tracking analytics: ", error);
+                }
+            }
 
-        .container {
-            max-width: 900px;
-            width: 100%;
-        }
+            // Automatically track on page load
+            const currentPage = window.location.pathname.replace(/\//g, "_") || "home";
+            trackPageView(currentPage);
+        </script>
 
-        header {
-            margin-bottom: 2rem;
-            text-align: center;
-        }
+        <style>
+            :root {
+                --primary: #2c3e50;
+                --accent: #3498db;
+                --bg: #f8f9fa;
+                --card-bg: #ffffff;
+                --text: #333333;
+                --border: #e9ecef;
+            }
 
-        h1 {
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-            font-size: 2.25rem;
-        }
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+                background-color: var(--bg);
+                color: var(--text);
+                margin: 0;
+                padding: 2rem 1rem;
+                display: flex;
+                justify-content: center;
+            }
 
-        p.subtitle {
-            color: #6c757d;
-            font-size: 1.1rem;
-            margin: 0;
-        }
+            .container {
+                max-width: 900px;
+                width: 100%;
+            }
 
-        .section {
-            background-color: var(--card-bg);
-            border-radius: 8px;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-            border: 1px solid var(--border);
-        }
+            header {
+                margin-bottom: 2rem;
+                text-align: center;
+            }
 
-        .section h2 {
-            color: var(--primary);
-            font-size: 1.4rem;
-            margin-top: 0;
-            margin-bottom: 1rem;
-            border-bottom: 2px solid var(--border);
-            padding-bottom: 0.5rem;
-        }
+            h1 {
+                color: var(--primary);
+                margin-bottom: 0.5rem;
+                font-size: 2.25rem;
+            }
 
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 1rem;
-        }
+            p.subtitle {
+                color: #6c757d;
+                font-size: 1.1rem;
+                margin: 0;
+            }
 
-        .link-card {
-            display: flex;
-            align-items: center;
-            padding: 0.75rem 1rem;
-            background-color: #f1f3f5;
-            color: var(--primary);
-            text-decoration: none;
-            border-radius: 6px;
-            font-weight: 500;
-            transition: all 0.2s ease;
-            border: 1px solid transparent;
-        }
+            .section {
+                background-color: var(--card-bg);
+                border-radius: 8px;
+                padding: 1.5rem;
+                margin-bottom: 1.5rem;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+                border: 1px solid var(--border);
+            }
 
-        .link-card:hover {
-            background-color: var(--accent);
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
+            .section h2 {
+                color: var(--primary);
+                font-size: 1.4rem;
+                margin-top: 0;
+                margin-bottom: 1rem;
+                border-bottom: 2px solid var(--border);
+                padding-bottom: 0.5rem;
+            }
 
-        .chapter-number {
-            font-weight: 700;
-            margin-right: 0.75rem;
-            padding: 0.25rem 0.5rem;
-            background-color: rgba(0, 0, 0, 0.05);
-            border-radius: 4px;
-            font-size: 0.85rem;
-        }
+            .grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+                gap: 1rem;
+            }
 
-        .link-card:hover .chapter-number {
-            background-color: rgba(255, 255, 255, 0.2);
-            color: white;
-        }
-    </style>
-<link rel="stylesheet" href="../assets/global-navbar.css">
-</head>
-<body>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5MXP3RTV"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
+            .link-card {
+                display: flex;
+                align-items: center;
+                padding: 0.75rem 1rem;
+                background-color: #f1f3f5;
+                color: var(--primary);
+                text-decoration: none;
+                border-radius: 6px;
+                font-weight: 500;
+                transition: all 0.2s ease;
+                border: 1px solid transparent;
+            }
 
-<div class="container">
-    <header>
-        <h1>E-Book Index</h1>
-        <p class="subtitle">Interactive Study Material & Resource Navigation</p>
-    </header>
+            .link-card:hover {
+                background-color: var(--accent);
+                color: white;
+                transform: translateY(-2px);
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            }
 
-    <!-- General Resources -->
-    <div class="section">
-        <h2>General Resources</h2>
-        <div class="grid">
-            <a href="12th_mathematics_flashcards.html" class="link-card">
-                <span>🎴 12th Mathematics Flashcards</span>
-            </a>
-            <a href="interactive_visual_im_b79362f29e962717.html" class="link-card">
-                <span>👁️ Interactive Visual Study Tool</span>
-            </a>
+            .chapter-number {
+                font-weight: 700;
+                margin-right: 0.75rem;
+                padding: 0.25rem 0.5rem;
+                background-color: rgba(0, 0, 0, 0.05);
+                border-radius: 4px;
+                font-size: 0.85rem;
+            }
+
+            .link-card:hover .chapter-number {
+                background-color: rgba(255, 255, 255, 0.2);
+                color: white;
+            }
+        </style>
+        <link rel="stylesheet" href="../assets/global-navbar.css">
+    </head>
+
+    <body>
+        <!-- Google Tag Manager (noscript) -->
+        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5MXP3RTV" height="0" width="0"
+                style="display:none;visibility:hidden"></iframe></noscript>
+        <!-- End Google Tag Manager (noscript) -->
+
+        <div class="container">
+            <header>
+                <h1>E-Book Index</h1>
+                <p class="subtitle">Interactive Study Material & Resource Navigation</p>
+            </header>
+
+            <!-- General Resources -->
+            <div class="section">
+                <h2>General Resources</h2>
+                <div class="grid">
+                    <a href="12th_mathematics_flashcards.html" class="link-card">
+                        <span>🎴 12th Mathematics Flashcards</span>
+                    </a>
+                    <a href="interactive_visual_im_b79362f29e962717.html" class="link-card">
+                        <span>👁️ Interactive Visual Study Tool</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Chapter Guides -->
+            <div class="section">
+                <h2>Chapter Guides</h2>
+                <div class="grid">
+                    <a href="chapter 1/trial one .html" class="link-card">
+                        <span class="chapter-number">Ch 1</span>
+                        <span>Chapter 1: Trial One</span>
+                    </a>
+                    <a href="chapter 2/inverse_trigonometric_functions_interactive_guide.html" class="link-card">
+                        <span class="chapter-number">Ch 2</span>
+                        <span>Inverse Trigonometric Functions</span>
+                    </a>
+                    <a href="chapter 4/1.html" class="link-card">
+                        <span class="chapter-number">Ch 4</span>
+                        <span>Chapter 4 Guide</span>
+                    </a>
+                    <a href="chapter 5.html" class="link-card">
+                        <span class="chapter-number">Ch 5</span>
+                        <span>Chapter 5 Guide</span>
+                    </a>
+                    <a href="chapter 8/chapter_8_integrals_interactive_study_portal.html" class="link-card">
+                        <span class="chapter-number">Ch 8</span>
+                        <span>Integrals Study Portal</span>
+                    </a>
+                    <a href="chapter 9/differential_equations_material_hub.html" class="link-card">
+                        <span class="chapter-number">Ch 9</span>
+                        <span>Differential Equations Hub</span>
+                    </a>
+                    <a href="chapter 10/3d_vector_algebra_guide.html" class="link-card">
+                        <span class="chapter-number">Ch 10</span>
+                        <span>3D Vector Algebra Guide</span>
+                    </a>
+                    <a href="chapter 13/probability_chapter_13_guide.html" class="link-card">
+                        <span class="chapter-number">Ch 13</span>
+                        <span>Probability Guide</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Interactive Graphing Tools -->
+            <div class="section">
+                <h2>Graphing Tools</h2>
+                <div class="grid">
+                    <a href="graphing/te-02.html" class="link-card">
+                        <span>📈 Graphing Tool (TE-02)</span>
+                    </a>
+                    <a href="graphing/tr-01.html" class="link-card">
+                        <span>📊 Graphing Tool (TR-01)</span>
+                    </a>
+                </div>
+            </div>
         </div>
-    </div>
 
-    <!-- Chapter Guides -->
-    <div class="section">
-        <h2>Chapter Guides</h2>
-        <div class="grid">
-            <a href="chapter 1/trial one .html" class="link-card">
-                <span class="chapter-number">Ch 1</span>
-                <span>Chapter 1: Trial One</span>
-            </a>
-            <a href="chapter 2/inverse_trigonometric_functions_interactive_guide.html" class="link-card">
-                <span class="chapter-number">Ch 2</span>
-                <span>Inverse Trigonometric Functions</span>
-            </a>
-            <a href="chapter 4/1.html" class="link-card">
-                <span class="chapter-number">Ch 4</span>
-                <span>Chapter 4 Guide</span>
-            </a>
-            <a href="chapter 5.html" class="link-card">
-                <span class="chapter-number">Ch 5</span>
-                <span>Chapter 5 Guide</span>
-            </a>
-            <a href="chapter 8/chapter_8_integrals_interactive_study_portal.html" class="link-card">
-                <span class="chapter-number">Ch 8</span>
-                <span>Integrals Study Portal</span>
-            </a>
-            <a href="chapter 9/differential_equations_material_hub.html" class="link-card">
-                <span class="chapter-number">Ch 9</span>
-                <span>Differential Equations Hub</span>
-            </a>
-            <a href="chapter 10/3d_vector_algebra_guide.html" class="link-card">
-                <span class="chapter-number">Ch 10</span>
-                <span>3D Vector Algebra Guide</span>
-            </a>
-            <a href="chapter 13/probability_chapter_13_guide.html" class="link-card">
-                <span class="chapter-number">Ch 13</span>
-                <span>Probability Guide</span>
-            </a>
-        </div>
-    </div>
+        <script src="../assets/global-navbar.js" defer></script>
+    </body>
 
-    <!-- Interactive Graphing Tools -->
-    <div class="section">
-        <h2>Graphing Tools</h2>
-        <div class="grid">
-            <a href="graphing/te-02.html" class="link-card">
-                <span>📈 Graphing Tool (TE-02)</span>
-            </a>
-            <a href="graphing/tr-01.html" class="link-card">
-                <span>📊 Graphing Tool (TR-01)</span>
-            </a>
-        </div>
-    </div>
-</div>
-
-<script src="../assets/global-navbar.js" defer></script>
-</body>
-</html>
+    </html>

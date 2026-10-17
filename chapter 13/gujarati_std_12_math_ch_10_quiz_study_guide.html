@@ -1,58 +1,71 @@
 <!DOCTYPE html>
 <html lang="gu" class="dark">
+
 <head>
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-5MXP3RTV');</script>
-<!-- End Google Tag Manager -->
+    <!-- Google Tag Manager -->
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-5MXP3RTV');</script>
+    <!-- End Google Tag Manager -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ધોરણ-12 ગણિત : પ્રકરણ 10 સદિશ બીજગણિત (Vector Algebra) MCQs & Solution Guide</title>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8G4448P207"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-8G4448P207');
+    </script>
     <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-  import { getFirestore, doc, setDoc, increment } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, doc, setDoc, increment } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-  // Replace with your Firebase configuration object
- // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyAtDRRnUE3FM06gPrs9mHWXJnU9fXv5B54",
-  authDomain: "edu-suite-a55a5.firebaseapp.com",
-  projectId: "edu-suite-a55a5",
-  storageBucket: "edu-suite-a55a5.firebasestorage.app",
-  messagingSenderId: "5059668896",
-  appId: "1:5059668896:web:76fc4c09c1d298ca8012c5",
-  measurementId: "G-8G4448P207"
-};
+        // Replace with your Firebase configuration object
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+            apiKey: "AIzaSyAtDRRnUE3FM06gPrs9mHWXJnU9fXv5B54",
+            authDomain: "edu-suite-a55a5.firebaseapp.com",
+            projectId: "edu-suite-a55a5",
+            storageBucket: "edu-suite-a55a5.firebasestorage.app",
+            messagingSenderId: "5059668896",
+            appId: "1:5059668896:web:76fc4c09c1d298ca8012c5",
+            measurementId: "G-8G4448P207"
+        };
 
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
 
         async function trackPageView(pageName) {
-  // Document reference in the 'analytics' collection
-  const pageRef = doc(db, "analytics", pageName);
+            // Document reference in the 'analytics' collection
+            const pageRef = doc(db, "analytics", pageName);
 
-  try {
-    // Increment totalViews by 1 safely
-    await setDoc(pageRef, {
-      totalViews: increment(1),
-      lastVisited: new Date()
-    }, { merge: true });
-    
-    console.log(`Page view tracked for: ${pageName}`);
-  } catch (error) {
-    console.error("Error tracking analytics: ", error);
-  }
-}
+            try {
+                // Increment totalViews by 1 safely
+                await setDoc(pageRef, {
+                    totalViews: increment(1),
+                    lastVisited: new Date()
+                }, { merge: true });
 
-// Automatically track on page load
-const currentPage = window.location.pathname.replace(/\//g, "_") || "home";
-trackPageView(currentPage);
-</script>
+                console.log(`Page view tracked for: ${pageName}`);
+            } catch (error) {
+                console.error("Error tracking analytics: ", error);
+            }
+        }
 
-    
+        // Automatically track on page load
+        const currentPage = window.location.pathname.replace(/\//g, "_") || "home";
+        trackPageView(currentPage);
+    </script>
+
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -83,12 +96,15 @@ trackPageView(currentPage);
     <!-- Google Fonts for Gujarati -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+Gujarati:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+Gujarati:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
 
     <!-- KaTeX for Mathematics -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" onload="initKaTeX()"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+        onload="initKaTeX()"></script>
 
     <!-- Phosphor Icons -->
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
@@ -97,44 +113,53 @@ trackPageView(currentPage);
         body {
             font-family: 'Noto Sans Gujarati', 'Inter', sans-serif;
         }
+
         /* Custom scrollbars */
         ::-webkit-scrollbar {
             width: 6px;
             height: 6px;
         }
+
         ::-webkit-scrollbar-track {
             background: #0f172a;
         }
+
         ::-webkit-scrollbar-thumb {
             background: #334155;
             border-radius: 4px;
         }
+
         ::-webkit-scrollbar-thumb:hover {
             background: #475569;
         }
+
         .math-expr {
             font-size: 1.05em;
         }
     </style>
-<link rel="stylesheet" href="../assets/global-navbar.css">
+    <link rel="stylesheet" href="../assets/global-navbar.css">
 </head>
+
 <body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col selection:bg-brand-500 selection:text-white">
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5MXP3RTV"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5MXP3RTV" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
 
     <!-- Header Navigation -->
     <header class="sticky top-0 z-40 bg-slate-900/90 backdrop-blur-md border-b border-slate-800 transition-all">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
             <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-indigo-500 flex items-center justify-center text-white shadow-lg shadow-brand-500/20 font-bold text-lg">
+                <div
+                    class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-indigo-500 flex items-center justify-center text-white shadow-lg shadow-brand-500/20 font-bold text-lg">
                     ૧૦
                 </div>
                 <div>
                     <h1 class="font-bold text-base sm:text-lg leading-tight text-white flex items-center gap-2">
                         ધોરણ-12 ગણિત : પ્રકરણ 10
-                        <span class="text-xs font-normal px-2 py-0.5 rounded bg-brand-500/20 text-brand-300 border border-brand-500/30">સદિશ બીજગણિત</span>
+                        <span
+                            class="text-xs font-normal px-2 py-0.5 rounded bg-brand-500/20 text-brand-300 border border-brand-500/30">સદિશ
+                            બીજગણિત</span>
                     </h1>
                     <p class="text-xs text-slate-400">Unit Test Practice Engine & Complete Solutions</p>
                 </div>
@@ -142,12 +167,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             <!-- Toolbar Action Buttons -->
             <div class="flex items-center gap-2 sm:gap-3">
-                <button onclick="openFormulaModal()" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-medium text-slate-200 border border-slate-700 transition flex items-center gap-1.5">
+                <button onclick="openFormulaModal()"
+                    class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-medium text-slate-200 border border-slate-700 transition flex items-center gap-1.5">
                     <i class="ph-bold ph-function text-brand-400 text-sm"></i>
                     <span class="hidden sm:inline">સૂત્રો (Formulas)</span>
                 </button>
 
-                <button id="mode-toggle-btn" onclick="toggleExamMode()" class="px-3 py-1.5 rounded-lg bg-brand-600 hover:bg-brand-500 text-xs font-semibold text-white shadow-md shadow-brand-600/20 transition flex items-center gap-1.5">
+                <button id="mode-toggle-btn" onclick="toggleExamMode()"
+                    class="px-3 py-1.5 rounded-lg bg-brand-600 hover:bg-brand-500 text-xs font-semibold text-white shadow-md shadow-brand-600/20 transition flex items-center gap-1.5">
                     <i class="ph-bold ph-timer text-sm"></i>
                     <span id="mode-btn-text">પરીક્ષા મોડ (Exam Mode)</span>
                 </button>
@@ -157,16 +184,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <!-- Main Content Layout -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-1 w-full grid grid-cols-1 lg:grid-cols-12 gap-6">
-        
+
         <!-- Sidebar Navigation & Filters -->
         <aside class="lg:col-span-3 space-y-4">
             <!-- Progress Overview Card -->
             <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 shadow-xl">
-                <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3 flex items-center justify-between">
+                <h3
+                    class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3 flex items-center justify-between">
                     <span>પ્રગતિ (Progress)</span>
                     <span id="progress-percent" class="text-brand-400 font-mono text-xs">0%</span>
                 </h3>
-                
+
                 <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden mb-4">
                     <div id="progress-bar" class="bg-brand-500 h-full w-0 transition-all duration-300"></div>
                 </div>
@@ -189,26 +217,37 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             <!-- Topic Filters -->
             <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 shadow-xl">
-                <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">ટોપિક ફિલ્ટર (Categories)</h3>
-                
+                <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">ટોપિક ફિલ્ટર (Categories)
+                </h3>
+
                 <div class="space-y-1.5 text-xs">
-                    <button onclick="filterCategory('all')" class="cat-filter-btn w-full text-left px-3 py-2 rounded-xl bg-brand-600 text-white font-medium transition flex items-center justify-between" data-cat="all">
+                    <button onclick="filterCategory('all')"
+                        class="cat-filter-btn w-full text-left px-3 py-2 rounded-xl bg-brand-600 text-white font-medium transition flex items-center justify-between"
+                        data-cat="all">
                         <span>તમામ પ્રશ્નો (All Questions)</span>
                         <span class="bg-slate-950/40 px-2 py-0.5 rounded text-[10px] font-mono">57</span>
                     </button>
-                    <button onclick="filterCategory('basic')" class="cat-filter-btn w-full text-left px-3 py-2 rounded-xl bg-slate-950 hover:bg-slate-800 text-slate-300 transition flex items-center justify-between" data-cat="basic">
+                    <button onclick="filterCategory('basic')"
+                        class="cat-filter-btn w-full text-left px-3 py-2 rounded-xl bg-slate-950 hover:bg-slate-800 text-slate-300 transition flex items-center justify-between"
+                        data-cat="basic">
                         <span>સદિશોના પ્રકાર અને સરવાળા</span>
                         <span class="bg-slate-900 px-2 py-0.5 rounded text-[10px] font-mono text-slate-400">12</span>
                     </button>
-                    <button onclick="filterCategory('dot')" class="cat-filter-btn w-full text-left px-3 py-2 rounded-xl bg-slate-950 hover:bg-slate-800 text-slate-300 transition flex items-center justify-between" data-cat="dot">
+                    <button onclick="filterCategory('dot')"
+                        class="cat-filter-btn w-full text-left px-3 py-2 rounded-xl bg-slate-950 hover:bg-slate-800 text-slate-300 transition flex items-center justify-between"
+                        data-cat="dot">
                         <span>અદિશ ગુણાકાર (Dot Product)</span>
                         <span class="bg-slate-900 px-2 py-0.5 rounded text-[10px] font-mono text-slate-400">15</span>
                     </button>
-                    <button onclick="filterCategory('cross')" class="cat-filter-btn w-full text-left px-3 py-2 rounded-xl bg-slate-950 hover:bg-slate-800 text-slate-300 transition flex items-center justify-between" data-cat="cross">
+                    <button onclick="filterCategory('cross')"
+                        class="cat-filter-btn w-full text-left px-3 py-2 rounded-xl bg-slate-950 hover:bg-slate-800 text-slate-300 transition flex items-center justify-between"
+                        data-cat="cross">
                         <span>સદિશ ગુણાકાર (Cross Product)</span>
                         <span class="bg-slate-900 px-2 py-0.5 rounded text-[10px] font-mono text-slate-400">12</span>
                     </button>
-                    <button onclick="filterCategory('cosines')" class="cat-filter-btn w-full text-left px-3 py-2 rounded-xl bg-slate-950 hover:bg-slate-800 text-slate-300 transition flex items-center justify-between" data-cat="cosines">
+                    <button onclick="filterCategory('cosines')"
+                        class="cat-filter-btn w-full text-left px-3 py-2 rounded-xl bg-slate-950 hover:bg-slate-800 text-slate-300 transition flex items-center justify-between"
+                        data-cat="cosines">
                         <span>દિક્કોસાઈન અને ખૂણાઓ</span>
                         <span class="bg-slate-900 px-2 py-0.5 rounded text-[10px] font-mono text-slate-400">18</span>
                     </button>
@@ -219,9 +258,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 shadow-xl">
                 <div class="flex items-center justify-between mb-3">
                     <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400">પ્રશ્ન નેવિગેટર</h3>
-                    <input type="text" id="search-q" oninput="searchQuestions()" placeholder="પ્રશ્ન શોધો..." class="bg-slate-950 border border-slate-800 rounded-lg px-2 py-1 text-xs w-24 focus:outline-none focus:border-brand-500">
+                    <input type="text" id="search-q" oninput="searchQuestions()" placeholder="પ્રશ્ન શોધો..."
+                        class="bg-slate-950 border border-slate-800 rounded-lg px-2 py-1 text-xs w-24 focus:outline-none focus:border-brand-500">
                 </div>
-                
+
                 <div id="q-grid-container" class="grid grid-cols-6 gap-1.5 max-h-56 overflow-y-auto pr-1">
                     <!-- Dynamic Question Buttons -->
                 </div>
@@ -232,28 +272,33 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <main class="lg:col-span-9 space-y-6">
 
             <!-- Exam Timer Banner (Hidden in Practice Mode) -->
-            <div id="exam-timer-banner" class="hidden bg-gradient-to-r from-amber-500/10 via-slate-900 to-amber-500/10 border border-amber-500/30 rounded-2xl p-4 flex items-center justify-between">
+            <div id="exam-timer-banner"
+                class="hidden bg-gradient-to-r from-amber-500/10 via-slate-900 to-amber-500/10 border border-amber-500/30 rounded-2xl p-4 flex items-center justify-between">
                 <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold text-lg">
+                    <div
+                        class="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold text-lg">
                         <i class="ph-bold ph-hourglass-high"></i>
                     </div>
                     <div>
-                        <div class="text-xs text-amber-300 uppercase tracking-wide font-bold">લાઇવ પરીક્ષા મોડ (Timed Test)</div>
+                        <div class="text-xs text-amber-300 uppercase tracking-wide font-bold">લાઇવ પરીક્ષા મોડ (Timed
+                            Test)</div>
                         <div class="text-xs text-slate-400">બધા પ્રશ્નોના ઉત્તર આપી સબમિટ કરો</div>
                     </div>
                 </div>
-                <div class="font-mono text-xl font-black text-amber-400 bg-slate-950 px-4 py-1.5 rounded-xl border border-amber-500/20" id="timer-display">
+                <div class="font-mono text-xl font-black text-amber-400 bg-slate-950 px-4 py-1.5 rounded-xl border border-amber-500/20"
+                    id="timer-display">
                     60:00
                 </div>
             </div>
 
             <!-- Question Container -->
             <div id="question-card" class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-2xl relative">
-                
+
                 <!-- Question Top Header -->
                 <div class="flex items-center justify-between mb-4 border-b border-slate-800 pb-3">
                     <div class="flex items-center gap-2">
-                        <span id="q-number-badge" class="px-3 py-1 rounded-lg bg-brand-600/20 text-brand-300 font-mono text-xs font-bold border border-brand-500/30">
+                        <span id="q-number-badge"
+                            class="px-3 py-1 rounded-lg bg-brand-600/20 text-brand-300 font-mono text-xs font-bold border border-brand-500/30">
                             પ્રશ્ન 1 / 57
                         </span>
                         <span id="q-category-badge" class="px-2.5 py-1 rounded-lg bg-slate-800 text-slate-400 text-xs">
@@ -261,7 +306,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         </span>
                     </div>
 
-                    <button onclick="toggleBookmark()" id="bookmark-btn" class="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-400 transition" title="પ્રશ્ન બુકમાર્ક કરો">
+                    <button onclick="toggleBookmark()" id="bookmark-btn"
+                        class="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-400 transition"
+                        title="પ્રશ્ન બુકમાર્ક કરો">
                         <i class="ph-bold ph-bookmark text-base"></i>
                     </button>
                 </div>
@@ -277,9 +324,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 </div>
 
                 <!-- Solution Box (Appears after answer in Practice mode) -->
-                <div id="solution-box" class="hidden bg-slate-950 border border-slate-800 rounded-xl p-4 my-4 border-l-4 border-l-brand-500">
+                <div id="solution-box"
+                    class="hidden bg-slate-950 border border-slate-800 rounded-xl p-4 my-4 border-l-4 border-l-brand-500">
                     <div class="flex items-center justify-between mb-2">
-                        <span class="text-xs font-bold text-brand-400 uppercase tracking-wider flex items-center gap-1.5">
+                        <span
+                            class="text-xs font-bold text-brand-400 uppercase tracking-wider flex items-center gap-1.5">
                             <i class="ph-bold ph-lightbulb text-sm"></i> સમજૂતી / ગણતરી (Solution):
                         </span>
                     </div>
@@ -290,15 +339,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
                 <!-- Navigation Controls -->
                 <div class="flex items-center justify-between pt-4 border-t border-slate-800">
-                    <button onclick="prevQuestion()" id="prev-btn" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold transition flex items-center gap-2">
+                    <button onclick="prevQuestion()" id="prev-btn"
+                        class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold transition flex items-center gap-2">
                         <i class="ph-bold ph-caret-left"></i> પાછળનો
                     </button>
 
                     <div class="flex gap-2">
-                        <button onclick="resetCurrentAnswer()" class="px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-slate-200 text-xs transition">
+                        <button onclick="resetCurrentAnswer()"
+                            class="px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-slate-200 text-xs transition">
                             ક્લિયર (Clear)
                         </button>
-                        <button onclick="nextQuestion()" id="next-btn" class="px-5 py-2 rounded-xl bg-brand-600 hover:bg-brand-500 text-white text-xs font-semibold transition flex items-center gap-2 shadow-lg shadow-brand-600/20">
+                        <button onclick="nextQuestion()" id="next-btn"
+                            class="px-5 py-2 rounded-xl bg-brand-600 hover:bg-brand-500 text-white text-xs font-semibold transition flex items-center gap-2 shadow-lg shadow-brand-600/20">
                             આગળનો <i class="ph-bold ph-caret-right"></i>
                         </button>
                     </div>
@@ -310,18 +362,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
     <!-- Formulas Cheat Sheet Modal -->
-    <div id="formula-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
-        <div class="bg-slate-900 border border-slate-800 rounded-3xl max-w-3xl w-full max-h-[85vh] overflow-hidden flex flex-col shadow-2xl">
+    <div id="formula-modal"
+        class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div
+            class="bg-slate-900 border border-slate-800 rounded-3xl max-w-3xl w-full max-h-[85vh] overflow-hidden flex flex-col shadow-2xl">
             <div class="p-5 border-b border-slate-800 flex items-center justify-between">
                 <div class="flex items-center gap-2">
                     <i class="ph-bold ph-function text-xl text-brand-400"></i>
                     <h2 class="text-lg font-bold text-white">સદિશ બીજગણિત : અગત્યના સૂત્રો (Important Formulas)</h2>
                 </div>
-                <button onclick="closeFormulaModal()" class="p-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-400 transition">
+                <button onclick="closeFormulaModal()"
+                    class="p-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-400 transition">
                     <i class="ph-bold ph-x text-lg"></i>
                 </button>
             </div>
-            
+
             <div class="p-6 overflow-y-auto space-y-6 text-sm">
                 <!-- Section 1 -->
                 <div class="bg-slate-950 p-4 rounded-2xl border border-slate-800">
@@ -334,19 +389,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <div class="bg-slate-950 p-4 rounded-2xl border border-slate-800">
                     <h3 class="font-bold text-brand-400 text-xs uppercase mb-2">૨. સદિશ ગુણાકાર (Cross Product)</h3>
                     <p>$$|\vec{a} \times \vec{b}| = |\vec{a}| |\vec{b}| \sin\theta$$</p>
-                    <p class="mt-1 text-slate-400 text-xs">લંબચોરસ/સમાંતરબાજુ ચતુષ્કોણનું ક્ષેત્રફળ $= |\vec{a} \times \vec{b}|$, ત્રિકોણનું ક્ષેત્રફળ $= \frac{1}{2}|\vec{a} \times \vec{b}|$.</p>
+                    <p class="mt-1 text-slate-400 text-xs">લંબચોરસ/સમાંતરબાજુ ચતુષ્કોણનું ક્ષેત્રફળ $= |\vec{a} \times
+                        \vec{b}|$, ત્રિકોણનું ક્ષેત્રફળ $= \frac{1}{2}|\vec{a} \times \vec{b}|$.</p>
                 </div>
 
                 <!-- Section 3 -->
                 <div class="bg-slate-950 p-4 rounded-2xl border border-slate-800">
-                    <h3 class="font-bold text-brand-400 text-xs uppercase mb-2">૩. પ્રક્ષેપ સદિશ (Projection Vector)</h3>
-                    <p>$\vec{a}$ નો $\vec{b}$ પરનો પ્રક્ષેપ માન $= \frac{|\vec{a} \cdot \vec{b}|}{|\vec{b}|}$, પ્રક્ષેપ સદિશ $= \left(\frac{\vec{a} \cdot \vec{b}}{|\vec{b}|^2}\right)\vec{b}$.</p>
+                    <h3 class="font-bold text-brand-400 text-xs uppercase mb-2">૩. પ્રક્ષેપ સદિશ (Projection Vector)
+                    </h3>
+                    <p>$\vec{a}$ નો $\vec{b}$ પરનો પ્રક્ષેપ માન $= \frac{|\vec{a} \cdot \vec{b}|}{|\vec{b}|}$, પ્રક્ષેપ
+                        સદિશ $= \left(\frac{\vec{a} \cdot \vec{b}}{|\vec{b}|^2}\right)\vec{b}$.</p>
                 </div>
 
                 <!-- Section 4 -->
                 <div class="bg-slate-950 p-4 rounded-2xl border border-slate-800">
                     <h3 class="font-bold text-brand-400 text-xs uppercase mb-2">૪. દિક્કોસાઈન (Direction Cosines)</h3>
-                    <p>$$\cos^2\alpha + \cos^2\beta + \cos^2\gamma = 1 \implies \sin^2\alpha + \sin^2\beta + \sin^2\gamma = 2$$</p>
+                    <p>$$\cos^2\alpha + \cos^2\beta + \cos^2\gamma = 1 \implies \sin^2\alpha + \sin^2\beta +
+                        \sin^2\gamma = 2$$</p>
                     <p>$$\cos 2\alpha + \cos 2\beta + \cos 2\gamma = 2(1) - 3 = -1$$</p>
                 </div>
             </div>
@@ -1113,8 +1172,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             if (window.renderMathInElement) {
                 renderMathInElement(document.body, {
                     delimiters: [
-                        {left: '$$', right: '$$', display: true},
-                        {left: '$', right: '$', display: false}
+                        { left: '$$', right: '$$', display: true },
+                        { left: '$', right: '$', display: false }
                     ]
                 });
             }
@@ -1139,8 +1198,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 } else if (isAnswered) {
                     if (!isExamMode) {
                         const isCorrect = userAnswers[idx] === q.correct;
-                        btn.className += isCorrect 
-                            ? ' border-emerald-500/50 bg-emerald-500/20 text-emerald-300' 
+                        btn.className += isCorrect
+                            ? ' border-emerald-500/50 bg-emerald-500/20 text-emerald-300'
                             : ' border-rose-500/50 bg-rose-500/20 text-rose-300';
                     } else {
                         btn.className += ' border-brand-500/50 bg-brand-500/20 text-brand-300';
@@ -1167,7 +1226,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             const q = questionsData[currentIndex];
 
             document.getElementById('q-number-badge').innerText = `પ્રશ્ન ${currentIndex + 1} / ${questionsData.length}`;
-            
+
             const catNames = {
                 basic: 'સદિશોના પ્રકાર અને સરવાળા',
                 dot: 'અદિશ ગુણાકાર (Dot Product)',
@@ -1247,8 +1306,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             if (window.renderMathInElement) {
                 renderMathInElement(document.getElementById('question-card'), {
                     delimiters: [
-                        {left: '$$', right: '$$', display: true},
-                        {left: '$', right: '$', display: false}
+                        { left: '$$', right: '$$', display: true },
+                        { left: '$', right: '$', display: false }
                     ]
                 });
             }
@@ -1357,7 +1416,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     examTimeRemaining--;
                     const mins = Math.floor(examTimeRemaining / 60);
                     const secs = examTimeRemaining % 60;
-                    document.getElementById('timer-display').innerText = 
+                    document.getElementById('timer-display').innerText =
                         `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
                 } else {
                     clearInterval(examTimer);
@@ -1390,6 +1449,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             renderQuestion();
         });
     </script>
-<script src="../assets/global-navbar.js" defer></script>
+    <script src="../assets/global-navbar.js" defer></script>
 </body>
+
 </html>

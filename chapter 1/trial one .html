@@ -1,64 +1,79 @@
 <!DOCTYPE html>
 <html lang="gu">
+
 <head>
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-5MXP3RTV');</script>
-<!-- End Google Tag Manager -->
+    <!-- Google Tag Manager -->
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-5MXP3RTV');</script>
+    <!-- End Google Tag Manager -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>સંબંધ અને વિધેય (Relations & Functions) - Interactive Learning Lab</title>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8G4448P207"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-8G4448P207');
+    </script>
     <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-  import { getFirestore, doc, setDoc, increment } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, doc, setDoc, increment } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-  // Replace with your Firebase configuration object
- // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyAtDRRnUE3FM06gPrs9mHWXJnU9fXv5B54",
-  authDomain: "edu-suite-a55a5.firebaseapp.com",
-  projectId: "edu-suite-a55a5",
-  storageBucket: "edu-suite-a55a5.firebasestorage.app",
-  messagingSenderId: "5059668896",
-  appId: "1:5059668896:web:76fc4c09c1d298ca8012c5",
-  measurementId: "G-8G4448P207"
-};
+        // Replace with your Firebase configuration object
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+            apiKey: "AIzaSyAtDRRnUE3FM06gPrs9mHWXJnU9fXv5B54",
+            authDomain: "edu-suite-a55a5.firebaseapp.com",
+            projectId: "edu-suite-a55a5",
+            storageBucket: "edu-suite-a55a5.firebasestorage.app",
+            messagingSenderId: "5059668896",
+            appId: "1:5059668896:web:76fc4c09c1d298ca8012c5",
+            measurementId: "G-8G4448P207"
+        };
 
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
 
         async function trackPageView(pageName) {
-  // Document reference in the 'analytics' collection
-  const pageRef = doc(db, "analytics", pageName);
+            // Document reference in the 'analytics' collection
+            const pageRef = doc(db, "analytics", pageName);
 
-  try {
-    // Increment totalViews by 1 safely
-    await setDoc(pageRef, {
-      totalViews: increment(1),
-      lastVisited: new Date()
-    }, { merge: true });
-    
-    console.log(`Page view tracked for: ${pageName}`);
-  } catch (error) {
-    console.error("Error tracking analytics: ", error);
-  }
-}
+            try {
+                // Increment totalViews by 1 safely
+                await setDoc(pageRef, {
+                    totalViews: increment(1),
+                    lastVisited: new Date()
+                }, { merge: true });
 
-// Automatically track on page load
-const currentPage = window.location.pathname.replace(/\//g, "_") || "home";
-trackPageView(currentPage);
-</script>
+                console.log(`Page view tracked for: ${pageName}`);
+            } catch (error) {
+                console.error("Error tracking analytics: ", error);
+            }
+        }
+
+        // Automatically track on page load
+        const currentPage = window.location.pathname.replace(/\//g, "_") || "home";
+        trackPageView(currentPage);
+    </script>
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Vadodara:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Hind+Vadodara:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
     <!-- KaTeX CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
     <!-- KaTeX JS -->
@@ -93,58 +108,90 @@ trackPageView(currentPage);
         }
     </script>
     <style>
-        body { font-family: 'Hind Vadodara', 'Inter', sans-serif; }
-        .node-circle { transition: all 0.3s ease; }
-        .node-circle:hover { transform: scale(1.1); }
-        .active-tab { border-bottom: 3px solid #4f46e5; color: #4f46e5; font-weight: 700; }
-        .custom-scroll::-webkit-scrollbar { width: 6px; height: 6px; }
-        .custom-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        body {
+            font-family: 'Hind Vadodara', 'Inter', sans-serif;
+        }
+
+        .node-circle {
+            transition: all 0.3s ease;
+        }
+
+        .node-circle:hover {
+            transform: scale(1.1);
+        }
+
+        .active-tab {
+            border-bottom: 3px solid #4f46e5;
+            color: #4f46e5;
+            font-weight: 700;
+        }
+
+        .custom-scroll::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
     </style>
-<link rel="stylesheet" href="../assets/global-navbar.css">
+    <link rel="stylesheet" href="../assets/global-navbar.css">
 </head>
+
 <body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col">
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5MXP3RTV"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5MXP3RTV" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
 
     <!-- Header -->
     <header class="bg-indigo-900 text-white shadow-lg sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 py-3 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-3">
+        <div
+            class="max-w-7xl mx-auto px-4 py-3 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-3">
             <div class="flex items-center space-x-3">
                 <div class="bg-indigo-600 p-2.5 rounded-xl shadow-md">
                     <i class="fa-solid fa-diagram-project text-2xl text-amber-300"></i>
                 </div>
                 <div>
-                    <h1 class="text-xl sm:text-2xl font-bold tracking-tight">૧. સંબંધ અને વિધેય (Relations & Functions)</h1>
+                    <h1 class="text-xl sm:text-2xl font-bold tracking-tight">૧. સંબંધ અને વિધેય (Relations & Functions)
+                    </h1>
                     <p class="text-xs text-indigo-200">ધોરણ ૧૨ ગણિત - ઇન્ટરેક્ટિવ સ્વ-અધ્યયન લર્નિંગ મોડ્યુલ</p>
                 </div>
             </div>
-            <div class="flex items-center gap-2 bg-indigo-800/80 px-3 py-1.5 rounded-lg border border-indigo-700 text-xs text-indigo-100">
+            <div
+                class="flex items-center gap-2 bg-indigo-800/80 px-3 py-1.5 rounded-lg border border-indigo-700 text-xs text-indigo-100">
                 <i class="fa-solid fa-graduation-cap text-amber-400 text-sm"></i>
                 <span>GSEB Class 12 Self Learning</span>
             </div>
         </div>
 
         <!-- Navigation Tabs -->
-        <nav class="bg-white border-b border-slate-200 text-slate-600 text-sm font-semibold overflow-x-auto custom-scroll">
+        <nav
+            class="bg-white border-b border-slate-200 text-slate-600 text-sm font-semibold overflow-x-auto custom-scroll">
             <div class="max-w-7xl mx-auto px-4 flex whitespace-nowrap gap-1 sm:gap-6">
-                <button onclick="switchTab('theory')" id="tab-theory" class="tab-btn active-tab py-3 px-3 hover:text-indigo-600 transition flex items-center gap-2">
+                <button onclick="switchTab('theory')" id="tab-theory"
+                    class="tab-btn active-tab py-3 px-3 hover:text-indigo-600 transition flex items-center gap-2">
                     <i class="fa-solid fa-book-open"></i> ૧. થીયરી & સૂત્રો
                 </button>
-                <button onclick="switchTab('cartesian')" id="tab-cartesian" class="tab-btn py-3 px-3 hover:text-indigo-600 transition flex items-center gap-2">
+                <button onclick="switchTab('cartesian')" id="tab-cartesian"
+                    class="tab-btn py-3 px-3 hover:text-indigo-600 transition flex items-center gap-2">
                     <i class="fa-solid fa-border-all"></i> ૨. કાર્ટેઝિયન ગુણાકાર
                 </button>
-                <button onclick="switchTab('relations')" id="tab-relations" class="tab-btn py-3 px-3 hover:text-indigo-600 transition flex items-center gap-2">
+                <button onclick="switchTab('relations')" id="tab-relations"
+                    class="tab-btn py-3 px-3 hover:text-indigo-600 transition flex items-center gap-2">
                     <i class="fa-solid fa-network-wired"></i> ૩. સંબંધના પ્રકારો (Tester)
                 </button>
-                <button onclick="switchTab('functions')" id="tab-functions" class="tab-btn py-3 px-3 hover:text-indigo-600 transition flex items-center gap-2">
+                <button onclick="switchTab('functions')" id="tab-functions"
+                    class="tab-btn py-3 px-3 hover:text-indigo-600 transition flex items-center gap-2">
                     <i class="fa-solid fa-route"></i> ૪. વિધેયોના પ્રકારો (Mapper)
                 </button>
-                <button onclick="switchTab('composition')" id="tab-composition" class="tab-btn py-3 px-3 hover:text-indigo-600 transition flex items-center gap-2">
+                <button onclick="switchTab('composition')" id="tab-composition"
+                    class="tab-btn py-3 px-3 hover:text-indigo-600 transition flex items-center gap-2">
                     <i class="fa-solid fa-circle-nodes"></i> ૫. વિધેયોનું સંયોજન (gof)
                 </button>
-                <button onclick="switchTab('quiz')" id="tab-quiz" class="tab-btn py-3 px-3 hover:text-indigo-600 transition flex items-center gap-2">
+                <button onclick="switchTab('quiz')" id="tab-quiz"
+                    class="tab-btn py-3 px-3 hover:text-indigo-600 transition flex items-center gap-2">
                     <i class="fa-solid fa-pen-to-square"></i> ૬. સ્વ-મૂલ્યાંકન ક્વિઝ
                 </button>
             </div>
@@ -156,8 +203,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <!-- ==================== TAB 1: THEORY & FORMULAS ==================== -->
         <section id="section-theory" class="tab-content block space-y-6">
             <div class="bg-gradient-to-r from-indigo-500 to-purple-600 rounded-2xl p-6 text-white shadow-lg">
-                <h2 class="text-2xl font-bold mb-2"><i class="fa-solid fa-lightbulb text-amber-300 mr-2"></i>સંબંધ અને વિધેય: મહત્વની વ્યાખ્યાઓ અને સૂત્રો</h2>
-                <p class="text-indigo-100">તમારા અભ્યાસક્રમ આધારિત તમામ અગત્યની વ્યાખ્યાઓ, ગુણધર્મો અને સૂત્રોનો ઝડપી સંગ્રહ.</p>
+                <h2 class="text-2xl font-bold mb-2"><i class="fa-solid fa-lightbulb text-amber-300 mr-2"></i>સંબંધ અને
+                    વિધેય: મહત્વની વ્યાખ્યાઓ અને સૂત્રો</h2>
+                <p class="text-indigo-100">તમારા અભ્યાસક્રમ આધારિત તમામ અગત્યની વ્યાખ્યાઓ, ગુણધર્મો અને સૂત્રોનો ઝડપી
+                    સંગ્રહ.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -175,9 +224,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             <strong>સંબંધ (Relation):</strong> ગણ A થી ગણ B પરનો સંબંધ $R \subset A \times B$.
                         </li>
                         <li class="bg-amber-50 p-3 rounded-lg border-l-4 border-amber-500 text-amber-900">
-                            <i class="fa-solid fa-star mr-1"></i> <strong>અગત્યનું સૂત્ર:</strong> જો $n(A) = m$ અને $n(B) = n$ હોય, તો:<br>
+                            <i class="fa-solid fa-star mr-1"></i> <strong>અગત્યનું સૂત્ર:</strong> જો $n(A) = m$ અને
+                            $n(B) = n$ હોય, તો:<br>
                             • $n(A \times B) = m \times n$<br>
-                            • A થી B પરના કુલ સંબંધોની સંખ્યા = <span class="font-bold text-indigo-700 text-base">2^{mn}</span>
+                            • A થી B પરના કુલ સંબંધોની સંખ્યા = <span
+                                class="font-bold text-indigo-700 text-base">2^{mn}</span>
                         </li>
                     </ul>
                 </div>
@@ -190,10 +241,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     </div>
                     <div class="space-y-2 text-sm">
                         <div class="p-2.5 bg-slate-50 rounded-lg">
-                            <span class="font-bold text-indigo-800">રિક્ત સંબંધ (Void):</span> $R = \Phi \subset A \times A$ (કોઈ ઘટક સંબંધિત ન હોય).
+                            <span class="font-bold text-indigo-800">રિક્ત સંબંધ (Void):</span> $R = \Phi \subset A
+                            \times A$ (કોઈ ઘટક સંબંધિત ન હોય).
                         </div>
                         <div class="p-2.5 bg-slate-50 rounded-lg">
-                            <span class="font-bold text-indigo-800">સાર્વત્રિક સંબંધ (Universal):</span> $R = A \times A$ (પ્રત્યેક ઘટક દરેક સાથે સંબંધિત).
+                            <span class="font-bold text-indigo-800">સાર્વત્રિક સંબંધ (Universal):</span> $R = A \times
+                            A$ (પ્રત્યેક ઘટક દરેક સાથે સંબંધિત).
                         </div>
                         <div class="p-2.5 bg-indigo-50 rounded-lg text-indigo-900">
                             <span class="font-bold">સ્વવાચક (Reflexive):</span> $\forall a \in A \implies (a,a) \in R$
@@ -202,10 +255,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             <span class="font-bold">સંમિત (Symmetric):</span> $(a,b) \in R \implies (b,a) \in R$
                         </div>
                         <div class="p-2.5 bg-indigo-50 rounded-lg text-indigo-900">
-                            <span class="font-bold">પરંપરિત (Transitive):</span> $(a,b) \in R$ અને $(b,c) \in R \implies (a,c) \in R$
+                            <span class="font-bold">પરંપરિત (Transitive):</span> $(a,b) \in R$ અને $(b,c) \in R \implies
+                            (a,c) \in R$
                         </div>
-                        <div class="p-2.5 bg-emerald-50 rounded-lg border border-emerald-200 text-emerald-900 font-semibold">
-                            <i class="fa-solid fa-check-circle text-emerald-600 mr-1"></i> <strong>સામ્ય સંબંધ (Equivalence):</strong> જો સંબંધ સ્વવાચક, સંમિત અને પરંપરિત ત્રણેય હોય.
+                        <div
+                            class="p-2.5 bg-emerald-50 rounded-lg border border-emerald-200 text-emerald-900 font-semibold">
+                            <i class="fa-solid fa-check-circle text-emerald-600 mr-1"></i> <strong>સામ્ય સંબંધ
+                                (Equivalence):</strong> જો સંબંધ સ્વવાચક, સંમિત અને પરંપરિત ત્રણેય હોય.
                         </div>
                     </div>
                 </div>
@@ -216,7 +272,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <i class="fa-solid fa-sliders text-xl"></i>
                         <h3>૩. વિધેય અને તેના પ્રકારો</h3>
                     </div>
-                    <p class="text-xs text-slate-500 mb-2">વિધેય $f: A \rightarrow B$ ગણ A નાં પ્રત્યેક ઘટકને B ના અનન્ય ઘટક સાથે સાંકળે છે.</p>
+                    <p class="text-xs text-slate-500 mb-2">વિધેય $f: A \rightarrow B$ ગણ A નાં પ્રત્યેક ઘટકને B ના અનન્ય
+                        ઘટક સાથે સાંકળે છે.</p>
                     <div class="space-y-2.5 text-sm">
                         <div class="p-2.5 bg-slate-50 rounded-lg">
                             <strong>એક-એક (Injective / One-One):</strong> $f(x_1) = f(x_2) \implies x_1 = x_2$.
@@ -225,7 +282,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             <strong>અનેક-એક (Many-One):</strong> એકથી વધુ $x$ માટે એક જ $f(x)$ મળે.
                         </div>
                         <div class="p-2.5 bg-slate-50 rounded-lg">
-                            <strong>વ્યાપ્ત વિધેય (Surjective / Onto):</strong> વિસ્તાર = સહપ્રદેશ ($Range = Co\text{-}domain$).
+                            <strong>વ્યાપ્ત વિધેય (Surjective / Onto):</strong> વિસ્તાર = સહપ્રદેશ ($Range =
+                            Co\text{-}domain$).
                         </div>
                         <div class="p-2.5 bg-purple-50 text-purple-900 rounded-lg font-semibold">
                             <strong>એક-એક અને વ્યાપ્ત (Bijective):</strong> વિધેય એક-એક અને વ્યાપ્ત બંને હોય.
@@ -245,10 +303,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             <span class="text-xs text-slate-500">શરત: f નો વિસ્તાર $\subseteq$ g નો પ્રદેશ.</span>
                         </div>
                         <div class="p-3 bg-slate-50 rounded-lg border-l-4 border-indigo-500">
-                            <strong>વ્યસ્ત વિધેય (Inverse $f^{-1}$):</strong> વિધેય f વ્યસ્ત સંપન્ન ત્યારે જ થાય જ્યારે f એ <strong>એક-એક અને વ્યાપ્ત (Bijective)</strong> હોય.
+                            <strong>વ્યસ્ત વિધેય (Inverse $f^{-1}$):</strong> વિધેય f વ્યસ્ત સંપન્ન ત્યારે જ થાય જ્યારે
+                            f એ <strong>એક-એક અને વ્યાપ્ત (Bijective)</strong> હોય.
                         </div>
                         <div class="p-3 bg-amber-50 rounded-lg border-l-4 border-amber-500 text-amber-900 text-xs">
-                            <strong>મુખ્ય પ્રમેય:</strong> $(gof)^{-1} = f^{-1} \circ g^{-1}$ અને $h \circ (g \circ f) = (h \circ g) \circ f$
+                            <strong>મુખ્ય પ્રમેય:</strong> $(gof)^{-1} = f^{-1} \circ g^{-1}$ અને $h \circ (g \circ f) =
+                            (h \circ g) \circ f$
                         </div>
                     </div>
                 </div>
@@ -262,16 +322,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <i class="fa-solid fa-border-all text-indigo-600"></i>
                     કાર્ટેઝિયન ગુણાકાર અને સંબંધો ગણતરી લેબ (Cartesian Product Lab)
                 </h2>
-                <p class="text-sm text-slate-600 mb-6">ગણ A અને B ના ઘટકો ઉમેરો અને $A \times B$, ઘટકોની સંખ્યા અને શક્ય કુલ સંબંધોની સંખ્યા વિઝ્યુઅલ ગ્રીડમાં જુઓ.</p>
+                <p class="text-sm text-slate-600 mb-6">ગણ A અને B ના ઘટકો ઉમેરો અને $A \times B$, ઘટકોની સંખ્યા અને શક્ય
+                    કુલ સંબંધોની સંખ્યા વિઝ્યુઅલ ગ્રીડમાં જુઓ.</p>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                     <div>
-                        <label class="block text-xs font-bold text-slate-700 uppercase mb-2">ગણ A ના ઘટકો (અલ્પવિરામથી અલગ કરો):</label>
-                        <input type="text" id="setA-input" value="1, 2, 3" oninput="updateCartesian()" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:outline-none font-mono text-sm">
+                        <label class="block text-xs font-bold text-slate-700 uppercase mb-2">ગણ A ના ઘટકો (અલ્પવિરામથી
+                            અલગ કરો):</label>
+                        <input type="text" id="setA-input" value="1, 2, 3" oninput="updateCartesian()"
+                            class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:outline-none font-mono text-sm">
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-slate-700 uppercase mb-2">ગણ B ના ઘટકો (અલ્પવિરામથી અલગ કરો):</label>
-                        <input type="text" id="setB-input" value="a, b" oninput="updateCartesian()" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:outline-none font-mono text-sm">
+                        <label class="block text-xs font-bold text-slate-700 uppercase mb-2">ગણ B ના ઘટકો (અલ્પવિરામથી
+                            અલગ કરો):</label>
+                        <input type="text" id="setB-input" value="a, b" oninput="updateCartesian()"
+                            class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:outline-none font-mono text-sm">
                     </div>
                 </div>
 
@@ -293,8 +358,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
                 <!-- Cartesian Matrix Visualizer -->
                 <div>
-                    <h3 class="text-sm font-bold text-slate-700 mb-3"><i class="fa-solid fa-table-cells text-indigo-600 mr-1"></i> $A \times B$ ના ઘટકો ની ગ્રીડ (Ordered Pairs Matrix):</h3>
-                    <div id="cartesian-grid" class="overflow-x-auto p-4 bg-slate-50 rounded-xl border border-slate-200 flex flex-wrap gap-2">
+                    <h3 class="text-sm font-bold text-slate-700 mb-3"><i
+                            class="fa-solid fa-table-cells text-indigo-600 mr-1"></i> $A \times B$ ના ઘટકો ની ગ્રીડ
+                        (Ordered Pairs Matrix):</h3>
+                    <div id="cartesian-grid"
+                        class="overflow-x-auto p-4 bg-slate-50 rounded-xl border border-slate-200 flex flex-wrap gap-2">
                         <!-- Dynamic Pairs Badges -->
                     </div>
                 </div>
@@ -310,21 +378,31 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             <i class="fa-solid fa-network-wired text-indigo-600"></i>
                             સંબંધના પ્રકારો ટેસ્ટર (Relation Property Matrix & Equivalence Checker)
                         </h2>
-                        <p class="text-sm text-slate-600">ગણ $A = \{1, 2, 3, 4\}$ પર કોઈપણ સંબંધ $R$ બનાવવા ગ્રીડ બોક્સ પર ક્લિક કરો. લાઈવ ચેક થશે કે સંબંધ સ્વવાચક, સંમિત કે પરંપરિત છે!</p>
+                        <p class="text-sm text-slate-600">ગણ $A = \{1, 2, 3, 4\}$ પર કોઈપણ સંબંધ $R$ બનાવવા ગ્રીડ બોક્સ
+                            પર ક્લિક કરો. લાઈવ ચેક થશે કે સંબંધ સ્વવાચક, સંમિત કે પરંપરિત છે!</p>
                     </div>
                     <!-- Presets -->
                     <div class="flex flex-wrap gap-2">
-                        <button onclick="setRelationPreset('empty')" class="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-xs font-semibold">રિક્ત (Void)</button>
-                        <button onclick="setRelationPreset('universal')" class="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-xs font-semibold">સાર્વત્રિક (Universal)</button>
-                        <button onclick="setRelationPreset('reflexive')" class="px-3 py-1.5 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 rounded-lg text-xs font-semibold">સ્વવાચક</button>
-                        <button onclick="setRelationPreset('equivalence')" class="px-3 py-1.5 bg-emerald-100 hover:bg-emerald-200 text-emerald-800 rounded-lg text-xs font-semibold">સામ્ય સંબંધ</button>
+                        <button onclick="setRelationPreset('empty')"
+                            class="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-xs font-semibold">રિક્ત
+                            (Void)</button>
+                        <button onclick="setRelationPreset('universal')"
+                            class="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-xs font-semibold">સાર્વત્રિક
+                            (Universal)</button>
+                        <button onclick="setRelationPreset('reflexive')"
+                            class="px-3 py-1.5 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 rounded-lg text-xs font-semibold">સ્વવાચક</button>
+                        <button onclick="setRelationPreset('equivalence')"
+                            class="px-3 py-1.5 bg-emerald-100 hover:bg-emerald-200 text-emerald-800 rounded-lg text-xs font-semibold">સામ્ય
+                            સંબંધ</button>
                     </div>
                 </div>
 
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
                     <!-- Matrix Grid Left -->
-                    <div class="lg:col-span-6 flex flex-col items-center bg-slate-50 p-6 rounded-2xl border border-slate-200">
-                        <span class="text-xs font-bold text-slate-500 mb-3">જે જોડ $(x, y) \in R$ માં રાખવી હોય તેના પર ક્લિક કરો:</span>
+                    <div
+                        class="lg:col-span-6 flex flex-col items-center bg-slate-50 p-6 rounded-2xl border border-slate-200">
+                        <span class="text-xs font-bold text-slate-500 mb-3">જે જોડ $(x, y) \in R$ માં રાખવી હોય તેના પર
+                            ક્લિક કરો:</span>
                         <div id="relation-matrix" class="grid grid-cols-5 gap-2 text-center text-xs font-bold">
                             <!-- JS dynamic grid -->
                         </div>
@@ -332,37 +410,45 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
                     <!-- Analysis Panel Right -->
                     <div class="lg:col-span-6 space-y-4">
-                        <h3 class="text-base font-bold text-slate-800 border-b pb-2">લાઈવ વિશ્લેષણ રિપોર્ટ (Live Property Analysis):</h3>
-                        
+                        <h3 class="text-base font-bold text-slate-800 border-b pb-2">લાઈવ વિશ્લેષણ રિપોર્ટ (Live
+                            Property Analysis):</h3>
+
                         <!-- Reflexive Status -->
                         <div id="status-reflexive" class="p-3.5 rounded-xl border flex items-center justify-between">
                             <div>
                                 <h4 class="font-bold text-sm">૧. સ્વવાચક સંબંધ (Reflexive)</h4>
-                                <p id="desc-reflexive" class="text-xs text-slate-500">દરેક $a \in A$ માટે $(a,a) \in R$ હોવું જોઈએ.</p>
+                                <p id="desc-reflexive" class="text-xs text-slate-500">દરેક $a \in A$ માટે $(a,a) \in R$
+                                    હોવું જોઈએ.</p>
                             </div>
-                            <span id="badge-reflexive" class="px-3 py-1 rounded-full text-xs font-bold">ચકાસી રહ્યું છે...</span>
+                            <span id="badge-reflexive" class="px-3 py-1 rounded-full text-xs font-bold">ચકાસી રહ્યું
+                                છે...</span>
                         </div>
 
                         <!-- Symmetric Status -->
                         <div id="status-symmetric" class="p-3.5 rounded-xl border flex items-center justify-between">
                             <div>
                                 <h4 class="font-bold text-sm">૨. સંમિત સંબંધ (Symmetric)</h4>
-                                <p id="desc-symmetric" class="text-xs text-slate-500">જો $(a,b) \in R$ તો $(b,a) \in R$ હોવું જોઇએ.</p>
+                                <p id="desc-symmetric" class="text-xs text-slate-500">જો $(a,b) \in R$ તો $(b,a) \in R$
+                                    હોવું જોઇએ.</p>
                             </div>
-                            <span id="badge-symmetric" class="px-3 py-1 rounded-full text-xs font-bold">ચકાસી રહ્યું છે...</span>
+                            <span id="badge-symmetric" class="px-3 py-1 rounded-full text-xs font-bold">ચકાસી રહ્યું
+                                છે...</span>
                         </div>
 
                         <!-- Transitive Status -->
                         <div id="status-transitive" class="p-3.5 rounded-xl border flex items-center justify-between">
                             <div>
                                 <h4 class="font-bold text-sm">૩. પરંપરિત સંબંધ (Transitive)</h4>
-                                <p id="desc-transitive" class="text-xs text-slate-500">જો $(a,b) \in R$ અને $(b,c) \in R$ તો $(a,c) \in R$ હોવું જોઈએ.</p>
+                                <p id="desc-transitive" class="text-xs text-slate-500">જો $(a,b) \in R$ અને $(b,c) \in
+                                    R$ તો $(a,c) \in R$ હોવું જોઈએ.</p>
                             </div>
-                            <span id="badge-transitive" class="px-3 py-1 rounded-full text-xs font-bold">ચકાસી રહ્યું છે...</span>
+                            <span id="badge-transitive" class="px-3 py-1 rounded-full text-xs font-bold">ચકાસી રહ્યું
+                                છે...</span>
                         </div>
 
                         <!-- Equivalence Summary -->
-                        <div id="equivalence-box" class="p-4 rounded-xl bg-slate-100 border border-slate-300 text-center">
+                        <div id="equivalence-box"
+                            class="p-4 rounded-xl bg-slate-100 border border-slate-300 text-center">
                             <h4 class="font-bold text-base text-slate-800">સામ્ય સંબંધ (Equivalence Relation)?</h4>
                             <div id="equivalence-result" class="mt-2 text-sm font-semibold">ચકાસી રહ્યું છે...</div>
                             <div id="equivalence-classes" class="mt-2 text-xs text-slate-600"></div>
@@ -381,31 +467,44 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             <i class="fa-solid fa-route text-indigo-600"></i>
                             વિધેય અને તેના પ્રકારો - Arrow Diagram Visualizer
                         </h2>
-                        <p class="text-sm text-slate-600">પ્રદેશ (Domain) ના ઘટકો પર ક્લિક કરી સહપ્રદેશ (Co-domain) ના ઘટક સાથે તીર વડે જોડો અને વિધેયનો પ્રકાર તપાસો.</p>
+                        <p class="text-sm text-slate-600">પ્રદેશ (Domain) ના ઘટકો પર ક્લિક કરી સહપ્રદેશ (Co-domain) ના
+                            ઘટક સાથે તીર વડે જોડો અને વિધેયનો પ્રકાર તપાસો.</p>
                     </div>
                     <!-- Function Presets -->
                     <div class="flex flex-wrap gap-2">
-                        <button onclick="setFunctionPreset('one-one-onto')" class="px-3 py-1.5 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 rounded-lg text-xs font-semibold">એક-એક અને વ્યાપ્ત (Bijective)</button>
-                        <button onclick="setFunctionPreset('many-one-onto')" class="px-3 py-1.5 bg-amber-50 hover:bg-amber-100 text-amber-700 rounded-lg text-xs font-semibold">અનેક-એક અને વ્યાપ્ત</button>
-                        <button onclick="setFunctionPreset('one-one-into')" class="px-3 py-1.5 bg-purple-50 hover:bg-purple-100 text-purple-700 rounded-lg text-xs font-semibold">એક-એક પરંતુ અવ્યાપ્ત (Into)</button>
-                        <button onclick="setFunctionPreset('invalid')" class="px-3 py-1.5 bg-rose-50 hover:bg-rose-100 text-rose-700 rounded-lg text-xs font-semibold">વિધેય નથી (Invalid)</button>
+                        <button onclick="setFunctionPreset('one-one-onto')"
+                            class="px-3 py-1.5 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 rounded-lg text-xs font-semibold">એક-એક
+                            અને વ્યાપ્ત (Bijective)</button>
+                        <button onclick="setFunctionPreset('many-one-onto')"
+                            class="px-3 py-1.5 bg-amber-50 hover:bg-amber-100 text-amber-700 rounded-lg text-xs font-semibold">અનેક-એક
+                            અને વ્યાપ્ત</button>
+                        <button onclick="setFunctionPreset('one-one-into')"
+                            class="px-3 py-1.5 bg-purple-50 hover:bg-purple-100 text-purple-700 rounded-lg text-xs font-semibold">એક-એક
+                            પરંતુ અવ્યાપ્ત (Into)</button>
+                        <button onclick="setFunctionPreset('invalid')"
+                            class="px-3 py-1.5 bg-rose-50 hover:bg-rose-100 text-rose-700 rounded-lg text-xs font-semibold">વિધેય
+                            નથી (Invalid)</button>
                     </div>
                 </div>
 
                 <!-- Arrow Diagram Interactive Canvas Container -->
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
-                    <div class="lg:col-span-7 bg-indigo-900/5 p-6 rounded-2xl border border-indigo-100 flex flex-col items-center">
+                    <div
+                        class="lg:col-span-7 bg-indigo-900/5 p-6 rounded-2xl border border-indigo-100 flex flex-col items-center">
                         <svg id="func-svg" class="w-full h-80 max-w-lg" viewBox="0 0 500 300">
                             <!-- Dynamic SVG Content generated by JS -->
                         </svg>
-                        <span class="text-xs text-slate-500 mt-2"><i class="fa-solid fa-hand-pointer mr-1"></i> પ્રદેશના ટપકાં (x) પરથી સહપ્રદેશના ટપકાં (y) પર તીર ખેંચવા માટે ક્લિક કરો</span>
+                        <span class="text-xs text-slate-500 mt-2"><i class="fa-solid fa-hand-pointer mr-1"></i> પ્રદેશના
+                            ટપકાં (x) પરથી સહપ્રદેશના ટપકાં (y) પર તીર ખેંચવા માટે ક્લિક કરો</span>
                     </div>
 
                     <!-- Live Classification Panel -->
                     <div class="lg:col-span-5 space-y-4">
                         <div id="func-validity-box" class="p-4 rounded-xl bg-slate-100 border">
-                            <h4 class="text-xs uppercase font-bold text-slate-500">વિધેયની માન્યતા (Function Validity):</h4>
-                            <div id="func-validity-text" class="text-base font-bold text-slate-800 mt-1">ચકાસી રહ્યું છે...</div>
+                            <h4 class="text-xs uppercase font-bold text-slate-500">વિધેયની માન્યતા (Function Validity):
+                            </h4>
+                            <div id="func-validity-text" class="text-base font-bold text-slate-800 mt-1">ચકાસી રહ્યું
+                                છે...</div>
                         </div>
 
                         <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-3">
@@ -420,7 +519,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             </div>
                             <hr>
                             <div>
-                                <span class="text-xs font-bold text-slate-500 uppercase">પ્રતિવિધેય (Inverse $f^{-1}$) અસ્તિત્વ ધરાવે?</span>
+                                <span class="text-xs font-bold text-slate-500 uppercase">પ્રતિવિધેય (Inverse $f^{-1}$)
+                                    અસ્તિત્વ ધરાવે?</span>
                                 <div id="func-inverse-text" class="text-sm font-bold text-emerald-700 mt-0.5">-</div>
                             </div>
                         </div>
@@ -436,10 +536,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <i class="fa-solid fa-circle-nodes text-indigo-600"></i>
                     વિધેયોનું સંયોજન (Composition of Functions: $gof$)
                 </h2>
-                <p class="text-sm text-slate-600 mb-6">તમારી બુકના પેજ ૩ મુજબ $f: A \rightarrow B$ અને $g: B \rightarrow C$ માટે $gof: A \rightarrow C$ નું ત્રિ-ગણ વિઝ્યુઅલ પ્રોસેસિંગ.</p>
+                <p class="text-sm text-slate-600 mb-6">તમારી બુકના પેજ ૩ મુજબ $f: A \rightarrow B$ અને $g: B \rightarrow
+                    C$ માટે $gof: A \rightarrow C$ નું ત્રિ-ગણ વિઝ્યુઅલ પ્રોસેસિંગ.</p>
 
                 <!-- Interactive 3-Set Flow SVG Diagram -->
-                <div class="bg-slate-900 rounded-2xl p-6 text-white overflow-hidden shadow-inner flex flex-col items-center">
+                <div
+                    class="bg-slate-900 rounded-2xl p-6 text-white overflow-hidden shadow-inner flex flex-col items-center">
                     <svg id="comp-svg" class="w-full h-72 max-w-2xl" viewBox="0 0 600 240">
                         <!-- Dynamic SVG for 3 sets composition -->
                     </svg>
@@ -455,18 +557,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <!-- Explanation & Formula Simulation -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
                     <div class="p-4 bg-indigo-50 rounded-xl border border-indigo-100">
-                        <h3 class="font-bold text-indigo-900 text-sm mb-2"><i class="fa-solid fa-calculator text-indigo-600 mr-1"></i> ગાણિતિક ઉદાહરણ (Algebraic Example):</h3>
+                        <h3 class="font-bold text-indigo-900 text-sm mb-2"><i
+                                class="fa-solid fa-calculator text-indigo-600 mr-1"></i> ગાણિતિક ઉદાહરણ (Algebraic
+                            Example):</h3>
                         <p class="text-xs text-slate-600 mb-2">ધારો કે $f(x) = 2x$ અને $g(y) = y^2 + 1$</p>
                         <ul class="text-xs space-y-1.5 font-mono text-indigo-950">
-                            <li class="bg-white p-2 rounded border border-indigo-100">$(gof)(x) = g(f(x)) = g(2x) = (2x)^2 + 1 = 4x^2 + 1$</li>
-                            <li class="bg-white p-2 rounded border border-indigo-100">$(fog)(x) = f(g(x)) = f(x^2+1) = 2(x^2 + 1) = 2x^2 + 2$</li>
+                            <li class="bg-white p-2 rounded border border-indigo-100">$(gof)(x) = g(f(x)) = g(2x) =
+                                (2x)^2 + 1 = 4x^2 + 1$</li>
+                            <li class="bg-white p-2 rounded border border-indigo-100">$(fog)(x) = f(g(x)) = f(x^2+1) =
+                                2(x^2 + 1) = 2x^2 + 2$</li>
                         </ul>
                     </div>
 
                     <div class="p-4 bg-amber-50 rounded-xl border border-amber-200">
-                        <h3 class="font-bold text-amber-900 text-sm mb-2"><i class="fa-solid fa-triangle-exclamation text-amber-600 mr-1"></i> યાદ રાખવાની મહત્વની શરત:</h3>
+                        <h3 class="font-bold text-amber-900 text-sm mb-2"><i
+                                class="fa-solid fa-triangle-exclamation text-amber-600 mr-1"></i> યાદ રાખવાની મહત્વની
+                            શરત:</h3>
                         <p class="text-xs text-amber-900 leading-relaxed">
-                            • સંયોજિત વિધેય <strong>$gof$</strong> ત્યારે જ વ્યાખ્યાયિત થાય જ્યારે <strong>f નો વિસ્તાર $\subseteq$ g નો પ્રદેશ</strong> થાય.<br>
+                            • સંયોજિત વિધેય <strong>$gof$</strong> ત્યારે જ વ્યાખ્યાયિત થાય જ્યારે <strong>f નો વિસ્તાર
+                                $\subseteq$ g નો પ્રદેશ</strong> થાય.<br>
                             • જો $gof$ એક-એક વિધેય હોય તો <strong>f અચૂક એક-એક</strong> જ હોય.<br>
                             • જો $gof$ વ્યાપ્ત વિધેય હોય તો <strong>g અચૂક વ્યાપ્ત</strong> જ હોય.
                         </p>
@@ -484,9 +593,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             <i class="fa-solid fa-pen-to-square text-indigo-600"></i>
                             સ્વ-મૂલ્યાંકન ક્વિઝ (Self Assessment Test)
                         </h2>
-                        <p class="text-xs text-slate-500">તમારી તૈયારી ચકાસવા પ્રશ્નોના જવાબ આપો અને ત્વરિત ઉત્તર મેળવો.</p>
+                        <p class="text-xs text-slate-500">તમારી તૈયારી ચકાસવા પ્રશ્નોના જવાબ આપો અને ત્વરિત ઉત્તર મેળવો.
+                        </p>
                     </div>
-                    <div id="quiz-score-badge" class="px-4 py-2 bg-indigo-100 text-indigo-800 rounded-xl font-bold text-sm">
+                    <div id="quiz-score-badge"
+                        class="px-4 py-2 bg-indigo-100 text-indigo-800 rounded-xl font-bold text-sm">
                         સ્કોર: 0 / 5
                     </div>
                 </div>
@@ -511,20 +622,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         function switchTab(tabId) {
             document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
             document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active-tab'));
-            
+
             document.getElementById(`section-${tabId}`).classList.remove('hidden');
             document.getElementById(`tab-${tabId}`).classList.add('active-tab');
 
-            if(tabId === 'relations') renderRelationMatrix();
-            if(tabId === 'functions') renderFunctionSVG();
-            if(tabId === 'composition') renderCompositionSVG();
-            
+            if (tabId === 'relations') renderRelationMatrix();
+            if (tabId === 'functions') renderFunctionSVG();
+            if (tabId === 'composition') renderCompositionSVG();
+
             // Re-render KaTeX when switching tabs if needed
-            if(typeof renderMathInElement === 'function') {
+            if (typeof renderMathInElement === 'function') {
                 renderMathInElement(document.getElementById(`section-${tabId}`), {
                     delimiters: [
-                        {left: '$$', right: '$$', display: true},
-                        {left: '$', right: '$', display: false}
+                        { left: '$$', right: '$$', display: true },
+                        { left: '$', right: '$', display: false }
                     ]
                 });
             }
@@ -544,7 +655,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             document.getElementById('count-A').innerText = m;
             document.getElementById('count-B').innerText = n;
-            
+
             // Total relations 2^(m*n)
             let totalRelText = "0";
             if (mn <= 30) {
@@ -613,19 +724,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         }
 
         function togglePair(key) {
-            if(activePairs.has(key)) activePairs.delete(key);
+            if (activePairs.has(key)) activePairs.delete(key);
             else activePairs.add(key);
             renderRelationMatrix();
         }
 
         function setRelationPreset(preset) {
             activePairs.clear();
-            if(preset === 'universal') {
+            if (preset === 'universal') {
                 relElements.forEach(x => relElements.forEach(y => activePairs.add(`${x}-${y}`)));
-            } else if(preset === 'reflexive') {
+            } else if (preset === 'reflexive') {
                 relElements.forEach(x => activePairs.add(`${x}-${x}`));
                 activePairs.add('1-2');
-            } else if(preset === 'equivalence') {
+            } else if (preset === 'equivalence') {
                 relElements.forEach(x => activePairs.add(`${x}-${x}`));
                 activePairs.add('1-2');
                 activePairs.add('2-1');
@@ -641,7 +752,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             let isSymmetric = true;
             activePairs.forEach(pair => {
                 const [x, y] = pair.split('-');
-                if(!activePairs.has(`${y}-${x}`)) isSymmetric = false;
+                if (!activePairs.has(`${y}-${x}`)) isSymmetric = false;
             });
 
             // 3. Transitive Check
@@ -650,8 +761,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 const [a, b] = p1.split('-');
                 activePairs.forEach(p2 => {
                     const [b2, c] = p2.split('-');
-                    if(b === b2) {
-                        if(!activePairs.has(`${a}-${c}`)) isTransitive = false;
+                    if (b === b2) {
+                        if (!activePairs.has(`${a}-${c}`)) isTransitive = false;
                     }
                 });
             });
@@ -666,18 +777,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             const eqRes = document.getElementById('equivalence-result');
             const eqClasses = document.getElementById('equivalence-classes');
 
-            if(isEquivalence) {
+            if (isEquivalence) {
                 eqBox.className = "p-4 rounded-xl bg-emerald-50 border border-emerald-300 text-center text-emerald-900";
                 eqRes.innerHTML = "<i class='fa-solid fa-circle-check text-emerald-600 mr-1'></i> આ એક <strong>સામ્ય સંબંધ (Equivalence Relation)</strong> છે!";
-                
+
                 // Calculate equivalence classes
                 let classes = [];
                 let visited = new Set();
                 relElements.forEach(x => {
-                    if(!visited.has(x)) {
+                    if (!visited.has(x)) {
                         let cls = [];
                         relElements.forEach(y => {
-                            if(activePairs.has(`${x}-${y}`)) {
+                            if (activePairs.has(`${x}-${y}`)) {
                                 cls.push(y);
                                 visited.add(y);
                             }
@@ -697,7 +808,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             const statusDiv = document.getElementById(`status-${type}`);
             const badge = document.getElementById(`badge-${type}`);
 
-            if(isValid) {
+            if (isValid) {
                 statusDiv.className = "p-3.5 rounded-xl border border-emerald-200 bg-emerald-50/50 text-emerald-900 flex items-center justify-between";
                 badge.className = "px-3 py-1 rounded-full text-xs font-bold bg-emerald-600 text-white";
                 badge.innerText = "હા (Yes)";
@@ -715,13 +826,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         let selectedX = null;
 
         function setFunctionPreset(preset) {
-            if(preset === 'one-one-onto') {
+            if (preset === 'one-one-onto') {
                 funcMapping = { 1: 'A', 2: 'B', 3: 'C', 4: 'D' };
-            } else if(preset === 'many-one-onto') {
+            } else if (preset === 'many-one-onto') {
                 funcMapping = { 1: 'A', 2: 'A', 3: 'B', 4: 'C' };
-            } else if(preset === 'one-one-into') {
+            } else if (preset === 'one-one-into') {
                 funcMapping = { 1: 'A', 2: 'B', 3: 'C' }; // 4 unmapped or mapped to C
-            } else if(preset === 'invalid') {
+            } else if (preset === 'invalid') {
                 funcMapping = { 1: 'A', 2: 'B', 3: 'C', 4: null }; // 4 has no mapping
             }
             renderFunctionSVG();
@@ -771,7 +882,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             // Draw Arrows
             Object.keys(funcMapping).forEach(xKey => {
                 const yVal = funcMapping[xKey];
-                if(yVal && xCoords[xKey] && yCoords[yVal]) {
+                if (yVal && xCoords[xKey] && yCoords[yVal]) {
                     const start = xCoords[xKey];
                     const end = yCoords[yVal];
                     svg.innerHTML += `<line x1="${start.x + 14}" y1="${start.y}" x2="${end.x - 18}" y2="${end.y}" stroke="#4f46e5" stroke-width="2.5" marker-end="url(#arrow)" />`;
@@ -787,7 +898,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         }
 
         function selectCodomainY(yVal) {
-            if(selectedX !== null) {
+            if (selectedX !== null) {
                 funcMapping[selectedX] = yVal;
                 selectedX = null;
                 renderFunctionSVG();
@@ -804,7 +915,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             // 1. Is it a function? Every element in X must have EXACTLY ONE image
             let isFunction = domainX.every(x => funcMapping[x] !== undefined && funcMapping[x] !== null);
 
-            if(!isFunction) {
+            if (!isFunction) {
                 validityBox.className = "p-4 rounded-xl bg-rose-50 border border-rose-300";
                 validityText.innerHTML = "<span class='text-rose-700'><i class='fa-solid fa-circle-xmark mr-1'></i> વિધેય નથી (Not a Function)!</span><br><span class='text-xs text-rose-600 font-normal'>પ્રદેશ ગણ X ના બધા ઘટકોનું પ્રતિબિંબ મળવું જોઈએ.</span>";
                 injText.innerText = "-";
@@ -821,7 +932,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             const uniqueMapped = new Set(mappedValues);
             const isOneOne = uniqueMapped.size === domainX.length;
 
-            if(isOneOne) {
+            if (isOneOne) {
                 injText.innerHTML = "<i class='fa-solid fa-check text-emerald-600 mr-1'></i> <strong>એક-એક વિધેય (Injective / One-One)</strong>";
             } else {
                 injText.innerHTML = "<i class='fa-solid fa-share-nodes text-amber-600 mr-1'></i> <strong>અનેક-એક વિધેય (Many-One)</strong>";
@@ -829,14 +940,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             // 3. Surjective Check (Onto)
             const isOnto = codomainY.every(y => mappedValues.includes(y));
-            if(isOnto) {
+            if (isOnto) {
                 surText.innerHTML = "<i class='fa-solid fa-check text-emerald-600 mr-1'></i> <strong>વ્યાપ્ત વિધેય (Surjective / Onto)</strong>";
             } else {
                 surText.innerHTML = "<i class='fa-solid fa-minus text-slate-500 mr-1'></i> <strong>અવ્યાપ્ત વિધેય (Into Function)</strong>";
             }
 
             // 4. Bijective & Inverse
-            if(isOneOne && isOnto) {
+            if (isOneOne && isOnto) {
                 invText.innerHTML = "<span class='text-emerald-700'><i class='fa-solid fa-star text-amber-500 mr-1'></i> <strong>હા, પ્રતિવિધેય $f^{-1}$ અસ્તિત્વ ધરાવે છે (Invertible)!</strong></span>";
             } else {
                 invText.innerHTML = "<span class='text-slate-500'>ના, પ્રતિવિધેય માટે વિધેય એક-એક અને વ્યાપ્ત બંને હોવું જરૂરી છે.</span>";
@@ -968,7 +1079,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 card.appendChild(optionsGrid);
 
                 // Explanation Box if answered
-                if(userQuizAnswers[qIdx] !== undefined) {
+                if (userQuizAnswers[qIdx] !== undefined) {
                     const isCorrect = userQuizAnswers[qIdx] === item.correct;
                     const expDiv = document.createElement('div');
                     expDiv.className = `p-3 rounded-xl text-xs font-medium mt-2 ${isCorrect ? 'bg-emerald-100 text-emerald-900 border border-emerald-300' : 'bg-rose-100 text-rose-900 border border-rose-300'}`;
@@ -982,16 +1093,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             // Calculate Score
             let score = 0;
             Object.keys(userQuizAnswers).forEach(qIdx => {
-                if(userQuizAnswers[qIdx] === quizData[qIdx].correct) score++;
+                if (userQuizAnswers[qIdx] === quizData[qIdx].correct) score++;
             });
             document.getElementById('quiz-score-badge').innerText = `સ્કોર: ${score} / ${quizData.length}`;
 
             // Re-render KaTeX in quiz container
-            if(typeof renderMathInElement === 'function') {
+            if (typeof renderMathInElement === 'function') {
                 renderMathInElement(container, {
                     delimiters: [
-                        {left: '$$', right: '$$', display: true},
-                        {left: '$', right: '$', display: false}
+                        { left: '$$', right: '$$', display: true },
+                        { left: '$', right: '$', display: false }
                     ]
                 });
             }
@@ -1003,12 +1114,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         }
 
         // Initialize App on Load
-        window.onload = function() {
+        window.onload = function () {
             updateCartesian();
             renderRelationMatrix();
             renderQuiz();
         };
     </script>
-<script src="../assets/global-navbar.js" defer></script>
+    <script src="../assets/global-navbar.js" defer></script>
 </body>
+
 </html>
